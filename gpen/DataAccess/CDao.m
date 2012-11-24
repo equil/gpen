@@ -20,12 +20,13 @@
 
 - (NSManagedObjectModel *)dataModel
 {
-	return [AppDelegate current].dataAccessManager.managedObjectModel;
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	return delegate.dataAccessManager.managedObjectModel;
 }
 
 - (id)initWithContext:(NSManagedObjectContext *)dataContext {
 	if (self = [super init]) {
-		dataContext_ = [dataContext retain];
+		dataContext_ = dataContext;
 	}
 	
 	return self;
