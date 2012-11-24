@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C3006" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Penalty" representedClassName="Penalty" syncable="YES">
+        <attribute name="carNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="catcher" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="fixedLicenseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fixedSpeed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="issueKOAP" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="overdueDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roadName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roadPosition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="penalties" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="penalty" inverseEntity="Recipient" syncable="YES"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="license" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patronymic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="penalties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Penalty" inverseName="profile" inverseEntity="Penalty" syncable="YES"/>
+    </entity>
+    <entity name="Recipient" representedClassName="Recipient" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="administratorCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bank" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="billTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kbk" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kpp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="okato" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="penalty" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Penalty" inverseName="recipient" inverseEntity="Penalty" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Penalty" positionX="160" positionY="192" width="128" height="285"/>
+        <element name="Profile" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="Recipient" positionX="160" positionY="192" width="128" height="210"/>
+    </elements>
+</model>
