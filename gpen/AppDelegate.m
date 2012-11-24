@@ -17,12 +17,18 @@
 {
     _dispatcher = [[CCentralDispatcher alloc] init];
     
+    [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
+    
     return YES;
 }
 
 - (void)initializeApplication {
     _dataAccessManager = [[CDataAccessManager alloc] init];
     _dataAccessManager.persistentStoreCoordinator;
+    
+    sleep(5);
+    
+    [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
