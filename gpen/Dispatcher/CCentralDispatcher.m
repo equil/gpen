@@ -6,6 +6,8 @@
 
 #import "CCentralDispatcher.h"
 
+#define OS_OBJECT_USE_OBJC 0
+
 @implementation CCentralDispatcher {
     NSMutableDictionary *_dataSavingQueues;
 }
@@ -28,13 +30,5 @@
     }
     return [_dataSavingQueues objectForKey:modelName];
 }
-
-//- (void)dealloc {
-//    for (dispatch_queue_t queue in _dataSavingQueues) {
-//        dispatch_release(queue);
-//    }
-//
-//    dispatch_release(_feedParsingQueue);
-//}
 
 @end
