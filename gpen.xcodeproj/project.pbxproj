@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
+		1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */; };
 		1EBBE6981660B3CD00708B6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE6971660B3CD00708B6D /* UIKit.framework */; };
 		1EBBE69A1660B3CD00708B6D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE6991660B3CD00708B6D /* Foundation.framework */; };
 		1EBBE69C1660B3CD00708B6D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE69B1660B3CD00708B6D /* CoreGraphics.framework */; };
@@ -15,12 +17,6 @@
 		1EBBE6A81660B3CD00708B6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6A71660B3CD00708B6D /* AppDelegate.m */; };
 		1EBBE6B11660B3CD00708B6D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6AF1660B3CD00708B6D /* MainStoryboard_iPhone.storyboard */; };
 		1EBBE6B41660B3CD00708B6D /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6B21660B3CD00708B6D /* MainStoryboard_iPad.storyboard */; };
-		1EBBE6B71660B3CD00708B6D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6B61660B3CD00708B6D /* FirstViewController.m */; };
-		1EBBE6B91660B3CD00708B6D /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6B81660B3CD00708B6D /* first.png */; };
-		1EBBE6BB1660B3CD00708B6D /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6BA1660B3CD00708B6D /* first@2x.png */; };
-		1EBBE6BE1660B3CD00708B6D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6BD1660B3CD00708B6D /* SecondViewController.m */; };
-		1EBBE6C01660B3CD00708B6D /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6BF1660B3CD00708B6D /* second.png */; };
-		1EBBE6C21660B3CD00708B6D /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE6C11660B3CD00708B6D /* second@2x.png */; };
 		1EBBE6D41660B9AF00708B6D /* CDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6CF1660B9AF00708B6D /* CDao.m */; };
 		1EBBE6D61660B9AF00708B6D /* CDataAccessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6D31660B9AF00708B6D /* CDataAccessManager.m */; };
 		1EBBE6E71660BE0100708B6D /* CCentralDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBBE6E61660BE0100708B6D /* CCentralDispatcher.m */; };
@@ -42,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
+		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
+		1EA471FE1661FA92008CBFB3 /* CLoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginSegue.h; path = LoginScreen/CLoginSegue.h; sourceTree = "<group>"; };
+		1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginSegue.m; path = LoginScreen/CLoginSegue.m; sourceTree = "<group>"; };
 		1EBBE6931660B3CD00708B6D /* gpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EBBE6971660B3CD00708B6D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1EBBE6991660B3CD00708B6D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,14 +54,6 @@
 		1EBBE6A71660B3CD00708B6D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1EBBE6B01660B3CD00708B6D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		1EBBE6B31660B3CD00708B6D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		1EBBE6B51660B3CD00708B6D /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		1EBBE6B61660B3CD00708B6D /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		1EBBE6B81660B3CD00708B6D /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		1EBBE6BA1660B3CD00708B6D /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		1EBBE6BC1660B3CD00708B6D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		1EBBE6BD1660B3CD00708B6D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		1EBBE6BF1660B3CD00708B6D /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		1EBBE6C11660B3CD00708B6D /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		1EBBE6CE1660B9AF00708B6D /* CDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDao.h; path = DataAccess/CDao.h; sourceTree = "<group>"; };
 		1EBBE6CF1660B9AF00708B6D /* CDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDao.m; path = DataAccess/CDao.m; sourceTree = "<group>"; };
 		1EBBE6D21660B9AF00708B6D /* CDataAccessManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataAccessManager.h; path = DataAccess/CDataAccessManager.h; sourceTree = "<group>"; };
@@ -105,6 +97,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EA471FA1661F2E4008CBFB3 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1EA471FB1661F330008CBFB3 /* CLoginViewController.h */,
+				1EA471FC1661F330008CBFB3 /* CLoginViewController.m */,
+				1EA471FE1661FA92008CBFB3 /* CLoginSegue.h */,
+				1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */,
+			);
+			name = LoginScreen;
+			sourceTree = "<group>";
+		};
 		1EBBE6881660B3CD00708B6D = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +140,7 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				1EA471FA1661F2E4008CBFB3 /* LoginScreen */,
 				1EBBE6FD1660CBD800708B6D /* SplashScreen */,
 				1EBBE6E41660BDEE00708B6D /* Dispatcher */,
 				1EBBE6CC1660B90500708B6D /* DataAccess */,
@@ -144,14 +148,6 @@
 				1EBBE6A71660B3CD00708B6D /* AppDelegate.m */,
 				1EBBE6AF1660B3CD00708B6D /* MainStoryboard_iPhone.storyboard */,
 				1EBBE6B21660B3CD00708B6D /* MainStoryboard_iPad.storyboard */,
-				1EBBE6B51660B3CD00708B6D /* FirstViewController.h */,
-				1EBBE6B61660B3CD00708B6D /* FirstViewController.m */,
-				1EBBE6B81660B3CD00708B6D /* first.png */,
-				1EBBE6BA1660B3CD00708B6D /* first@2x.png */,
-				1EBBE6BC1660B3CD00708B6D /* SecondViewController.h */,
-				1EBBE6BD1660B3CD00708B6D /* SecondViewController.m */,
-				1EBBE6BF1660B3CD00708B6D /* second.png */,
-				1EBBE6C11660B3CD00708B6D /* second@2x.png */,
 				1EBBE69E1660B3CD00708B6D /* Supporting Files */,
 			);
 			path = gpen;
@@ -290,10 +286,6 @@
 				1EBBE6A21660B3CD00708B6D /* InfoPlist.strings in Resources */,
 				1EBBE6B11660B3CD00708B6D /* MainStoryboard_iPhone.storyboard in Resources */,
 				1EBBE6B41660B3CD00708B6D /* MainStoryboard_iPad.storyboard in Resources */,
-				1EBBE6B91660B3CD00708B6D /* first.png in Resources */,
-				1EBBE6BB1660B3CD00708B6D /* first@2x.png in Resources */,
-				1EBBE6C01660B3CD00708B6D /* second.png in Resources */,
-				1EBBE6C21660B3CD00708B6D /* second@2x.png in Resources */,
 				1EBBE70A1660CF9500708B6D /* Default-Portrait.png in Resources */,
 				1EBBE70B1660CF9500708B6D /* Default-Portrait@2x.png in Resources */,
 				1EBBE70C1660CF9500708B6D /* Default.png in Resources */,
@@ -314,8 +306,6 @@
 			files = (
 				1EBBE6A41660B3CD00708B6D /* main.m in Sources */,
 				1EBBE6A81660B3CD00708B6D /* AppDelegate.m in Sources */,
-				1EBBE6B71660B3CD00708B6D /* FirstViewController.m in Sources */,
-				1EBBE6BE1660B3CD00708B6D /* SecondViewController.m in Sources */,
 				1EBBE6D41660B9AF00708B6D /* CDao.m in Sources */,
 				1EBBE6D61660B9AF00708B6D /* CDataAccessManager.m in Sources */,
 				1EBBE6E71660BE0100708B6D /* CCentralDispatcher.m in Sources */,
@@ -324,6 +314,8 @@
 				1EBBE6F61660C7CC00708B6D /* Profile.m in Sources */,
 				1EBBE6F91660C7CC00708B6D /* Recipient.m in Sources */,
 				1EBBE7031660CBD800708B6D /* CSplashViewController.m in Sources */,
+				1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */,
+				1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
