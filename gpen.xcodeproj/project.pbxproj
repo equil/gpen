@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
+		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */; };
 		1EBBE6981660B3CD00708B6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE6971660B3CD00708B6D /* UIKit.framework */; };
@@ -38,6 +41,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
+		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
+		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
+		1E9F0D241663D61E0017A2EB /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+HTTP.h"; path = "Update/TBXML/TBXML+HTTP.h"; sourceTree = "<group>"; };
+		1E9F0D271663D8390017A2EB /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = Update/JSONKit/JSONKit.h; sourceTree = "<group>"; };
+		1E9F0D281663D8390017A2EB /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = Update/JSONKit/JSONKit.m; sourceTree = "<group>"; };
+		1E9F0D2E1663DB210017A2EB /* CUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUpdater.h; path = Update/CUpdater.h; sourceTree = "<group>"; };
+		1E9F0D2F1663DB210017A2EB /* CUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdater.m; path = Update/CUpdater.m; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EA471FE1661FA92008CBFB3 /* CLoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginSegue.h; path = LoginScreen/CLoginSegue.h; sourceTree = "<group>"; };
@@ -91,12 +102,44 @@
 				1EBBE6981660B3CD00708B6D /* UIKit.framework in Frameworks */,
 				1EBBE69A1660B3CD00708B6D /* Foundation.framework in Frameworks */,
 				1EBBE69C1660B3CD00708B6D /* CoreGraphics.framework in Frameworks */,
+				1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E9F0D1E1663D6050017A2EB /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				1E9F0D261663D8200017A2EB /* JSONKit */,
+				1E9F0D201663D60D0017A2EB /* TBXML */,
+				1E9F0D2E1663DB210017A2EB /* CUpdater.h */,
+				1E9F0D2F1663DB210017A2EB /* CUpdater.m */,
+			);
+			name = Update;
+			sourceTree = "<group>";
+		};
+		1E9F0D201663D60D0017A2EB /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */,
+				1E9F0D221663D61E0017A2EB /* TBXML.h */,
+				1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */,
+				1E9F0D241663D61E0017A2EB /* TBXML+HTTP.h */,
+			);
+			name = TBXML;
+			sourceTree = "<group>";
+		};
+		1E9F0D261663D8200017A2EB /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				1E9F0D271663D8390017A2EB /* JSONKit.h */,
+				1E9F0D281663D8390017A2EB /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
 		1EA471FA1661F2E4008CBFB3 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +183,7 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				1E9F0D1E1663D6050017A2EB /* Update */,
 				1EA471FA1661F2E4008CBFB3 /* LoginScreen */,
 				1EBBE6FD1660CBD800708B6D /* SplashScreen */,
 				1EBBE6E41660BDEE00708B6D /* Dispatcher */,
@@ -316,6 +360,8 @@
 				1EBBE7031660CBD800708B6D /* CSplashViewController.m in Sources */,
 				1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */,
 				1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */,
+				1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */,
+				1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +453,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gpen/gpen-Prefix.pch";
 				INFOPLIST_FILE = "gpen/gpen-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gpen/Update/TBXML\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -418,6 +468,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gpen/gpen-Prefix.pch";
 				INFOPLIST_FILE = "gpen/gpen-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gpen/Update/TBXML\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
