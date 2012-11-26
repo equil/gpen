@@ -189,8 +189,11 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				1E9F0D1E1663D6050017A2EB /* Update */,
+=======
 				A0E83FBF1663CA7B00561612 /* CustomCells */,
+>>>>>>> 9aa1b92a95c776ae33701bae5a2daeb9d6e4e386
 				1EA471FA1661F2E4008CBFB3 /* LoginScreen */,
 				1EBBE6FD1660CBD800708B6D /* SplashScreen */,
 				1EBBE6E41660BDEE00708B6D /* Dispatcher */,
@@ -378,10 +381,13 @@
 				1EBBE7031660CBD800708B6D /* CSplashViewController.m in Sources */,
 				1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */,
 				1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */,
+<<<<<<< HEAD
 				1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */,
 				1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */,
+=======
 				A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */,
 				A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */,
+>>>>>>> 9aa1b92a95c776ae33701bae5a2daeb9d6e4e386
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,11 +479,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gpen/gpen-Prefix.pch";
 				INFOPLIST_FILE = "gpen/gpen-Info.plist";
+<<<<<<< HEAD
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/gpen/Update/TBXML\"",
 				);
+=======
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+>>>>>>> 9aa1b92a95c776ae33701bae5a2daeb9d6e4e386
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -489,11 +498,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "gpen/gpen-Prefix.pch";
 				INFOPLIST_FILE = "gpen/gpen-Info.plist";
+<<<<<<< HEAD
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/gpen/Update/TBXML\"",
 				);
+=======
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+>>>>>>> 9aa1b92a95c776ae33701bae5a2daeb9d6e4e386
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

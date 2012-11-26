@@ -26,9 +26,9 @@
 - (dispatch_queue_t)queueForDataSavingInModel:(NSString *)modelName {
     if ([_dataSavingQueues objectForKey:modelName] == nil) {
         dispatch_queue_t newQueue = dispatch_queue_create([[NSString stringWithFormat:@"ru.xpguild.saving.%@", modelName] UTF8String], NULL);
-        [_dataSavingQueues setObject:newQueue forKey:modelName];
+        [_dataSavingQueues setObject:(__bridge id)(newQueue) forKey:modelName];
     }
-    return [_dataSavingQueues objectForKey:modelName];
+    return (__bridge dispatch_queue_t)([_dataSavingQueues objectForKey:modelName]);
 }
 
 @end

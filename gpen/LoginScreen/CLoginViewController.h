@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CLoginViewController : UIViewController
+@interface CLoginViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UIButton *continueButton;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) IBOutlet UITableView *loginTableView;
+@property (nonatomic, strong) IBOutlet UIButton *continueButton;
 
 @end
