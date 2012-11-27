@@ -19,6 +19,9 @@
 		1E4D48471665158600949A5C /* select-tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483B1665158600949A5C /* select-tab@2x.png */; };
 		1E4D48481665158600949A5C /* tab-bar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483C1665158600949A5C /* tab-bar-back.png */; };
 		1E4D48491665158600949A5C /* tab-bar-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483D1665158600949A5C /* tab-bar-back@2x.png */; };
+		1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487C1665604700949A5C /* CDao+Penalty.m */; };
+		1E4D48801665611900949A5C /* CDao+Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487F1665611900949A5C /* CDao+Profile.m */; };
+		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -67,6 +70,12 @@
 		1E4D483B1665158600949A5C /* select-tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "select-tab@2x.png"; path = "Resources/select-tab@2x.png"; sourceTree = "<group>"; };
 		1E4D483C1665158600949A5C /* tab-bar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back.png"; path = "Resources/tab-bar-back.png"; sourceTree = "<group>"; };
 		1E4D483D1665158600949A5C /* tab-bar-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back@2x.png"; path = "Resources/tab-bar-back@2x.png"; sourceTree = "<group>"; };
+		1E4D487B1665604700949A5C /* CDao+Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Penalty.h"; path = "DataAccess/DAO/CDao+Penalty.h"; sourceTree = "<group>"; };
+		1E4D487C1665604700949A5C /* CDao+Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Penalty.m"; path = "DataAccess/DAO/CDao+Penalty.m"; sourceTree = "<group>"; };
+		1E4D487E1665611900949A5C /* CDao+Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Profile.h"; path = "DataAccess/DAO/CDao+Profile.h"; sourceTree = "<group>"; };
+		1E4D487F1665611900949A5C /* CDao+Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Profile.m"; path = "DataAccess/DAO/CDao+Profile.m"; sourceTree = "<group>"; };
+		1E4D48811665612F00949A5C /* CDao+Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Recipient.h"; path = "DataAccess/DAO/CDao+Recipient.h"; sourceTree = "<group>"; };
+		1E4D48821665612F00949A5C /* CDao+Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Recipient.m"; path = "DataAccess/DAO/CDao+Recipient.m"; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -298,6 +307,12 @@
 		1EBBE6F01660C1E600708B6D /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				1E4D487B1665604700949A5C /* CDao+Penalty.h */,
+				1E4D487C1665604700949A5C /* CDao+Penalty.m */,
+				1E4D487E1665611900949A5C /* CDao+Profile.h */,
+				1E4D487F1665611900949A5C /* CDao+Profile.m */,
+				1E4D48811665612F00949A5C /* CDao+Recipient.h */,
+				1E4D48821665612F00949A5C /* CDao+Recipient.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -438,6 +453,9 @@
 				1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */,
 				A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */,
 				A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */,
+				1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */,
+				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
+				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

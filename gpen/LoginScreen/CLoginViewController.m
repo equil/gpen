@@ -9,6 +9,8 @@
 #import "CLoginViewController.h"
 #import "CTextFieldCell.h"
 #import "CDisclosureCell.h"
+#import "AppDelegate.h"
+#import "CUpdater.h"
 
 @interface CLoginViewController ()
 @property (nonatomic, weak) UITextField *activeTextField;
@@ -216,6 +218,14 @@
             return nil;
     }
     
+}
+
+- (void)updateProfile
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+        [CUpdater updatePenaltiesForProfile:nil];
+    });
 }
 
 @end

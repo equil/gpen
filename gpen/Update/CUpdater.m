@@ -12,6 +12,7 @@
 #import "Penalty.h"
 #import "Recipient.h"
 #import "CDao.h"
+#import "CDao+Penalty.h"
 
 @implementation CUpdater
 
@@ -35,6 +36,15 @@
     
     NSDictionary *results = [self parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     
+    if (results == nil)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+        });
+        
+        return;
+    }
+    
     NSArray *penalties = [results valueForKey:@"content"];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -50,53 +60,62 @@
 
 + (void)processContent:(NSArray *)penalties profile:(Profile *)profile context:(NSManagedObjectContext *)context
 {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
+    
     NSDateFormatter *dfForDateTime = [[NSDateFormatter alloc] init];
     [dfForDateTime setDateFormat:@"dd.MM.yyyy HH:mm"];
     
     for (NSDictionary *penaltyObj in penalties)
     {
-        //нужна еще проверка на существование
-        Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
-        
-        penalty.profile = profile;
-        penalty.uid = [[penaltyObj valueForKey:@"id"] stringValue];
-        penalty.date = [dfForDateTime dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
-        penalty.overdueDate = [dfForDateTime dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
-        penalty.price = [[penaltyObj valueForKey:@"price"] stringValue];
-        penalty.status = [penaltyObj valueForKey:@"status"];
-        penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
-        
-        if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
+        if ([dao penaltyForUid:[[penaltyObj valueForKey:@"id"] stringValue]] == nil)
         {
-            penalty.photo = [self savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
+            Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
+            
+            penalty.profile = profile;
+            penalty.uid = [[penaltyObj valueForKey:@"id"] stringValue];
+            penalty.date = [dfForDateTime dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
+            penalty.overdueDate = [dfForDateTime dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
+            penalty.price = [[penaltyObj valueForKey:@"price"] stringValue];
+            penalty.status = [penaltyObj valueForKey:@"status"];
+            penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
+            
+            if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
+            {
+                penalty.photo = [self savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
+            }
+            else
+            {
+                penalty.photo = [penaltyObj valueForKey:@"photo"];
+            }
+            
+            penalty.roadName = [penaltyObj valueForKey:@"roadName"];
+            penalty.roadPosition = [[penaltyObj valueForKey:@"roadPosition"] stringValue];
+            penalty.fixedSpeed = [[penaltyObj valueForKey:@"fixedSpeed"] stringValue];
+            penalty.reportId = [penaltyObj valueForKey:@"reportId"];
+            penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
+            penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
+            penalty.catcher = [penaltyObj valueForKey:@"catcher"];
+            
+            NSDictionary *recipientObj = [penaltyObj valueForKey:@"recipient"];
+            Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:context];
+            
+            recipient.penalty = penalty;
+            recipient.uid = [[penaltyObj objectForKey:@"id"] stringValue];
+            recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
+            recipient.name = [recipientObj objectForKey:@"name"];
+            recipient.account = [recipientObj objectForKey:@"account"];
+            recipient.inn = [recipientObj objectForKey:@"INN"];
+            recipient.kpp = [recipientObj objectForKey:@"KPP"];
+            recipient.okato = [recipientObj objectForKey:@"OKATO"];
+            recipient.kbk = [recipientObj objectForKey:@"KBK"];
+            recipient.bank = [recipientObj objectForKey:@"bank"];
+            recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
         }
         else
         {
-            penalty.photo = [penaltyObj valueForKey:@"photo"];
+            continue;
         }
-        
-        penalty.roadName = [penaltyObj valueForKey:@"roadName"];
-        penalty.roadPosition = [[penaltyObj valueForKey:@"roadPosition"] stringValue];
-        penalty.fixedSpeed = [[penaltyObj valueForKey:@"fixedSpeed"] stringValue];
-        penalty.reportId = [penaltyObj valueForKey:@"reportId"];
-        penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
-        penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
-        penalty.catcher = [penaltyObj valueForKey:@"catcher"];
-        
-        NSDictionary *recipientObj = [penaltyObj valueForKey:@"recipient"];
-        Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:context];
-        
-        recipient.penalty = penalty;
-        recipient.uid = [[penaltyObj objectForKey:@"id"] stringValue];
-        recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
-        recipient.name = [recipientObj objectForKey:@"name"];
-        recipient.account = [recipientObj objectForKey:@"account"];
-        recipient.inn = [recipientObj objectForKey:@"INN"];
-        recipient.kpp = [recipientObj objectForKey:@"KPP"];
-        recipient.okato = [recipientObj objectForKey:@"OKATO"];
-        recipient.kbk = [recipientObj objectForKey:@"KBK"];
-        recipient.bank = [recipientObj objectForKey:@"bank"];
-        recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
     }
 }
 
@@ -117,7 +136,15 @@
 	
 	if (error)
 	{
-		NSLog(@"Error performing request %@", url);
+		NSLog(@"Error performing request %@, error: %@", url, error);
+        if (error.code == -1009)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Проверьте подключение к интернету" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            });
+        }
+        
 		return nil;
 	}
     
