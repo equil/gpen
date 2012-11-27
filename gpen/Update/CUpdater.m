@@ -17,38 +17,58 @@
 
 + (void)updatePenaltiesForProfile:(Profile *)profile
 {
-//    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-//                        @"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateBegin" object:nil];
+    });
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd"];
     NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-                        profile.name, profile.patronymic, profile.lastname, profile.license, [df stringFromDate:profile.birthday]];
+                        @"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14"];
     
-    NSDictionary *results = [self parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" withParams:params];
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    [df setDateFormat:@"yyyy-MM-dd"];
+//    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
+//                        [profile.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [profile.patronymic stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [profile.lastname stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [profile.license  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSDictionary *results = [self parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     
     NSArray *penalties = [results valueForKey:@"content"];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        [self processContent:penalties profile:profile context:context];
+    } completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+        });
+    }];
+}
+
++ (void)processContent:(NSArray *)penalties profile:(Profile *)profile context:(NSManagedObjectContext *)context
+{
     NSDateFormatter *dfForDateTime = [[NSDateFormatter alloc] init];
     [dfForDateTime setDateFormat:@"dd.MM.yyyy HH:mm"];
     
     for (NSDictionary *penaltyObj in penalties)
     {
         //нужна еще проверка на существование
-        Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:delegate.dataAccessManager.managedObjectContext];
+        Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
         
         penalty.profile = profile;
-        penalty.uid = [penaltyObj valueForKey:@"id"];
+        penalty.uid = [[penaltyObj valueForKey:@"id"] stringValue];
         penalty.date = [dfForDateTime dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
         penalty.overdueDate = [dfForDateTime dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
-        penalty.price = [penaltyObj valueForKey:@"price"];
+        penalty.price = [[penaltyObj valueForKey:@"price"] stringValue];
         penalty.status = [penaltyObj valueForKey:@"status"];
         penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
         
         if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
         {
-            penalty.photo = [self savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] forPenaltyUid:penalty.uid];
+            penalty.photo = [self savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
         }
         else
         {
@@ -56,18 +76,18 @@
         }
         
         penalty.roadName = [penaltyObj valueForKey:@"roadName"];
-        penalty.roadPosition = [penaltyObj valueForKey:@"roadPosition"];
-        penalty.fixedSpeed = [penaltyObj valueForKey:@"fixedSpeed"];
+        penalty.roadPosition = [[penaltyObj valueForKey:@"roadPosition"] stringValue];
+        penalty.fixedSpeed = [[penaltyObj valueForKey:@"fixedSpeed"] stringValue];
         penalty.reportId = [penaltyObj valueForKey:@"reportId"];
         penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
         penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
         penalty.catcher = [penaltyObj valueForKey:@"catcher"];
         
         NSDictionary *recipientObj = [penaltyObj valueForKey:@"recipient"];
-        Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:delegate.dataAccessManager.managedObjectContext];
+        Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:context];
         
         recipient.penalty = penalty;
-        recipient.uid = [penaltyObj objectForKey:@"id"];
+        recipient.uid = [[penaltyObj objectForKey:@"id"] stringValue];
         recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
         recipient.name = [recipientObj objectForKey:@"name"];
         recipient.account = [recipientObj objectForKey:@"account"];
@@ -78,11 +98,9 @@
         recipient.bank = [recipientObj objectForKey:@"bank"];
         recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
     }
-    
-    [delegate.dataAccessManager saveState];
 }
 
-+ (NSDictionary *)parsedJSONFromUrl:(NSString *)url withParams:(NSString *)params
++ (NSDictionary *)parsedJSONFromUrl:(NSString *)url params:(NSString *)params
 {	
 	NSError* error = nil;
 	NSURLResponse* response = nil;
@@ -109,7 +127,7 @@
     return results;
 }
 
-+ (NSString *)savePhotoToDocsFromUrl:(NSString *)url forPenaltyUid:(NSString *)uid
++ (NSString *)savePhotoToDocsFromUrl:(NSString *)url penaltyUid:(NSString *)uid
 {
     NSError* error = nil;
 	NSURLResponse* response = nil;
@@ -122,11 +140,11 @@
 	
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *path = [NSString stringWithFormat:@"photo-%@.jpg", uid];
-    [self saveDataInDocumentDirectory:data toPath:path];
+    [self saveDataInDocumentDirectory:data path:path];
     return path;
 }
 
-+ (void)saveDataInDocumentDirectory:(NSData *)data toPath:(NSString *)path
++ (void)saveDataInDocumentDirectory:(NSData *)data path:(NSString *)path
 {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, path];

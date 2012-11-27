@@ -37,6 +37,10 @@
     {
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"FirstLoginController"]];
     }
+    
+    dispatch_async(_dispatcher.dataUpdateQueue, ^{
+        [CUpdater updatePenaltiesForProfile:nil];
+    });
 }
 				
 - (void)applicationWillResignActive:(UIApplication *)application

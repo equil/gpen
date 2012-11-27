@@ -8,27 +8,23 @@
 
 #define OS_OBJECT_USE_OBJC 0
 
-@implementation CCentralDispatcher {
-    NSMutableDictionary *_dataSavingQueues;
-}
+@implementation CCentralDispatcher
 
-@synthesize feedParsingQueue = _feedParsingQueue;
+@synthesize dataUpdateQueue = _dataUpdateQueue;
+@synthesize dataSavingQueue = _dataSavingQueue;
 
 - (id)init {
     self = [super init];
     if (self) {
-        _dataSavingQueues = [[NSMutableDictionary alloc] init];
-        _feedParsingQueue = dispatch_queue_create("ru.xpguild.feed.parsing", NULL);
+        _dataSavingQueue = dispatch_queue_create("ru.xpguild.gpen.save", NULL);
+        _dataUpdateQueue = dispatch_queue_create("ru.xpguild.gpen.update", NULL);
     }
     return self;
 }
 
-- (dispatch_queue_t)queueForDataSavingInModel:(NSString *)modelName {
-    if ([_dataSavingQueues objectForKey:modelName] == nil) {
-        dispatch_queue_t newQueue = dispatch_queue_create([[NSString stringWithFormat:@"ru.xpguild.saving.%@", modelName] UTF8String], NULL);
-        [_dataSavingQueues setObject:(__bridge id)(newQueue) forKey:modelName];
-    }
-    return (__bridge dispatch_queue_t)([_dataSavingQueues objectForKey:modelName]);
+- (void)dealloc {
+    dispatch_release(_dataSavingQueue);
+    dispatch_release(_dataUpdateQueue);
 }
 
 @end

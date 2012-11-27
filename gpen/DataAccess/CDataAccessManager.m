@@ -141,14 +141,14 @@
 
 - (void)saveDataInBackgroundInForeignContext:(void (^)(NSManagedObjectContext *))saveBlock {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    dispatch_async([delegate.dispatcher queueForDataSavingInModel:@"gpen"], ^{
+    dispatch_async(delegate.dispatcher.dataSavingQueue, ^{
         [self saveDataInForeignContext:saveBlock];
     });
 }
 
 - (void)saveDataInBackgroundInForeignContext:(void (^)(NSManagedObjectContext *))saveBlock completion:(void (^)(void))completion {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    dispatch_async([delegate.dispatcher queueForDataSavingInModel:@"gpen"], ^{
+    dispatch_async(delegate.dispatcher.dataSavingQueue, ^{
         [self saveDataInForeignContext:saveBlock];
 
         dispatch_sync(dispatch_get_main_queue(), ^{

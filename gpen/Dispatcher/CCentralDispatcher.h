@@ -9,8 +9,7 @@
 
 @interface CCentralDispatcher : NSObject
 
-@property (nonatomic, readonly) dispatch_queue_t feedParsingQueue;
-
-- (dispatch_queue_t) queueForDataSavingInModel: (NSString *) modelName;
+@property (nonatomic, readonly) dispatch_queue_t dataUpdateQueue;
+@property (nonatomic, readonly) dispatch_queue_t dataSavingQueue;
 
 @end
