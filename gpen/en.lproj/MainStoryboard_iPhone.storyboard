@@ -61,7 +61,7 @@
         <scene sceneID="cYu-uK-itx">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Y4b-Zs-ukd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Штрафы" id="z9v-Gn-XKw"/>
+                    <tabBarItem key="tabBarItem" title="Штрафы" image="penalties-tab.png" id="z9v-Gn-XKw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BqZ-kL-Cmi">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -82,7 +82,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Информация" id="05L-ok-0Sk"/>
+                    <tabBarItem key="tabBarItem" title="Информация" image="info-tab.png" id="05L-ok-0Sk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTa-go-VG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,7 +239,7 @@
         <scene sceneID="8O9-6o-fg6">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Ubh-Sa-iNf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Профили" id="pjq-Mf-fsB"/>
+                    <tabBarItem key="tabBarItem" title="Профили" image="profiles-tab.png" id="pjq-Mf-fsB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="St1-h0-2HG">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -254,6 +254,9 @@
     </scenes>
     <resources>
         <image name="Default-568h.png" width="320" height="568"/>
+        <image name="info-tab.png" width="18" height="18"/>
+        <image name="penalties-tab.png" width="22" height="23"/>
+        <image name="profiles-tab.png" width="18" height="21"/>
     </resources>
     <classes>
         <class className="CDisclosureCell" superclassName="UITableViewCell">

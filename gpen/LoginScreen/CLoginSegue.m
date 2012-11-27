@@ -27,7 +27,7 @@
     CLoginViewController *src = self.sourceViewController;
     UITabBarController *dest = self.destinationViewController;
     [dest setModalPresentationStyle:UIModalPresentationCurrentContext];
-    [dest setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [dest setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [src presentViewController:dest animated:YES completion:^(){
         [src.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateNormal];
         [src.continueButton setUserInteractionEnabled:YES];

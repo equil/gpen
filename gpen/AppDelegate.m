@@ -14,9 +14,33 @@
 @synthesize dataAccessManager = _dataAccessManager;
 @synthesize dispatcher = _dispatcher;
 
+- (void)customizeTabBar {
+    UIImage *tabBarBackground = [UIImage imageNamed:@"tab-bar-back.png"];
+    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"select-tab.png"]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont fontWithName:@"Helvetica" size:9.0], UITextAttributeFont, nil]
+                                             forState:UIControlStateNormal];
+}
+
+- (void)customizeNavigationBar {
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
+    //[[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:41.0/255.0 green:153.0/255.0 blue:185.0/255.0 alpha:1.0]];
+}
+
+- (void)customizeInterface
+{
+    [self customizeTabBar];
+    [self customizeNavigationBar];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _dispatcher = [[CCentralDispatcher alloc] init];
+    
+    [self customizeInterface];
     
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
