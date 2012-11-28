@@ -10,7 +10,6 @@
 
 @interface CLoginViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UITableView *loginTableView;
 @property (nonatomic, strong) IBOutlet UIButton *continueButton;
