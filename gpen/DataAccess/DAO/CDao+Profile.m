@@ -52,4 +52,29 @@
     return nil;
 }
 
+- (Profile *)lastSignProfile
+{
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+	[request setEntity:[NSEntityDescription entityForName:@"Profile"
+                                   inManagedObjectContext:self.dataContext]];
+    
+    NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"lastSign" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObjects:sd, nil]];
+    
+	NSError *error = nil;
+	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];
+    
+	if (result == nil)
+	{
+		NSLog(@"Method <%@> failed: %@", NSStringFromSelector(_cmd), error);
+	}
+    else if ([result count] > 0)
+    {
+        return [result objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
 @end
