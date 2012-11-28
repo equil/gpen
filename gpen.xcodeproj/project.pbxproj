@@ -480,13 +480,10 @@
 				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
 				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
 				1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */,
-<<<<<<< HEAD
 				1EB1E48216669484006CEC41 /* Penalty.m in Sources */,
 				1EB1E48516669485006CEC41 /* Profile.m in Sources */,
 				1EB1E48816669485006CEC41 /* Recipient.m in Sources */,
-=======
 				A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */,
->>>>>>> login screen design
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
