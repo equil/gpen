@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CDataAccessManager.h"
 #import "CCentralDispatcher.h"
+#import "CUpdater.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, readonly) CDataAccessManager *dataAccessManager;
-@property(nonatomic, readonly) CCentralDispatcher *dispatcher;
+@property (nonatomic, readonly) CCentralDispatcher *dispatcher;
+@property (nonatomic, readonly) CUpdater *updater;
 
 - (void)initializeApplication;
 

@@ -13,6 +13,7 @@
 
 @synthesize dataAccessManager = _dataAccessManager;
 @synthesize dispatcher = _dispatcher;
+@synthesize updater = _updater;
 
 - (void)customizeTabBar {
     UIImage *tabBarBackground = [UIImage imageNamed:@"tab-bar-back.png"];
@@ -39,6 +40,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _dispatcher = [[CCentralDispatcher alloc] init];
+    _updater = [[CUpdater alloc] init];
     
     [self customizeInterface];
     
@@ -51,7 +53,7 @@
     _dataAccessManager = [[CDataAccessManager alloc] init];
     _dataAccessManager.persistentStoreCoordinator;
     
-    sleep(5);
+    sleep(3);
     
     if (YES == NO/*есть хоть один профиль, делаем запрос по последнему из них и открываем таббар*/)
     {
@@ -62,9 +64,9 @@
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"FirstLoginController"]];
     }
     
-    dispatch_async(_dispatcher.dataUpdateQueue, ^{
-        [CUpdater updatePenaltiesForProfile:nil];
-    });
+//    dispatch_async(_dispatcher.dataUpdateQueue, ^{
+//        [CUpdater updatePenaltiesForProfile:nil];
+//    });
 }
 				
 - (void)applicationWillResignActive:(UIApplication *)application

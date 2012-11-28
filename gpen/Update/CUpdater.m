@@ -7,8 +7,8 @@
 //
 
 #import "CUpdater.h"
-#import "JSONKit.h"
 #import "AppDelegate.h"
+#import "CUpdateUtility.h"
 #import "Penalty.h"
 #import "Recipient.h"
 #import "CDao.h"
@@ -16,8 +16,26 @@
 
 @implementation CUpdater
 
-+ (void)updatePenaltiesForProfile:(Profile *)profile
+@synthesize profile = _profile;
+@synthesize dateFormatter = _dateFormatter;
+
+- (id)init
 {
+    self = [super init];
+    
+    if (self)
+    {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+    }
+    
+    return self;
+}
+
+- (void)updatePenaltiesForProfile:(Profile *)profile
+{
+    _profile = profile;
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateBegin" object:nil];
     });
@@ -34,7 +52,7 @@
 //                        [profile.license  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 //                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSDictionary *results = [self parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     
     if (results == nil)
     {
@@ -50,7 +68,7 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
-        [self processContent:penalties profile:profile context:context];
+        [self processContent:penalties context:context];
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
@@ -58,19 +76,16 @@
     }];
 }
 
-+ (void)processContent:(NSArray *)penalties profile:(Profile *)profile context:(NSManagedObjectContext *)context
+- (void)processContent:(NSArray *)penalties context:(NSManagedObjectContext *)context
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
-    
-    NSDateFormatter *dfForDateTime = [[NSDateFormatter alloc] init];
-    [dfForDateTime setDateFormat:@"dd.MM.yyyy HH:mm"];
     
     for (NSDictionary *penaltyObj in penalties)
     {
         if ([dao penaltyForUid:[[penaltyObj valueForKey:@"id"] stringValue]] == nil)
         {
-            [self insertPenalty:penaltyObj profile:profile context:context dateFormatter:dfForDateTime];
+            [self insertPenalty:penaltyObj context:context];
         }
         else
         {
@@ -79,21 +94,21 @@
     }
 }
 
-+ (void)insertPenalty:(NSDictionary *)penaltyObj profile:(Profile *)profile context:(NSManagedObjectContext *)context dateFormatter:(NSDateFormatter *)dfForDateTime
+- (void)insertPenalty:(NSDictionary *)penaltyObj context:(NSManagedObjectContext *)context
 {
     Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
     
-    penalty.profile = profile;
+    penalty.profile = _profile;
     penalty.uid = [[penaltyObj valueForKey:@"id"] stringValue];
-    penalty.date = [dfForDateTime dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
-    penalty.overdueDate = [dfForDateTime dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
+    penalty.date = [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
+    penalty.overdueDate = [_dateFormatter dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
     penalty.price = [[penaltyObj valueForKey:@"price"] stringValue];
     penalty.status = [penaltyObj valueForKey:@"status"];
     penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
     
     if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
     {
-        penalty.photo = [self savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
+        penalty.photo = [CUpdateUtility savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
     }
     else
     {
@@ -122,65 +137,6 @@
     recipient.kbk = [recipientObj objectForKey:@"KBK"];
     recipient.bank = [recipientObj objectForKey:@"bank"];
     recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
-}
-
-+ (NSDictionary *)parsedJSONFromUrl:(NSString *)url params:(NSString *)params
-{
-	NSError* error = nil;
-	NSURLResponse* response = nil;
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
-	
-	NSURL* URL = [NSURL URLWithString:url];
-	[request setURL:URL];
-	[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:30];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	
-	if (error)
-	{
-		NSLog(@"Error performing request %@, error: %@", url, error);
-        if (error.code == -1009)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Проверьте подключение к интернету" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            });
-        }
-        
-		return nil;
-	}
-    
-	NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSDictionary *results = [jsonString objectFromJSONString];
-    
-    return results;
-}
-
-+ (NSString *)savePhotoToDocsFromUrl:(NSString *)url penaltyUid:(NSString *)uid
-{
-    NSError* error = nil;
-	NSURLResponse* response = nil;
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
-	
-	NSURL* URL = [NSURL URLWithString:url];
-	[request setURL:URL];
-	[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:30];
-	
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *path = [NSString stringWithFormat:@"photo-%@.jpg", uid];
-    [self saveDataInDocumentDirectory:data path:path];
-    return path;
-}
-
-+ (void)saveDataInDocumentDirectory:(NSData *)data path:(NSString *)path
-{
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, path];
-    [data writeToFile:fullPath atomically:NO];
 }
 
 @end

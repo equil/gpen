@@ -11,6 +11,9 @@
 
 @interface CUpdater : NSObject
 
-+ (void)updatePenaltiesForProfile:(Profile *)profile;
+- (void)updatePenaltiesForProfile:(Profile *)profile;
+
+@property (nonatomic, retain) Profile *profile;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
 
 @end

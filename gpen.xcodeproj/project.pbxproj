@@ -22,6 +22,7 @@
 		1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487C1665604700949A5C /* CDao+Penalty.m */; };
 		1E4D48801665611900949A5C /* CDao+Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487F1665611900949A5C /* CDao+Profile.m */; };
 		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
+		1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48851665D55D00949A5C /* CUpdateUtility.m */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -76,6 +77,8 @@
 		1E4D487F1665611900949A5C /* CDao+Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Profile.m"; path = "DataAccess/DAO/CDao+Profile.m"; sourceTree = "<group>"; };
 		1E4D48811665612F00949A5C /* CDao+Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Recipient.h"; path = "DataAccess/DAO/CDao+Recipient.h"; sourceTree = "<group>"; };
 		1E4D48821665612F00949A5C /* CDao+Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Recipient.m"; path = "DataAccess/DAO/CDao+Recipient.m"; sourceTree = "<group>"; };
+		1E4D48841665D55D00949A5C /* CUpdateUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUpdateUtility.h; path = Update/CUpdateUtility.h; sourceTree = "<group>"; };
+		1E4D48851665D55D00949A5C /* CUpdateUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdateUtility.m; path = Update/CUpdateUtility.m; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				1E9F0D201663D60D0017A2EB /* TBXML */,
 				1E9F0D2E1663DB210017A2EB /* CUpdater.h */,
 				1E9F0D2F1663DB210017A2EB /* CUpdater.m */,
+				1E4D48841665D55D00949A5C /* CUpdateUtility.h */,
+				1E4D48851665D55D00949A5C /* CUpdateUtility.m */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */,
 				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
 				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
+				1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
