@@ -56,6 +56,11 @@
 		1EBBE7151660D48700708B6D /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE7111660D48700708B6D /* Default-Landscape@2x.png */; };
 		A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC11663CAD800561612 /* CTextFieldCell.m */; };
 		A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC41663CC2300561612 /* CDisclosureCell.m */; };
+		A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FD31666909500561612 /* CTextFieldWithLabel.m */; };
+		A0E83FD916669B1800561612 /* login-button-disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E83FD516669B1800561612 /* login-button-disabled.png */; };
+		A0E83FDA16669B1800561612 /* login-button-disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E83FD616669B1800561612 /* login-button-disabled@2x.png */; };
+		A0E83FDB16669B1800561612 /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E83FD716669B1800561612 /* login-button.png */; };
+		A0E83FDC16669B1800561612 /* login-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0E83FD816669B1800561612 /* login-button@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +137,12 @@
 		A0E83FC11663CAD800561612 /* CTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTextFieldCell.m; path = CustomCells/CTextFieldCell.m; sourceTree = "<group>"; };
 		A0E83FC31663CC2300561612 /* CDisclosureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisclosureCell.h; path = CustomCells/CDisclosureCell.h; sourceTree = "<group>"; };
 		A0E83FC41663CC2300561612 /* CDisclosureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDisclosureCell.m; path = CustomCells/CDisclosureCell.m; sourceTree = "<group>"; };
+		A0E83FD21666909500561612 /* CTextFieldWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTextFieldWithLabel.h; path = CustomCells/CTextFieldWithLabel.h; sourceTree = "<group>"; };
+		A0E83FD31666909500561612 /* CTextFieldWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTextFieldWithLabel.m; path = CustomCells/CTextFieldWithLabel.m; sourceTree = "<group>"; };
+		A0E83FD516669B1800561612 /* login-button-disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-disabled.png"; path = "Resources/login-button-disabled.png"; sourceTree = "<group>"; };
+		A0E83FD616669B1800561612 /* login-button-disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button-disabled@2x.png"; path = "Resources/login-button-disabled@2x.png"; sourceTree = "<group>"; };
+		A0E83FD716669B1800561612 /* login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button.png"; path = "Resources/login-button.png"; sourceTree = "<group>"; };
+		A0E83FD816669B1800561612 /* login-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button@2x.png"; path = "Resources/login-button@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +165,10 @@
 		1E4D48301665157500949A5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A0E83FD516669B1800561612 /* login-button-disabled.png */,
+				A0E83FD616669B1800561612 /* login-button-disabled@2x.png */,
+				A0E83FD716669B1800561612 /* login-button.png */,
+				A0E83FD816669B1800561612 /* login-button@2x.png */,
 				1E4D48321665158600949A5C /* info-tab.png */,
 				1E4D48331665158600949A5C /* info-tab@2x.png */,
 				1E4D48341665158600949A5C /* navigation-bar-back.png */,
@@ -350,6 +365,8 @@
 		A0E83FBF1663CA7B00561612 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				A0E83FD21666909500561612 /* CTextFieldWithLabel.h */,
+				A0E83FD31666909500561612 /* CTextFieldWithLabel.m */,
 				A0E83FC01663CAD800561612 /* CTextFieldCell.h */,
 				A0E83FC11663CAD800561612 /* CTextFieldCell.m */,
 				A0E83FC31663CC2300561612 /* CDisclosureCell.h */,
@@ -432,6 +449,10 @@
 				1E4D48491665158600949A5C /* tab-bar-back@2x.png in Resources */,
 				1EB1E47E166688AB006CEC41 /* Default.png in Resources */,
 				1EB1E47F166688AB006CEC41 /* Default@2x.png in Resources */,
+				A0E83FD916669B1800561612 /* login-button-disabled.png in Resources */,
+				A0E83FDA16669B1800561612 /* login-button-disabled@2x.png in Resources */,
+				A0E83FDB16669B1800561612 /* login-button.png in Resources */,
+				A0E83FDC16669B1800561612 /* login-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,9 +480,13 @@
 				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
 				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
 				1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */,
+<<<<<<< HEAD
 				1EB1E48216669484006CEC41 /* Penalty.m in Sources */,
 				1EB1E48516669485006CEC41 /* Profile.m in Sources */,
 				1EB1E48816669485006CEC41 /* Recipient.m in Sources */,
+=======
+				A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */,
+>>>>>>> login screen design
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
