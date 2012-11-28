@@ -8,7 +8,6 @@
 
 #import "CLoginViewController.h"
 #import "CTextFieldCell.h"
-#import "CTextFieldWithLabel.h"
 #import "CDisclosureCell.h"
 #import "AppDelegate.h"
 #import "CUpdater.h"
@@ -18,7 +17,6 @@
 @end
 
 @implementation CLoginViewController
-@synthesize navItem = _navItem;
 @synthesize spinner = _spinner;
 @synthesize loginTableView = _loginTableView;
 @synthesize continueButton = _continueButton;
@@ -30,17 +28,6 @@
 {
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.continueButton.enabled = YES;
-    
-    self.navItem.title = @"Заполните анкету";
-    
-    self.loginTableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -159,23 +146,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *textFieldCellId = @"textFieldCell";
-    static NSString *textFieldWithLabelCellId = @"textFieldWithLabelCell";
     static NSString *disclosureCellId = @"disclosureCell";
     
     
     // Ячейка со стрелкой - единственная в таблице
-    if (indexPath.section == 1)
+    if (indexPath.section == 2)
     {
         CDisclosureCell *cell = (CDisclosureCell *) [tableView dequeueReusableCellWithIdentifier:disclosureCellId];
         cell.cellLabel.text = @"Дата рождения";
-        return cell;
-    }
-    else if (indexPath.section == 3)
-    {
-        CTextFieldWithLabel *cell = (CTextFieldWithLabel *) [tableView dequeueReusableCellWithIdentifier:textFieldWithLabelCellId];
-        cell.cellTextField.delegate = self;
-        cell.cellTextField.placeholder = @"Электронная почта";
-        cell.cellLabel.text = @"Необязательно";
         return cell;
     }
     
@@ -201,9 +179,19 @@
             }
             break;
         }
-        case 2:
+        case 1:
+        {
+            cell.cellTextField.placeholder = @"Название профиля";
+            break;
+        }
+        case 3:
         {
             cell.cellTextField.placeholder = @"Номер водительского удостоверения";
+            break;
+        }
+        case 4:
+        {
+            cell.cellTextField.placeholder = @"Электронная почта";
             break;
         }
     }
@@ -213,51 +201,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
-/*
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     switch (section)
     {
-        case 2:
+        case 1:
+            return @"По умолчанию будут использоваться имя и фамилия, указанные в профиле";
+        case 3:
             return @"Образец: 63СТ000000";
+        case 4:
+            return @"Необязательно";
         default:
             return nil;
     }
-}
- */
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if (section == 2)
-    {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
-        footerView.backgroundColor = [UIColor clearColor];
-        
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 20)];
-        footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.text = @"Образец: 63СТ000000";
-        footerLabel.textColor = [UIColor darkGrayColor];
-        footerLabel.font = [UIFont systemFontOfSize:12.0];
-        footerLabel.shadowColor = [UIColor whiteColor];
-        footerLabel.shadowOffset = CGSizeMake(0, 1);
-        
-        [footerView addSubview:footerLabel];
-        
-        return footerView;
-    }
-    return nil;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if (section == 2)
-    {
-        return 30.0;
-    }
-    return 0.0;
+    
 }
 
 - (IBAction)updateProfile
