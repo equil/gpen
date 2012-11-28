@@ -13,5 +13,6 @@
 
 - (NSArray *)allProfiles;
 - (Profile *)profileForData:(NSArray *)data;
+- (Profile *)lastSignProfile;
 
 @end

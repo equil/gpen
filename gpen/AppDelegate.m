@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "CUpdater.h"
+#import "CDao.h"
+#import "CDao+Profile.h"
 
 @implementation AppDelegate
 
@@ -55,7 +57,10 @@
     
     sleep(3);
     
-    if (YES == NO/*есть хоть один профиль, делаем запрос по последнему из них и открываем таббар*/)
+    CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
+    Profile *lastSignProfile = [dao lastSignProfile];
+    
+    if (lastSignProfile != nil)
     {
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
     }
