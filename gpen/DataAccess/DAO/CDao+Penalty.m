@@ -48,14 +48,14 @@
 	return result;
 }
 
-- (Penalty *)penaltyForUid:(NSString *)uid
+- (Penalty *)penaltyForUid:(int)uid
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
 	[request setEntity:[NSEntityDescription entityForName:@"Penalty"
                                    inManagedObjectContext:self.dataContext]];
     
-    [request setPredicate:[NSPredicate predicateWithFormat:@"uid = %@", uid]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"uid = %d", uid]];
     
 	NSError *error = nil;
 	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];

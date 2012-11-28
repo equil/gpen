@@ -146,7 +146,7 @@
     
     for (NSDictionary *penaltyObj in penalties)
     {
-        if ([dao penaltyForUid:[[penaltyObj valueForKey:@"id"] stringValue]] == nil)
+        if ([dao penaltyForUid:[penaltyObj valueForKey:@"id"]] == nil)
         {
             [self insertPenalty:penaltyObj context:context];
         }
@@ -162,10 +162,10 @@
     Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
     
     penalty.profile = _profile;
-    penalty.uid = [[penaltyObj valueForKey:@"id"] stringValue];
+    penalty.uid = [penaltyObj valueForKey:@"id"];
     penalty.date = [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
     penalty.overdueDate = [_dateFormatter dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
-    penalty.price = [[penaltyObj valueForKey:@"price"] stringValue];
+    penalty.price = [penaltyObj valueForKey:@"price"];
     penalty.status = [penaltyObj valueForKey:@"status"];
     penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
     
@@ -179,8 +179,8 @@
     }
     
     penalty.roadName = [penaltyObj valueForKey:@"roadName"];
-    penalty.roadPosition = [[penaltyObj valueForKey:@"roadPosition"] stringValue];
-    penalty.fixedSpeed = [[penaltyObj valueForKey:@"fixedSpeed"] stringValue];
+    penalty.roadPosition = [penaltyObj valueForKey:@"roadPosition"];
+    penalty.fixedSpeed = [penaltyObj valueForKey:@"fixedSpeed"];
     penalty.reportId = [penaltyObj valueForKey:@"reportId"];
     penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
     penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
@@ -190,7 +190,7 @@
     Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:context];
     
     recipient.penalty = penalty;
-    recipient.uid = [[penaltyObj objectForKey:@"id"] stringValue];
+    recipient.uid = [penaltyObj objectForKey:@"id"];
     recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
     recipient.name = [recipientObj objectForKey:@"name"];
     recipient.account = [recipientObj objectForKey:@"account"];

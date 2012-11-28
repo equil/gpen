@@ -2,7 +2,7 @@
 //  Recipient.m
 //  gpen
 //
-//  Created by fredformout on 24.11.12.
+//  Created by fredformout on 28.11.12.
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
@@ -12,16 +12,16 @@
 
 @implementation Recipient
 
-@dynamic uid;
-@dynamic administratorCode;
-@dynamic name;
 @dynamic account;
-@dynamic inn;
-@dynamic kpp;
-@dynamic okato;
-@dynamic kbk;
+@dynamic administratorCode;
 @dynamic bank;
 @dynamic billTitle;
+@dynamic inn;
+@dynamic kbk;
+@dynamic kpp;
+@dynamic name;
+@dynamic okato;
+@dynamic uid;
 @dynamic penalty;
 
 @end

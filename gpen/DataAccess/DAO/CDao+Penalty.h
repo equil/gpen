@@ -14,6 +14,6 @@
 
 - (NSArray *)allPenalties;
 - (NSArray *)allPenaltiesForProfile:(Profile *)profile;
-- (Penalty *)penaltyForUid:(NSString *)uid;
+- (Penalty *)penaltyForUid:(int)uid;
 
 @end
