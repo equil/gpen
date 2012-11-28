@@ -11,19 +11,36 @@
 
 @implementation CUpdateUtility
 
-+ (NSDictionary *)parsedJSONFromUrl:(NSString *)url params:(NSString *)params
++ (NSDictionary *)parsedJSONFromUrl:(NSString *)url method:(NSString *)method params:(NSDictionary *)params
 {
+    NSString *userAgent = [NSString stringWithFormat:@"iOS GibddPenalty/%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]];
+    
+    NSArray *requestObjects = [NSArray arrayWithObjects:method, userAgent, params, nil];
+    NSArray *requestKeys = [NSArray arrayWithObjects:@"method", @"userAgent", @"content", nil];
+    NSDictionary *requestDict = [NSDictionary dictionaryWithObjects:requestObjects forKeys:requestKeys];
+    
 	NSError* error = nil;
 	NSURLResponse* response = nil;
-	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
-	
+
+    NSString *jsonRequest = [requestDict JSONString];
+    
+    NSLog(@"request to url: %@", url);
+    NSLog(@"JSON string: %@", jsonRequest);
+    
+    NSData *requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
 	NSURL* URL = [NSURL URLWithString:url];
 	[request setURL:URL];
 	[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setTimeoutInterval:30];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-	
+    //[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: requestData];
+    //[request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	
 	if (error)

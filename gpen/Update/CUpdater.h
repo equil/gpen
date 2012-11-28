@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Profile.h"
 
+typedef enum{
+    UNAVAILABLE = 0,
+    NOTFOUND = 1,
+    GOOD = 2
+} status;
+
 @interface CUpdater : NSObject
 
-- (void)updatePenaltiesForProfile:(Profile *)profile;
+- (status)updatePenaltiesForProfile:(Profile *)profile;
 
 @property (nonatomic, retain) Profile *profile;
 @property (nonatomic, retain) NSDateFormatter *dateFormatter;

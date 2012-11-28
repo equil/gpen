@@ -14,4 +14,6 @@
 @property (nonatomic, strong) IBOutlet UITableView *loginTableView;
 @property (nonatomic, strong) IBOutlet UIButton *continueButton;
 
+- (IBAction)updateProfile;
+
 @end

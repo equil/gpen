@@ -220,11 +220,11 @@
     
 }
 
-- (void)updateProfile
+- (IBAction)updateProfile
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-        [CUpdater updatePenaltiesForProfile:nil];
+        [delegate.updater updatePenaltiesForProfile:nil];
     });
 }
 

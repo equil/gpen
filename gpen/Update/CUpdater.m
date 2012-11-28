@@ -32,48 +32,111 @@
     return self;
 }
 
-- (void)updatePenaltiesForProfile:(Profile *)profile
+- (status)updatePenaltiesForProfile:(Profile *)profile
 {
-    _profile = profile;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateBegin" object:nil];
     });
     
-    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-                        @"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14"];
+    status requestStatus;
+    _profile = profile;
     
-//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-//    [df setDateFormat:@"yyyy-MM-dd"];
-//    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-//                        [profile.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [profile.patronymic stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [profile.lastname stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [profile.license  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+//    NSArray *objects = [NSArray arrayWithObjects:
+//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+
+    //    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
+//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 //                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getOffenceVO" params:params];
     
-    if (results == nil)
+    if (results != nil)
+    {
+        requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
+        switch (requestStatus) {
+            case GOOD:
+            {
+                NSArray *penalties = [results valueForKey:@"content"];
+                
+                AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                
+                [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+                    [self processContent:penalties context:context];
+                } completion:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                    });
+                }];
+            }
+                break;
+                
+            case NOTFOUND:
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Введены неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                });
+            }
+                break;
+                
+            case UNAVAILABLE:
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"В данный момент сервер доступен" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                });
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
         });
         
-        return;
+        requestStatus = UNAVAILABLE;
     }
     
-    NSArray *penalties = [results valueForKey:@"content"];
+    return requestStatus;
+}
+
+- (status)checkStatus:(int)status
+{
+    NSLog(@"status %d", status);
+    if (status >= 200 && status < 400)
+    {
+        return GOOD;
+    }
+    else if (status >= 400 && status < 500)
+    {
+        return NOTFOUND;
+    }
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
-        [self processContent:penalties context:context];
-    } completion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
-        });
-    }];
+    return UNAVAILABLE;
 }
 
 - (void)processContent:(NSArray *)penalties context:(NSManagedObjectContext *)context
