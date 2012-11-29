@@ -48,7 +48,7 @@
 	return result;
 }
 
-- (Penalty *)penaltyForUid:(int)uid
+- (Penalty *)penaltyForUid:(NSNumber *)uid
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
     

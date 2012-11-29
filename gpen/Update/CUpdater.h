@@ -17,9 +17,9 @@ typedef enum{
 
 @interface CUpdater : NSObject
 
-- (status)updatePenaltiesForProfile:(Profile *)profile;
+- (status)insertNewProfileAndUpdate:(NSDictionary *)dict;
+- (status)updateProfile:(Profile *)profile;
 
-@property (nonatomic, strong) Profile *profile;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end

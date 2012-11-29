@@ -12,6 +12,8 @@
 #import "CDisclosureCell.h"
 #import "AppDelegate.h"
 #import "CUpdater.h"
+#import "CDao.h"
+#import "CDao+Profile.h"
 
 @interface CLoginViewController ()
 @property (nonatomic, weak) UITextField *activeTextField;
@@ -23,6 +25,7 @@
 @synthesize loginTableView = _loginTableView;
 @synthesize continueButton = _continueButton;
 @synthesize activeTextField = _activeTextField;
+@synthesize profile = _profile;
 
 #pragma mark - Text Field Delegate
 
@@ -72,33 +75,6 @@
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([segue.identifier isEqualToString:@"LoginToTabBar"])
-//    {
-//        CLoginViewController *src = segue.sourceViewController;
-//        
-//        [src.continueButton setTitle:@"" forState:UIControlStateNormal];
-//        [src.continueButton setUserInteractionEnabled:NO];
-//        [src.spinner startAnimating];
-//        
-//        [self performSelector:@selector(push) withObject:segue afterDelay:3.0];
-//    }
-//}
-//
-//- (void)push:(UIStoryboardSegue *)segue
-//{
-//    CLoginViewController *src = segue.sourceViewController;
-//    UITabBarController *dest = segue.destinationViewController;
-//    [dest setModalPresentationStyle:UIModalPresentationCurrentContext];
-//    [dest setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-//    [src presentViewController:dest animated:YES completion:^(){
-//        [src.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateNormal];
-//        [src.continueButton setUserInteractionEnabled:YES];
-//        [src.spinner stopAnimating];
-//    }];
-//}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -290,8 +266,28 @@
 - (IBAction)updateProfile
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
+    
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-        [delegate.updater updatePenaltiesForProfile:nil];
+         NSDictionary *dictOfProfile = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        @"",@"name",
+                                        @"",@"patronymic",
+                                        @"",@"surname",
+                                        @"",@"license",
+                                        @"",@"birthday",
+                                        @"",@"email",
+                                        nil];
+         
+         status requestStatus = [delegate.updater insertNewProfileAndUpdate:dictOfProfile];
+         
+         if (requestStatus == GOOD)
+         {
+             delegate.lastSignProfile = [dao lastSignProfile];
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
+             });
+         }
     });
 }
 

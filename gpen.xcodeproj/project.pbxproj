@@ -27,7 +27,6 @@
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
-		1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */; };
 		1EB1E47E166688AB006CEC41 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
 		1EB1E47F166688AB006CEC41 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47D166688AB006CEC41 /* Default@2x.png */; };
 		1EB1E48216669484006CEC41 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48116669484006CEC41 /* Penalty.m */; };
@@ -94,8 +93,6 @@
 		1E9F0D2F1663DB210017A2EB /* CUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdater.m; path = Update/CUpdater.m; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
-		1EA471FE1661FA92008CBFB3 /* CLoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginSegue.h; path = LoginScreen/CLoginSegue.h; sourceTree = "<group>"; };
-		1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginSegue.m; path = LoginScreen/CLoginSegue.m; sourceTree = "<group>"; };
 		1EB1E47C166688AB006CEC41 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1EB1E47D166688AB006CEC41 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1EB1E48016669484006CEC41 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
@@ -223,8 +220,6 @@
 			children = (
 				1EA471FB1661F330008CBFB3 /* CLoginViewController.h */,
 				1EA471FC1661F330008CBFB3 /* CLoginViewController.m */,
-				1EA471FE1661FA92008CBFB3 /* CLoginSegue.h */,
-				1EA471FF1661FA92008CBFB3 /* CLoginSegue.m */,
 			);
 			name = LoginScreen;
 			sourceTree = "<group>";
@@ -471,7 +466,6 @@
 				1EBBE6EE1660C18A00708B6D /* gpen.xcdatamodeld in Sources */,
 				1EBBE7031660CBD800708B6D /* CSplashViewController.m in Sources */,
 				1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */,
-				1EA472001661FA92008CBFB3 /* CLoginSegue.m in Sources */,
 				1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */,
 				1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */,
 				A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */,

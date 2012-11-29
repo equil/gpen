@@ -13,6 +13,8 @@
 
 - (NSArray *)allProfiles;
 - (Profile *)profileForData:(NSArray *)data;
+- (Profile *)profileForUid:(NSNumber *)uid;
 - (Profile *)lastSignProfile;
+- (NSNumber *)uidForNewProfile;
 
 @end

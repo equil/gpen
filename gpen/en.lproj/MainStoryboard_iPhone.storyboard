@@ -128,7 +128,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="4" kind="custom" identifier="LoginToTabBar" customClass="CLoginSegue" id="H9i-i4-NxN"/>
+                                                <action selector="updateProfile" destination="uVq-dM-pYv" eventType="touchUpInside" id="Vr0-O1-o9j"/>
                                             </connections>
                                         </button>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="JYT-s3-Sz8">
@@ -226,6 +226,7 @@
                         <outlet property="loginTableView" destination="WU8-cV-ZQd" id="JRc-Je-YQV"/>
                         <outlet property="navItem" destination="RqE-ee-eis" id="o9R-6k-8g2"/>
                         <outlet property="spinner" destination="JYT-s3-Sz8" id="t3v-sn-C8U"/>
+                        <segue destination="4" kind="modal" identifier="LoginToTabBar" modalTransitionStyle="coverVertical" id="CG1-12-LdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTq-YY-w87" userLabel="First Responder" sceneMemberID="firstResponder"/>
