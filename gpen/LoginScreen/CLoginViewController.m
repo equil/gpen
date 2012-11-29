@@ -73,6 +73,33 @@
                                                   object:nil];
 }
 
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([segue.identifier isEqualToString:@"LoginToTabBar"])
+//    {
+//        CLoginViewController *src = segue.sourceViewController;
+//        
+//        [src.continueButton setTitle:@"" forState:UIControlStateNormal];
+//        [src.continueButton setUserInteractionEnabled:NO];
+//        [src.spinner startAnimating];
+//        
+//        [self performSelector:@selector(push) withObject:segue afterDelay:3.0];
+//    }
+//}
+//
+//- (void)push:(UIStoryboardSegue *)segue
+//{
+//    CLoginViewController *src = segue.sourceViewController;
+//    UITabBarController *dest = segue.destinationViewController;
+//    [dest setModalPresentationStyle:UIModalPresentationCurrentContext];
+//    [dest setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+//    [src presentViewController:dest animated:YES completion:^(){
+//        [src.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateNormal];
+//        [src.continueButton setUserInteractionEnabled:YES];
+//        [src.spinner stopAnimating];
+//    }];
+//}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.activeTextField = textField;
