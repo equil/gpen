@@ -19,7 +19,7 @@ typedef enum{
 
 - (status)updatePenaltiesForProfile:(Profile *)profile;
 
-@property (nonatomic, retain) Profile *profile;
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) Profile *profile;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end

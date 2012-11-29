@@ -16,6 +16,7 @@
 @synthesize dataAccessManager = _dataAccessManager;
 @synthesize dispatcher = _dispatcher;
 @synthesize updater = _updater;
+@synthesize lastSignProfile = _lastSignProfile;
 
 - (void)customizeTabBar {
     UIImage *tabBarBackground = [UIImage imageNamed:@"tab-bar-back.png"];
@@ -58,9 +59,9 @@
     sleep(3);
     
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
-    Profile *lastSignProfile = [dao lastSignProfile];
+    _lastSignProfile = [dao lastSignProfile];
     
-    if (lastSignProfile != nil)
+    if (_lastSignProfile != nil)
     {
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
     }

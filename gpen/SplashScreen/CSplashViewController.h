@@ -10,6 +10,6 @@
 
 @interface CSplashViewController : UIViewController
 
-@property(nonatomic, retain) IBOutlet UIImageView *splash;
+@property(nonatomic, strong) IBOutlet UIImageView *splash;
 
 @end
