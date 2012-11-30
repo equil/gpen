@@ -314,15 +314,17 @@
                     
                     UIAlertView *alert;
 
-                    if ([message isEqualToString:@"Incorrect driver’s personal data"])
-                    {
-                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    }
-                    else if ([message isEqualToString:@"Incorrect penalty id"])
-                    {
-                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные штрафа" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    }
-                        
+//                    if ([message isEqualToString:@"Incorrect driver’s personal data"])
+//                    {
+//                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                    }
+//                    else if ([message isEqualToString:@"Incorrect penalty id"])
+//                    {
+//                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные штрафа" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                    }
+                    
+                    alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    
                     [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
