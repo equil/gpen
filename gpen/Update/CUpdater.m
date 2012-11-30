@@ -56,18 +56,18 @@
     
     status requestStatus;
     
-    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+//    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd"];
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    [df setDateFormat:@"yyyy-MM-dd"];
     
-//    NSArray *objects = [NSArray arrayWithObjects:
-//                        [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[df stringFromDate:[dict valueForKey:@"birthday"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
-//    
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+    
     NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -127,17 +127,17 @@
     
     status requestStatus;
     
-    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+    //NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
-//    NSArray *objects = [NSArray arrayWithObjects:
-//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
 
     NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
     
