@@ -16,6 +16,13 @@
 @property (nonatomic, strong) IBOutlet UITableView *loginTableView;
 @property (nonatomic, strong) IBOutlet UIButton *continueButton;
 
+@property (nonatomic, strong) UIDatePicker *pickerView;
+@property (nonatomic, strong) UIBarButtonItem *doneButton;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+- (void)doneAction;
+- (void)dateAction;
+
 - (IBAction)insertNewProfile;
 
 @end
