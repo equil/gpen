@@ -25,7 +25,6 @@
 @synthesize loginTableView = _loginTableView;
 @synthesize continueButton = _continueButton;
 @synthesize activeTextField = _activeTextField;
-@synthesize profile = _profile;
 
 #pragma mark - Text Field Delegate
 
@@ -263,7 +262,7 @@
     return 0.0;
 }
 
-- (IBAction)updateProfile
+- (IBAction)insertNewProfile
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];

@@ -11,6 +11,7 @@
 @interface CUpdateUtility : NSObject
 
 + (NSDictionary *)parsedJSONFromUrl:(NSString *)url method:(NSString *)method params:(NSDictionary *)params;
++ (NSDictionary *)parsedJSONFromUrl:(NSString *)url params:(NSString *)params;
 + (NSString *)savePhotoToDocsFromUrl:(NSString *)url penaltyUid:(NSNumber *)uid;
 + (void)saveDataInDocumentDirectory:(NSData *)data path:(NSString *)path;
 

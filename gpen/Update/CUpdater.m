@@ -51,35 +51,45 @@
 - (status)insertNewProfileAndUpdate:(NSDictionary *)dict
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateBegin" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
     });
     
     status requestStatus;
     
 //    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
     
-//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-//    [df setDateFormat:@"yyyy-MM-dd"];
     
-    NSArray *objects = [NSArray arrayWithObjects:
+    //JSON
+    
+    
+//    NSArray *objects = [NSArray arrayWithObjects:
+//                        [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+//    
+//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+//    
+//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+
+//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getOffenceVO" params:params];    
+    
+    
+    //POST
+    
+    
+    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
                         [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
 
-    //    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getOffenceVO" params:params];
     
     if (results != nil)
     {
@@ -98,19 +108,19 @@
             } completion:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
                 });
             }];
         }
         else
         {
-            [self handleBadStatus:requestStatus];
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
         }
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
         });
         
         requestStatus = UNAVAILABLE;
@@ -122,28 +132,48 @@
 - (status)updateProfile:(Profile *)profile
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateBegin" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
     });
     
     status requestStatus;
     
-    //NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
-    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
-    NSArray *objects = [NSArray arrayWithObjects:
+    //NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+    
+    
+    //JSON
+    
+    
+//    NSArray *objects = [NSArray arrayWithObjects:
+//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
+//
+//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+//    
+//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+//    
+//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getOffenceVO" params:params];
+    
+    
+    //POST
+    
+    
+    NSString* params = [NSString stringWithFormat:@"method=getOffenceVO&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
                         [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
-
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getOffenceVO" params:params];
+    
+    
     
     if (results != nil)
     {
@@ -161,19 +191,96 @@
             } completion:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
                 });
             }];
         }
         else
         {
-            [self handleBadStatus:requestStatus];
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
         }
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+        });
+        
+        requestStatus = UNAVAILABLE;
+    }
+    
+    return requestStatus;
+}
+
+- (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
+    });
+    
+    status requestStatus;
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    
+    //JSON
+    
+    
+//    NSArray *objects = [NSArray arrayWithObjects:
+//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [profile.email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        penalty.uid, nil];
+//    
+//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"email", @"id", nil];
+//    
+//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+//    
+//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"sendInfoByEmail" params:params];
+    
+    
+    //POST
+    
+    
+    NSString* params = [NSString stringWithFormat:@"method=sendInfoByEmail&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@&content[email]=%@&content[id]=%@",
+                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [profile.email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        penalty.uid];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
+    
+    
+    
+    
+    
+    if (results != nil)
+    {
+        requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
+        if (requestStatus == GOOD)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Выполнено" message:@"Информация о штрафе успешно отправлена на e-mail" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+            });
+        }
+        else
+        {
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
+        }
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
         });
         
         requestStatus = UNAVAILABLE;
@@ -197,17 +304,28 @@
     return UNAVAILABLE;
 }
 
-- (void)handleBadStatus:(status)requestStatus
+- (void)handleBadStatus:(status)requestStatus message:(NSString *)message
 {
     switch (requestStatus)
     {
         case NOTFOUND:
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Введены неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    
+                    UIAlertView *alert;
+
+                    if ([message isEqualToString:@"Incorrect driver’s personal data"])
+                    {
+                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    }
+                    else if ([message isEqualToString:@"Incorrect penalty id"])
+                    {
+                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные штрафа" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    }
+                        
                     [alert show];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
                 });
             }
             break;
@@ -218,7 +336,7 @@
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"В данный момент сервер доступен" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesUpdateEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
                 });
             }
             break;

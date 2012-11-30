@@ -15,8 +15,7 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UITableView *loginTableView;
 @property (nonatomic, strong) IBOutlet UIButton *continueButton;
-@property (nonatomic, strong) IBOutlet Profile *profile;
 
-- (IBAction)updateProfile;
+- (IBAction)insertNewProfile;
 
 @end
