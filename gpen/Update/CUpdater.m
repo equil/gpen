@@ -36,15 +36,19 @@
 {
     CDao *dao = [CDao daoWithContext:context];
     
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
     Profile *profile = [NSEntityDescription insertNewObjectForEntityForName:@"Profile" inManagedObjectContext:context];
     profile.uid = [dao uidForNewProfile];
     profile.name = [dict valueForKey:@"name"];
     profile.patronymic = [dict valueForKey:@"patronymic"];
     profile.lastname = [dict valueForKey:@"surname"];
     profile.license = [dict valueForKey:@"license"];
-    profile.birthday = [dict valueForKey:@"birthday"];
+    profile.birthday = [df dateFromString:[dict valueForKey:@"birthday"]];
     profile.email = [dict valueForKey:@"email"];
     profile.lastSign = [NSDate date];
+    profile.lastUpdate = [NSDate date];
     return profile;
 }
 

@@ -23,6 +23,7 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastSign" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="license" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patronymic" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,7 +46,7 @@
     </entity>
     <elements>
         <element name="Penalty" positionX="160" positionY="192" width="128" height="285"/>
-        <element name="Profile" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="Profile" positionX="160" positionY="192" width="128" height="210"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

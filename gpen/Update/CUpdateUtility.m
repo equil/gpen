@@ -68,6 +68,8 @@
 	NSError* error = nil;
 	NSURLResponse* response = nil;
     
+    NSLog(@"params: %@", params);
+    
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
 	NSURL* URL = [NSURL URLWithString:url];
 	[request setURL:URL];
