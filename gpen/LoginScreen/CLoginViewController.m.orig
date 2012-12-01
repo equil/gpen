@@ -562,7 +562,7 @@
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-        
+         
         status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
         
         dispatch_async(dispatch_get_main_queue(), ^{
