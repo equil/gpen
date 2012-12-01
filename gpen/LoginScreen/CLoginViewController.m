@@ -565,7 +565,7 @@
         
         status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
             [self.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateDisabled];
             self.continueButton.enabled = YES;
@@ -573,7 +573,7 @@
         
         if (requestStatus == GOOD)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 delegate.lastSignProfile = [dao lastSignProfile];
                 [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
             });

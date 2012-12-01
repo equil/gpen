@@ -104,17 +104,15 @@
             
             AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
-            [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+            [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
                 
                 Profile *profile = [self createProfile:context dict:dict];
                 [self processContent:penalties profile:profile context:context];
                 
-            } completion:^{
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-                });
             }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+            });
         }
         else
         {
