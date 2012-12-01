@@ -32,6 +32,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.tableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
+    
+    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    Profile *profile = delegate.lastSignProfile;
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", profile.name, profile.lastname]];
+    
     [self doRequest];
 }
 
@@ -55,18 +61,73 @@
     });
 }
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.dataSource count];
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource ? [self.dataSource count] : 0;
+    NSArray *result = [self.dataSource objectAtIndex:section];
+    return result ? [result count] : 0;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *penaltyCellId = @"penaltyCell";
     
+    NSArray *result = [self.dataSource objectAtIndex:indexPath.section];
     CPenaltyCell *cell = (CPenaltyCell *)[tableView dequeueReusableCellWithIdentifier:penaltyCellId];
-    [cell configureCellWithPenalty:[self.dataSource objectAtIndex:indexPath.row]];
+    [cell configureCellWithPenalty:[result objectAtIndex:indexPath.row]];
     return cell;
 }
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSArray *result = [self.dataSource objectAtIndex:section];
+    if (result && result.count > 0)
+    {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 28)];
+        headerView.backgroundColor = [UIColor clearColor];
+        
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, headerView.frame.size.width - 32, 20)];
+        headerLabel.backgroundColor = [UIColor clearColor];
+        switch (section) {
+            case 0:
+                headerLabel.text = @"Просрочено";
+                break;
+            case 1:
+                headerLabel.text = @"Не оплачено";
+                break;
+            case 2:
+                headerLabel.text = @"Оплачено";
+                break;
+        }
+        headerLabel.textColor = [UIColor darkTextColor];
+        headerLabel.font = [UIFont systemFontOfSize:12.0];
+        
+        [headerView addSubview:headerLabel];
+        
+        return headerView;
+    }
+    return nil;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    NSArray *result = [self.dataSource objectAtIndex:section];
+    return (result && result.count > 0) ? 28.0 : 0;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 @end
