@@ -468,6 +468,8 @@
 {
     if (self.pickerView.superview)
     {
+        [self dateAction];
+        
         CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
         CGRect endFrame = self.pickerView.frame;
         endFrame.origin.y = screenRect.origin.y + screenRect.size.height;

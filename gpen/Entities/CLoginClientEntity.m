@@ -15,6 +15,16 @@
 @implementation CLoginClientEntity
 @synthesize internalDict = _internalDict;
 
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        self.internalDict = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 - (id) initWithDictionary: (NSDictionary *) aDictionary;
 {
     self = [super init];
