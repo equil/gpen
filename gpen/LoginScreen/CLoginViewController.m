@@ -70,13 +70,32 @@
         }
         return NO;
     }
-    else
+    /*else
     {
         if ([textField isEqual:self.clientTFEmail]) {
             [self insertNewProfile];
         }
-    }
+    }*/
     return YES;
+}
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSInteger maxLength = 255;
+    if ([textField isEqual:self.clientTFLicense])
+    {
+        maxLength = 10;
+    }
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= maxLength || returnKey;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -269,7 +288,7 @@
         cell.cellTextField.delegate = self;
         self.clientTFEmail = cell.cellTextField;
         cell.cellTextField.placeholder = @"Электронная почта";
-        cell.cellTextField.returnKeyType = UIReturnKeyGo;
+        cell.cellTextField.returnKeyType = UIReturnKeyDefault;
         cell.cellLabel.text = @"Необязательно";
         
         [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
@@ -502,11 +521,39 @@
     }
 }
 
+- (BOOL) validateEmail: (NSString *) candidate
+{
+    NSString *emailRegex =
+    @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+    @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+    @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+    @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
+
 - (IBAction)insertNewProfile
 {
     [self.activeTextField resignFirstResponder];
     [self doneAction];
     
+    if (!(self.clientEntity.email) || (self.clientEntity.email.length < 1) || ([self validateEmail:self.clientEntity.email]))
+    {
+        [self doRequest];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Некорректный e-mail" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void) doRequest
+{
     [self.spinner startAnimating];
     [self.continueButton setTitle:@"" forState:UIControlStateDisabled];
     self.continueButton.enabled = NO;
@@ -515,8 +562,8 @@
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-         
-         status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
+        
+        status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
@@ -524,15 +571,15 @@
             self.continueButton.enabled = YES;
         });
         
-         
-         if (requestStatus == GOOD)
-         {
-             delegate.lastSignProfile = [dao lastSignProfile];
-             
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
-             });
-         }
+        
+        if (requestStatus == GOOD)
+        {
+            delegate.lastSignProfile = [dao lastSignProfile];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
+            });
+        }
     });
 }
 
