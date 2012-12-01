@@ -179,6 +179,7 @@
     
     
     
+    unsigned long uid = [profile.uid unsignedLongValue];
     if (results != nil)
     {
         requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
@@ -191,7 +192,7 @@
             [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
                 
                 CDao *dao = [CDao daoWithContext:context];
-                Profile *prof = [dao profileForUid:profile.uid];
+                Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
                 prof.lastUpdate = [NSDate date];
                 
                 [self processContent:penalties profile:prof context:context];
@@ -222,11 +223,12 @@
 
 - (void)updateLastSignForProfile:(Profile *)profile
 {
+    unsigned long uid = [profile.uid unsignedLongValue];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
         
         CDao *dao = [CDao daoWithContext:context];
-        Profile *prof = [dao profileForUid:profile.uid];
+        Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
         prof.lastSign = [NSDate date];
     }];
 }
