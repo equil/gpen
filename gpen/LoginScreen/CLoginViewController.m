@@ -516,7 +516,7 @@
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
          
-         status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
+        status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
