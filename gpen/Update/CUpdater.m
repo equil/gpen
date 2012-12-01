@@ -190,7 +190,11 @@
             
             [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
                 
-                [self processContent:penalties profile:profile context:context];
+                CDao *dao = [CDao daoWithContext:context];
+                Profile *prof = [dao profileForUid:profile.uid];
+                prof.lastUpdate = [NSDate date];
+                
+                [self processContent:penalties profile:prof context:context];
                 
             } completion:^{
                 
@@ -214,6 +218,17 @@
     }
     
     return requestStatus;
+}
+
+- (void)updateLastSignForProfile:(Profile *)profile
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        
+        CDao *dao = [CDao daoWithContext:context];
+        Profile *prof = [dao profileForUid:profile.uid];
+        prof.lastSign = [NSDate date];
+    }];
 }
 
 - (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty
