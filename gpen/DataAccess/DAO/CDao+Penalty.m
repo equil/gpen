@@ -55,7 +55,7 @@
 	[request setEntity:[NSEntityDescription entityForName:@"Penalty"
                                    inManagedObjectContext:self.dataContext]];
     
-    [request setPredicate:[NSPredicate predicateWithFormat:@"uid = %d", uid]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"uid = %@", uid]];
     
 	NSError *error = nil;
 	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];

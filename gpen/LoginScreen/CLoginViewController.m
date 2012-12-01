@@ -571,12 +571,10 @@
             self.continueButton.enabled = YES;
         });
         
-        
         if (requestStatus == GOOD)
         {
-            delegate.lastSignProfile = [dao lastSignProfile];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
+                delegate.lastSignProfile = [dao lastSignProfile];
                 [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
             });
         }

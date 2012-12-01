@@ -33,10 +33,15 @@
 	// Do any additional setup after loading the view.
     
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", profile.name, profile.lastname]];
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
     
     [self doRequest];
 }
