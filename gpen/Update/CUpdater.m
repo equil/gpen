@@ -439,4 +439,39 @@
     [self addRecipient:[penaltyObj valueForKey:@"recipient"] context:context penalty:penalty];
 }
 
+- (NSArray *)penaltiesForProfile:(Profile *)profile
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesStart" object:nil];
+    });
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *moc = delegate.dataAccessManager.managedObjectContext;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Penalty" inManagedObjectContext:moc]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"overdueDate" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error = nil;
+    NSArray *array = [moc executeFetchRequest:request error:&error];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesEnd" object:nil];
+    });
+    
+    if (error)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка при запросе списка штрафов" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+            [alert show];
+        });
+    }
+
+    return array;
+}
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Profile.h"
 
 @interface CLoginViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
