@@ -460,6 +460,7 @@
 - (void)dateAction
 {
 	self.clientLBBirthday.text = [self.dateFormatter stringFromDate:self.pickerView.date];
+    self.clientEntity.birthday = self.clientLBBirthday.text;
     
     [self checkInputData];
 }
