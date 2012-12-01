@@ -12,10 +12,14 @@
 #import "CPenaltyCell.h"
 
 @interface CPenaltyListViewController ()
-
+@property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation CPenaltyListViewController
+{
+    @private
+    NSFetchedResultsController *_fetchedResultsController;
+}
 @synthesize dataSource = _dataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,63 +31,119 @@
     return self;
 }
 
+- (void)fetchData {
+    NSError *error = nil;
+    self.fetchedResultsController = nil;
+    BOOL success = [self.fetchedResultsController performFetch:&error];
+    if (!success) {
+        NSLog(@"Error in fetching: %@", error.userInfo);
+    }
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController == nil) {
+        AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = delegate.dataAccessManager.managedObjectContext;
+        
+        NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+        [fetch setEntity:[NSEntityDescription entityForName:@"Penalty"
+                                     inManagedObjectContext:context]];
+        
+        [fetch setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", delegate.lastSignProfile]];
+        
+        NSSortDescriptor *statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        [fetch setSortDescriptors:[NSArray arrayWithObjects:statusSort, sortDescriptor, nil]];
+        
+        _fetchedResultsController = [[NSFetchedResultsController alloc]
+                                     initWithFetchRequest:fetch
+                                     managedObjectContext:context
+                                     sectionNameKeyPath:@"status" cacheName:nil];
+        _fetchedResultsController.delegate = self;
+    }
+    
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	[self.tableView endUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+		   atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+	switch (type) {
+		case NSFetchedResultsChangeInsert:
+			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+            
+		case NSFetchedResultsChangeDelete:
+			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+	   atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+	  newIndexPath:(NSIndexPath *)newIndexPath {
+	UITableView *tableView = self.tableView;
+    
+	switch (type) {
+		case NSFetchedResultsChangeInsert:
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+            
+		case NSFetchedResultsChangeDelete:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+            
+		case NSFetchedResultsChangeUpdate:
+            
+            break;
+            
+		case NSFetchedResultsChangeMove:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
     [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
-    
-    [self doRequest];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [self fetchData];
+    [super viewWillAppear:animated];
 }
 
-- (void) doRequest
-{
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-        
-        self.dataSource = [delegate.updater penaltiesForProfile:delegate.lastSignProfile];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.fetchedResultsController.sections.count;
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [self.dataSource count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:(NSUInteger) section];
+    return [sectionInfo numberOfObjects];
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSArray *result = [self.dataSource objectAtIndex:section];
-    return result ? [result count] : 0;
-}
-
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *penaltyCellId = @"penaltyCell";
-    
-    NSArray *result = [self.dataSource objectAtIndex:indexPath.section];
+
     CPenaltyCell *cell = (CPenaltyCell *)[tableView dequeueReusableCellWithIdentifier:penaltyCellId];
-    [cell configureCellWithPenalty:[result objectAtIndex:indexPath.row]];
+    [cell configureCellWithPenalty:[self.fetchedResultsController objectAtIndexPath:indexPath]];
     return cell;
 }
 
@@ -94,8 +154,7 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSArray *result = [self.dataSource objectAtIndex:section];
-    if (result && result.count > 0)
+    if ([[self.fetchedResultsController sections] count] > 0)
     {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 28)];
         headerView.backgroundColor = [UIColor clearColor];
@@ -125,8 +184,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    NSArray *result = [self.dataSource objectAtIndex:section];
-    return (result && result.count > 0) ? 28.0 : 0;
+    return ([[self.fetchedResultsController sections] count] > 0) ? 28.0 : 0;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

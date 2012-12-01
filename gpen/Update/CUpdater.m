@@ -402,6 +402,24 @@
     recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
 }
 
+- (NSString *)processStatus:(NSString *)status
+{
+    if ([status isEqualToString:@"overdue"])
+    {
+        return [NSString stringWithFormat:@"1_%@", status];
+    }
+    else if ([status isEqualToString:@"not paid"])
+    {
+        return [NSString stringWithFormat:@"2_%@", status];
+    }
+    else if ([status isEqualToString:@"paid"])
+    {
+        return [NSString stringWithFormat:@"3_%@", status];
+    }
+    
+    return @"";
+}
+
 - (void)addPhoto:(NSDictionary *)penaltyObj penalty:(Penalty *)penalty
 {
     if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
@@ -423,7 +441,7 @@
     penalty.date = [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
     penalty.overdueDate = [_dateFormatter dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
     penalty.price = [penaltyObj valueForKey:@"price"];
-    penalty.status = [penaltyObj valueForKey:@"status"];
+    penalty.status = [self processStatus:[penaltyObj valueForKey:@"status"]];
     penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
     
     [self addPhoto:penaltyObj penalty:penalty];
@@ -439,60 +457,60 @@
     [self addRecipient:[penaltyObj valueForKey:@"recipient"] context:context penalty:penalty];
 }
 
-- (NSArray *)penaltiesForProfile:(Profile *)profile
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesStart" object:nil];
-    });
-    
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *moc = delegate.dataAccessManager.managedObjectContext;
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"Penalty" inManagedObjectContext:moc]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
-    
-    NSSortDescriptor *dateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    [request setSortDescriptors:[NSArray arrayWithObject:dateDescriptor]];
-    
-    NSError *error = nil;
-    NSArray *array = [moc executeFetchRequest:request error:&error];
-    
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    
-    NSMutableArray *array1 = [[NSMutableArray alloc] init];
-    NSMutableArray *array2 = [[NSMutableArray alloc] init];
-    NSMutableArray *array3 = [[NSMutableArray alloc] init];
-    for (Penalty *penalty in array)
-    {
-        if ([@"overdue" isEqualToString:penalty.status]) {
-            [array1 addObject:penalty];
-        }
-        else if ([@"not paid" isEqualToString:penalty.status]) {
-            [array2 addObject:penalty];
-        }
-        else if ([@"paid" isEqualToString:penalty.status]) {
-            [array3 addObject:penalty];
-        }
-    }
-    [result addObject:array1];
-    [result addObject:array2];
-    [result addObject:array3];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"penalies count is %i", [array count]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesEnd" object:nil];
-    });
-    
-    if (error)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка при запросе списка штрафов" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
-            [alert show];
-        });
-    }
-
-    return result;
-}
+//- (NSArray *)penaltiesForProfile:(Profile *)profile
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesStart" object:nil];
+//    });
+//    
+//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *moc = delegate.dataAccessManager.managedObjectContext;
+//    
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:[NSEntityDescription entityForName:@"Penalty" inManagedObjectContext:moc]];
+//    [request setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
+//    
+//    NSSortDescriptor *dateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+//    [request setSortDescriptors:[NSArray arrayWithObject:dateDescriptor]];
+//    
+//    NSError *error = nil;
+//    NSArray *array = [moc executeFetchRequest:request error:&error];
+//    
+//    NSMutableArray *result = [[NSMutableArray alloc] init];
+//    
+//    NSMutableArray *array1 = [[NSMutableArray alloc] init];
+//    NSMutableArray *array2 = [[NSMutableArray alloc] init];
+//    NSMutableArray *array3 = [[NSMutableArray alloc] init];
+//    for (Penalty *penalty in array)
+//    {
+//        if ([@"overdue" isEqualToString:penalty.status]) {
+//            [array1 addObject:penalty];
+//        }
+//        else if ([@"not paid" isEqualToString:penalty.status]) {
+//            [array2 addObject:penalty];
+//        }
+//        else if ([@"paid" isEqualToString:penalty.status]) {
+//            [array3 addObject:penalty];
+//        }
+//    }
+//    [result addObject:array1];
+//    [result addObject:array2];
+//    [result addObject:array3];
+//    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSLog(@"penalies count is %i", [array count]);
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesEnd" object:nil];
+//    });
+//    
+//    if (error)
+//    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка при запросе списка штрафов" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+//            [alert show];
+//        });
+//    }
+//
+//    return result;
+//}
 
 @end

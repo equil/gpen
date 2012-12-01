@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface CPenaltyListViewController : UITableViewController
+@interface CPenaltyListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
+@property(nonatomic, retain, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSArray *dataSource;
 
 @end

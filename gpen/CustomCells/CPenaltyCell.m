@@ -42,15 +42,15 @@
 
 - (NSString *) imageNameForStatus: (NSString *) status
 {
-    if ([@"paid" isEqualToString:status])
+    if ([@"3_paid" isEqualToString:status])
     {
         return @"penalty_paid";
     }
-    else if ([@"not paid" isEqualToString:status])
+    else if ([@"2_not paid" isEqualToString:status])
     {
         return @"penalty_not_paid";
     }
-    else if ([@"overdue" isEqualToString:status])
+    else if ([@"1_overdue" isEqualToString:status])
     {
         return @"penalty_overdue";
     }
