@@ -102,6 +102,13 @@
 {
     [self doneAction];
     self.activeTextField = textField;
+    
+    if ([textField isEqual:self.clientTFLicense])
+    {
+        NSMutableString *result = [[NSMutableString alloc] initWithString:textField.text];
+        [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
+        textField.text = result;
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -122,6 +129,13 @@
     }
     else if ([textField isEqual:self.clientTFLicense])
     {
+        self.clientEntity.license = textField.text;
+        NSMutableString *result = [[NSMutableString alloc] initWithString:textField.text];
+        if (result.length == 10) {
+            [result insertString:@" " atIndex:4];
+            [result insertString:@" " atIndex:2];
+        }
+        textField.text = result;
         self.clientEntity.license = textField.text;
     }
     else if ([textField isEqual:self.clientTFEmail])
@@ -160,7 +174,7 @@
     self.loginTableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
-	[self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -348,7 +362,7 @@
         
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 20)];
         footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.text = @"Образец: 63СТ000000";
+        footerLabel.text = @"Образец: 63 СТ 000000";
         footerLabel.textColor = [UIColor darkGrayColor];
         footerLabel.font = [UIFont systemFontOfSize:12.0];
         footerLabel.shadowColor = [UIColor whiteColor];
@@ -557,6 +571,14 @@
     [self.spinner startAnimating];
     [self.continueButton setTitle:@"" forState:UIControlStateDisabled];
     self.continueButton.enabled = NO;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    self.clientEntity.birthday = [formatter stringFromDate:[self.dateFormatter dateFromString:self.clientEntity.birthday]];
+    
+    NSMutableString *result = [[NSMutableString alloc] initWithString:self.clientEntity.license];
+    [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
+    self.clientEntity.license = result;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
