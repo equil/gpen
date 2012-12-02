@@ -30,7 +30,7 @@
 
 - (void)customizeNavigationBar {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:41.0/255.0 green:153.0/255.0 blue:185.0/255.0 alpha:1.0]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:87.0/255.0 green:161.0/255.0 blue:214.0/255.0 alpha:1.0]];
 }
 
 - (void)customizeInterface
@@ -56,7 +56,7 @@
     _dataAccessManager = [[CDataAccessManager alloc] init];
     _dataAccessManager.persistentStoreCoordinator;
     
-    sleep(3);
+    sleep(2);
     
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     _lastSignProfile = [dao lastSignProfile];
