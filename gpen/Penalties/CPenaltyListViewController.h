@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "CRotateTableViewController.h"
 
-@interface CPenaltyListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface CPenaltyListViewController : CRotateTableViewController <NSFetchedResultsControllerDelegate>
 
 @end

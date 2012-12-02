@@ -55,6 +55,12 @@
 		1EBBE7131660D48700708B6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE70F1660D48700708B6D /* Default-568h@2x.png */; };
 		1EBBE7141660D48700708B6D /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE7101660D48700708B6D /* Default-Landscape.png */; };
 		1EBBE7151660D48700708B6D /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBBE7111660D48700708B6D /* Default-Landscape@2x.png */; };
+		1ED3FB74166BDA5D008C2E21 /* CRotateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB73166BDA5D008C2E21 /* CRotateViewController.m */; };
+		1ED3FB77166BDA7A008C2E21 /* CRotateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB76166BDA7A008C2E21 /* CRotateTableViewController.m */; };
+		1ED3FB7A166BDA9C008C2E21 /* CRotateTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB79166BDA9C008C2E21 /* CRotateTabBarController.m */; };
+		1ED3FB81166BDB58008C2E21 /* CRotateNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB80166BDB58008C2E21 /* CRotateNavigationController.m */; };
+		1ED3FB86166BDDD7008C2E21 /* CInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */; };
+		1ED3FB89166BDE38008C2E21 /* CProfilesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */; };
 		A0043A10166A12FC00530F81 /* CPenaltyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */; };
 		A0043A17166A1F7300530F81 /* penalty_not_paid.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A11166A1F7300530F81 /* penalty_not_paid.png */; };
 		A0043A18166A1F7300530F81 /* penalty_not_paid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A12166A1F7300530F81 /* penalty_not_paid@2x.png */; };
@@ -147,6 +153,18 @@
 		1EBBE70F1660D48700708B6D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1EBBE7101660D48700708B6D /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		1EBBE7111660D48700708B6D /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
+		1ED3FB72166BDA5D008C2E21 /* CRotateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRotateViewController.h; path = Raw/CRotateViewController.h; sourceTree = "<group>"; };
+		1ED3FB73166BDA5D008C2E21 /* CRotateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRotateViewController.m; path = Raw/CRotateViewController.m; sourceTree = "<group>"; };
+		1ED3FB75166BDA7A008C2E21 /* CRotateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRotateTableViewController.h; path = Raw/CRotateTableViewController.h; sourceTree = "<group>"; };
+		1ED3FB76166BDA7A008C2E21 /* CRotateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRotateTableViewController.m; path = Raw/CRotateTableViewController.m; sourceTree = "<group>"; };
+		1ED3FB78166BDA9C008C2E21 /* CRotateTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRotateTabBarController.h; path = Raw/CRotateTabBarController.h; sourceTree = "<group>"; };
+		1ED3FB79166BDA9C008C2E21 /* CRotateTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRotateTabBarController.m; path = Raw/CRotateTabBarController.m; sourceTree = "<group>"; };
+		1ED3FB7F166BDB58008C2E21 /* CRotateNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRotateNavigationController.h; path = Raw/CRotateNavigationController.h; sourceTree = "<group>"; };
+		1ED3FB80166BDB58008C2E21 /* CRotateNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRotateNavigationController.m; path = Raw/CRotateNavigationController.m; sourceTree = "<group>"; };
+		1ED3FB84166BDDD7008C2E21 /* CInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CInfoViewController.h; path = Info/CInfoViewController.h; sourceTree = "<group>"; };
+		1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CInfoViewController.m; path = Info/CInfoViewController.m; sourceTree = "<group>"; };
+		1ED3FB87166BDE38008C2E21 /* CProfilesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfilesListViewController.h; path = Profiles/CProfilesListViewController.h; sourceTree = "<group>"; };
+		1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesListViewController.m; path = Profiles/CProfilesListViewController.m; sourceTree = "<group>"; };
 		A0043A0E166A12FC00530F81 /* CPenaltyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyListViewController.h; sourceTree = "<group>"; };
 		A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyListViewController.m; sourceTree = "<group>"; };
 		A0043A11166A1F7300530F81 /* penalty_not_paid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = penalty_not_paid.png; path = Resources/penalty_not_paid.png; sourceTree = "<group>"; };
@@ -295,7 +313,10 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				1ED3FB70166BD9BF008C2E21 /* Raw */,
 				A0043A0D166A12D800530F81 /* Penalties */,
+				1ED3FB83166BDDA8008C2E21 /* Profiles */,
+				1ED3FB82166BDD9A008C2E21 /* Info */,
 				A0E83FF21668BFFC00561612 /* Entities */,
 				1E4D48301665157500949A5C /* Resources */,
 				1E9F0D1E1663D6050017A2EB /* Update */,
@@ -396,6 +417,39 @@
 				1EBBE7071660CF9500708B6D /* Default-Portrait@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1ED3FB70166BD9BF008C2E21 /* Raw */ = {
+			isa = PBXGroup;
+			children = (
+				1ED3FB72166BDA5D008C2E21 /* CRotateViewController.h */,
+				1ED3FB73166BDA5D008C2E21 /* CRotateViewController.m */,
+				1ED3FB75166BDA7A008C2E21 /* CRotateTableViewController.h */,
+				1ED3FB76166BDA7A008C2E21 /* CRotateTableViewController.m */,
+				1ED3FB78166BDA9C008C2E21 /* CRotateTabBarController.h */,
+				1ED3FB79166BDA9C008C2E21 /* CRotateTabBarController.m */,
+				1ED3FB7F166BDB58008C2E21 /* CRotateNavigationController.h */,
+				1ED3FB80166BDB58008C2E21 /* CRotateNavigationController.m */,
+			);
+			name = Raw;
+			sourceTree = "<group>";
+		};
+		1ED3FB82166BDD9A008C2E21 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1ED3FB84166BDDD7008C2E21 /* CInfoViewController.h */,
+				1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		1ED3FB83166BDDA8008C2E21 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				1ED3FB87166BDE38008C2E21 /* CProfilesListViewController.h */,
+				1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */,
+			);
+			name = Profiles;
 			sourceTree = "<group>";
 		};
 		A0043A0D166A12D800530F81 /* Penalties */ = {
@@ -556,6 +610,12 @@
 				A0043A1F166A213200530F81 /* CPenaltyCell.m in Sources */,
 				1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */,
 				1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */,
+				1ED3FB74166BDA5D008C2E21 /* CRotateViewController.m in Sources */,
+				1ED3FB77166BDA7A008C2E21 /* CRotateTableViewController.m in Sources */,
+				1ED3FB7A166BDA9C008C2E21 /* CRotateTabBarController.m in Sources */,
+				1ED3FB81166BDB58008C2E21 /* CRotateNavigationController.m in Sources */,
+				1ED3FB86166BDDD7008C2E21 /* CInfoViewController.m in Sources */,
+				1ED3FB89166BDE38008C2E21 /* CProfilesListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
