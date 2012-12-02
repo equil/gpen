@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Penalty.h"
 #import "CPenaltyCell.h"
+#import "CPenaltyDetailViewController.h"
 
 @interface CPenaltyListViewController ()
 @property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -28,6 +29,17 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([segue.identifier isEqualToString:@"PenaltyListToDetail"]) {
+        CPenaltyDetailViewController *destination = segue.destinationViewController;
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        destination.penalty = [self.fetchedResultsController objectAtIndexPath:path];
+    }
 }
 
 - (void)fetchData {

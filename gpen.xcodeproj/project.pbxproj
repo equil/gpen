@@ -28,6 +28,8 @@
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EAC82031669EFC900D6ED80 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC82021669EFC900D6ED80 /* Profile.m */; };
+		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
+		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
 		1EB1E47E166688AB006CEC41 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
 		1EB1E47F166688AB006CEC41 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47D166688AB006CEC41 /* Default@2x.png */; };
 		1EB1E48216669484006CEC41 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48116669484006CEC41 /* Penalty.m */; };
@@ -106,6 +108,10 @@
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EAC82011669EFC900D6ED80 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
 		1EAC82021669EFC900D6ED80 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
+		1EAC828F166B3E3B00D6ED80 /* CPenaltyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyDetailViewController.h; sourceTree = "<group>"; };
+		1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyDetailViewController.m; sourceTree = "<group>"; };
+		1EAC8292166B40A600D6ED80 /* CPenaltyTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyTicketViewController.h; sourceTree = "<group>"; };
+		1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyTicketViewController.m; sourceTree = "<group>"; };
 		1EB1E47C166688AB006CEC41 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1EB1E47D166688AB006CEC41 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1EB1E48016669484006CEC41 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
@@ -397,6 +403,10 @@
 			children = (
 				A0043A0E166A12FC00530F81 /* CPenaltyListViewController.h */,
 				A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */,
+				1EAC828F166B3E3B00D6ED80 /* CPenaltyDetailViewController.h */,
+				1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */,
+				1EAC8292166B40A600D6ED80 /* CPenaltyTicketViewController.h */,
+				1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */,
 			);
 			path = Penalties;
 			sourceTree = "<group>";
@@ -544,6 +554,8 @@
 				1EAC82031669EFC900D6ED80 /* Profile.m in Sources */,
 				A0043A10166A12FC00530F81 /* CPenaltyListViewController.m in Sources */,
 				A0043A1F166A213200530F81 /* CPenaltyCell.m in Sources */,
+				1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */,
+				1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

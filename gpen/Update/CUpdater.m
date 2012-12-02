@@ -231,7 +231,7 @@
     }];
 }
 
-- (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty
+- (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
@@ -252,7 +252,7 @@
 //                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 //                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 //                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [profile.email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                        [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
 //                        penalty.uid, nil];
 //    
 //    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"email", @"id", nil];
@@ -271,7 +271,7 @@
                         [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [profile.email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                        [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                         penalty.uid];
     NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
     

@@ -20,7 +20,7 @@ typedef enum{
 - (status)insertNewProfileAndUpdate:(NSDictionary *)dict;
 - (status)updateProfile:(Profile *)profile;
 - (void)updateLastSignForProfile:(Profile *)profile;
-- (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty;
+- (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email;
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
