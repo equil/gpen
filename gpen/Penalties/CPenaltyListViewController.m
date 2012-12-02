@@ -20,7 +20,6 @@
     @private
     NSFetchedResultsController *_fetchedResultsController;
 }
-@synthesize dataSource = _dataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

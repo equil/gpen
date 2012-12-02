@@ -11,7 +11,4 @@
 
 @interface CPenaltyListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property(nonatomic, retain, readonly) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSArray *dataSource;
-
 @end
