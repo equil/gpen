@@ -167,6 +167,7 @@
     
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
+    self.continueButton.titleLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     self.continueButton.enabled = NO;
     
     self.navItem.title = @"Заполните анкету";
@@ -286,14 +287,13 @@
     static NSString *textFieldWithLabelCellId = @"textFieldWithLabelCell";
     static NSString *disclosureCellId = @"disclosureCell";
     
-    
     // Ячейка со стрелкой - единственная в таблице
     if (indexPath.section == 1)
     {
         CDisclosureCell *cell = (CDisclosureCell *) [tableView dequeueReusableCellWithIdentifier:disclosureCellId];
         self.clientLBBirthday = cell.cellLabel;
         cell.cellLabel.text = @"Дата рождения";
-        
+        cell.cellLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
         return cell;
     }
     else if (indexPath.section == 3)
@@ -303,7 +303,9 @@
         self.clientTFEmail = cell.cellTextField;
         cell.cellTextField.placeholder = @"Электронная почта";
         cell.cellTextField.returnKeyType = UIReturnKeyDefault;
+        cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
         cell.cellLabel.text = @"Необязательно";
+        cell.cellLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
         
         [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
         
@@ -315,6 +317,7 @@
     cell.cellTextField.delegate = self;
     cell.cellTextField.returnKeyType = UIReturnKeyNext;
     [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
+    cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
     switch (indexPath.section)
     {
@@ -364,7 +367,7 @@
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"Образец: 63 СТ 000000";
         footerLabel.textColor = [UIColor darkGrayColor];
-        footerLabel.font = [UIFont systemFontOfSize:12.0];
+        footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:12.0];
         footerLabel.shadowColor = [UIColor whiteColor];
         footerLabel.shadowOffset = CGSizeMake(0, 1);
         

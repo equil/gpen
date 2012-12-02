@@ -61,6 +61,8 @@
 		A0043A1B166A1F7300530F81 /* penalty_paid.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A15166A1F7300530F81 /* penalty_paid.png */; };
 		A0043A1C166A1F7300530F81 /* penalty_paid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A16166A1F7300530F81 /* penalty_paid@2x.png */; };
 		A0043A1F166A213200530F81 /* CPenaltyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0043A1E166A213200530F81 /* CPenaltyCell.m */; };
+		A0043A30166B41BF00530F81 /* PTS55F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0043A2E166B41BF00530F81 /* PTS55F.ttf */; };
+		A0043A31166B41BF00530F81 /* PTS75F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0043A2F166B41BF00530F81 /* PTS75F.ttf */; };
 		A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC11663CAD800561612 /* CTextFieldCell.m */; };
 		A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC41663CC2300561612 /* CDisclosureCell.m */; };
 		A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FD31666909500561612 /* CTextFieldWithLabel.m */; };
@@ -149,6 +151,8 @@
 		A0043A16166A1F7300530F81 /* penalty_paid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "penalty_paid@2x.png"; path = "Resources/penalty_paid@2x.png"; sourceTree = "<group>"; };
 		A0043A1D166A213100530F81 /* CPenaltyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPenaltyCell.h; path = CustomCells/CPenaltyCell.h; sourceTree = "<group>"; };
 		A0043A1E166A213200530F81 /* CPenaltyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPenaltyCell.m; path = CustomCells/CPenaltyCell.m; sourceTree = "<group>"; };
+		A0043A2E166B41BF00530F81 /* PTS55F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PTS55F.ttf; path = Resources/PTS55F.ttf; sourceTree = "<group>"; };
+		A0043A2F166B41BF00530F81 /* PTS75F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PTS75F.ttf; path = Resources/PTS75F.ttf; sourceTree = "<group>"; };
 		A0E83FC01663CAD800561612 /* CTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTextFieldCell.h; path = CustomCells/CTextFieldCell.h; sourceTree = "<group>"; };
 		A0E83FC11663CAD800561612 /* CTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTextFieldCell.m; path = CustomCells/CTextFieldCell.m; sourceTree = "<group>"; };
 		A0E83FC31663CC2300561612 /* CDisclosureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisclosureCell.h; path = CustomCells/CDisclosureCell.h; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		1E4D48301665157500949A5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A0043A2E166B41BF00530F81 /* PTS55F.ttf */,
+				A0043A2F166B41BF00530F81 /* PTS75F.ttf */,
 				A0043A11166A1F7300530F81 /* penalty_not_paid.png */,
 				A0043A12166A1F7300530F81 /* penalty_not_paid@2x.png */,
 				A0043A13166A1F7300530F81 /* penalty_overdue.png */,
@@ -503,6 +509,8 @@
 				A0043A1A166A1F7300530F81 /* penalty_overdue@2x.png in Resources */,
 				A0043A1B166A1F7300530F81 /* penalty_paid.png in Resources */,
 				A0043A1C166A1F7300530F81 /* penalty_paid@2x.png in Resources */,
+				A0043A30166B41BF00530F81 /* PTS55F.ttf in Resources */,
+				A0043A31166B41BF00530F81 /* PTS75F.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,8 @@
 - (void)customizeNavigationBar {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:41.0/255.0 green:153.0/255.0 blue:185.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, nil]];
 }
 
 - (void)customizeInterface
@@ -38,7 +40,6 @@
     [self customizeTabBar];
     [self customizeNavigationBar];
 }
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

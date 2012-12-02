@@ -31,6 +31,9 @@
 
 - (void) configureCellWithPenalty: (Penalty *) penalty
 {
+    self.penaltyDate.font = [UIFont fontWithName:@"PTSans-Regular" size:15.0];
+    self.penaltyPrice.font = [UIFont fontWithName:@"PTSans-Bold" size:15.0];
+    
     self.penaltyImage.image = [UIImage imageNamed:[self imageNameForStatus:penalty.status]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

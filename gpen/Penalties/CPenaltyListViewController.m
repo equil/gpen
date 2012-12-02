@@ -172,7 +172,7 @@
                 break;
         }
         headerLabel.textColor = [UIColor darkTextColor];
-        headerLabel.font = [UIFont systemFontOfSize:12.0];
+        headerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:12.0];
         
         [headerView addSubview:headerLabel];
         
