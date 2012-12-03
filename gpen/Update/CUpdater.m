@@ -60,40 +60,18 @@
     
     status requestStatus;
     
-//    NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [[dict valueForKey:@"name"] uppercaseString],
+                        [[dict valueForKey:@"patronymic"] uppercaseString],
+                        [[dict valueForKey:@"surname"] uppercaseString],
+                        [[dict valueForKey:@"license"] uppercaseString],
+                        [dict valueForKey:@"birthday"], nil];
     
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
     
-    //JSON
-    
-    
-//    NSArray *objects = [NSArray arrayWithObjects:
-//                        [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
-//    
-//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
-//    
-//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 
-//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];    
-    
-    
-    //POST
-    
-    
-    NSString* params = [NSString stringWithFormat:@"method=getList&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-                        [[[dict valueForKey:@"name"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[[dict valueForKey:@"patronymic"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[[dict valueForKey:@"surname"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[[dict valueForKey:@"license"] uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[dict valueForKey:@"birthday"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
-    
-    
-    
-
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];    
     
     if (results != nil)
     {
@@ -142,40 +120,18 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
-    //NSArray *objects = [NSArray arrayWithObjects:@"МАНСУР", @"МАРАТОВИЧ", @"АЮХАНОВ", @"63ВК026167", @"1955-01-14", nil];
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [profile.name uppercaseString],
+                        [profile.patronymic uppercaseString],
+                        [profile.lastname uppercaseString],
+                        [profile.license uppercaseString],
+                        [df stringFromDate:profile.birthday], nil];
+
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
     
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    //JSON
-    
-    
-//    NSArray *objects = [NSArray arrayWithObjects:
-//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], nil];
-//
-//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
-//    
-//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-//    
-//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];
-    
-    
-    //POST
-    
-    
-    NSString* params = [NSString stringWithFormat:@"method=getList&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@",
-                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
-    
-    
-    
-    
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];
     
     unsigned long uid = [profile.uid unsignedLongValue];
     if (results != nil)
@@ -242,42 +198,20 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [profile.name uppercaseString],
+                        [profile.patronymic uppercaseString],
+                        [profile.lastname uppercaseString],
+                        [profile.license uppercaseString],
+                        [df stringFromDate:profile.birthday],
+                        email,
+                        penalty.uid, nil];
     
-    //JSON
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"email", @"id", nil];
     
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-//    NSArray *objects = [NSArray arrayWithObjects:
-//                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-//                        penalty.uid, nil];
-//    
-//    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"email", @"id", nil];
-//    
-//    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-//    
-//    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"sendInfoByEmail" params:params];
-    
-    
-    //POST
-    
-    
-    NSString* params = [NSString stringWithFormat:@"method=sendInfoByEmail&content[name]=%@&content[patronymic]=%@&content[surname]=%@&content[license]=%@&content[birthday]=%@&content[email]=%@&content[id]=%@",
-                        [[profile.name uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.patronymic uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.lastname uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[profile.license uppercaseString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [[df stringFromDate:profile.birthday] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                        penalty.uid];
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" params:params];
-    
-    
-    
-    
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"sendInfoByEmail" params:params];
     
     if (results != nil)
     {
@@ -454,61 +388,5 @@
     
     [self addRecipient:[penaltyObj valueForKey:@"recipient"] context:context penalty:penalty];
 }
-
-//- (NSArray *)penaltiesForProfile:(Profile *)profile
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesStart" object:nil];
-//    });
-//    
-//    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *moc = delegate.dataAccessManager.managedObjectContext;
-//    
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:@"Penalty" inManagedObjectContext:moc]];
-//    [request setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
-//    
-//    NSSortDescriptor *dateDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-//    [request setSortDescriptors:[NSArray arrayWithObject:dateDescriptor]];
-//    
-//    NSError *error = nil;
-//    NSArray *array = [moc executeFetchRequest:request error:&error];
-//    
-//    NSMutableArray *result = [[NSMutableArray alloc] init];
-//    
-//    NSMutableArray *array1 = [[NSMutableArray alloc] init];
-//    NSMutableArray *array2 = [[NSMutableArray alloc] init];
-//    NSMutableArray *array3 = [[NSMutableArray alloc] init];
-//    for (Penalty *penalty in array)
-//    {
-//        if ([@"overdue" isEqualToString:penalty.status]) {
-//            [array1 addObject:penalty];
-//        }
-//        else if ([@"not paid" isEqualToString:penalty.status]) {
-//            [array2 addObject:penalty];
-//        }
-//        else if ([@"paid" isEqualToString:penalty.status]) {
-//            [array3 addObject:penalty];
-//        }
-//    }
-//    [result addObject:array1];
-//    [result addObject:array2];
-//    [result addObject:array3];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        NSLog(@"penalies count is %i", [array count]);
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PenaltiesEnd" object:nil];
-//    });
-//    
-//    if (error)
-//    {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка при запросе списка штрафов" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
-//            [alert show];
-//        });
-//    }
-//
-//    return result;
-//}
 
 @end
