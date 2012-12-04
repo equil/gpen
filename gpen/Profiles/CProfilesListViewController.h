@@ -7,7 +7,8 @@
 //
 
 #import "CRotateTableViewController.h"
+#import <CoreData/CoreData.h>
 
-@interface CProfilesListViewController : CRotateTableViewController
+@interface CProfilesListViewController : CRotateTableViewController <NSFetchedResultsControllerDelegate>
 
 @end
