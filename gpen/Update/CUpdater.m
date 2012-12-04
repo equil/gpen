@@ -204,10 +204,10 @@
                         [profile.lastname uppercaseString],
                         [profile.license uppercaseString],
                         [df stringFromDate:profile.birthday],
-                        email,
-                        penalty.uid, nil];
+                        penalty.uid,
+                        email, nil];
     
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"email", @"id", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"id", @"email", nil];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
