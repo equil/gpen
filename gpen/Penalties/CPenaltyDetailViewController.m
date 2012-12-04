@@ -42,6 +42,11 @@
     self.emailTextField.leftViewMode = UITextFieldViewModeAlways;
     self.emailTextField.rightView = paddingView;
     self.emailTextField.rightViewMode = UITextFieldViewModeAlways;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.emailTextField.text = delegate.lastSignProfile.email;
+    
+    [self checkInputData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -86,9 +91,9 @@
     
     // Reduce size of the Table view
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
-        frame.size.height -= keyboardBounds.size.height;
+        frame.size.height -= keyboardBounds.size.height - self.tabBarController.tabBar.frame.size.height;
     else
-        frame.size.height -= keyboardBounds.size.width;
+        frame.size.height -= keyboardBounds.size.width - self.tabBarController.tabBar.frame.size.height;
     
     // Start animation
     [UIView beginAnimations:nil context:NULL];
@@ -134,6 +139,8 @@
 
 - (IBAction)sendInfoToEmail
 {
+    [self.emailTextField resignFirstResponder];
+    
     self.buttonSendTicket.enabled = NO;
     [self.buttonSendTicket setTitle:@"" forState:UIControlStateDisabled];
     [self.indicator startAnimating];
@@ -187,14 +194,8 @@
 
 - (IBAction) checkInputData
 {
-    if ([self.emailTextField.text length] > 0)
-    {
-        self.buttonSendTicket.enabled = YES;
-    }
-    else
-    {
-        self.buttonSendTicket.enabled = NO;
-    }
+    self.email = self.emailTextField.text;
+    self.buttonSendTicket.enabled = (self.email.length > 0);
 }
 
 

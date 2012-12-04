@@ -76,6 +76,8 @@
 		A0043A31166B41BF00530F81 /* PTS75F.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0043A2F166B41BF00530F81 /* PTS75F.ttf */; };
 		A02AC845166E3AA400F02A41 /* text_field.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC843166E3AA400F02A41 /* text_field.png */; };
 		A02AC846166E3AA400F02A41 /* text_field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC844166E3AA400F02A41 /* text_field@2x.png */; };
+		A02AC850166E68C700F02A41 /* CGreenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A02AC84F166E68C700F02A41 /* CGreenButton.m */; };
+		A02AC853166E724800F02A41 /* CPenaltyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A02AC852166E724800F02A41 /* CPenaltyDetailCell.m */; };
 		A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC11663CAD800561612 /* CTextFieldCell.m */; };
 		A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC41663CC2300561612 /* CDisclosureCell.m */; };
 		A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FD31666909500561612 /* CTextFieldWithLabel.m */; };
@@ -190,6 +192,10 @@
 		A0043A2F166B41BF00530F81 /* PTS75F.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PTS75F.ttf; path = Resources/PTS75F.ttf; sourceTree = "<group>"; };
 		A02AC843166E3AA400F02A41 /* text_field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = text_field.png; path = Resources/text_field.png; sourceTree = "<group>"; };
 		A02AC844166E3AA400F02A41 /* text_field@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "text_field@2x.png"; path = "Resources/text_field@2x.png"; sourceTree = "<group>"; };
+		A02AC84E166E68C700F02A41 /* CGreenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGreenButton.h; sourceTree = "<group>"; };
+		A02AC84F166E68C700F02A41 /* CGreenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGreenButton.m; sourceTree = "<group>"; };
+		A02AC851166E724800F02A41 /* CPenaltyDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPenaltyDetailCell.h; path = CustomCells/CPenaltyDetailCell.h; sourceTree = "<group>"; };
+		A02AC852166E724800F02A41 /* CPenaltyDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPenaltyDetailCell.m; path = CustomCells/CPenaltyDetailCell.m; sourceTree = "<group>"; };
 		A0E83FC01663CAD800561612 /* CTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTextFieldCell.h; path = CustomCells/CTextFieldCell.h; sourceTree = "<group>"; };
 		A0E83FC11663CAD800561612 /* CTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTextFieldCell.m; path = CustomCells/CTextFieldCell.m; sourceTree = "<group>"; };
 		A0E83FC31663CC2300561612 /* CDisclosureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisclosureCell.h; path = CustomCells/CDisclosureCell.h; sourceTree = "<group>"; };
@@ -328,6 +334,7 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				A02AC84C166E689B00F02A41 /* UIElements */,
 				1ED3FB70166BD9BF008C2E21 /* Raw */,
 				A0043A0D166A12D800530F81 /* Penalties */,
 				1ED3FB83166BDDA8008C2E21 /* Profiles */,
@@ -484,6 +491,15 @@
 			path = Penalties;
 			sourceTree = "<group>";
 		};
+		A02AC84C166E689B00F02A41 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				A02AC84E166E68C700F02A41 /* CGreenButton.h */,
+				A02AC84F166E68C700F02A41 /* CGreenButton.m */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
 		A0E83FBF1663CA7B00561612 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +513,8 @@
 				A0043A1E166A213200530F81 /* CPenaltyCell.m */,
 				1ED3FBF6166E46CB008C2E21 /* CProfileCell.h */,
 				1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */,
+				A02AC851166E724800F02A41 /* CPenaltyDetailCell.h */,
+				A02AC852166E724800F02A41 /* CPenaltyDetailCell.m */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -642,6 +660,8 @@
 				1ED3FBF2166E4520008C2E21 /* CProfilesDetailViewController.m in Sources */,
 				1ED3FBF5166E453E008C2E21 /* CProfilesAddViewController.m in Sources */,
 				1ED3FBF8166E46CB008C2E21 /* CProfileCell.m in Sources */,
+				A02AC850166E68C700F02A41 /* CGreenButton.m in Sources */,
+				A02AC853166E724800F02A41 /* CPenaltyDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

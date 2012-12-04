@@ -167,7 +167,6 @@
     
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
-    self.continueButton.titleLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     self.continueButton.enabled = NO;
     
     self.navItem.title = @"Заполните анкету";
