@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
-#import "CRotateTableViewController.h"
+#import "CRotateViewController.h"
 
-@interface CProfilesAddViewController : CRotateTableViewController
+@interface CProfilesAddViewController : CRotateViewController <UITableViewDelegate, UITableViewDataSource>
 
 - (IBAction)cancelAction;
 
