@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
-#import "CRotateViewController.h"
+#import "CRotateTableViewController.h"
 #import "Profile.h"
 
-@interface CProfilesDetailViewController : CRotateViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CProfilesDetailViewController : CRotateTableViewController
 
 @property (nonatomic, strong) Profile *profile;
 

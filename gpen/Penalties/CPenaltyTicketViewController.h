@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Penalty.h"
-#import "CRotateViewController.h"
+#import "CRotateTableViewController.h"
 
-@interface CPenaltyTicketViewController : CRotateViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CPenaltyTicketViewController : CRotateTableViewController
 
 @property (nonatomic, strong) Penalty *penalty;
 

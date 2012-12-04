@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Penalty.h"
-#import "CRotateViewController.h"
+#import "CRotateTableViewController.h"
 
 @interface CPenaltyDetailViewController : CRotateTableViewController <UITextFieldDelegate>
 

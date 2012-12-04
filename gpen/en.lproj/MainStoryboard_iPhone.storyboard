@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Splash View Controller-->
@@ -196,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="1679" y="-550"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Penalty Ticket View Controller - Квитанция-->
         <scene sceneID="Ksr-8t-c8u">
             <objects>
-                <tableViewController id="7rw-23-YsC" sceneMemberID="viewController">
+                <tableViewController id="7rw-23-YsC" customClass="CPenaltyTicketViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2y9-8h-8n2">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,7 +220,9 @@
                             <outlet property="delegate" destination="7rw-23-YsC" id="7Ct-LU-39R"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qWI-a4-DTQ"/>
+                    <navigationItem key="navigationItem" title="Квитанция" id="qWI-a4-DTQ">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="jMf-hU-Eay"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2L-pK-jod" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -425,7 +427,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="hc1-g6-CNn" kind="push" identifier="ProfilesListToDetail" id="Srd-ji-O1c"/>
+                                    <segue destination="Zs0-HX-nHK" kind="push" identifier="ProfilesListToDetail" id="vRN-xL-p4Y"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -435,7 +437,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4MD-oL-Kq8">
                             <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
-                                <segue destination="S7M-tW-9Gm" kind="modal" identifier="ProfilesListToAdd" modalTransitionStyle="coverVertical" id="LD8-jL-y4p"/>
+                                <segue destination="b9Y-Ih-FZ3" kind="modal" identifier="ProfilesListToAdd" modalTransitionStyle="coverVertical" id="oc5-sn-wuU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -445,57 +447,85 @@
             <point key="canvasLocation" x="1189" y="180"/>
         </scene>
         <!--Profiles Add View Controller-->
-        <scene sceneID="Upz-N3-x8t">
+        <scene sceneID="uVy-dZ-eBj">
             <objects>
-                <viewController id="S7M-tW-9Gm" customClass="CProfilesAddViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VHU-6Q-rfx">
+                <tableViewController id="b9Y-Ih-FZ3" customClass="CProfilesAddViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TCU-6S-KqA">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" id="FWe-uN-Zm3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Новый профиль" id="zSX-Nl-9FQ">
-                                        <barButtonItem key="backBarButtonItem" title="Назад" id="Aw3-Cp-XTz"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="j3g-ah-8yE">
-                                            <connections>
-                                                <action selector="cancelAction" destination="S7M-tW-9Gm" id="7pH-6C-84l"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="Gyv-43-GKa">
-                                            <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ltR-fT-1Ib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="FWe-uN-Zm3">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Новый профиль" id="zSX-Nl-9FQ">
+                                    <barButtonItem key="backBarButtonItem" title="Назад" id="Aw3-Cp-XTz"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Отмена" id="j3g-ah-8yE">
+                                        <connections>
+                                            <action selector="cancelAction" destination="b9Y-Ih-FZ3" id="Yuo-ev-FsY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" title="Сохранить" id="Gyv-43-GKa">
+                                        <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="skR-xU-dGW">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="b9Y-Ih-FZ3" id="fqU-a9-3ES"/>
+                            <outlet property="delegate" destination="b9Y-Ih-FZ3" id="v00-7d-BAs"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gdg-Dm-lwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691" y="757"/>
+            <point key="canvasLocation" x="1660" y="744"/>
         </scene>
         <!--Profiles Detail View Controller-->
-        <scene sceneID="7wI-PB-8Ue">
+        <scene sceneID="5uz-Am-jxr">
             <objects>
-                <viewController id="hc1-g6-CNn" customClass="CProfilesDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kGb-u9-QSW">
+                <tableViewController id="Zs0-HX-nHK" customClass="CProfilesDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AXU-Es-3DB">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="r3F-WX-8YF">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="2xC-eD-bvO"/>
-                        <barButtonItem key="rightBarButtonItem" title="Изменить" id="wtt-Ka-CUX">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7lu-Wc-nYC">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Zs0-HX-nHK" id="gB3-L1-t5R"/>
+                            <outlet property="delegate" destination="Zs0-HX-nHK" id="Nst-gS-VRh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ukd-eu-LAD">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="1rY-ac-Jab"/>
+                        <barButtonItem key="rightBarButtonItem" title="Изменить" id="41a-TL-xUG">
                             <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bw0-EL-aGq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UOV-HA-nsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691" y="180"/>
+            <point key="canvasLocation" x="1660" y="180"/>
         </scene>
         <!--View Controller - Информация-->
         <scene sceneID="wSC-0c-01F">
@@ -581,7 +611,7 @@
                 <relationship kind="outlet" name="penaltyPrice" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CPenaltyDetailViewController" superclassName="CRotateViewController">
+        <class className="CPenaltyDetailViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="checkInputData"/>
@@ -596,19 +626,19 @@
         <class className="CPenaltyListViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyListViewController.h"/>
         </class>
-        <class className="CPenaltyTicketViewController" superclassName="CRotateViewController">
+        <class className="CPenaltyTicketViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyTicketViewController.h"/>
         </class>
         <class className="CProfileCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfileCell.h"/>
         </class>
-        <class className="CProfilesAddViewController" superclassName="CRotateViewController">
+        <class className="CProfilesAddViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesAddViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancelAction"/>
             </relationships>
         </class>
-        <class className="CProfilesDetailViewController" superclassName="CRotateViewController">
+        <class className="CProfilesDetailViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesDetailViewController.h"/>
         </class>
         <class className="CProfilesListViewController" superclassName="CRotateTableViewController">
