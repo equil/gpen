@@ -61,6 +61,9 @@
 		1ED3FB81166BDB58008C2E21 /* CRotateNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB80166BDB58008C2E21 /* CRotateNavigationController.m */; };
 		1ED3FB86166BDDD7008C2E21 /* CInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */; };
 		1ED3FB89166BDE38008C2E21 /* CProfilesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */; };
+		1ED3FBF2166E4520008C2E21 /* CProfilesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF1166E4520008C2E21 /* CProfilesDetailViewController.m */; };
+		1ED3FBF5166E453E008C2E21 /* CProfilesAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */; };
+		1ED3FBF8166E46CB008C2E21 /* CProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */; };
 		A0043A10166A12FC00530F81 /* CPenaltyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */; };
 		A0043A17166A1F7300530F81 /* penalty_not_paid.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A11166A1F7300530F81 /* penalty_not_paid.png */; };
 		A0043A18166A1F7300530F81 /* penalty_not_paid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A12166A1F7300530F81 /* penalty_not_paid@2x.png */; };
@@ -167,6 +170,12 @@
 		1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CInfoViewController.m; path = Info/CInfoViewController.m; sourceTree = "<group>"; };
 		1ED3FB87166BDE38008C2E21 /* CProfilesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfilesListViewController.h; path = Profiles/CProfilesListViewController.h; sourceTree = "<group>"; };
 		1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesListViewController.m; path = Profiles/CProfilesListViewController.m; sourceTree = "<group>"; };
+		1ED3FBF0166E4520008C2E21 /* CProfilesDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfilesDetailViewController.h; path = Profiles/CProfilesDetailViewController.h; sourceTree = "<group>"; };
+		1ED3FBF1166E4520008C2E21 /* CProfilesDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesDetailViewController.m; path = Profiles/CProfilesDetailViewController.m; sourceTree = "<group>"; };
+		1ED3FBF3166E453D008C2E21 /* CProfilesAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfilesAddViewController.h; path = Profiles/CProfilesAddViewController.h; sourceTree = "<group>"; };
+		1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesAddViewController.m; path = Profiles/CProfilesAddViewController.m; sourceTree = "<group>"; };
+		1ED3FBF6166E46CB008C2E21 /* CProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfileCell.h; path = CustomCells/CProfileCell.h; sourceTree = "<group>"; };
+		1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfileCell.m; path = CustomCells/CProfileCell.m; sourceTree = "<group>"; };
 		A0043A0E166A12FC00530F81 /* CPenaltyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyListViewController.h; sourceTree = "<group>"; };
 		A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyListViewController.m; sourceTree = "<group>"; };
 		A0043A11166A1F7300530F81 /* penalty_not_paid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = penalty_not_paid.png; path = Resources/penalty_not_paid.png; sourceTree = "<group>"; };
@@ -454,6 +463,10 @@
 			children = (
 				1ED3FB87166BDE38008C2E21 /* CProfilesListViewController.h */,
 				1ED3FB88166BDE38008C2E21 /* CProfilesListViewController.m */,
+				1ED3FBF0166E4520008C2E21 /* CProfilesDetailViewController.h */,
+				1ED3FBF1166E4520008C2E21 /* CProfilesDetailViewController.m */,
+				1ED3FBF3166E453D008C2E21 /* CProfilesAddViewController.h */,
+				1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */,
 			);
 			name = Profiles;
 			sourceTree = "<group>";
@@ -482,6 +495,8 @@
 				A0E83FC41663CC2300561612 /* CDisclosureCell.m */,
 				A0043A1D166A213100530F81 /* CPenaltyCell.h */,
 				A0043A1E166A213200530F81 /* CPenaltyCell.m */,
+				1ED3FBF6166E46CB008C2E21 /* CProfileCell.h */,
+				1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -624,6 +639,9 @@
 				1ED3FB81166BDB58008C2E21 /* CRotateNavigationController.m in Sources */,
 				1ED3FB86166BDDD7008C2E21 /* CInfoViewController.m in Sources */,
 				1ED3FB89166BDE38008C2E21 /* CProfilesListViewController.m in Sources */,
+				1ED3FBF2166E4520008C2E21 /* CProfilesDetailViewController.m in Sources */,
+				1ED3FBF5166E453E008C2E21 /* CProfilesAddViewController.m in Sources */,
+				1ED3FBF8166E46CB008C2E21 /* CProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

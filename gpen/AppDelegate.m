@@ -32,7 +32,8 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, nil]];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:87.0/255.0 green:161.0/255.0 blue:214.0/255.0 alpha:1.0]];
+    //[[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:87.0/255.0 green:161.0/255.0 blue:214.0/255.0 alpha:1.0]];
+    
 }
 
 - (void)customizeInterface

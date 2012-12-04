@@ -10,7 +10,11 @@
 #import "Penalty.h"
 #import "CRotateViewController.h"
 
+<<<<<<< HEAD
 @interface CPenaltyDetailViewController : CRotateTableViewController <UITextFieldDelegate>
+=======
+@interface CPenaltyDetailViewController : CRotateViewController <UITableViewDelegate, UITableViewDataSource>
+>>>>>>> 44ace6414689470d4b57aa619742b9f27db1cfa8
 
 @property (nonatomic, strong) Penalty *penalty;
 

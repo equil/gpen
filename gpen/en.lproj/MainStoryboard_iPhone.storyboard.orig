@@ -93,6 +93,7 @@
                 <tableViewController id="iJg-VR-HtK" customClass="CPenaltyDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ver-Wk-0VM">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+<<<<<<< HEAD
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.85020791330000001" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,6 +194,48 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QDm-MK-WE7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+=======
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KH4-TC-1wU">
+                                <rect key="frame" x="27" y="226" width="266" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Показать квитанцию">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="C21-iw-64w" kind="push" identifier="PenaltyDetailToTicket" id="OOL-RL-Y0E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g9y-Tt-jgu">
+                                <rect key="frame" x="27" y="304" width="266" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Отправить">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendInfoToEmail" destination="JN7-S0-NQJ" eventType="touchUpInside" id="tFo-PO-ach"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Протокол" id="RJo-Ps-Vsa">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="bRu-TE-Aj9"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hop-2T-sfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+>>>>>>> 44ace6414689470d4b57aa619742b9f27db1cfa8
             </objects>
             <point key="canvasLocation" x="1679" y="-550"/>
         </scene>
@@ -596,6 +639,8 @@
         <class className="CPenaltyListViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyListViewController.h"/>
         </class>
+<<<<<<< HEAD
+=======
         <class className="CPenaltyTicketViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyTicketViewController.h"/>
         </class>
@@ -614,6 +659,7 @@
         <class className="CProfilesListViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesListViewController.h"/>
         </class>
+>>>>>>> 44ace6414689470d4b57aa619742b9f27db1cfa8
         <class className="CRotateNavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateNavigationController.h"/>
         </class>
