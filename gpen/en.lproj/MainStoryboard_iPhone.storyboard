@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Splash View Controller-->
@@ -527,10 +527,10 @@
             </objects>
             <point key="canvasLocation" x="1660" y="180"/>
         </scene>
-        <!--View Controller - Информация-->
+        <!--Info View Controller - Информация-->
         <scene sceneID="wSC-0c-01F">
             <objects>
-                <viewController id="gnU-re-ki6" sceneMemberID="viewController">
+                <viewController id="gnU-re-ki6" customClass="CInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xJi-pr-pJ6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -592,6 +592,9 @@
             <relationships>
                 <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="CInfoViewController" superclassName="CRotateViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CInfoViewController.h"/>
         </class>
         <class className="CLoginViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CLoginViewController.h"/>
