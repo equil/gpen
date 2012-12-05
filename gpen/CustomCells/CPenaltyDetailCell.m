@@ -9,6 +9,8 @@
 #import "CPenaltyDetailCell.h"
 
 @implementation CPenaltyDetailCell
+@synthesize labelTitle = _labelTitle;
+@synthesize labelSubtitle = _labelSubtitle;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -24,6 +26,14 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.labelTitle.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    self.labelSubtitle.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
 }
 
 @end

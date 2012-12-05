@@ -10,7 +10,7 @@
 
 @interface CPenaltyDetailCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *labelTitle;
-@property (nonatomic, strong) UILabel *labelSubtitle;
+@property (nonatomic, strong) IBOutlet UILabel *labelTitle;
+@property (nonatomic, strong) IBOutlet UILabel *labelSubtitle;
 
 @end
