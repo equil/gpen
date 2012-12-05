@@ -397,7 +397,6 @@
                 cell.flag.hidden = YES;
             }
             cell.placeLabel.text = [self.dataSource objectAtIndex:8];
-            NSLog(@"%@", NSStringFromCGSize(cell.placeLabel.frame.size));
             return cell;
         }
         case 1:
@@ -420,8 +419,6 @@
             CPenaltyDetailCell *cell = (CPenaltyDetailCell *)[tableView dequeueReusableCellWithIdentifier:penaltyVerticalCellId];
             [cell.labelTitle setText:[[self.dataSource objectAtIndex:indexPath.row+6] objectAtIndex:0]];
             [cell.labelSubtitle setText:[[self.dataSource objectAtIndex:indexPath.row+6] objectAtIndex:1]];
-            NSLog(@"%@", NSStringFromCGSize(cell.labelTitle.frame.size));
-            NSLog(@"%@", NSStringFromCGSize(cell.labelSubtitle.frame.size));
             return cell;
         }
     }
