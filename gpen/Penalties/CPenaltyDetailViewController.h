@@ -10,6 +10,7 @@
 #import "Penalty.h"
 #import "CRotateTableViewController.h"
 #import "CGreenButton.h"
+#import "CTextField.h"
 
 @interface CPenaltyDetailViewController : CRotateTableViewController <UITextFieldDelegate>
 
@@ -17,7 +18,7 @@
 
 @property (nonatomic, strong) IBOutlet CGreenButton *buttonShowTicket;
 @property (nonatomic, strong) IBOutlet UILabel *infoLabel;
-@property (nonatomic, strong) IBOutlet UITextField *emailTextField;
+@property (nonatomic, strong) IBOutlet CTextField *emailTextField;
 @property (nonatomic, strong) IBOutlet CGreenButton *buttonSendTicket;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *indicator;
 

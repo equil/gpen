@@ -109,7 +109,7 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите адрес" minimumFontSize="17" background="text_field.png" id="Pbk-sQ-eaq">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите адрес" minimumFontSize="17" background="text_field.png" id="Pbk-sQ-eaq" customClass="CTextField">
                                     <rect key="frame" x="15" y="104" width="290" height="45"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -869,7 +869,7 @@
                 <relationship kind="action" name="sendInfoToEmail"/>
                 <relationship kind="outlet" name="buttonSendTicket" candidateClass="CGreenButton"/>
                 <relationship kind="outlet" name="buttonShowTicket" candidateClass="CGreenButton"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="CTextField"/>
                 <relationship kind="outlet" name="indicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
             </relationships>
@@ -918,6 +918,9 @@
             <relationships>
                 <relationship kind="outlet" name="splash" candidateClass="UIImageView"/>
             </relationships>
+        </class>
+        <class className="CTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextField.h"/>
         </class>
         <class className="CTextFieldCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextFieldCell.h"/>
