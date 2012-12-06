@@ -377,7 +377,11 @@
         case 0:
         {
             CPenaltyDetailMainCell *cell = (CPenaltyDetailMainCell *)[tableView dequeueReusableCellWithIdentifier:penaltyMainCellId];
-            //cell.carPhoto.image = self.penalty.photo;
+            NSString *photo = self.penalty.photo;
+            if (photo)
+            {
+                cell.carPhoto.image = [UIImage imageWithContentsOfFile:photo];
+            }
             if (self.penalty.carNumber.length > 5)
             {
                 cell.nomerLabel.text = [self.penalty.carNumber substringToIndex:6];
