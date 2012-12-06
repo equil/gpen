@@ -36,4 +36,9 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+- (IBAction)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

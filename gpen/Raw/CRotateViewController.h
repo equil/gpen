@@ -10,4 +10,6 @@
 
 @interface CRotateViewController : UIViewController
 
+- (IBAction)goBack;
+
 @end
