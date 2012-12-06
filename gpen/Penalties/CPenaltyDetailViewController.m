@@ -181,9 +181,9 @@
     
     // Reduce size of the Table view
     if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
-        frame.size.height += keyboardBounds.size.height;
+        frame.size.height += keyboardBounds.size.height - self.tabBarController.tabBar.frame.size.height;
     else
-        frame.size.height += keyboardBounds.size.width;
+        frame.size.height += keyboardBounds.size.width - self.tabBarController.tabBar.frame.size.height;
     
     // Apply new size of table view
     self.tableView.frame = frame;
