@@ -59,14 +59,7 @@
                        [NSString stringWithFormat:@"%@, %@ км/ч", self.penalty.roadName, self.penalty.fixedSpeed],
                        nil];
     
-    self.emailTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     self.infoLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
-    self.emailTextField.leftView = paddingView;
-    self.emailTextField.leftViewMode = UITextFieldViewModeAlways;
-    self.emailTextField.rightView = paddingView;
-    self.emailTextField.rightViewMode = UITextFieldViewModeAlways;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.emailTextField.text = delegate.lastSignProfile.email;

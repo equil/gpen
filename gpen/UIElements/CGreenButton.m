@@ -33,8 +33,8 @@
     [super awakeFromNib];
     
     self.titleLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    [self setBackgroundImage:[UIImage imageNamed:@"login-button"] forState:UIControlStateNormal];
-    [self setBackgroundImage:[UIImage imageNamed:@"login-button-disabled"] forState:UIControlStateDisabled];
+    [self setBackgroundImage:[[UIImage imageNamed:@"login-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)] forState:UIControlStateNormal];
+    [self setBackgroundImage:[[UIImage imageNamed:@"login-button-disabled"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 40)] forState:UIControlStateDisabled];
 }
 
 @end
