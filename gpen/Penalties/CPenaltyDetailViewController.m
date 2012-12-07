@@ -46,7 +46,7 @@
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"hh:mm"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yy"];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
     self.dataSource = [NSArray arrayWithObjects:
                        [NSArray arrayWithObjects:@"Штраф:", [NSString stringWithFormat:@"%@ р.", [self spacedMoneyString:[NSString stringWithFormat:@"%@", self.penalty.price]]], nil],
                        [NSArray arrayWithObjects:@"Протокол:", [self spacedProtocolString:self.penalty.reportId], nil],
@@ -191,11 +191,38 @@
     [UIView commitAnimations];
 }
 
+- (BOOL) validateEmail: (NSString *) candidate
+{
+    NSString *emailRegex =
+    @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+    @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+    @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+    @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
 
 - (IBAction)sendInfoToEmail
 {
     [self.emailTextField resignFirstResponder];
     
+    if (!(self.email) || (self.email.length < 1) || ([self validateEmail:self.email]))
+    {
+        [self doRequest];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Некорректный e-mail" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void) doRequest
+{
     self.buttonSendTicket.enabled = NO;
     [self.buttonSendTicket setTitle:@"" forState:UIControlStateDisabled];
     [self.indicator startAnimating];
@@ -340,7 +367,15 @@
 
 - (CGFloat) heightForVerticalText: (NSString *) aText title: (NSString *) aTitle
 {
-    CGFloat outerWidth = 296.0;
+    CGFloat textHeight = [self heightForVerticalText:aText];
+    CGFloat titleHeight = [self heightForVerticalText:aTitle];
+    CGFloat height = textHeight + titleHeight + 11.0 * 2 + 8.0;
+    return height;
+}
+
+- (CGFloat) heightForVerticalText: (NSString *) aText
+{
+    CGFloat outerWidth = 276.0;
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
         outerWidth = 436.0;
     }
@@ -351,12 +386,7 @@
                    sizeWithFont:[UIFont fontWithName:@"PTSans-Regular" size:16.0]
                    constrainedToSize:constraint
                    lineBreakMode:UILineBreakModeWordWrap];
-    CGSize titleSize = [aTitle
-                   sizeWithFont:[UIFont fontWithName:@"PTSans-Regular" size:16.0]
-                   constrainedToSize:constraint
-                   lineBreakMode:UILineBreakModeWordWrap];
-    CGFloat height = size.height + titleSize.height + 11.0 * 2 + 8.0;
-    return height;
+    return size.height;
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -416,6 +446,10 @@
             CPenaltyDetailCell *cell = (CPenaltyDetailCell *)[tableView dequeueReusableCellWithIdentifier:penaltyVerticalCellId];
             [cell.labelTitle setText:[[self.dataSource objectAtIndex:indexPath.row+6] objectAtIndex:0]];
             [cell.labelSubtitle setText:[[self.dataSource objectAtIndex:indexPath.row+6] objectAtIndex:1]];
+            
+            cell.labelTitle.frame = CGRectMake(cell.labelTitle.frame.origin.x, cell.labelTitle.frame.origin.y, cell.labelTitle.frame.size.width, [self heightForVerticalText:cell.labelTitle.text]);
+            cell.labelSubtitle.frame = CGRectMake(cell.labelSubtitle.frame.origin.x, cell.labelTitle.frame.origin.y + cell.labelTitle.frame.size.height + 8.0, cell.labelSubtitle.frame.size.width, [self heightForVerticalText:cell.labelSubtitle.text]);
+            
             return cell;
         }
     }

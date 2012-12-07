@@ -119,7 +119,15 @@
 
 - (CGFloat) heightForVerticalText: (NSString *) aText title: (NSString *) aTitle
 {
-    CGFloat outerWidth = 296.0;
+    CGFloat textHeight = [self heightForVerticalText:aText];
+    CGFloat titleHeight = [self heightForVerticalText:aTitle];
+    CGFloat height = textHeight + titleHeight + 11.0 * 2 + 8.0;
+    return height;
+}
+
+- (CGFloat) heightForVerticalText: (NSString *) aText
+{
+    CGFloat outerWidth = 276.0;
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
         outerWidth = 436.0;
     }
@@ -130,12 +138,7 @@
                    sizeWithFont:[UIFont fontWithName:@"PTSans-Regular" size:16.0]
                    constrainedToSize:constraint
                    lineBreakMode:UILineBreakModeWordWrap];
-    CGSize titleSize = [aTitle
-                        sizeWithFont:[UIFont fontWithName:@"PTSans-Regular" size:16.0]
-                        constrainedToSize:constraint
-                        lineBreakMode:UILineBreakModeWordWrap];
-    CGFloat height = size.height + titleSize.height + 11.0 * 2 + 8.0;
-    return height;
+    return size.height;
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -152,6 +155,10 @@
     CPenaltyDetailCell *cell = (CPenaltyDetailCell *)[tableView dequeueReusableCellWithIdentifier:penaltyVerticalCellId];
     [cell.labelTitle setText:[[self.dataSource objectAtIndex:indexPath.row] objectAtIndex:0]];
     [cell.labelSubtitle setText:[[self.dataSource objectAtIndex:indexPath.row] objectAtIndex:1]];
+    
+    cell.labelTitle.frame = CGRectMake(cell.labelTitle.frame.origin.x, cell.labelTitle.frame.origin.y, cell.labelTitle.frame.size.width, [self heightForVerticalText:cell.labelTitle.text]);
+    cell.labelSubtitle.frame = CGRectMake(cell.labelSubtitle.frame.origin.x, cell.labelTitle.frame.origin.y + cell.labelTitle.frame.size.height + 8.0, cell.labelSubtitle.frame.size.width, [self heightForVerticalText:cell.labelSubtitle.text]);
+    
     return cell;
 }
 

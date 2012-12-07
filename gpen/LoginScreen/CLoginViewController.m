@@ -24,7 +24,8 @@
 @property (nonatomic, strong) UITextField *clientTFEmail;
 @property (nonatomic, strong) UILabel *clientLBBirthday;
 @property (nonatomic, weak) UITextField *activeTextField;
-@property (nonatomic, retain) CLoginClientEntity *clientEntity;
+@property (nonatomic, strong) CLoginClientEntity *clientEntity;
+@property (nonatomic, strong) NSDate *realBirthday;
 @end
 
 @implementation CLoginViewController
@@ -43,6 +44,7 @@
 @synthesize doneButton = _doneButton;
 @synthesize dateFormatter = _dateFormatter;
 @synthesize clientEntity = _clientEntity;
+@synthesize realBirthday = _realBirthday;
 
 #pragma mark - Text Field Delegate
 
@@ -146,12 +148,11 @@
 
 - (void) checkInputData
 {
-    NSDate *birthDate = [self.dateFormatter dateFromString:self.clientLBBirthday.text];
     if (([self.clientTFName.text length] > 0) &&
         ([self.clientTFSurname.text length] > 0) &&
         ([self.clientTFPatronymic.text length] > 0) &&
         ([self.clientTFLicense.text length] > 0) &&
-        (birthDate))
+        (self.realBirthday))
     {
         self.continueButton.enabled = YES;
     }
@@ -291,7 +292,14 @@
     {
         CDisclosureCell *cell = (CDisclosureCell *) [tableView dequeueReusableCellWithIdentifier:disclosureCellId];
         self.clientLBBirthday = cell.cellLabel;
-        cell.cellLabel.text = @"Дата рождения";
+        if (self.realBirthday)
+        {
+            cell.cellLabel.text = [self.dateFormatter stringFromDate:self.realBirthday];
+        }
+        else
+        {
+            cell.cellLabel.text = @"Дата рождения";
+        }
         cell.cellLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
         return cell;
     }
@@ -327,14 +335,17 @@
                 case 0:
                     self.clientTFSurname = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Фамилия";
+                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
                 case 1:
                     self.clientTFName = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Имя";
+                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
                 case 2:
                     self.clientTFPatronymic = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Отчество";
+                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
             }
             break;
@@ -343,6 +354,7 @@
         {
             self.clientTFLicense = cell.cellTextField;
             cell.cellTextField.placeholder = @"Номер водительского удостоверения";
+            cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             break;
         }
     }
@@ -402,13 +414,13 @@
 {
     [self createDatePickerIfNeeded];
     
-    NSDate *currentDate = [self.dateFormatter dateFromString:aTargetCell.cellLabel.text];
-    if (currentDate)
+    if (self.realBirthday)
     {
-        self.pickerView.date = currentDate;
+        self.pickerView.date = self.realBirthday;
     }
     else
     {
+        self.realBirthday = [NSDate date];
         self.clientLBBirthday.text = [self.dateFormatter stringFromDate:[NSDate date]];
     }
     
@@ -494,8 +506,12 @@
 
 - (void)dateAction
 {
-	self.clientLBBirthday.text = [self.dateFormatter stringFromDate:self.pickerView.date];
-    self.clientEntity.birthday = self.clientLBBirthday.text;
+    self.realBirthday = self.pickerView.date;
+	self.clientLBBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
+   
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    self.clientEntity.birthday = [formatter stringFromDate:self.realBirthday];
     
     [self checkInputData];
 }
@@ -573,10 +589,6 @@
     [self.spinner startAnimating];
     [self.continueButton setTitle:@"" forState:UIControlStateDisabled];
     self.continueButton.enabled = NO;
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    self.clientEntity.birthday = [formatter stringFromDate:[self.dateFormatter dateFromString:self.clientEntity.birthday]];
     
     NSMutableString *result = [[NSMutableString alloc] initWithString:self.clientEntity.license];
     [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
