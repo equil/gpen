@@ -71,7 +71,7 @@
 - (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
 {
     UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
-    [self.loginTableView scrollRectToVisible:cell.frame animated:YES];
+    [self.loginTableView scrollRectToVisible:cell.frame animated:NO];
     
     [textField becomeFirstResponder];
 }
@@ -226,10 +226,15 @@
     self.keyboardControls.previousTitle = @"Назад";
     self.keyboardControls.nextTitle = @"Вперед";
     self.keyboardControls.doneTitle = @"Готово";
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     // Add all text fields you want to be able to skip between to the keyboard controls
     // The order of thise text fields are important. The order is used when pressing "Previous" or "Next"
-    self.keyboardControls.textFields = [NSArray arrayWithObjects:self.clientTFSurname,
+    self.keyboardControls.textFields = [[NSArray alloc] initWithObjects:self.clientTFSurname,
                                         self.clientTFName,
                                         self.clientTFPatronymic,
                                         self.clientTFBirthday,
