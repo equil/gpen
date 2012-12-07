@@ -85,6 +85,8 @@
 		A02AC85C166FC8D200F02A41 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85A166FC8D200F02A41 /* flag.png */; };
 		A02AC85D166FC8D200F02A41 /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85B166FC8D200F02A41 /* flag@2x.png */; };
 		A02AC8601670E7A700F02A41 /* CTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A02AC85F1670E7A700F02A41 /* CTextField.m */; };
+		A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */; };
+		A0BCEF62167283C800285089 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEF61167283C800285089 /* TPKeyboardAvoidingTableView.m */; };
 		A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC11663CAD800561612 /* CTextFieldCell.m */; };
 		A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FC41663CC2300561612 /* CDisclosureCell.m */; };
 		A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E83FD31666909500561612 /* CTextFieldWithLabel.m */; };
@@ -213,6 +215,10 @@
 		A02AC85B166FC8D200F02A41 /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flag@2x.png"; path = "Resources/flag@2x.png"; sourceTree = "<group>"; };
 		A02AC85E1670E7A700F02A41 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
 		A02AC85F1670E7A700F02A41 /* CTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextField.m; sourceTree = "<group>"; };
+		A0BCEF5D167283BE00285089 /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
+		A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
+		A0BCEF60167283C800285089 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		A0BCEF61167283C800285089 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		A0E83FC01663CAD800561612 /* CTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTextFieldCell.h; path = CustomCells/CTextFieldCell.h; sourceTree = "<group>"; };
 		A0E83FC11663CAD800561612 /* CTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTextFieldCell.m; path = CustomCells/CTextFieldCell.m; sourceTree = "<group>"; };
 		A0E83FC31663CC2300561612 /* CDisclosureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisclosureCell.h; path = CustomCells/CDisclosureCell.h; sourceTree = "<group>"; };
@@ -515,12 +521,32 @@
 		A02AC84C166E689B00F02A41 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				A0BCEF5B1672838500285089 /* BSKeyboardControls */,
+				A0BCEF5C1672838500285089 /* TPKeyboardAvoiding */,
 				A02AC84E166E68C700F02A41 /* CGreenButton.h */,
 				A02AC84F166E68C700F02A41 /* CGreenButton.m */,
 				A02AC85E1670E7A700F02A41 /* CTextField.h */,
 				A02AC85F1670E7A700F02A41 /* CTextField.m */,
 			);
 			path = UIElements;
+			sourceTree = "<group>";
+		};
+		A0BCEF5B1672838500285089 /* BSKeyboardControls */ = {
+			isa = PBXGroup;
+			children = (
+				A0BCEF5D167283BE00285089 /* BSKeyboardControls.h */,
+				A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */,
+			);
+			path = BSKeyboardControls;
+			sourceTree = "<group>";
+		};
+		A0BCEF5C1672838500285089 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				A0BCEF60167283C800285089 /* TPKeyboardAvoidingTableView.h */,
+				A0BCEF61167283C800285089 /* TPKeyboardAvoidingTableView.m */,
+			);
+			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 		A0E83FBF1663CA7B00561612 /* CustomCells */ = {
@@ -696,6 +722,8 @@
 				A02AC856166FBE9C00F02A41 /* CPenaltyDetailBoldWithImageCell.m in Sources */,
 				A02AC859166FC27000F02A41 /* CPenaltyDetailMainCell.m in Sources */,
 				A02AC8601670E7A700F02A41 /* CTextField.m in Sources */,
+				A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */,
+				A0BCEF62167283C800285089 /* TPKeyboardAvoidingTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

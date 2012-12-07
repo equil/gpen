@@ -10,6 +10,6 @@
 
 @interface CDisclosureCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *cellLabel;
+@property (nonatomic, strong) IBOutlet UITextField *cellTextField;
 
 @end

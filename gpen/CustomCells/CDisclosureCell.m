@@ -10,7 +10,7 @@
 
 @implementation CDisclosureCell
 
-@synthesize cellLabel = _cellLabel;
+@synthesize cellTextField = _cellTextField;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

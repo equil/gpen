@@ -15,17 +15,19 @@
 #import "CDao.h"
 #import "CDao+Profile.h"
 #import "CLoginClientEntity.h"
+#import "BSKeyboardControls.h"
 
-@interface CLoginViewController ()
+@interface CLoginViewController () <BSKeyboardControlsDelegate>
 @property (nonatomic, strong) UITextField *clientTFName;
 @property (nonatomic, strong) UITextField *clientTFSurname;
 @property (nonatomic, strong) UITextField *clientTFPatronymic;
 @property (nonatomic, strong) UITextField *clientTFLicense;
 @property (nonatomic, strong) UITextField *clientTFEmail;
-@property (nonatomic, strong) UILabel *clientLBBirthday;
+@property (nonatomic, strong) UITextField *clientTFBirthday;
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, strong) CLoginClientEntity *clientEntity;
 @property (nonatomic, strong) NSDate *realBirthday;
+@property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 @end
 
 @implementation CLoginViewController
@@ -38,46 +40,47 @@
 @synthesize clientTFPatronymic = _clientTFPatronymic;
 @synthesize clientTFLicense = _clientTFLicense;
 @synthesize clientTFEmail = _clientTFEmail;
-@synthesize clientLBBirthday = _clientLBBirthday;
+@synthesize clientTFBirthday = _clientTFBirthday;
 @synthesize activeTextField = _activeTextField;
 @synthesize pickerView = _pickerView;
 @synthesize doneButton = _doneButton;
 @synthesize dateFormatter = _dateFormatter;
+@synthesize serverFormatter = _serverFormatter;
 @synthesize clientEntity = _clientEntity;
 @synthesize realBirthday = _realBirthday;
+@synthesize keyboardControls = _keyboardControls;
+
+#pragma mark -
+#pragma mark BSKeyboardControls Delegate
+
+/*
+ * The "Done" button was pressed
+ * We want to close the keyboard
+ */
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)controls
+{
+    [controls.activeTextField resignFirstResponder];
+}
+
+/* Either "Previous" or "Next" was pressed
+ * Here we usually want to scroll the view to the active text field
+ * If we want to know which of the two was pressed, we can use the "direction" which will have one of the following values:
+ * KeyboardControlsDirectionPrevious        "Previous" was pressed
+ * KeyboardControlsDirectionNext            "Next" was pressed
+ */
+- (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
+{
+    UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
+    [self.loginTableView scrollRectToVisible:cell.frame animated:YES];
+    
+    [textField becomeFirstResponder];
+}
 
 #pragma mark - Text Field Delegate
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    if (textField.returnKeyType == UIReturnKeyNext)
-    {
-        if ([textField isEqual:self.clientTFSurname])
-        {
-            [self.clientTFName becomeFirstResponder];
-        }
-        else if ([textField isEqual:self.clientTFName])
-        {
-            [self.clientTFPatronymic becomeFirstResponder];
-        }
-        else if ([textField isEqual:self.clientTFPatronymic])
-        {
-            [self showPickerFromCell:(CDisclosureCell *)[self.loginTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]]];
-            return YES;
-        }
-        else if ([textField isEqual:self.clientTFLicense])
-        {
-            [self.clientTFEmail becomeFirstResponder];
-        }
-        return NO;
-    }
-    /*else
-    {
-        if ([textField isEqual:self.clientTFEmail]) {
-            [self insertNewProfile];
-        }
-    }*/
     return YES;
 }
 
@@ -102,7 +105,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self doneAction];
+    if ([self.keyboardControls.textFields containsObject:textField])
+        self.keyboardControls.activeTextField = textField;
     self.activeTextField = textField;
     
     if ([textField isEqual:self.clientTFLicense])
@@ -110,6 +114,16 @@
         NSMutableString *result = [[NSMutableString alloc] initWithString:textField.text];
         [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
         textField.text = result;
+    }
+    else if ([textField isEqual:self.clientTFBirthday])
+    {
+        if (!self.realBirthday)
+        {
+            self.realBirthday = [NSDate date];
+        }
+        self.pickerView.date = self.realBirthday;
+        self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
+        self.clientEntity.birthday = [self.serverFormatter stringFromDate:self.realBirthday];
     }
 }
 
@@ -132,18 +146,40 @@
     else if ([textField isEqual:self.clientTFLicense])
     {
         self.clientEntity.license = textField.text;
-        NSMutableString *result = [[NSMutableString alloc] initWithString:textField.text];
-        if (result.length == 10) {
-            [result insertString:@" " atIndex:4];
-            [result insertString:@" " atIndex:2];
-        }
-        textField.text = result;
+        textField.text = [self spacedLicenseString:textField.text];
         self.clientEntity.license = textField.text;
     }
     else if ([textField isEqual:self.clientTFEmail])
     {
         self.clientEntity.email = textField.text;
     }
+    else if ([textField isEqual:self.clientTFBirthday])
+    {
+        NSDate *date = [self.dateFormatter dateFromString:self.clientTFBirthday.text];
+        self.realBirthday = date;
+        if (date)
+        {
+            self.clientEntity.birthday = [self.serverFormatter stringFromDate:date];
+        }
+        else
+        {
+            self.clientEntity.birthday = @"";
+        }
+    }
+}
+
+- (NSString *) spacedLicenseString: (NSString *) aString
+{
+    if (!aString)
+    {
+        return nil;
+    }
+    NSMutableString *result = [[NSMutableString alloc] initWithString:aString];
+    if (result.length == 10) {
+        [result insertString:@" " atIndex:4];
+        [result insertString:@" " atIndex:2];
+    }
+    return result;
 }
 
 - (void) checkInputData
@@ -176,96 +212,33 @@
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    self.serverFormatter = [[NSDateFormatter alloc] init];
+    [self.serverFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    // Register notification when the keyboard will be show
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    [self.loginTableView reloadData];
     
-    // Register notification when the keyboard will be hide
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    // Initialize the keyboard controls
+    self.keyboardControls = [[BSKeyboardControls alloc] init];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
+    // Set the delegate of the keyboard controls
+    self.keyboardControls.delegate = self;
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-
--(void) keyboardWillShow:(NSNotification *)note
-{
-    // Get the keyboard size
-    CGRect keyboardBounds;
-    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
+    self.keyboardControls.previousTitle = @"Назад";
+    self.keyboardControls.nextTitle = @"Вперед";
+    self.keyboardControls.doneTitle = @"Готово";
     
-    // Detect orientation
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    CGRect frame = self.loginTableView.frame;
+    // Add all text fields you want to be able to skip between to the keyboard controls
+    // The order of thise text fields are important. The order is used when pressing "Previous" or "Next"
+    self.keyboardControls.textFields = [NSArray arrayWithObjects:self.clientTFSurname,
+                                        self.clientTFName,
+                                        self.clientTFPatronymic,
+                                        self.clientTFBirthday,
+                                        self.clientTFLicense,
+                                        self.clientTFEmail, nil];
     
-    // Reduce size of the Table view
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
-        frame.size.height -= keyboardBounds.size.height;
-    else
-        frame.size.height -= keyboardBounds.size.width;
-    
-    // Start animation
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.3f];
-    
-    // Apply new size of table view
-    self.loginTableView.frame = frame;
-    
-    // Scroll the table view to see the TextField just above the keyboard
-    if (self.activeTextField)
-    {
-        CGRect textFieldRect = [self.loginTableView convertRect:self.activeTextField.bounds fromView:self.activeTextField];
-        [self.loginTableView scrollRectToVisible:textFieldRect animated:NO];
-    }
-    
-    [UIView commitAnimations];
-}
-
--(void) keyboardWillHide:(NSNotification *)note
-{
-    // Get the keyboard size
-    CGRect keyboardBounds;
-    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
-    
-    // Detect orientation
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    CGRect frame = self.loginTableView.frame;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.3f];
-    
-    // Reduce size of the Table view
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
-        frame.size.height += keyboardBounds.size.height;
-    else
-        frame.size.height += keyboardBounds.size.width;
-    
-    // Apply new size of table view
-    self.loginTableView.frame = frame;
-    
-    [UIView commitAnimations];
+    // Add the keyboard control as accessory view for all of the text fields
+    // Also set the delegate of all the text fields to self
+    [self.keyboardControls reloadTextFields];
 }
 
 #pragma mark - Table View Data Source
@@ -291,16 +264,26 @@
     if (indexPath.section == 1)
     {
         CDisclosureCell *cell = (CDisclosureCell *) [tableView dequeueReusableCellWithIdentifier:disclosureCellId];
-        self.clientLBBirthday = cell.cellLabel;
+        cell.cellTextField.delegate = self;
+        self.clientTFBirthday = cell.cellTextField;
         if (self.realBirthday)
         {
-            cell.cellLabel.text = [self.dateFormatter stringFromDate:self.realBirthday];
+            cell.cellTextField.text = [self.dateFormatter stringFromDate:self.realBirthday];
         }
-        else
-        {
-            cell.cellLabel.text = @"Дата рождения";
-        }
-        cell.cellLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+        
+        self.pickerView = [[UIDatePicker alloc] init];
+        self.pickerView.datePickerMode = UIDatePickerModeDate;
+        self.pickerView.locale = [NSLocale currentLocale];
+        self.pickerView.calendar = [[NSLocale currentLocale] objectForKey:NSLocaleCalendar];
+        self.pickerView.maximumDate = [NSDate date];
+        [self.pickerView addTarget:self
+                            action:@selector(dateAction)
+                  forControlEvents:UIControlEventValueChanged];
+        cell.cellTextField.inputView = self.pickerView;
+        
+        cell.cellTextField.placeholder = @"Дата рождения";
+        cell.cellTextField.returnKeyType = UIReturnKeyDefault;
+        cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
         return cell;
     }
     else if (indexPath.section == 3)
@@ -309,6 +292,7 @@
         cell.cellTextField.delegate = self;
         self.clientTFEmail = cell.cellTextField;
         cell.cellTextField.placeholder = @"Электронная почта";
+        cell.cellTextField.text = self.clientEntity.email;
         cell.cellTextField.returnKeyType = UIReturnKeyDefault;
         cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
         cell.cellLabel.text = @"Необязательно";
@@ -322,7 +306,7 @@
     // Остальные - с текстовыми полями
     CTextFieldCell *cell = (CTextFieldCell *) [tableView dequeueReusableCellWithIdentifier:textFieldCellId];
     cell.cellTextField.delegate = self;
-    cell.cellTextField.returnKeyType = UIReturnKeyNext;
+    cell.cellTextField.returnKeyType = UIReturnKeyDefault;
     [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
     cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
@@ -335,16 +319,19 @@
                 case 0:
                     self.clientTFSurname = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Фамилия";
+                    cell.cellTextField.text = self.clientEntity.surname;
                     cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
                 case 1:
                     self.clientTFName = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Имя";
+                    cell.cellTextField.text = self.clientEntity.name;
                     cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
                 case 2:
                     self.clientTFPatronymic = cell.cellTextField;
                     cell.cellTextField.placeholder = @"Отчество";
+                    cell.cellTextField.text = self.clientEntity.patronymic;
                     cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
                     break;
             }
@@ -354,6 +341,7 @@
         {
             self.clientTFLicense = cell.cellTextField;
             cell.cellTextField.placeholder = @"Номер водительского удостоверения";
+            cell.cellTextField.text = [self spacedLicenseString:self.clientEntity.license];
             cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             break;
         }
@@ -398,159 +386,13 @@
     return 0.0;
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1)
-    {
-        [self.activeTextField resignFirstResponder];
-        
-        CDisclosureCell *targetCell = (CDisclosureCell *) [tableView cellForRowAtIndexPath:indexPath];
-        
-        [self showPickerFromCell: targetCell];
-    }
-}
-
-- (void) showPickerFromCell: (CDisclosureCell *) aTargetCell
-{
-    [self createDatePickerIfNeeded];
-    
-    if (self.realBirthday)
-    {
-        self.pickerView.date = self.realBirthday;
-    }
-    else
-    {
-        self.realBirthday = [NSDate date];
-        self.clientLBBirthday.text = [self.dateFormatter stringFromDate:[NSDate date]];
-    }
-    
-    // check if our date picker is already on screen
-    if (self.pickerView.superview == nil)
-    {
-        [self.view.window addSubview: self.pickerView];
-        
-        // size up the picker view to our screen and compute the start/end frame origin for our slide up animation
-        //
-        // compute the start frame
-        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-        CGSize pickerSize = [self.pickerView sizeThatFits:CGSizeZero];
-        CGRect startRect = CGRectMake(0.0,
-                                      screenRect.origin.y + screenRect.size.height,
-                                      pickerSize.width, pickerSize.height);
-        self.pickerView.frame = startRect;
-        
-        // compute the end frame
-        CGRect pickerRect = CGRectMake(0.0,
-                                       screenRect.origin.y + screenRect.size.height - pickerSize.height,
-                                       pickerSize.width,
-                                       pickerSize.height);
-        
-        CGRect frame = self.loginTableView.frame;
-        
-        // start the slide up animation
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        // we need to perform some post operations after the animation is complete
-        [UIView setAnimationDelegate:self];
-        
-        self.pickerView.frame = pickerRect;
-        
-        frame.size.height -= pickerRect.size.height;
-        // Apply new size of table view
-        self.loginTableView.frame = frame;
-        
-        // Scroll the table view to see the TextField just above the keyboard
-        if (self.clientLBBirthday)
-        {
-            CGRect textFieldRect = [self.loginTableView convertRect:self.clientLBBirthday.bounds fromView:self.clientLBBirthday];
-            [self.loginTableView scrollRectToVisible:textFieldRect animated:NO];
-        }
-        [UIView commitAnimations];
-        // add the "Done" button to the nav bar
-        [self createDoneButtonIfNeeded];
-        self.navItem.rightBarButtonItem = self.doneButton;
-    }
-}
-
-- (void) createDatePickerIfNeeded
-{
-    if (!self.pickerView)
-    {
-        self.pickerView = [[UIDatePicker alloc] init];
-        self.pickerView.datePickerMode = UIDatePickerModeDate;
-        self.pickerView.locale = [NSLocale currentLocale];
-        self.pickerView.calendar = [[NSLocale currentLocale] objectForKey:NSLocaleCalendar];
-        self.pickerView.maximumDate = [NSDate date];
-        
-        [self.pickerView addTarget:self
-                            action:@selector(dateAction)
-                  forControlEvents:UIControlEventValueChanged];
-    }
-}
-
-- (void) createDoneButtonIfNeeded
-{
-    if (!self.doneButton)
-    {
-        self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction)];
-    }
-}
-
-- (void)slideDownDidStop
-{
-	// the date picker has finished sliding downwards, so remove it
-	[self.pickerView removeFromSuperview];
-}
-
 - (void)dateAction
 {
     self.realBirthday = self.pickerView.date;
-	self.clientLBBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
-   
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    self.clientEntity.birthday = [formatter stringFromDate:self.realBirthday];
+	self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
+	self.clientEntity.birthday = [self.serverFormatter stringFromDate:self.realBirthday];
     
     [self checkInputData];
-}
-
-- (void)doneAction
-{
-    if (self.pickerView.superview)
-    {
-        [self dateAction];
-        
-        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-        CGRect endFrame = self.pickerView.frame;
-        endFrame.origin.y = screenRect.origin.y + screenRect.size.height;
-        
-        // start the slide down animation
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        // we need to perform some post operations after the animation is complete
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(slideDownDidStop)];
-        
-        self.pickerView.frame = endFrame;
-        
-        // grow the table back again in vertical size to make room for the date picker
-        CGRect newFrame = self.loginTableView.frame;
-        newFrame.size.height += endFrame.size.height;
-        self.loginTableView.frame = newFrame;
-        
-        [UIView commitAnimations];
-        
-        // remove the "Done" button in the nav bar
-        self.navItem.rightBarButtonItem = nil;
-        
-        // deselect the current table row
-        NSIndexPath *indexPath = [self.loginTableView indexPathForSelectedRow];
-        [self.loginTableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
 }
 
 - (BOOL) validateEmail: (NSString *) candidate
@@ -571,7 +413,6 @@
 - (IBAction)insertNewProfile
 {
     [self.activeTextField resignFirstResponder];
-    [self doneAction];
     
     if (!(self.clientEntity.email) || (self.clientEntity.email.length < 1) || ([self validateEmail:self.clientEntity.email]))
     {
@@ -615,12 +456,6 @@
             });
         }
     });
-}
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.activeTextField resignFirstResponder];
-    [self doneAction];
 }
 
 @end

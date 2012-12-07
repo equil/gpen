@@ -460,7 +460,7 @@
                                     <navigationItem id="RqE-ee-eis"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="WU8-cV-ZQd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="WU8-cV-ZQd" customClass="TPKeyboardAvoidingTableView">
                                 <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
@@ -552,18 +552,18 @@
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T1L-Eq-Dse">
-                                                    <rect key="frame" x="10" y="11" width="259" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="cJZ-0Z-pV0">
+                                                    <rect key="frame" x="10" y="7" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="cellLabel" destination="T1L-Eq-Dse" id="sXa-xH-qA3"/>
+                                            <outlet property="cellTextField" destination="cJZ-0Z-pV0" id="fdh-Xd-zrT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -812,7 +812,7 @@
         <class className="CDisclosureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisclosureCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="CGreenButton" superclassName="UIButton">
@@ -826,7 +826,7 @@
             <relationships>
                 <relationship kind="action" name="insertNewProfile"/>
                 <relationship kind="outlet" name="continueButton" candidateClass="CGreenButton"/>
-                <relationship kind="outlet" name="loginTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="loginTableView" candidateClass="TPKeyboardAvoidingTableView"/>
                 <relationship kind="outlet" name="navItem" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
@@ -933,6 +933,9 @@
             <relationships>
                 <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="TPKeyboardAvoidingTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TPKeyboardAvoidingTableView.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
