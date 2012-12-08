@@ -11,5 +11,6 @@
 @interface CProfilesAddViewController : CRotateTableViewController
 
 - (IBAction)cancelAction;
+- (IBAction)saveAction;
 
 @end

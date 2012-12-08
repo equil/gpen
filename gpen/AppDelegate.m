@@ -56,12 +56,9 @@
 
 - (void)initializeApplication {
     _dataAccessManager = [[CDataAccessManager alloc] init];
-    _dataAccessManager.persistentStoreCoordinator;
+    [_dataAccessManager.persistentStoreCoordinator class];
     
-    sleep(2);
-    
-    CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
-    _lastSignProfile = [dao lastSignProfile];
+    [self actualizeMainProfile];
     
     if (_lastSignProfile != nil)
     {
@@ -74,7 +71,13 @@
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"FirstLoginController"]];
     }
 }
-				
+
+- (void)actualizeMainProfile
+{
+    CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
+    _lastSignProfile = [dao lastSignProfile];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

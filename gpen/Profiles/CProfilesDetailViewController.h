@@ -9,11 +9,17 @@
 #import "CRotateTableViewController.h"
 #import "Profile.h"
 
-@interface CProfilesDetailViewController : CRotateTableViewController
+@interface CProfilesDetailViewController : CRotateTableViewController <UIAlertViewDelegate>
+{
+    BOOL editingMode;
+}
 
 @property (nonatomic, strong) Profile *profile;
+@property (nonatomic, strong) IBOutlet UIButton *backButton;
+@property (nonatomic, strong) IBOutlet UIButton *editButton;
+@property (nonatomic, strong) NSMutableDictionary *backupInfo;
 
 - (IBAction)editAction;
-- (IBAction)cancelAction;
+- (IBAction)makeMain;
 
 @end

@@ -366,7 +366,6 @@
     self.clientEntity.license = result;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
         
@@ -381,7 +380,7 @@
         if (requestStatus == GOOD)
         {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                delegate.lastSignProfile = [dao lastSignProfile];
+                [delegate actualizeMainProfile];
                 [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
             });
         }

@@ -47,8 +47,25 @@
     profile.license = [dict valueForKey:@"license"];
     profile.birthday = [df dateFromString:[dict valueForKey:@"birthday"]];
     profile.email = [dict valueForKey:@"email"];
-    profile.lastSign = [NSDate date];
-    profile.lastUpdate = [NSDate date];
+    profile.profileName = [dict valueForKey:@"profileName"];
+    profile.lastSign = [NSDate distantPast];
+    
+    return profile;
+}
+
+- (Profile *)updateProfile:(Profile *)profile dict:(NSDictionary *)dict
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    profile.name = [dict valueForKey:@"name"];
+    profile.patronymic = [dict valueForKey:@"patronymic"];
+    profile.lastname = [dict valueForKey:@"surname"];
+    profile.license = [dict valueForKey:@"license"];
+    profile.birthday = [df dateFromString:[dict valueForKey:@"birthday"]];
+    profile.email = [dict valueForKey:@"email"];
+    profile.profileName = [dict valueForKey:@"profileName"];
+    
     return profile;
 }
 
@@ -85,7 +102,70 @@
             [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
                 
                 Profile *profile = [self createProfile:context dict:dict];
+                
                 [self processContent:penalties profile:profile context:context];
+                profile.lastUpdate = [NSDate date];
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+            });
+        }
+        else
+        {
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
+        }
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+        });
+        
+        requestStatus = UNAVAILABLE;
+    }
+    
+    return requestStatus;
+}
+
+- (status)editProfileAndUpdate:(Profile *)profile data:(NSDictionary *)dict
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
+    });
+    
+    status requestStatus;
+    
+    NSArray *objects = [NSArray arrayWithObjects:
+                        [[dict valueForKey:@"name"] uppercaseString],
+                        [[dict valueForKey:@"patronymic"] uppercaseString],
+                        [[dict valueForKey:@"surname"] uppercaseString],
+                        [[dict valueForKey:@"license"] uppercaseString],
+                        [dict valueForKey:@"birthday"], nil];
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];
+    
+    unsigned long uid = [profile.uid unsignedLongValue];
+    if (results != nil)
+    {
+        requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
+        if (requestStatus == GOOD)
+        {
+            NSArray *penalties = [results valueForKey:@"content"];
+            
+            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
+                
+                CDao *dao = [CDao daoWithContext:context];
+                Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+                
+                [self updateProfile:prof dict:dict];
+                [self processContent:penalties profile:prof context:context];
+                prof.lastUpdate = [NSDate date];
                 
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -147,9 +227,9 @@
                 
                 CDao *dao = [CDao daoWithContext:context];
                 Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
-                prof.lastUpdate = [NSDate date];
                 
                 [self processContent:penalties profile:prof context:context];
+                prof.lastUpdate = [NSDate date];
                 
             } completion:^{
                 
@@ -180,10 +260,22 @@
     unsigned long uid = [profile.uid unsignedLongValue];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
-        
         CDao *dao = [CDao daoWithContext:context];
         Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
         prof.lastSign = [NSDate date];
+    } completion:^{
+        [delegate actualizeMainProfile];
+    }];
+}
+
+- (void)deleteProfile:(Profile *)profile
+{
+    unsigned long uid = [profile.uid unsignedLongValue];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        CDao *dao = [CDao daoWithContext:context];
+        Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+        [context deleteObject:prof];
     }];
 }
 

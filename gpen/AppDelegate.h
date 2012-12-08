@@ -21,5 +21,6 @@
 @property (nonatomic, strong) Profile *lastSignProfile;
 
 - (void)initializeApplication;
+- (void)actualizeMainProfile;
 
 @end
