@@ -70,9 +70,6 @@
 - (void)keyboardWillShow:(NSNotification*)notification {
     _keyboardRect = [[[notification userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    _keyboardRect.origin = CGPointMake(_keyboardRect.origin.x, _keyboardRect.origin.y - 44);
-    _keyboardRect.size = CGSizeMake(_keyboardRect.size.width, _keyboardRect.size.height + 44);
-    
     _keyboardVisible = YES;
     
     UIView *firstResponder = [self findFirstResponderBeneathView:self];
@@ -175,8 +172,7 @@
     CGRect keyboardRect = [self convertRect:_keyboardRect fromView:nil];
     if ( keyboardRect.origin.y == 0 ) {
         CGRect screenBounds = [self convertRect:[UIScreen mainScreen].bounds fromView:nil];
-        keyboardRect.origin = CGPointMake(0, screenBounds.size.height - keyboardRect.size.height - 44);
-        keyboardRect.size = CGSizeMake(keyboardRect.size.width, keyboardRect.size.height + 44);
+        keyboardRect.origin = CGPointMake(0, screenBounds.size.height - keyboardRect.size.height);
     }
     
     return keyboardRect;
