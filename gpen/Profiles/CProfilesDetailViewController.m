@@ -125,8 +125,8 @@
     [dialog setDelegate:self];
     [dialog setTitle:@"Внимание"];
     [dialog setMessage:@"Удалить данный профиль?"];
-    [dialog addButtonWithTitle:@"OK"];
-    [dialog addButtonWithTitle:@"Отмена"];
+    [dialog addButtonWithTitle:@"Да"];
+    [dialog addButtonWithTitle:@"Нет"];
     [dialog show];
 }
 
