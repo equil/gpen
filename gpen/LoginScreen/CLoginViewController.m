@@ -70,6 +70,13 @@
 - (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
 {
     [self scrollViewToTextField:textField];
+    
+    [self performSelector:@selector(becomeResponder:) withObject:textField afterDelay:0.1];
+    [textField becomeFirstResponder];
+}
+
+- (void) becomeResponder: (id) textField
+{
     [textField becomeFirstResponder];
 }
 
@@ -87,6 +94,10 @@
     if ([textField isEqual:self.clientTFLicense])
     {
         maxLength = 10;
+    }
+    if ([textField isEqual:self.clientTFBirthday])
+    {
+        maxLength = 0;
     }
     
     NSUInteger oldLength = [textField.text length];
@@ -122,6 +133,7 @@
         self.pickerView.date = self.realBirthday;
         self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
         self.clientEntity.birthday = [self.serverFormatter stringFromDate:self.realBirthday];
+        [self checkInputData];
     }
 }
 
@@ -186,7 +198,7 @@
         ([self.clientTFSurname.text length] > 0) &&
         ([self.clientTFPatronymic.text length] > 0) &&
         ([self.clientTFLicense.text length] > 0) &&
-        (self.realBirthday))
+        ([self.clientTFBirthday.text length] > 0))
     {
         self.continueButton.enabled = YES;
     }
