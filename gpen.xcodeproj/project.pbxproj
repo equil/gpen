@@ -28,6 +28,14 @@
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
 		1EA26A391671162900F5CE7D /* back-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A371671162900F5CE7D /* back-for-nav.png */; };
 		1EA26A3A1671162900F5CE7D /* back-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A381671162900F5CE7D /* back-for-nav@2x.png */; };
+		1EA26A5F1673270500F5CE7D /* cancel-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A571673270500F5CE7D /* cancel-for-nav.png */; };
+		1EA26A601673270500F5CE7D /* cancel-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A581673270500F5CE7D /* cancel-for-nav@2x.png */; };
+		1EA26A611673270500F5CE7D /* done-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A591673270500F5CE7D /* done-for-nav.png */; };
+		1EA26A621673270500F5CE7D /* done-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5A1673270500F5CE7D /* done-for-nav@2x.png */; };
+		1EA26A631673270500F5CE7D /* edit-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5B1673270500F5CE7D /* edit-for-nav.png */; };
+		1EA26A641673270500F5CE7D /* edit-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */; };
+		1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5D1673270500F5CE7D /* save-for-nav.png */; };
+		1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EAC82031669EFC900D6ED80 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC82021669EFC900D6ED80 /* Profile.m */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
@@ -128,6 +136,14 @@
 		1E9F0D2F1663DB210017A2EB /* CUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdater.m; path = Update/CUpdater.m; sourceTree = "<group>"; };
 		1EA26A371671162900F5CE7D /* back-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back-for-nav.png"; path = "Resources/back-for-nav.png"; sourceTree = "<group>"; };
 		1EA26A381671162900F5CE7D /* back-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back-for-nav@2x.png"; path = "Resources/back-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA26A571673270500F5CE7D /* cancel-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cancel-for-nav.png"; path = "Resources/cancel-for-nav.png"; sourceTree = "<group>"; };
+		1EA26A581673270500F5CE7D /* cancel-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cancel-for-nav@2x.png"; path = "Resources/cancel-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA26A591673270500F5CE7D /* done-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done-for-nav.png"; path = "Resources/done-for-nav.png"; sourceTree = "<group>"; };
+		1EA26A5A1673270500F5CE7D /* done-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done-for-nav@2x.png"; path = "Resources/done-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA26A5B1673270500F5CE7D /* edit-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-for-nav.png"; path = "Resources/edit-for-nav.png"; sourceTree = "<group>"; };
+		1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-for-nav@2x.png"; path = "Resources/edit-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA26A5D1673270500F5CE7D /* save-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav.png"; path = "Resources/save-for-nav.png"; sourceTree = "<group>"; };
+		1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav@2x.png"; path = "Resources/save-for-nav@2x.png"; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EAC82011669EFC900D6ED80 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
@@ -253,6 +269,14 @@
 		1E4D48301665157500949A5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1EA26A571673270500F5CE7D /* cancel-for-nav.png */,
+				1EA26A581673270500F5CE7D /* cancel-for-nav@2x.png */,
+				1EA26A591673270500F5CE7D /* done-for-nav.png */,
+				1EA26A5A1673270500F5CE7D /* done-for-nav@2x.png */,
+				1EA26A5B1673270500F5CE7D /* edit-for-nav.png */,
+				1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */,
+				1EA26A5D1673270500F5CE7D /* save-for-nav.png */,
+				1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */,
 				1EA26A371671162900F5CE7D /* back-for-nav.png */,
 				1EA26A381671162900F5CE7D /* back-for-nav@2x.png */,
 				A02AC85A166FC8D200F02A41 /* flag.png */,
@@ -673,6 +697,14 @@
 				A02AC85D166FC8D200F02A41 /* flag@2x.png in Resources */,
 				1EA26A391671162900F5CE7D /* back-for-nav.png in Resources */,
 				1EA26A3A1671162900F5CE7D /* back-for-nav@2x.png in Resources */,
+				1EA26A5F1673270500F5CE7D /* cancel-for-nav.png in Resources */,
+				1EA26A601673270500F5CE7D /* cancel-for-nav@2x.png in Resources */,
+				1EA26A611673270500F5CE7D /* done-for-nav.png in Resources */,
+				1EA26A621673270500F5CE7D /* done-for-nav@2x.png in Resources */,
+				1EA26A631673270500F5CE7D /* edit-for-nav.png in Resources */,
+				1EA26A641673270500F5CE7D /* edit-for-nav@2x.png in Resources */,
+				1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */,
+				1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
