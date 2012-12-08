@@ -70,9 +70,9 @@
  */
 - (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
 {
-    UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
-    [self.loginTableView scrollRectToVisible:cell.frame animated:NO];
-    
+    /*UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
+    [self.loginTableView scrollRectToVisible:cell.frame animated:YES];
+    */
     [textField becomeFirstResponder];
 }
 
@@ -105,6 +105,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [self.loginTableView adjustOffsetToIdealIfNeeded];
+    
     if ([self.keyboardControls.textFields containsObject:textField])
         self.keyboardControls.activeTextField = textField;
     self.activeTextField = textField;
