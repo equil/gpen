@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uVq-dM-pYv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Splash View Controller-->
@@ -739,6 +739,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Изменить" id="41a-TL-xUG">
                             <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <action selector="editAction" destination="Zs0-HX-nHK" id="37k-gT-39Y"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -891,6 +894,9 @@
         </class>
         <class className="CProfilesDetailViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editAction"/>
+            </relationships>
         </class>
         <class className="CProfilesListViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesListViewController.h"/>

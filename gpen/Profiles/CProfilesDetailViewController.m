@@ -7,6 +7,7 @@
 //
 
 #import "CProfilesDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface CProfilesDetailViewController ()
 
@@ -21,6 +22,16 @@
     [super viewDidLoad];
     
     [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [_profile.name capitalizedString], [_profile.lastname capitalizedString]]];
+}
+
+- (IBAction)editAction
+{
+    
+}
+
+- (IBAction)cancelAction
+{
+    
 }
 
 @end

@@ -13,4 +13,7 @@
 
 @property (nonatomic, strong) Profile *profile;
 
+- (IBAction)editAction;
+- (IBAction)cancelAction;
+
 @end
