@@ -7,24 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CRotateViewController.h"
+#import "CRotateTableViewController.h"
 #import "CGreenButton.h"
-#import "TPKeyboardAvoidingTableView.h"
 
-@interface CLoginViewController : CRotateViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface CLoginViewController : CRotateTableViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
-@property (nonatomic, strong) IBOutlet TPKeyboardAvoidingTableView *loginTableView;
+@property (nonatomic, strong) IBOutlet UITableView *loginTableView;
 @property (nonatomic, strong) IBOutlet CGreenButton *continueButton;
 
 @property (nonatomic, strong) UIDatePicker *pickerView;
-@property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSDateFormatter *serverFormatter;
 
-- (void)dateAction;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFName;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFSurname;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFPatronymic;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFLicense;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFEmail;
+@property (nonatomic, strong) IBOutlet UILabel *labelEmail;
+@property (nonatomic, strong) IBOutlet UITextField *clientTFBirthday;
 
+- (void)dateAction;
+- (IBAction) checkInputData;
 - (IBAction)insertNewProfile;
 
 @end

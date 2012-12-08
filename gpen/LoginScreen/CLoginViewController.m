@@ -18,12 +18,6 @@
 #import "BSKeyboardControls.h"
 
 @interface CLoginViewController () <BSKeyboardControlsDelegate>
-@property (nonatomic, strong) UITextField *clientTFName;
-@property (nonatomic, strong) UITextField *clientTFSurname;
-@property (nonatomic, strong) UITextField *clientTFPatronymic;
-@property (nonatomic, strong) UITextField *clientTFLicense;
-@property (nonatomic, strong) UITextField *clientTFEmail;
-@property (nonatomic, strong) UITextField *clientTFBirthday;
 @property (nonatomic, weak) UITextField *activeTextField;
 @property (nonatomic, strong) CLoginClientEntity *clientEntity;
 @property (nonatomic, strong) NSDate *realBirthday;
@@ -31,7 +25,6 @@
 @end
 
 @implementation CLoginViewController
-@synthesize navItem = _navItem;
 @synthesize spinner = _spinner;
 @synthesize loginTableView = _loginTableView;
 @synthesize continueButton = _continueButton;
@@ -43,12 +36,18 @@
 @synthesize clientTFBirthday = _clientTFBirthday;
 @synthesize activeTextField = _activeTextField;
 @synthesize pickerView = _pickerView;
-@synthesize doneButton = _doneButton;
 @synthesize dateFormatter = _dateFormatter;
 @synthesize serverFormatter = _serverFormatter;
 @synthesize clientEntity = _clientEntity;
 @synthesize realBirthday = _realBirthday;
 @synthesize keyboardControls = _keyboardControls;
+@synthesize labelEmail = _labelEmail;
+
+- (void)scrollViewToTextField:(id)textField
+{
+    UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
+    [self.tableView scrollRectToVisible:cell.frame animated:YES];
+}
 
 #pragma mark -
 #pragma mark BSKeyboardControls Delegate
@@ -70,9 +69,7 @@
  */
 - (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
 {
-    /*UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
-    [self.loginTableView scrollRectToVisible:cell.frame animated:YES];
-    */
+    [self scrollViewToTextField:textField];
     [textField becomeFirstResponder];
 }
 
@@ -105,11 +102,10 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self.loginTableView adjustOffsetToIdealIfNeeded];
-    
     if ([self.keyboardControls.textFields containsObject:textField])
         self.keyboardControls.activeTextField = textField;
     self.activeTextField = textField;
+    [self scrollViewToTextField:textField];
     
     if ([textField isEqual:self.clientTFLicense])
     {
@@ -184,7 +180,7 @@
     return result;
 }
 
-- (void) checkInputData
+- (IBAction) checkInputData
 {
     if (([self.clientTFName.text length] > 0) &&
         ([self.clientTFSurname.text length] > 0) &&
@@ -208,7 +204,7 @@
     
     self.continueButton.enabled = NO;
     
-    self.navItem.title = @"Заполните анкету";
+    self.navigationItem.title = @"Заполните анкету";
     
     self.loginTableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
     
@@ -228,11 +224,6 @@
     self.keyboardControls.previousTitle = @"Назад";
     self.keyboardControls.nextTitle = @"Вперед";
     self.keyboardControls.doneTitle = @"Готово";
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     
     // Add all text fields you want to be able to skip between to the keyboard controls
     // The order of thise text fields are important. The order is used when pressing "Previous" or "Next"
@@ -246,121 +237,41 @@
     // Add the keyboard control as accessory view for all of the text fields
     // Also set the delegate of all the text fields to self
     [self.keyboardControls reloadTextFields];
+    
+    if (self.realBirthday)
+    {
+        self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
+    }
+    self.pickerView = [[UIDatePicker alloc] init];
+    self.pickerView.datePickerMode = UIDatePickerModeDate;
+    self.pickerView.locale = [NSLocale currentLocale];
+    self.pickerView.calendar = [[NSLocale currentLocale] objectForKey:NSLocaleCalendar];
+    self.pickerView.maximumDate = [NSDate date];
+    [self.pickerView addTarget:self
+                        action:@selector(dateAction)
+              forControlEvents:UIControlEventValueChanged];
+    self.clientTFBirthday.inputView = self.pickerView;
+    self.clientTFBirthday.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    
+    self.clientTFEmail.text = self.clientEntity.email;
+    self.clientTFEmail.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    self.labelEmail.text = @"Необязательно";
+    self.labelEmail.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
+    
+    self.clientTFSurname.text = self.clientEntity.surname;
+    self.clientTFSurname.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    
+    self.clientTFName.text = self.clientEntity.name;
+    self.clientTFName.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    
+    self.clientTFPatronymic.text = self.clientEntity.patronymic;
+    self.clientTFPatronymic.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    
+    self.clientTFLicense.text = self.clientEntity.license;
+    self.clientTFLicense.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
 }
 
 #pragma mark - Table View Data Source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch (section)
-    {
-        case 0:
-            return 3;
-        default:
-            return 1;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *textFieldCellId = @"textFieldCell";
-    static NSString *textFieldWithLabelCellId = @"textFieldWithLabelCell";
-    static NSString *disclosureCellId = @"disclosureCell";
-    
-    // Ячейка со стрелкой - единственная в таблице
-    if (indexPath.section == 1)
-    {
-        CDisclosureCell *cell = (CDisclosureCell *) [tableView dequeueReusableCellWithIdentifier:disclosureCellId];
-        cell.cellTextField.delegate = self;
-        self.clientTFBirthday = cell.cellTextField;
-        if (self.realBirthday)
-        {
-            cell.cellTextField.text = [self.dateFormatter stringFromDate:self.realBirthday];
-        }
-        
-        self.pickerView = [[UIDatePicker alloc] init];
-        self.pickerView.datePickerMode = UIDatePickerModeDate;
-        self.pickerView.locale = [NSLocale currentLocale];
-        self.pickerView.calendar = [[NSLocale currentLocale] objectForKey:NSLocaleCalendar];
-        self.pickerView.maximumDate = [NSDate date];
-        [self.pickerView addTarget:self
-                            action:@selector(dateAction)
-                  forControlEvents:UIControlEventValueChanged];
-        cell.cellTextField.inputView = self.pickerView;
-        
-        cell.cellTextField.placeholder = @"Дата рождения";
-        cell.cellTextField.returnKeyType = UIReturnKeyDefault;
-        cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-        return cell;
-    }
-    else if (indexPath.section == 3)
-    {
-        CTextFieldWithLabel *cell = (CTextFieldWithLabel *) [tableView dequeueReusableCellWithIdentifier:textFieldWithLabelCellId];
-        cell.cellTextField.delegate = self;
-        self.clientTFEmail = cell.cellTextField;
-        cell.cellTextField.placeholder = @"Электронная почта";
-        cell.cellTextField.text = self.clientEntity.email;
-        cell.cellTextField.returnKeyType = UIReturnKeyDefault;
-        cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-        cell.cellLabel.text = @"Необязательно";
-        cell.cellLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
-        
-        [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
-        
-        return cell;
-    }
-    
-    // Остальные - с текстовыми полями
-    CTextFieldCell *cell = (CTextFieldCell *) [tableView dequeueReusableCellWithIdentifier:textFieldCellId];
-    cell.cellTextField.delegate = self;
-    cell.cellTextField.returnKeyType = UIReturnKeyDefault;
-    [cell.cellTextField addTarget:self action:@selector(checkInputData) forControlEvents:UIControlEventEditingChanged];
-    cell.cellTextField.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    switch (indexPath.section)
-    {
-        case 0:
-        {
-            switch (indexPath.row)
-            {
-                case 0:
-                    self.clientTFSurname = cell.cellTextField;
-                    cell.cellTextField.placeholder = @"Фамилия";
-                    cell.cellTextField.text = self.clientEntity.surname;
-                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-                    break;
-                case 1:
-                    self.clientTFName = cell.cellTextField;
-                    cell.cellTextField.placeholder = @"Имя";
-                    cell.cellTextField.text = self.clientEntity.name;
-                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-                    break;
-                case 2:
-                    self.clientTFPatronymic = cell.cellTextField;
-                    cell.cellTextField.placeholder = @"Отчество";
-                    cell.cellTextField.text = self.clientEntity.patronymic;
-                    cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-                    break;
-            }
-            break;
-        }
-        case 2:
-        {
-            self.clientTFLicense = cell.cellTextField;
-            cell.cellTextField.placeholder = @"Номер водительского удостоверения";
-            cell.cellTextField.text = [self spacedLicenseString:self.clientEntity.license];
-            cell.cellTextField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-            break;
-        }
-    }
-            
-    return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 4;
-}
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
