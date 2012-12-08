@@ -257,6 +257,10 @@
 
 - (void)updateLastSignForProfile:(Profile *)profile
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LastSignUpdateStart" object:nil];
+    });
+    
     unsigned long uid = [profile.uid unsignedLongValue];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
@@ -265,17 +269,29 @@
         prof.lastSign = [NSDate date];
     } completion:^{
         [delegate actualizeMainProfile];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LastSignUpdateEnd" object:nil];
+        });
     }];
 }
 
 - (void)deleteProfile:(Profile *)profile
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DeletingStart" object:nil];
+    });
+    
     unsigned long uid = [profile.uid unsignedLongValue];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
         CDao *dao = [CDao daoWithContext:context];
         Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
         [context deleteObject:prof];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DeletingEnd" object:nil];
+        });
     }];
 }
 

@@ -114,6 +114,7 @@
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.updater updateLastSignForProfile:_profile];
+    //TODO по нотификации LastSignUpdateEnd выполнить...
     [self goBack];
 }
 
@@ -136,6 +137,7 @@
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [delegate.updater deleteProfile:_profile];
         editingMode = NO;
+        //TODO по нотификации DeletingEnd выполнить...
         [self goBack];
     }
 }
