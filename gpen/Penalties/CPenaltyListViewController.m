@@ -126,17 +126,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
-    
-    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    Profile *profile = delegate.lastSignProfile;
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchData];
     [super viewWillAppear:animated];
+    
+    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    Profile *profile = delegate.lastSignProfile;
+    if (profile.profileName)
+    {
+        [self.navigationItem setTitle:profile.profileName];
+    }
+    else
+    {
+        [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
+    }
 }
 
 #pragma mark - Table view data source

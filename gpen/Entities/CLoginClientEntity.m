@@ -21,6 +21,13 @@
     if (self)
     {
         self.internalDict = [NSMutableDictionary dictionary];
+        self.name = @"";
+        self.surname = @"";
+        self.patronymic = @"";
+        self.nickname = @"";
+        self.birthday = @"";
+        self.license = @"";
+        self.email = @"";
     }
     return self;
 }
@@ -139,6 +146,23 @@
     else
     {
         [self.internalDict removeObjectForKey:@"birthday"];
+    }
+}
+
+- (NSString *) nickname
+{
+    return [self.internalDict objectForKey:@"nickname"];
+}
+
+- (void) setNickname:(NSString *)nickname
+{
+    if (nickname)
+    {
+        [self.internalDict setObject:nickname forKey:@"nickname"];
+    }
+    else
+    {
+        [self.internalDict removeObjectForKey:@"nickname"];
     }
 }
 

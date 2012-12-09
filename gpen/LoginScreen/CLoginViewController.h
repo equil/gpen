@@ -29,7 +29,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *clientTFBirthday;
 
 - (void)dateAction;
-- (IBAction) checkInputData;
+- (IBAction)checkInputData;
 - (IBAction)insertNewProfile;
 
 @end

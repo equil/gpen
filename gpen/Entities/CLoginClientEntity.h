@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *license;
 @property (nonatomic, strong) NSString *birthday;
 @property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *nickname;
 
 @property (nonatomic, readonly) NSDictionary *dict;
 

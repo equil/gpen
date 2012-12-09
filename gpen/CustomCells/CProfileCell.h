@@ -11,6 +11,9 @@
 
 @interface CProfileCell : UITableViewCell
 
+@property (nonatomic, strong) IBOutlet UIImageView *profileImage;
+@property (nonatomic, strong) IBOutlet UILabel *profileName;
+
 - (void) configureCellWithProfile: (Profile *) profile;
 
 @end

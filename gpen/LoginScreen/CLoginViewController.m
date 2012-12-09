@@ -214,11 +214,7 @@
     
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
-    self.continueButton.enabled = NO;
-    
     self.navigationItem.title = @"Заполните анкету";
-    
-    self.loginTableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
@@ -281,6 +277,8 @@
     
     self.clientTFLicense.text = self.clientEntity.license;
     self.clientTFLicense.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    
+    [self checkInputData];
 }
 
 #pragma mark - Table View Data Source
@@ -296,7 +294,7 @@
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"Образец: 63 СТ 000000";
         footerLabel.textColor = [UIColor darkGrayColor];
-        footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:12.0];
+        footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
         footerLabel.shadowColor = [UIColor whiteColor];
         footerLabel.shadowOffset = CGSizeMake(0, 1);
         
