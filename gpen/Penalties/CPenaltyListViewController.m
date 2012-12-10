@@ -144,6 +144,16 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //TODO спиннер или еще чо короч отловить нотификации
+    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    [delegate.updater syncProfile:delegate.lastSignProfile];
+    //TODO
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
