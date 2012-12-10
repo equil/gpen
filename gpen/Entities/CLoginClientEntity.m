@@ -42,6 +42,27 @@
     return self;
 }
 
+- (id) initWithProfile: (Profile *) profile;
+{
+    self = [super init];
+    if (self)
+    {
+        self.name = profile.name;
+        self.surname = profile.lastname;
+        self.patronymic = profile.patronymic;
+        self.nickname = profile.profileName;
+        if (profile.birthday)
+        {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            self.birthday = [formatter stringFromDate:profile.birthday];
+        }
+        self.license = profile.license;
+        self.email = profile.email;
+    }
+    return self;
+}
+
 - (NSDictionary *) dict
 {
     return [NSDictionary dictionaryWithDictionary:self.internalDict];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Profile.h"
 
 @interface CLoginClientEntity : NSObject
 
@@ -21,5 +22,6 @@
 @property (nonatomic, readonly) NSDictionary *dict;
 
 - (id) initWithDictionary: (NSDictionary *) aDictionary;
+- (id) initWithProfile: (Profile *) profile;
 
 @end

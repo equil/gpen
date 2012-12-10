@@ -220,8 +220,6 @@
     
     self.navigationItem.title = @"Заполните анкету";
     
-    self.loginTableView.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:227.0/255.0 blue:225.0/255.0 alpha:1.0];
-    
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     self.serverFormatter = [[NSDateFormatter alloc] init];
