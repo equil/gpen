@@ -17,7 +17,7 @@
 {
     self.profileName.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
-    if (profile.profileName)
+    if (profile.profileName && profile.profileName.length > 0)
     {
         self.profileName.text = profile.profileName;
     }

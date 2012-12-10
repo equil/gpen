@@ -134,7 +134,7 @@
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
-    if (profile.profileName)
+    if (profile.profileName && profile.profileName.length > 0)
     {
         [self.navigationItem setTitle:profile.profileName];
     }

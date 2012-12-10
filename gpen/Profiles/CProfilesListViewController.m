@@ -51,7 +51,7 @@
         [fetch setEntity:[NSEntityDescription entityForName:@"Profile"
                                      inManagedObjectContext:context]];
         
-        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"license" ascending:YES];;
+        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"uid" ascending:YES];;
         [fetch setSortDescriptors:[NSArray arrayWithObjects:sd, nil]];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc]

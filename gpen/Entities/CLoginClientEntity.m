@@ -151,18 +151,18 @@
 
 - (NSString *) nickname
 {
-    return [self.internalDict objectForKey:@"nickname"];
+    return [self.internalDict objectForKey:@"profileName"];
 }
 
 - (void) setNickname:(NSString *)nickname
 {
     if (nickname)
     {
-        [self.internalDict setObject:nickname forKey:@"nickname"];
+        [self.internalDict setObject:nickname forKey:@"profileName"];
     }
     else
     {
-        [self.internalDict removeObjectForKey:@"nickname"];
+        [self.internalDict removeObjectForKey:@"profileName"];
     }
 }
 

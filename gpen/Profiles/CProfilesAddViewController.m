@@ -404,13 +404,15 @@
         
         status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.navigationItem.rightBarButtonItem.enabled = YES;
-        });
-        
         if (requestStatus == GOOD)
         {
             [self cancelAction];
+        }
+        else
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            });
         }
     });
 }
