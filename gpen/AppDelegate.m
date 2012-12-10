@@ -63,7 +63,6 @@
     if (_lastSignProfile != nil)
     {
         [_updater updateLastSignForProfile:_lastSignProfile];
-        [_updater updateProfile:_lastSignProfile];
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
     }
     else

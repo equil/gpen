@@ -49,6 +49,7 @@
     profile.email = [dict valueForKey:@"email"];
     profile.profileName = [dict valueForKey:@"profileName"];
     profile.lastSign = [NSDate distantPast];
+    profile.lastUpdate = [NSDate distantPast];
     
     return profile;
 }
@@ -69,127 +70,45 @@
     return profile;
 }
 
-- (status)insertNewProfileAndUpdate:(NSDictionary *)dict
+- (void)insertProfile:(NSDictionary *)dict
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"InsertProfileStart" object:nil];
     });
-    
-    status requestStatus;
-    
-    NSArray *objects = [NSArray arrayWithObjects:
-                        [[dict valueForKey:@"name"] uppercaseString],
-                        [[dict valueForKey:@"patronymic"] uppercaseString],
-                        [[dict valueForKey:@"surname"] uppercaseString],
-                        [[dict valueForKey:@"license"] uppercaseString],
-                        [dict valueForKey:@"birthday"], nil];
-    
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];    
-    
-    if (results != nil)
-    {
-        requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
-        if (requestStatus == GOOD)
-        {
-            NSArray *penalties = [results valueForKey:@"content"];
             
-            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
-                
-                Profile *profile = [self createProfile:context dict:dict];
-                
-                [self processContent:penalties profile:profile context:context];
-                profile.lastUpdate = [NSDate date];
-            }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-            });
-        }
-        else
-        {
-            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
-        }
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-        });
-        
-        requestStatus = UNAVAILABLE;
-    }
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    return requestStatus;
+    [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
+        [self createProfile:context dict:dict];
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"InsertProfileEnd" object:nil];
+    });
 }
 
-- (status)editProfileAndUpdate:(Profile *)profile data:(NSDictionary *)dict
+- (void)editProfile:(Profile *)profile data:(NSDictionary *)dict
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EditProfileStart" object:nil];
     });
-    
-    status requestStatus;
-    
-    NSArray *objects = [NSArray arrayWithObjects:
-                        [[dict valueForKey:@"name"] uppercaseString],
-                        [[dict valueForKey:@"patronymic"] uppercaseString],
-                        [[dict valueForKey:@"surname"] uppercaseString],
-                        [[dict valueForKey:@"license"] uppercaseString],
-                        [dict valueForKey:@"birthday"], nil];
-    
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-    
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];
     
     unsigned long uid = [profile.uid unsignedLongValue];
-    if (results != nil)
-    {
-        requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
-        if (requestStatus == GOOD)
-        {
-            NSArray *penalties = [results valueForKey:@"content"];
             
-            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            
-            [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
-                
-                CDao *dao = [CDao daoWithContext:context];
-                Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
-                
-                [self updateProfile:prof dict:dict];
-                [self processContent:penalties profile:prof context:context];
-                prof.lastUpdate = [NSDate date];
-                
-            }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-            });
-        }
-        else
-        {
-            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
-        }
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-        });
-        
-        requestStatus = UNAVAILABLE;
-    }
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    return requestStatus;
+    [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
+        CDao *dao = [CDao daoWithContext:context];
+        Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+        [self updateProfile:prof dict:dict];
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EditProfileEnd" object:nil];
+    });
 }
 
-- (status)updateProfile:(Profile *)profile
+- (status)syncProfile:(Profile *)profile
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
@@ -374,15 +293,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     UIAlertView *alert;
-
-//                    if ([message isEqualToString:@"Incorrect driver’s personal data"])
-//                    {
-//                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные водителя" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                    }
-//                    else if ([message isEqualToString:@"Incorrect penalty id"])
-//                    {
-//                        alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные штрафа" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                    }
                     
                     alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     

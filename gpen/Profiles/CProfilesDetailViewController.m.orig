@@ -11,6 +11,7 @@
 #import "CTextFieldCell.h"
 #import "CTextFieldWithLabel.h"
 #import "CDisclosureCell.h"
+#import "AppDelegate.h"
 #import "CUpdater.h"
 #import "CDao.h"
 #import "CDao+Profile.h"
@@ -414,7 +415,23 @@
     [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
     self.clientEntity.license = result;
     
-    // TODO передать всю инфу дальше для апдейта
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+        
+        status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
+        
+        if (requestStatus == GOOD)
+        {
+            [self cancelAction];
+        }
+        else
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            });
+        }
+    });
 }
 
 - (IBAction)editAction
@@ -441,16 +458,28 @@
             //TODO сформировать из полей такой же словарик как в логине но с ИМЕНЕМ ПРОФИЛЯ еще для проверки подлинности пользователя и передать его в функцию ниже
             [delegate.updater editProfile:_profile data:[NSDictionary dictionary]];
 
-            // TODO на нотификации
-            
             [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
             [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
             
             //TODO убрать редактируемость полей
             
-            self.backupInfo = nil;
+            [_backupInfo removeAllObjects];
             
+<<<<<<< HEAD
+            if (requestStatus == GOOD)
+            {
+                [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+                [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
+                
+                //TODO убрать редактируемость полей
+                
+                self.backupInfo = nil;
+                
+                editingMode = NO;
+            }
+=======
             editingMode = NO;
+>>>>>>> b9859ce4aac6c9560e260c28f9451d8ddcfdc3ce
         });
     }
 }
