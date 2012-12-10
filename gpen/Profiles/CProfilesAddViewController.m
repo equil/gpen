@@ -401,19 +401,8 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-        
-        status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
-        
-        if (requestStatus == GOOD)
-        {
-            [self cancelAction];
-        }
-        else
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                self.navigationItem.rightBarButtonItem.enabled = YES;
-            });
-        }
+        [delegate.updater insertProfile:self.clientEntity.dict];
+        [self cancelAction];
     });
 }
 

@@ -17,9 +17,9 @@ typedef enum{
 
 @interface CUpdater : NSObject
 
-- (status)insertNewProfileAndUpdate:(NSDictionary *)dict;
-- (status)editProfileAndUpdate:(Profile *)profile data:(NSDictionary *)dict;
-- (status)updateProfile:(Profile *)profile;
+- (void)insertProfile:(NSDictionary *)dict;
+- (void)editProfile:(Profile *)profile data:(NSDictionary *)dict;
+- (status)syncProfile:(Profile *)profile;
 - (void)deleteProfile:(Profile *)profile;
 - (void)updateLastSignForProfile:(Profile *)profile;
 - (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email;

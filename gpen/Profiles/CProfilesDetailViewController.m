@@ -54,19 +54,16 @@
         dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
             
             //TODO сформировать из полей такой же словарик как в логине но с ИМЕНЕМ ПРОФИЛЯ еще для проверки подлинности пользователя и передать его в функцию ниже
-            status requestStatus = [delegate.updater editProfileAndUpdate:_profile data:[NSDictionary dictionary]];
+            [delegate.updater editProfile:_profile data:[NSDictionary dictionary]];
+
+            [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+            [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
             
-            if (requestStatus == GOOD)
-            {
-                [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
-                [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
-                
-                //TODO убрать редактируемость полей
-                
-                [_backupInfo removeAllObjects];
-                
-                editingMode = NO;
-            }
+            //TODO убрать редактируемость полей
+            
+            [_backupInfo removeAllObjects];
+            
+            editingMode = NO;
         });
     }
 }

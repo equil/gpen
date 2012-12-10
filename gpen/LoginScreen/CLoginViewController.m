@@ -364,24 +364,15 @@
     self.clientEntity.license = result;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.updater insertProfile:self.clientEntity.dict];
     
-    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.spinner stopAnimating];
+        [self.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateDisabled];
+        self.continueButton.enabled = YES;
         
-        status requestStatus = [delegate.updater insertNewProfileAndUpdate:self.clientEntity.dict];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.spinner stopAnimating];
-            [self.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateDisabled];
-            self.continueButton.enabled = YES;
-        });
-        
-        if (requestStatus == GOOD)
-        {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [delegate actualizeMainProfile];
-                [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
-            });
-        }
+        [delegate actualizeMainProfile];
+        [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
     });
 }
 
