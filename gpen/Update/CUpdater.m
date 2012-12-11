@@ -294,7 +294,7 @@
                     
                     UIAlertView *alert;
                     
-                    alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Неверные данные" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     
                     [alert show];
                     
