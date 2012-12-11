@@ -44,7 +44,7 @@
 
 - (id) initWithProfile: (Profile *) profile;
 {
-    self = [super init];
+    self = [self init];
     if (self)
     {
         self.name = profile.name;

@@ -236,12 +236,13 @@
     
     editingMode = NO;
     
-    self.clientEntity = [[CLoginClientEntity alloc] init];
-    
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     self.serverFormatter = [[NSDateFormatter alloc] init];
     [self.serverFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    self.clientEntity = [[CLoginClientEntity alloc] initWithProfile:self.profile];
+    self.realBirthday = [self.serverFormatter dateFromString:self.clientEntity.birthday];
     
     [self.tableView reloadData];
     
@@ -301,7 +302,7 @@
     self.clientTFNickname.text = self.clientEntity.nickname;
     self.clientTFNickname.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
-    self.clientTFLicense.text = self.clientEntity.license;
+    self.clientTFLicense.text = [self spacedLicenseString: self.clientEntity.license];
     self.clientTFLicense.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
     [self checkInputData];

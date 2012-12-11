@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "CRotateTableViewController.h"
+#import "CRotateViewController.h"
 
-@interface CPenaltyListViewController : CRotateTableViewController <NSFetchedResultsControllerDelegate>
+@interface CPenaltyListViewController : CRotateViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) IBOutlet UILabel *informLabel;
 
 @end

@@ -363,20 +363,29 @@
     [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
     self.clientEntity.license = result;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleFinishInsertProfile)
+                                                 name:@"InsertProfileEnd"
+                                               object:nil];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.updater insertProfile:self.clientEntity.dict];
+}
+
+- (void) handleFinishInsertProfile
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"InsertProfileEnd"
+                                                  object:nil];
     
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    [self.spinner stopAnimating];
+    [self.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateDisabled];
+    self.continueButton.enabled = YES;
         
-        // TODO на нотификации отреагировать интерфейсом
-        
-        [self.spinner stopAnimating];
-        [self.continueButton setTitle:@"Сохранить и продолжить" forState:UIControlStateDisabled];
-        self.continueButton.enabled = YES;
-        
-        [delegate actualizeMainProfile];
-        [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
-    });
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate actualizeMainProfile];
+    
+    [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
 }
 
 @end

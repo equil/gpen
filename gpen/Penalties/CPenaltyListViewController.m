@@ -22,6 +22,10 @@
     NSFetchedResultsController *_fetchedResultsController;
 }
 
+@synthesize tableView = _tableView;
+@synthesize spinner = _spinner;
+@synthesize informLabel = _informLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -132,6 +136,8 @@
     [self fetchData];
     [super viewWillAppear:animated];
     
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
     if (profile.profileName && profile.profileName.length > 0)
@@ -148,10 +154,25 @@
 {
     [super viewDidAppear:animated];
     
-    //TODO спиннер или еще чо короч отловить нотификации
+    [self.spinner startAnimating];
+    self.informLabel.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleFinishLoading) name:@"LoadingEnd"
+                                               object:nil];
+    
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     [delegate.updater syncProfile:delegate.lastSignProfile];
-    //TODO реагировать на нотификации
+}
+
+- (void) handleFinishLoading
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"LoadingEnd"
+                                                  object:nil];
+    
+    [self.spinner stopAnimating];
+    self.informLabel.hidden = NO;
 }
 
 #pragma mark - Table view data source

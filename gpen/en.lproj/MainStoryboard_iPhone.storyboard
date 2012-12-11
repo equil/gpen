@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="hFr-v1-5RB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="hFr-v1-5RB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Splash View Controller-->
@@ -31,63 +31,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2u-u0-CtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-530"/>
-        </scene>
-        <!--Penalty List View Controller - Штрафы-->
-        <scene sceneID="27f-34-yxk">
-            <objects>
-                <tableViewController id="FaZ-FQ-kMr" customClass="CPenaltyListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="5cx-pX-bvq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="separatorColor" white="0.85020791330000001" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="penaltyCell" id="umN-N4-INN" customClass="CPenaltyCell">
-                                <rect key="frame" x="0.0" y="46" width="320" height="45"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="280" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="uHq-GY-xN2">
-                                            <rect key="frame" x="13" y="14" width="15" height="15"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKi-bF-Dj4">
-                                            <rect key="frame" x="43" y="11" width="130" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H52-d5-uem">
-                                            <rect key="frame" x="178" y="11" width="81" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="penaltyDate" destination="PKi-bF-Dj4" id="sHT-Je-Nee"/>
-                                    <outlet property="penaltyImage" destination="uHq-GY-xN2" id="fll-Sn-k6Y"/>
-                                    <outlet property="penaltyPrice" destination="H52-d5-uem" id="e3o-9y-Zwy"/>
-                                    <segue destination="iJg-VR-HtK" kind="push" identifier="PenaltyListToDetail" id="lQb-Fb-0R5"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Штрафы" id="BHe-Up-rWe">
-                        <barButtonItem key="backBarButtonItem" image="back-for-nav.png" id="swq-Rr-wmV">
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fkj-aJ-4eI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1189" y="-550"/>
         </scene>
         <!--Penalty Detail View Controller - Протокол-->
         <scene sceneID="miM-gd-D9Z">
@@ -436,7 +379,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="FaZ-FQ-kMr" kind="relationship" relationship="rootViewController" id="w2t-94-Dm9"/>
+                        <segue destination="irW-VK-qSW" kind="relationship" relationship="rootViewController" id="LaE-TZ-lDK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="coP-WJ-T6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -716,6 +659,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
+        </scene>
+        <!--Penalty List View Controller - Штрафы-->
+        <scene sceneID="9wa-Hy-Kok">
+            <objects>
+                <viewController id="irW-VK-qSW" customClass="CPenaltyListViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nRN-nY-Kfd">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hkZ-ra-uhp">
+                                <rect key="frame" x="10" y="10" width="300" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <string key="text">Вы еще не получили ни единого штрафа от ГИБДД. Так держать! Если это когда-нибудь случится, приложение покажет всю информацию о нарушении и поможет оплатить штраф.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" id="Fh8-GJ-EWG">
+                                <rect key="frame" x="0.0" y="174" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="5cx-pX-bvq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.85020791330000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="penaltyCell" id="umN-N4-INN" customClass="CPenaltyCell">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="uHq-GY-xN2">
+                                                    <rect key="frame" x="13" y="14" width="15" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PKi-bF-Dj4">
+                                                    <rect key="frame" x="43" y="11" width="130" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H52-d5-uem">
+                                                    <rect key="frame" x="178" y="11" width="81" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="penaltyDate" destination="PKi-bF-Dj4" id="sHT-Je-Nee"/>
+                                            <outlet property="penaltyImage" destination="uHq-GY-xN2" id="fll-Sn-k6Y"/>
+                                            <outlet property="penaltyPrice" destination="H52-d5-uem" id="e3o-9y-Zwy"/>
+                                            <segue destination="iJg-VR-HtK" kind="push" identifier="PenaltyListToDetail" id="lQb-Fb-0R5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="irW-VK-qSW" id="rRs-3b-ahO"/>
+                                    <outlet property="delegate" destination="irW-VK-qSW" id="gIN-rl-mg3"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Штрафы" id="wZA-7Y-f40"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="informLabel" destination="hkZ-ra-uhp" id="FDn-6F-oBn"/>
+                        <outlet property="spinner" destination="Fh8-GJ-EWG" id="w3b-Eg-KhM"/>
+                        <outlet property="tableView" destination="5cx-pX-bvq" id="FYZ-CZ-0K3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="22H-bD-VfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="-550"/>
         </scene>
         <!--Profiles List View Controller - Профили-->
         <scene sceneID="Ezw-hs-QfB">
@@ -1131,6 +1156,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="GL6-RF-CdP"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="9M6-od-y2e"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1152,6 +1178,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="dOK-pq-SwB"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="S0g-0Y-SaZ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1173,6 +1200,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="i8d-XB-mnT"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="VUy-c9-U7p"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1198,6 +1226,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="xSX-rI-XN1"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="1Di-lF-gKi"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1223,6 +1252,7 @@
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="SDs-NS-L2u"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="zlh-zM-E56"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1248,6 +1278,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="srh-Sr-ViP"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="LWH-ia-lOS"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1273,6 +1304,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="checkInputData" destination="Zs0-HX-nHK" eventType="editingChanged" id="D01-fo-Yfw"/>
+                                                        <outlet property="delegate" destination="Zs0-HX-nHK" id="8zd-di-yZW"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Необязательно" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sip-Qp-TcI">
@@ -1495,8 +1527,13 @@
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CPenaltyListViewController" superclassName="CRotateTableViewController">
+        <class className="CPenaltyListViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="informLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="CPenaltyTicketViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyTicketViewController.h"/>
