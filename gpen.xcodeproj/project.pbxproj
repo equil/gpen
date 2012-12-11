@@ -36,8 +36,8 @@
 		1EA26A641673270500F5CE7D /* edit-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */; };
 		1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5D1673270500F5CE7D /* save-for-nav.png */; };
 		1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */; };
+		1EA26A8316771D7300F5CE7D /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA26A8216771D7300F5CE7D /* Profile.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
-		1EAC82031669EFC900D6ED80 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC82021669EFC900D6ED80 /* Profile.m */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
 		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
 		1EB1E47E166688AB006CEC41 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
@@ -150,10 +150,10 @@
 		1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-for-nav@2x.png"; path = "Resources/edit-for-nav@2x.png"; sourceTree = "<group>"; };
 		1EA26A5D1673270500F5CE7D /* save-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav.png"; path = "Resources/save-for-nav.png"; sourceTree = "<group>"; };
 		1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav@2x.png"; path = "Resources/save-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA26A8116771D7300F5CE7D /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
+		1EA26A8216771D7300F5CE7D /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
-		1EAC82011669EFC900D6ED80 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
-		1EAC82021669EFC900D6ED80 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		1EAC828F166B3E3B00D6ED80 /* CPenaltyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyDetailViewController.h; sourceTree = "<group>"; };
 		1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyDetailViewController.m; sourceTree = "<group>"; };
 		1EAC8292166B40A600D6ED80 /* CPenaltyTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyTicketViewController.h; sourceTree = "<group>"; };
@@ -466,8 +466,8 @@
 				1EB1E48716669485006CEC41 /* Recipient.m */,
 				1EB1E48016669484006CEC41 /* Penalty.h */,
 				1EB1E48116669484006CEC41 /* Penalty.m */,
-				1EAC82011669EFC900D6ED80 /* Profile.h */,
-				1EAC82021669EFC900D6ED80 /* Profile.m */,
+				1EA26A8116771D7300F5CE7D /* Profile.h */,
+				1EA26A8216771D7300F5CE7D /* Profile.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -751,7 +751,6 @@
 				1EB1E48816669485006CEC41 /* Recipient.m in Sources */,
 				A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */,
 				A0E83FF61668C01400561612 /* CLoginClientEntity.m in Sources */,
-				1EAC82031669EFC900D6ED80 /* Profile.m in Sources */,
 				A0043A10166A12FC00530F81 /* CPenaltyListViewController.m in Sources */,
 				A0043A1F166A213200530F81 /* CPenaltyCell.m in Sources */,
 				1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */,
@@ -772,6 +771,7 @@
 				A02AC8601670E7A700F02A41 /* CTextField.m in Sources */,
 				A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */,
 				A0C8BB5816764AA500100317 /* CBlackButton.m in Sources */,
+				1EA26A8316771D7300F5CE7D /* Profile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

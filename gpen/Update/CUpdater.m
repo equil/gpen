@@ -50,20 +50,33 @@
     profile.profileName = [dict valueForKey:@"profileName"];
     profile.lastSign = [NSDate distantPast];
     profile.lastUpdate = [NSDate distantPast];
+    profile.checked = [NSNumber numberWithBool:NO];
     
     return profile;
 }
 
-- (Profile *)updateProfile:(Profile *)profile dict:(NSDictionary *)dict
+- (Profile *)updateProfile:(Profile *)profile dict:(NSDictionary *)dict context:(NSManagedObjectContext *)context
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
-    profile.name = [dict valueForKey:@"name"];
-    profile.patronymic = [dict valueForKey:@"patronymic"];
-    profile.lastname = [dict valueForKey:@"surname"];
-    profile.license = [dict valueForKey:@"license"];
-    profile.birthday = [df dateFromString:[dict valueForKey:@"birthday"]];
+    if (![profile.name isEqualToString:[dict valueForKey:@"name"]] ||
+        ![profile.patronymic isEqualToString:[dict valueForKey:@"patronymic"]] ||
+        ![profile.lastname isEqualToString:[dict valueForKey:@"surname"]] ||
+        ![profile.license isEqualToString:[dict valueForKey:@"license"]] ||
+        ![[df stringFromDate:profile.birthday] isEqualToString:[dict valueForKey:@"birthday"]])
+    {
+        [self deleteAllForProfile:profile context:context];
+        
+        profile.checked = [NSNumber numberWithBool:NO];
+        
+        profile.name = [dict valueForKey:@"name"];
+        profile.patronymic = [dict valueForKey:@"patronymic"];
+        profile.lastname = [dict valueForKey:@"surname"];
+        profile.license = [dict valueForKey:@"license"];
+        profile.birthday = [df dateFromString:[dict valueForKey:@"birthday"]];
+    }
+    
     profile.email = [dict valueForKey:@"email"];
     profile.profileName = [dict valueForKey:@"profileName"];
     
@@ -100,7 +113,7 @@
     [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
         CDao *dao = [CDao daoWithContext:context];
         Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
-        [self updateProfile:prof dict:dict];
+        [self updateProfile:prof dict:dict context:context];
     }];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -146,6 +159,7 @@
                 
                 CDao *dao = [CDao daoWithContext:context];
                 Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+                prof.checked = [NSNumber numberWithBool:YES];
                 
                 [self processContent:penalties profile:prof context:context];
                 prof.lastUpdate = [NSDate date];
@@ -206,12 +220,22 @@
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
         CDao *dao = [CDao daoWithContext:context];
         Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+        [self deleteAllForProfile:prof context:context];
         [context deleteObject:prof];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DeletingEnd" object:nil];
         });
     }];
+}
+
+- (void)deleteAllForProfile:(Profile *)profile context:(NSManagedObjectContext *)context
+{
+    for (Penalty *p in profile.penalties)
+    {
+        [context deleteObject:p.recipient];
+        [context deleteObject:p];
+    }
 }
 
 - (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email
