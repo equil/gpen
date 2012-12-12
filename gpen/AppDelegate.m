@@ -75,6 +75,7 @@
 {
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     _lastSignProfile = [dao lastSignProfile];
+    NSLog(@"%@", _lastSignProfile.name);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

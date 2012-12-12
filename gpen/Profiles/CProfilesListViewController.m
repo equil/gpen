@@ -37,6 +37,7 @@
     NSError *error = nil;
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
+    [self.tableView reloadData];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
