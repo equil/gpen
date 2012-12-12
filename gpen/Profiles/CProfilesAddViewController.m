@@ -396,13 +396,19 @@
     [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
     self.clientEntity.license = result;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFinishAddProfile) name:@"InsertProfileEnd" object:nil];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
         [delegate.updater insertProfile:self.clientEntity.dict];
-        // TODO на нотификацию
-        [self cancelAction];
     });
+}
+
+- (void) handleFinishAddProfile
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"InsertProfileEnd" object:nil];
+    [self cancelAction];
 }
 
 @end

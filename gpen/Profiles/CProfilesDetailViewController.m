@@ -419,32 +419,6 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)saveAction
-{
-    [self.activeTextField resignFirstResponder];
-    
-    if (!(self.clientEntity.email) || (self.clientEntity.email.length < 1) || ([self validateEmail:self.clientEntity.email]))
-    {
-        [self doRequest];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Некорректный e-mail" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
-- (void) doRequest
-{
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-    
-    NSMutableString *result = [[NSMutableString alloc] initWithString:self.clientEntity.license];
-    [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
-    self.clientEntity.license = result;
-    
-    // TODO передать всю инфу дальше для апдейта
-}
-
 - (IBAction)editAction
 {
     if (editingMode == NO)
@@ -467,24 +441,55 @@
     {
         //TODO действие для конца редактирования, наверн надо какую крутилку посередине и заблочить все, могу дать отличный рецепт оверлэя поверх всего экрана
         
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [self.activeTextField resignFirstResponder];
         
-        dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-            
-            [delegate.updater editProfile:_profile data:self.clientEntity.dict];
-
-            // TODO на нотификации
-            
-            [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
-            [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
-            
-            //TODO убрать редактируемость полей
-            
-            self.backupInfo = nil;
-            
-            editingMode = NO;
-        });
+        if (!(self.clientEntity.email) || (self.clientEntity.email.length < 1) || ([self validateEmail:self.clientEntity.email]))
+        {
+            [self doRequest];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Некорректный e-mail" message:nil delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+            [alert show];
+        }
     }
+}
+
+- (void) doRequest
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    NSMutableString *result = [[NSMutableString alloc] initWithString:self.clientEntity.license];
+    [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
+    self.clientEntity.license = result;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFinishEditProfile) name:@"EditProfileEnd" object:nil];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+        [delegate.updater editProfile:_profile data:self.clientEntity.dict];
+    });
+}
+
+- (void) handleFinishEditProfile
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"EditProfileEnd" object:nil];
+    
+    [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+    [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
+    
+    [self disableAllFields];
+    
+    self.backupInfo = nil;
+    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.buttonDelete.hidden = YES;
+    self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
+    
+    editingMode = NO;
 }
 
 - (IBAction)goBack
@@ -495,7 +500,8 @@
     }
     else
     {
-        //TODO убрать редактируемость полей
+        [self.activeTextField resignFirstResponder];
+        [self disableAllFields];
         
         [self fillFields];//восстановление данных из бэкапа
         
@@ -503,6 +509,10 @@
         [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
         
         self.backupInfo = nil;
+        
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.buttonDelete.hidden = YES;
+        self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
         
         editingMode = NO;
     }
@@ -515,23 +525,35 @@
 
 - (void)fillFields
 {
-    //TODO засунуть в нужные поля инфу из словаря видом выше
     if (self.backupInfo)
     {
-        
+        self.clientTFBirthday.text = [self.dateFormatter stringFromDate:[self.serverFormatter dateFromString:self.backupInfo.birthday]];
+        self.clientTFEmail.text = self.backupInfo.email;
+        self.clientTFSurname.text = self.backupInfo.surname;
+        self.clientTFName.text = self.backupInfo.name;
+        self.clientTFPatronymic.text = self.backupInfo.patronymic;
+        self.clientTFNickname.text = self.backupInfo.nickname;
+        self.clientTFLicense.text = [self spacedLicenseString: self.backupInfo.license];
     }
 }
 
-//TODO действие для кнопки СДЕЛАТЬ ГЛАВНЫМ
+// действие для кнопки СДЕЛАТЬ ГЛАВНЫМ
 - (IBAction)makeMain
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFinishMakeMain) name:@"LastSignUpdateEnd" object:nil];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.updater updateLastSignForProfile:_profile];
-    //TODO по нотификации LastSignUpdateEnd выполнить...
+}
+
+- (void) handleFinishMakeMain
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LastSignUpdateEnd" object:nil];
+    
     [self goBack];
 }
 
-//TODO действие для кнопки УДАЛИТЬ ПРОФИЛЬ
+// действие для кнопки УДАЛИТЬ ПРОФИЛЬ
 - (IBAction)deleteProfile
 {
     UIAlertView* dialog = [[UIAlertView alloc] init];
@@ -547,12 +569,19 @@
 {
     if (buttonIndex == 0)
     {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeleteProfile) name:@"DeletingEnd" object:nil];
+        
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [delegate.updater deleteProfile:_profile];
         editingMode = NO;
-        //TODO по нотификации DeletingEnd выполнить...
-        [self goBack];
     }
+}
+
+- (void) handleDeleteProfile
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DeletingEnd" object:nil];
+    
+    [self goBack];
 }
 
 @end
