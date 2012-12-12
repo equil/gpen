@@ -205,17 +205,20 @@
 
 - (IBAction) checkInputData
 {
-    if (([self.clientTFName.text length] > 0) &&
-        ([self.clientTFSurname.text length] > 0) &&
-        ([self.clientTFPatronymic.text length] > 0) &&
-        ([self.clientTFLicense.text length] > 0) &&
-        ([self.clientTFBirthday.text length] > 0))
+    if (editingMode)
     {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    }
-    else
-    {
-        self.navigationItem.rightBarButtonItem.enabled = NO;
+        if (([self.clientTFName.text length] > 0) &&
+            ([self.clientTFSurname.text length] > 0) &&
+            ([self.clientTFPatronymic.text length] > 0) &&
+            ([self.clientTFLicense.text length] > 0) &&
+            ([self.clientTFBirthday.text length] > 0))
+        {
+            _editButton.enabled = YES;
+        }
+        else
+        {
+            _editButton.enabled = NO;
+        }
     }
 }
 
@@ -231,8 +234,6 @@
     {
         self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]];
     };
-    
-    _backupInfo = nil;
     
     editingMode = NO;
     
@@ -305,7 +306,33 @@
     self.clientTFLicense.text = [self spacedLicenseString: self.clientEntity.license];
     self.clientTFLicense.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
-    [self checkInputData];
+    [self disableAllFields];
+    self.buttonDelete.hidden = YES;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
+}
+
+- (void) disableAllFields
+{
+    self.clientTFBirthday.userInteractionEnabled = NO;
+    self.clientTFSurname.userInteractionEnabled = NO;
+    self.clientTFName.userInteractionEnabled = NO;
+    self.clientTFPatronymic.userInteractionEnabled = NO;
+    self.clientTFNickname.userInteractionEnabled = NO;
+    self.clientTFLicense.userInteractionEnabled = NO;
+    self.clientTFEmail.userInteractionEnabled = NO;
+}
+
+- (void) enableAllFields
+{
+    self.clientTFBirthday.userInteractionEnabled = YES;
+    self.clientTFSurname.userInteractionEnabled = YES;
+    self.clientTFName.userInteractionEnabled = YES;
+    self.clientTFPatronymic.userInteractionEnabled = YES;
+    self.clientTFNickname.userInteractionEnabled = YES;
+    self.clientTFLicense.userInteractionEnabled = YES;
+    self.clientTFEmail.userInteractionEnabled = YES;
 }
 
 #pragma mark - Table View Data Source
@@ -424,7 +451,12 @@
     {
         [self fillBackUp];//сохранение в бэкап
         
-        //TODO сделать поля редактируемыми, кнопку сделать главным спрятать и показать кнопку удалить профиль
+        [self enableAllFields];
+        
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.buttonDelete.hidden = [self.profile isEqual:delegate.lastSignProfile];
+        
+        self.buttonMakeMain.hidden = YES;
         
         [_backButton setImage:[UIImage imageNamed:@"cancel-for-nav.png"] forState:UIControlStateNormal];
         [_editButton setImage:[UIImage imageNamed:@"done-for-nav.png"] forState:UIControlStateNormal];
@@ -439,8 +471,7 @@
         
         dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
             
-            //TODO сформировать из полей такой же словарик как в логине но с ИМЕНЕМ ПРОФИЛЯ еще для проверки подлинности пользователя и передать его в функцию ниже
-            [delegate.updater editProfile:_profile data:[NSDictionary dictionary]];
+            [delegate.updater editProfile:_profile data:self.clientEntity.dict];
 
             // TODO на нотификации
             

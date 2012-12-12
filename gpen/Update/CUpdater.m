@@ -167,7 +167,7 @@
             } completion:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"GOOD" forKey:@"status"]];
                 });
             }];
         }
@@ -179,7 +179,7 @@
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
         });
         
         requestStatus = UNAVAILABLE;

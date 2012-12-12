@@ -158,21 +158,29 @@
     self.informLabel.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleFinishLoading) name:@"LoadingEnd"
+                                             selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
                                                object:nil];
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     [delegate.updater syncProfile:delegate.lastSignProfile];
 }
 
-- (void) handleFinishLoading
+- (void) handleFinishLoading: (NSNotification *) aNotification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"LoadingEnd"
                                                   object:nil];
     
+    NSString *status = [aNotification.userInfo objectForKey:@"status"];
+    if ([@"GOOD" isEqualToString:status])
+    {
+        self.informLabel.hidden = YES;
+    }
+    else if ([@"UNAVAILABLE" isEqualToString:status])
+    {
+        self.informLabel.hidden = NO;
+    }
     [self.spinner stopAnimating];
-    self.informLabel.hidden = NO;
 }
 
 #pragma mark - Table view data source
