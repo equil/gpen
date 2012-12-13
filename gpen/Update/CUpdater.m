@@ -322,7 +322,7 @@
                     
                     [alert show];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"NOTFOUND" forKey:@"status"]];
                 });
             }
             break;
@@ -333,7 +333,7 @@
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"В данный момент сервер не доступен" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
                 });
             }
             break;

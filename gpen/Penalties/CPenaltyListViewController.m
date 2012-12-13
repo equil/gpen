@@ -134,6 +134,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.informLabel.hidden = YES;
     [self fetchData];
     [super viewWillAppear:animated];
     
@@ -179,6 +180,20 @@
     }
     else if ([@"UNAVAILABLE" isEqualToString:status])
     {
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        if ([delegate.lastSignProfile.lastUpdate isEqualToDate:[NSDate distantPast]])
+        {
+            self.informLabel.hidden = NO;
+            self.informLabel.text = @"Чтобы посмотреть свои штрафы, нужно подключиться к Интернету";
+        }
+        else
+        {
+            self.informLabel.hidden = YES;
+        }
+    }
+    else if ([@"NOTFOUND" isEqualToString:status])
+    {
+        self.informLabel.text = @"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию.";
         self.informLabel.hidden = NO;
     }
     [self.spinner stopAnimating];
