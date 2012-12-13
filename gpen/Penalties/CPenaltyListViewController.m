@@ -131,6 +131,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
