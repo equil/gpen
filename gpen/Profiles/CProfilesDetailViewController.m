@@ -222,10 +222,8 @@
     }
 }
 
-- (void) viewDidLoad
+- (void)checkAndSetProfileName
 {
-    [super viewDidLoad];
-    
     if (self.profile.profileName && self.profile.profileName.length > 0)
     {
         self.navigationItem.title = self.profile.profileName;
@@ -234,6 +232,13 @@
     {
         self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]];
     };
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self checkAndSetProfileName];
     
     editingMode = NO;
     
@@ -479,13 +484,18 @@
     [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
     [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
+    _profile = [dao profileForUid:_profile.uid];
+    
+    [self checkAndSetProfileName];
+    
     [self disableAllFields];
     
     self.backupInfo = nil;
     
     self.navigationItem.rightBarButtonItem.enabled = YES;
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.buttonDelete.hidden = YES;
     self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
     
