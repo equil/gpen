@@ -173,29 +173,33 @@
                                                     name:@"LoadingEnd"
                                                   object:nil];
     
-    NSString *status = [aNotification.userInfo objectForKey:@"status"];
-    if ([@"GOOD" isEqualToString:status])
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (delegate.lastSignProfile.penalties.count > 0)
     {
         self.informLabel.hidden = YES;
     }
-    else if ([@"UNAVAILABLE" isEqualToString:status])
+    else
     {
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        if ([delegate.lastSignProfile.lastUpdate isEqualToDate:[NSDate distantPast]])
+        self.informLabel.hidden = NO;
+        
+        if ([delegate.lastSignProfile.checked boolValue])
         {
-            self.informLabel.hidden = NO;
-            self.informLabel.text = @"Чтобы посмотреть свои штрафы, нужно подключиться к Интернету";
+            self.informLabel.text = @"Вы еще не получили ни единого штрафа от ГИБДД. Так держать! Если это когда-нибудь случится, приложение покажет всю информацию о нарушении и поможет оплатить штраф.";
         }
         else
         {
-            self.informLabel.hidden = YES;
+            NSString *status = [aNotification.userInfo objectForKey:@"status"];
+            if ([@"UNAVAILABLE" isEqualToString:status])
+            {
+                self.informLabel.text = @"Чтобы посмотреть свои штрафы, нужно подключиться к Интернету";
+            }
+            else
+            {
+                self.informLabel.text = @"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию.";
+            }
         }
     }
-    else if ([@"NOTFOUND" isEqualToString:status])
-    {
-        self.informLabel.text = @"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию.";
-        self.informLabel.hidden = NO;
-    }
+    
     [self.spinner stopAnimating];
 }
 
