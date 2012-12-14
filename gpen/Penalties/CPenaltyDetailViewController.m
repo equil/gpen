@@ -67,6 +67,19 @@
     [self.tableView reloadData];
     
     [self checkInputData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleGoToRoot) name:@"GoToPenaltiesRoot"
+                                               object:nil];
+}
+
+- (void)handleGoToRoot
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"GoToPenaltiesRoot"
+                                                  object:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (NSString *) spacedMoneyString: (NSString *) moneyString

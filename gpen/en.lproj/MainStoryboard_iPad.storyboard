@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="6vC-BE-4pU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="JGT-el-ZXs">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Профили-->
-        <scene sceneID="R0t-vF-bgw">
+        <!--Rotate Split View Controller - Штрафы-->
+        <scene sceneID="aor-Yo-4Jk">
             <objects>
-                <tableViewController id="Sib-hN-km3" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q8s-Jv-RVN">
+                <splitViewController id="azF-Gl-eRQ" customClass="CRotateSplitViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Штрафы" image="penalties-tab.png" id="ELd-bU-I8F"/>
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="yew-jh-nco" kind="relationship" relationship="detailViewController" id="B7W-Jz-clG"/>
+                        <segue destination="nUk-5o-2i9" kind="relationship" relationship="masterViewController" id="eSx-SB-Lia"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UTQ-1c-fBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="-1549"/>
+        </scene>
+        <!--Rotate Navigation Controller-->
+        <scene sceneID="060-Ds-9bU">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="nUk-5o-2i9" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ONh-vH-9Pp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ned-9T-F1O" kind="relationship" relationship="rootViewController" id="GY0-Mm-Nrw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q3C-Iq-4Jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4026" y="-2186"/>
+        </scene>
+        <!--Penalty List View Controller-->
+        <scene sceneID="Aqi-ni-S2s">
+            <objects>
+                <viewController id="ned-9T-F1O" customClass="CPenaltyListViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y7p-jQ-VpK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e6w-QR-wHE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iE1-50-Drj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4479" y="-2186"/>
+        </scene>
+        <!--Penalty Detail View Controller - Root View Controller-->
+        <scene sceneID="aJe-Xo-1Ea">
+            <objects>
+                <tableViewController id="j4g-J6-L9N" customClass="CPenaltyDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y6o-oV-qbZ">
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" id="FMF-Hw-P8p">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XxV-Ae-vEn">
                                 <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -24,58 +69,107 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Профили" id="tXV-5V-MpE"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="xZD-j5-lnl"/>
+                    <connections>
+                        <segue destination="UAe-9G-PcO" kind="push" identifier="PenaltyDetailToTicket" id="1tt-GJ-Zzu"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="47l-fL-lmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQJ-Jm-ueO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4044" y="712"/>
+            <point key="canvasLocation" x="5035" y="-1134"/>
         </scene>
-        <!--Navigation Controller - Профили-->
-        <scene sceneID="P7n-r4-l6z">
+        <!--Penalty Ticket View Controller-->
+        <scene sceneID="Bio-Ki-i5p">
             <objects>
-                <navigationController definesPresentationContext="YES" id="BOk-HU-skp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Профили" image="profiles-tab.png" id="uRX-KD-wRg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mqx-PA-4Nq">
+                <tableViewController id="UAe-9G-PcO" customClass="CPenaltyTicketViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qSE-15-wPj">
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3av-cz-DhF">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UAe-9G-PcO" id="NIk-rv-0i0"/>
+                            <outlet property="delegate" destination="UAe-9G-PcO" id="z7b-YE-GPX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="3kw-RA-M8a">
+                        <barButtonItem key="leftBarButtonItem" id="EaL-Ba-zIM">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bnf-ke-eu8">
+                                <rect key="frame" x="7" y="5" width="170" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" image="back-for-nav.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="czl-Ck-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5971" y="-1134"/>
+        </scene>
+        <!--Rotate Navigation Controller-->
+        <scene sceneID="71A-Us-OVp">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="yew-jh-nco" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yuE-Pc-dFf">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Sib-hN-km3" kind="relationship" relationship="rootViewController" id="VFe-z5-M7W"/>
+                        <segue destination="j4g-J6-L9N" kind="relationship" relationship="rootViewController" id="olt-mI-aSz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2ur-jW-Cgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4c-jT-OIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3042" y="718"/>
+            <point key="canvasLocation" x="4026" y="-1134"/>
         </scene>
-        <!--Navigation Controller - Штрафы-->
-        <scene sceneID="DEK-lx-mnK">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="qnS-IF-1OK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Штрафы" image="penalties-tab.png" id="lrW-XS-P0x"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ptu-v2-nOY">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="TKv-Rm-NQl" kind="relationship" relationship="rootViewController" id="Mcn-ys-UzL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AHI-ql-Wis" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3042" y="-415"/>
-        </scene>
-        <!--View Controller - Информация-->
+        <!--Info View Controller - Информация-->
         <scene sceneID="iPg-x5-pQG">
             <objects>
-                <viewController id="XR7-sM-92E" sceneMemberID="viewController">
+                <viewController id="XR7-sM-92E" customClass="CInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dX-l9-tZu">
-                        <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Информация" image="info-tab.png" id="sNU-i4-9wm"/>
+                    <navigationItem key="navigationItem" id="hF1-kN-SFj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F47-lJ-Qhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3042" y="1858"/>
+            <point key="canvasLocation" x="4090" y="2656"/>
+        </scene>
+        <!--Rotate Navigation Controller - Информация-->
+        <scene sceneID="NrV-4k-dTh">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="ffU-tz-lve" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Информация" image="info-tab.png" id="kgX-08-0KF"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDG-Gv-iJr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XR7-sM-92E" kind="relationship" relationship="rootViewController" id="d4f-nZ-gc6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zIZ-TF-4rY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="2656"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="bWF-9a-2o7">
@@ -90,7 +184,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="white" id="Ovx-om-dYb">
-                                <rect key="frame" x="374" y="492" width="20" height="20"/>
+                                <rect key="frame" x="374" y="645" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
@@ -104,148 +198,43 @@
             </objects>
             <point key="canvasLocation" x="2023" y="-603"/>
         </scene>
+        <!--Rotate Navigation Controller-->
+        <scene sceneID="kxW-Hn-AxK">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="JGT-el-ZXs" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tNJ-zu-giq">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6vC-BE-4pU" kind="relationship" relationship="rootViewController" id="zuM-Mh-JKj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDH-Df-frV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="718"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="3JR-9i-FT4">
             <objects>
                 <viewController storyboardIdentifier="FirstLoginController" id="6vC-BE-4pU" customClass="CLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bU9-z3-hEy">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" id="lBk-DQ-fz6">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="ie0-Ya-dWr"/>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="l5l-RJ-ToB">
-                                <rect key="frame" x="0.0" y="44" width="768" height="960"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" white="0.85020791330000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="UUh-LD-82k">
-                                    <rect key="frame" x="0.0" y="193" width="768" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="iM7-Wg-HkQ">
-                                            <rect key="frame" x="15" y="18" width="738" height="45"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Сохранить и продолжить" backgroundImage="login-button.png">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="disabled" backgroundImage="login-button-disabled.png">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="updateProfile" destination="6vC-BE-4pU" eventType="touchUpInside" id="dLR-fU-NnA"/>
-                                            </connections>
-                                        </button>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="IDK-fG-geH">
-                                            <rect key="frame" x="374" y="30" width="20" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="textFieldCell" id="fcP-73-oMC" customClass="CTextFieldCell">
-                                        <rect key="frame" x="0.0" y="54" width="768" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="1" width="678" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="4bc-8l-r0B">
-                                                    <rect key="frame" x="10" y="7" width="658" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="cellTextField" destination="4bc-8l-r0B" id="sa4-zD-22m"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="textFieldWithLabelCell" id="paq-9y-wuy" customClass="CTextFieldWithLabel">
-                                        <rect key="frame" x="0.0" y="99" width="768" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="0.0" width="678" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="dgB-wg-pkM">
-                                                    <rect key="frame" x="10" y="7" width="400" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Llc-mN-Hpe">
-                                                    <rect key="frame" x="444" y="11" width="222" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="cellLabel" destination="Llc-mN-Hpe" id="IN9-CD-iIt"/>
-                                            <outlet property="cellTextField" destination="dgB-wg-pkM" id="jQJ-E4-VYe"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="disclosureCell" id="Jm3-MV-wfk" customClass="CDisclosureCell">
-                                        <rect key="frame" x="0.0" y="143" width="768" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="0.0" width="658" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l35-yC-Eca">
-                                                    <rect key="frame" x="10" y="11" width="637" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="cellLabel" destination="l35-yC-Eca" id="LeS-bR-H0l"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IfH-fo-7vr"/>
                     <connections>
-                        <outlet property="continueButton" destination="iM7-Wg-HkQ" id="yBf-BV-Yrz"/>
-                        <outlet property="loginTableView" destination="l5l-RJ-ToB" id="nqh-ZU-nPh"/>
-                        <outlet property="navItem" destination="ie0-Ya-dWr" id="Aix-rl-ykO"/>
-                        <outlet property="spinner" destination="IDK-fG-geH" id="47Q-v8-XTS"/>
                         <segue destination="4" kind="modal" identifier="LoginToTabBar" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="Qwf-3f-nLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4K-E2-ZqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097" y="718"/>
+            <point key="canvasLocation" x="1113" y="718"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Rotate Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" id="4" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="4" customClass="CRotateTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -253,104 +242,269 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qnS-IF-1OK" kind="relationship" relationship="viewControllers" id="5jV-jc-D5N"/>
-                        <segue destination="BOk-HU-skp" kind="relationship" relationship="viewControllers" id="ocF-gE-vvw"/>
-                        <segue destination="XR7-sM-92E" kind="relationship" relationship="viewControllers" id="gly-wx-7KD"/>
+                        <segue destination="azF-Gl-eRQ" kind="relationship" relationship="viewControllers" id="ipl-Ek-r0j"/>
+                        <segue destination="doi-Ou-heU" kind="relationship" relationship="viewControllers" id="VNY-KA-qoH"/>
+                        <segue destination="ffU-tz-lve" kind="relationship" relationship="viewControllers" id="Oeb-JU-Tqm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2023" y="718"/>
         </scene>
-        <!--Penalty List View Controller - Штрафы-->
-        <scene sceneID="fUo-vl-MV4">
+        <!--Profiles List View Controller - Root View Controller-->
+        <scene sceneID="Uhg-uT-xpx">
             <objects>
-                <tableViewController id="TKv-Rm-NQl" customClass="CPenaltyListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="FbV-Uf-1HP">
-                        <rect key="frame" x="0.0" y="64" width="768" height="911"/>
+                <tableViewController id="UWS-B9-lnb" customClass="CProfilesListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3dE-pV-qdK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="separatorColor" white="0.85020791330000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="penaltyCell" id="1x0-S6-ubf" customClass="CPenaltyCell">
-                                <rect key="frame" x="0.0" y="54" width="768" height="45"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="SKB-by-feF">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="45" y="1" width="658" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="sEg-go-jUR">
-                                            <rect key="frame" x="13" y="14" width="15" height="15"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="28k-xm-9My">
-                                            <rect key="frame" x="43" y="11" width="337" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sOr-9M-YWD">
-                                            <rect key="frame" x="437" y="11" width="199" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <outlet property="penaltyDate" destination="28k-xm-9My" id="6S4-s2-JFg"/>
-                                    <outlet property="penaltyImage" destination="sEg-go-jUR" id="Qet-Gb-4U9"/>
-                                    <outlet property="penaltyPrice" destination="sOr-9M-YWD" id="XYu-bm-PYl"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Штрафы" id="F7o-FF-cU7"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Rvp-DB-k0F">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iB9-vR-Jup">
+                            <color key="tintColor" red="0.55294117647058827" green="0.76470588235294112" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <segue destination="0c3-xb-fle" kind="modal" identifier="ProfilesListToAdd" modalTransitionStyle="coverVertical" id="g5H-gg-m6D"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2fp-dN-XwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GTj-74-NyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3997" y="-430"/>
+            <point key="canvasLocation" x="4474" y="168"/>
+        </scene>
+        <!--Profiles Add View Controller - Root View Controller-->
+        <scene sceneID="I9e-G5-LG0">
+            <objects>
+                <tableViewController id="DSC-Od-DFf" customClass="CProfilesAddViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XYQ-Hm-qtg">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IUZ-NO-l6B">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="9O9-Yf-kzc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OKe-50-k6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5971" y="82"/>
+        </scene>
+        <!--Rotate Navigation Controller-->
+        <scene sceneID="reZ-c7-GJX">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="0c3-xb-fle" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dmQ-ct-9bX">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DSC-Od-DFf" kind="relationship" relationship="rootViewController" id="kf8-SM-nDC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XeX-cR-sbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5035" y="82"/>
+        </scene>
+        <!--Rotate Navigation Controller-->
+        <scene sceneID="uae-lq-oUu">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="bxK-au-qLT" customClass="CRotateNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nqf-zj-lYz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UWS-B9-lnb" kind="relationship" relationship="rootViewController" id="vEe-M5-yGc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wbj-e7-0wO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4026" y="168"/>
+        </scene>
+        <!--Rotate Split View Controller - Профили-->
+        <scene sceneID="GSh-nt-CuA">
+            <objects>
+                <splitViewController id="doi-Ou-heU" customClass="CRotateSplitViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Профили" image="profiles-tab.png" id="3zf-At-3T9"/>
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="RAn-2x-SF1" kind="relationship" relationship="detailViewController" id="7TB-EX-dHp"/>
+                        <segue destination="bxK-au-qLT" kind="relationship" relationship="masterViewController" id="ZgJ-ss-JDI"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KEw-Sv-ZfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="718"/>
+        </scene>
+        <!--Profiles Detail View Controller-->
+        <scene sceneID="WAp-nV-2hc">
+            <objects>
+                <tableViewController id="RAn-2x-SF1" customClass="CProfilesDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b6B-j3-dp6">
+                        <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jvu-s1-nvh">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RAn-2x-SF1" id="ZVA-aR-BQl"/>
+                            <outlet property="delegate" destination="RAn-2x-SF1" id="2Ex-nP-KlM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsC-cQ-gkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4026" y="1194"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Default-Portrait.png" width="768" height="1024"/>
+        <image name="Default-Portrait.png" width="768" height="1004"/>
+        <image name="back-for-nav.png" width="67" height="30"/>
         <image name="info-tab.png" width="18" height="18"/>
-        <image name="login-button-disabled.png" width="290" height="45"/>
-        <image name="login-button.png" width="290" height="45"/>
         <image name="penalties-tab.png" width="22" height="23"/>
         <image name="profiles-tab.png" width="18" height="21"/>
     </resources>
     <classes>
-        <class className="CDisclosureCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisclosureCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
-            </relationships>
+        <class className="CBlackButton" superclassName="CGreenButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CBlackButton.h"/>
         </class>
-        <class className="CLoginViewController" superclassName="UIViewController">
+        <class className="CGreenButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CGreenButton.h"/>
+        </class>
+        <class className="CInfoViewController" superclassName="CRotateViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CInfoViewController.h"/>
+        </class>
+        <class className="CLoginViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CLoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="checkInputData"/>
                 <relationship kind="action" name="insertNewProfile"/>
-                <relationship kind="outlet" name="continueButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clientTFBirthday" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFLicense" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFPatronymic" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFSurname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="continueButton" candidateClass="CGreenButton"/>
+                <relationship kind="outlet" name="labelEmail" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loginTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="navItem" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
         </class>
-        <class className="CPenaltyCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyCell.h"/>
+        <class className="CPenaltyDetailViewController" superclassName="CRotateTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyDetailViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="penaltyDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="penaltyImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="penaltyPrice" candidateClass="UILabel"/>
+                <relationship kind="action" name="checkInputData"/>
+                <relationship kind="action" name="sendInfoToEmail"/>
+                <relationship kind="outlet" name="buttonSendTicket" candidateClass="CGreenButton"/>
+                <relationship kind="outlet" name="buttonShowTicket" candidateClass="CGreenButton"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="CTextField"/>
+                <relationship kind="outlet" name="indicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CPenaltyListViewController" superclassName="UITableViewController">
+        <class className="CPenaltyListViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="informLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CPenaltyTicketViewController" superclassName="CRotateTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyTicketViewController.h"/>
+        </class>
+        <class className="CProfilesAddViewController" superclassName="CRotateTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesAddViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelAction"/>
+                <relationship kind="action" name="checkInputData"/>
+                <relationship kind="action" name="saveAction"/>
+                <relationship kind="outlet" name="clientTFBirthday" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFLicense" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFNickname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFPatronymic" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFSurname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="labelEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loginTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CProfilesDetailViewController" superclassName="CRotateTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkInputData"/>
+                <relationship kind="action" name="deleteProfile"/>
+                <relationship kind="action" name="editAction"/>
+                <relationship kind="action" name="goBack"/>
+                <relationship kind="action" name="makeMain"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonDelete" candidateClass="CBlackButton"/>
+                <relationship kind="outlet" name="buttonMakeMain" candidateClass="CGreenButton"/>
+                <relationship kind="outlet" name="clientTFBirthday" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFLicense" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFNickname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFPatronymic" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="clientTFSurname" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="labelEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="CProfilesListViewController" superclassName="CRotateTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfilesListViewController.h"/>
+        </class>
+        <class className="CRotateNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateNavigationController.h"/>
+        </class>
+        <class className="CRotateSplitViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateSplitViewController.h"/>
+        </class>
+        <class className="CRotateTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateTabBarController.h"/>
+        </class>
+        <class className="CRotateTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack"/>
+            </relationships>
+        </class>
+        <class className="CRotateViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CRotateViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack"/>
+            </relationships>
         </class>
         <class className="CSplashViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CSplashViewController.h"/>
@@ -358,17 +512,8 @@
                 <relationship kind="outlet" name="splash" candidateClass="UIImageView"/>
             </relationships>
         </class>
-        <class className="CTextFieldCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextFieldCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="CTextFieldWithLabel" superclassName="CTextFieldCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextFieldWithLabel.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
-            </relationships>
+        <class className="CTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextField.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

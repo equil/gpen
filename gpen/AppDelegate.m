@@ -18,8 +18,20 @@
 @synthesize updater = _updater;
 @synthesize lastSignProfile = _lastSignProfile;
 
-- (void)customizeTabBar {
-    UIImage *tabBarBackground = [UIImage imageNamed:@"tab-bar-back.png"];
+- (void)customizeTabBar
+{
+    
+    UIImage *tabBarBackground;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        tabBarBackground = [UIImage imageNamed:@"tab-bar-back-ipad.png"];
+    }
+    else
+    {
+        tabBarBackground = [UIImage imageNamed:@"tab-bar-back.png"];
+    }
+
     [[UITabBar appearance] setBackgroundImage:tabBarBackground];
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"select-tab.png"]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
@@ -28,12 +40,19 @@
                                              forState:UIControlStateNormal];
 }
 
-- (void)customizeNavigationBar {
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
+- (void)customizeNavigationBar
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back-ipad.png"]                 forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
+    }
+    
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, nil]];
-    //[[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:87.0/255.0 green:161.0/255.0 blue:214.0/255.0 alpha:1.0]];
-    
 }
 
 - (void)customizeInterface
@@ -75,7 +94,10 @@
 {
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     _lastSignProfile = [dao lastSignProfile];
-    NSLog(@"%@", _lastSignProfile.name);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GoToPenaltiesRoot" object:nil];
+    
+    NSLog(@"%@ %@", _lastSignProfile.name, _lastSignProfile.lastname);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
