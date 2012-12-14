@@ -67,19 +67,22 @@
     [self.tableView reloadData];
     
     [self checkInputData];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleGoToRoot) name:@"GoToPenaltiesRoot"
-                                               object:nil];
 }
 
 - (void)handleGoToRoot
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"GoToPenaltiesRoot"
-                                                  object:nil];
-    
     [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (![_penalty.profile isEqual:delegate.lastSignProfile])
+    {
+        [self handleGoToRoot];
+    }
 }
 
 - (NSString *) spacedMoneyString: (NSString *) moneyString

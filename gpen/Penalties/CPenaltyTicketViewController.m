@@ -10,6 +10,7 @@
 #import "Penalty.h"
 #import "Recipient.h"
 #import "CPenaltyDetailCell.h"
+#import "AppDelegate.h"
 
 @interface CPenaltyTicketViewController ()
 {
@@ -42,19 +43,22 @@
                        nil];
 
     [self.tableView reloadData];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleGoToRoot) name:@"GoToPenaltiesRoot"
-                                               object:nil];
 }
 
 - (void)handleGoToRoot
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"GoToPenaltiesRoot"
-                                                  object:nil];
-    
     [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (![_penalty.profile isEqual:delegate.lastSignProfile])
+    {
+        [self handleGoToRoot];
+    }
 }
 
 - (NSString *) spacedProtocolString: (NSString *) protocolString

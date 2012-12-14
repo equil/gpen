@@ -95,8 +95,6 @@
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     _lastSignProfile = [dao lastSignProfile];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"GoToPenaltiesRoot" object:nil];
-    
     NSLog(@"%@ %@", _lastSignProfile.name, _lastSignProfile.lastname);
 }
 
