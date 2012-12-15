@@ -27,6 +27,7 @@
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="license" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newPenaltiesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="patronymic" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -47,7 +48,7 @@
     </entity>
     <elements>
         <element name="Penalty" positionX="160" positionY="192" width="128" height="285"/>
-        <element name="Profile" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="Profile" positionX="160" positionY="192" width="128" height="240"/>
         <element name="Recipient" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

@@ -16,5 +16,6 @@
 - (Profile *)profileForUid:(NSNumber *)uid;
 - (Profile *)lastSignProfile;
 - (NSNumber *)uidForNewProfile;
+- (NSArray *)profilesForLicense:(NSString *)license;
 
 @end

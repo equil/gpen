@@ -209,6 +209,46 @@
     }];
 }
 
+- (void)setNewPenaltiesCountForLicense:(NSString *)license count:(unsigned long)count
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewPenaltiesUpdateStart" object:nil];
+    });
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        CDao *dao = [CDao daoWithContext:context];
+        NSArray *profiles = [dao profilesForLicense:license];
+        
+        for (Profile *p in profiles) {
+            p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
+        }
+    } completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NewPenaltiesUpdateEnd" object:nil];
+        });
+    }];
+}
+
+- (void)setNewPenaltiesCountForProfile:(Profile *)profile count:(unsigned long)count
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ResetPenaltiesUpdateStart" object:nil];
+    });
+    
+    unsigned long uid = [profile.uid unsignedLongValue];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        CDao *dao = [CDao daoWithContext:context];
+        Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
+        prof.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
+    } completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ResetPenaltiesUpdateEnd" object:nil];
+        });
+    }];
+}
+
 - (void)deleteProfile:(Profile *)profile
 {
     dispatch_async(dispatch_get_main_queue(), ^{

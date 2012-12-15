@@ -126,4 +126,25 @@
     return [NSNumber numberWithInt:1];
 }
 
+- (NSArray *)profilesForLicense:(NSString *)license
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+	[request setEntity:[NSEntityDescription entityForName:@"Profile"
+                                   inManagedObjectContext:self.dataContext]];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"license =[c] %@", license]];
+    
+	NSError *error = nil;
+	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];
+    
+	if (result == nil)
+	{
+		NSLog(@"Method <%@> failed: %@", NSStringFromSelector(_cmd), error);
+        result = [NSArray array];
+	}
+    
+	return result;
+}
+
 @end

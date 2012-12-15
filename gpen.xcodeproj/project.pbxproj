@@ -36,7 +36,6 @@
 		1EA26A641673270500F5CE7D /* edit-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */; };
 		1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5D1673270500F5CE7D /* save-for-nav.png */; };
 		1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */; };
-		1EA26A8316771D7300F5CE7D /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA26A8216771D7300F5CE7D /* Profile.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
 		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
@@ -75,6 +74,7 @@
 		1EF094F4167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */; };
 		1EF094F8167B4B560014B2B7 /* tab-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */; };
 		1EF094F9167B4B560014B2B7 /* tab-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F7167B4B560014B2B7 /* tab-bar-back-ipad@2x.png */; };
+		1EF09505167C77F50014B2B7 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF09504167C77F50014B2B7 /* Profile.m */; };
 		A0043A10166A12FC00530F81 /* CPenaltyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */; };
 		A0043A17166A1F7300530F81 /* penalty_not_paid.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A11166A1F7300530F81 /* penalty_not_paid.png */; };
 		A0043A18166A1F7300530F81 /* penalty_not_paid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0043A12166A1F7300530F81 /* penalty_not_paid@2x.png */; };
@@ -151,8 +151,6 @@
 		1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-for-nav@2x.png"; path = "Resources/edit-for-nav@2x.png"; sourceTree = "<group>"; };
 		1EA26A5D1673270500F5CE7D /* save-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav.png"; path = "Resources/save-for-nav.png"; sourceTree = "<group>"; };
 		1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav@2x.png"; path = "Resources/save-for-nav@2x.png"; sourceTree = "<group>"; };
-		1EA26A8116771D7300F5CE7D /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
-		1EA26A8216771D7300F5CE7D /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EAC828F166B3E3B00D6ED80 /* CPenaltyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyDetailViewController.h; sourceTree = "<group>"; };
@@ -214,6 +212,8 @@
 		1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad@2x.png"; path = "Resources/navigation-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
 		1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad.png"; path = "Resources/tab-bar-back-ipad.png"; sourceTree = "<group>"; };
 		1EF094F7167B4B560014B2B7 /* tab-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad@2x.png"; path = "Resources/tab-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
+		1EF09503167C77F50014B2B7 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
+		1EF09504167C77F50014B2B7 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		A0043A0E166A12FC00530F81 /* CPenaltyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyListViewController.h; sourceTree = "<group>"; };
 		A0043A0F166A12FC00530F81 /* CPenaltyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyListViewController.m; sourceTree = "<group>"; };
 		A0043A11166A1F7300530F81 /* penalty_not_paid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = penalty_not_paid.png; path = Resources/penalty_not_paid.png; sourceTree = "<group>"; };
@@ -473,8 +473,8 @@
 				1EB1E48716669485006CEC41 /* Recipient.m */,
 				1EB1E48016669484006CEC41 /* Penalty.h */,
 				1EB1E48116669484006CEC41 /* Penalty.m */,
-				1EA26A8116771D7300F5CE7D /* Profile.h */,
-				1EA26A8216771D7300F5CE7D /* Profile.m */,
+				1EF09503167C77F50014B2B7 /* Profile.h */,
+				1EF09504167C77F50014B2B7 /* Profile.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -776,8 +776,8 @@
 				A02AC8601670E7A700F02A41 /* CTextField.m in Sources */,
 				A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */,
 				A0C8BB5816764AA500100317 /* CBlackButton.m in Sources */,
-				1EA26A8316771D7300F5CE7D /* Profile.m in Sources */,
 				1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */,
+				1EF09505167C77F50014B2B7 /* Profile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
