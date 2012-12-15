@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "CRotateViewController.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface CPenaltyListViewController : CRotateViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CPenaltyListViewController : CRotateViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate>
+{
+    BOOL reloading;
+}
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UILabel *informLabel;
+@property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
 
 @end

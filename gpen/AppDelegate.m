@@ -17,6 +17,7 @@
 @synthesize dispatcher = _dispatcher;
 @synthesize updater = _updater;
 @synthesize lastSignProfile = _lastSignProfile;
+@synthesize updated = _updated;
 
 - (void)customizeTabBar
 {
@@ -91,6 +92,8 @@
     [_dataAccessManager.persistentStoreCoordinator class];
     
     [self actualizeMainProfile];
+    
+    _updated = NO;
     
     if (_lastSignProfile != nil)
     {

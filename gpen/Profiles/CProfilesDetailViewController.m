@@ -488,6 +488,8 @@
     CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
     _profile = [dao profileForUid:_profile.uid];
     
+    delegate.updated = NO;
+    
     [self checkAndSetProfileName];
     
     [self disableAllFields];
@@ -559,6 +561,9 @@
 - (void) handleFinishMakeMain
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LastSignUpdateEnd" object:nil];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.updated = NO;
     
     [self goBack];
 }

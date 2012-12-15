@@ -25,6 +25,7 @@
 @synthesize tableView = _tableView;
 @synthesize spinner = _spinner;
 @synthesize informLabel = _informLabel;
+@synthesize refreshHeaderView = _refreshHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -132,6 +133,17 @@
 {
     [super viewDidLoad];
     self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
+    
+//TODO раскомментить для пулл энд рилиза
+//    if (_refreshHeaderView == nil) {
+//		
+//		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+//		view.delegate = self;
+//		[self.tableView addSubview:view];
+//		_refreshHeaderView = view;
+//	}
+//	
+//	[_refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -157,15 +169,19 @@
 {
     [super viewDidAppear:animated];
     
-    [self.spinner startAnimating];
-    self.informLabel.hidden = YES;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
-                                               object:nil];
-    
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    [delegate.updater syncProfile:delegate.lastSignProfile];
+    
+    if (delegate.updated == NO)
+    {
+        [self.spinner startAnimating];
+        self.informLabel.hidden = YES;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
+                                                   object:nil];
+        
+        [delegate.updater syncProfile:delegate.lastSignProfile];
+    }
 }
 
 - (void) handleFinishLoading: (NSNotification *) aNotification
@@ -177,10 +193,13 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (delegate.lastSignProfile.penalties.count > 0)
     {
+        delegate.updated = YES;
         self.informLabel.hidden = YES;
+        self.tableView.hidden = NO;
     }
     else
     {
+        self.tableView.hidden = YES;
         self.informLabel.hidden = NO;
         
         if ([delegate.lastSignProfile.checked boolValue])
@@ -262,11 +281,67 @@
 {
     return ([[self.fetchedResultsController sections] count] > 0) ? 28.0 : 0;
 }
-/*
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (void)doneLoadingTableViewData
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"RefreshEnd"
+                                                  object:nil];
+    
+    reloading = NO;
+    
+    [self fetchData];
+    
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
-*/
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(doneLoadingTableViewData) name:@"RefreshEnd"
+                                               object:nil];
+    reloading = YES;
+    
+    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+        [delegate.updater syncProfile:delegate.lastSignProfile];
+    });
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+	
+	return reloading;
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    if (delegate.lastSignProfile.checked = NO)
+    {
+        return nil;
+    }
+    else
+    {
+        return delegate.lastSignProfile.lastUpdate;
+    }
+}
 
 @end

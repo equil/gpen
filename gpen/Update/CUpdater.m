@@ -168,6 +168,7 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"GOOD" forKey:@"status"]];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
                 });
             }];
         }
@@ -180,6 +181,7 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
         });
         
         requestStatus = UNAVAILABLE;
@@ -363,6 +365,7 @@
                     [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"NOTFOUND" forKey:@"status"]];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
                 });
             }
             break;
@@ -374,6 +377,7 @@
                     [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
                 });
             }
             break;

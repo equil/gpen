@@ -19,6 +19,7 @@
 @property (nonatomic, readonly) CCentralDispatcher *dispatcher;
 @property (nonatomic, readonly) CUpdater *updater;
 @property (nonatomic, strong) Profile *lastSignProfile;
+@property (nonatomic, assign) BOOL updated;
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;
