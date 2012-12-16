@@ -49,11 +49,10 @@
     }
     else
     {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"]                 forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"] forBarMetrics:UIBarMetricsDefault];
     }
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, [UIColor whiteColor], UITextAttributeTextColor, nil]];
 }
 
 - (void)customizeInterface

@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "CRotateViewController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "Penalty.h"
+#import "CPenaltySelectionDelegate.h"
 
 @interface CPenaltyListViewController : CRotateViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate>
 {
@@ -20,5 +22,6 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UILabel *informLabel;
 @property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
+@property (nonatomic, weak) id<CPenaltySelectionDelegate> selectionDelegate;
 
 @end

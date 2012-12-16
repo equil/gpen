@@ -29,4 +29,11 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+#pragma mark - Split view controller delegate
+
+- (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
+
 @end

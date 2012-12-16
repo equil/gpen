@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRotateNavigationController : UINavigationController
+@interface CRotateNavigationController : UINavigationController <UISplitViewControllerDelegate>
 
 @end

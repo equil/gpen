@@ -29,4 +29,11 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.delegate = [self.viewControllers lastObject];
+}
+
 @end

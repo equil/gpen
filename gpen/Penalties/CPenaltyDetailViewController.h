@@ -11,8 +11,9 @@
 #import "CRotateTableViewController.h"
 #import "CGreenButton.h"
 #import "CTextField.h"
+#import "CPenaltySelectionDelegate.h"
 
-@interface CPenaltyDetailViewController : CRotateTableViewController <UITextFieldDelegate>
+@interface CPenaltyDetailViewController : CRotateTableViewController <UITextFieldDelegate, CPenaltySelectionDelegate>
 
 @property (nonatomic, strong) Penalty *penalty;
 
@@ -24,5 +25,6 @@
 
 - (IBAction) checkInputData;
 - (IBAction)sendInfoToEmail;
+- (void)penaltySelectionChanged:(Penalty *)penalty;
 
 @end

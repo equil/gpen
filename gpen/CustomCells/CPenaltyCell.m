@@ -31,16 +31,19 @@
 
 - (void) configureCellWithPenalty: (Penalty *) penalty
 {
-    self.penaltyDate.font = [UIFont fontWithName:@"PTSans-Regular" size:15.0];
-    self.penaltyPrice.font = [UIFont fontWithName:@"PTSans-Bold" size:15.0];
-    
-    self.penaltyImage.image = [UIImage imageNamed:[self imageNameForStatus:penalty.status]];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yy      hh:mm"];
-    self.penaltyDate.text = [dateFormatter stringFromDate:penalty.date];
-    
-    self.penaltyPrice.text = [self spacedMoneyString:[NSString stringWithFormat:@"%@ р.", penalty.price]];
+    if (penalty)
+    {
+        self.penaltyDate.font = [UIFont fontWithName:@"PTSans-Regular" size:15.0];
+        self.penaltyPrice.font = [UIFont fontWithName:@"PTSans-Bold" size:15.0];
+        
+        self.penaltyImage.image = [UIImage imageNamed:[self imageNameForStatus:penalty.status]];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM.yy      hh:mm"];
+        self.penaltyDate.text = [dateFormatter stringFromDate:penalty.date];
+        
+        self.penaltyPrice.text = [self spacedMoneyString:[NSString stringWithFormat:@"%@ р.", penalty.price]];
+    }
 }
 
 - (NSString *) imageNameForStatus: (NSString *) status

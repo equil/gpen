@@ -19,6 +19,7 @@
 @implementation CPenaltyListViewController
 {
     @private
+    BOOL _needChangeSelection;
     NSFetchedResultsController *_fetchedResultsController;
 }
 
@@ -26,6 +27,7 @@
 @synthesize spinner = _spinner;
 @synthesize informLabel = _informLabel;
 @synthesize refreshHeaderView = _refreshHeaderView;
+@synthesize selectionDelegate = _selectionDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +38,8 @@
     return self;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     [super prepareForSegue:segue sender:sender];
     
     if ([segue.identifier isEqualToString:@"PenaltyListToDetail"]) {
@@ -132,6 +135,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _needChangeSelection = YES;
+    
     self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
     
 //TODO раскомментить для пулл энд рилиза
@@ -168,6 +174,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (_needChangeSelection)
+    {
+        if ([self.fetchedResultsController.fetchedObjects count] > 0)
+        {
+            [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+        }
+        _needChangeSelection = NO;
+    }
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     
@@ -280,6 +295,11 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return ([[self.fetchedResultsController sections] count] > 0) ? 28.0 : 0;
+}
+
+-(void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (void)doneLoadingTableViewData

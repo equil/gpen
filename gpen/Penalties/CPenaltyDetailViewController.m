@@ -13,6 +13,7 @@
 #import "Penalty.h"
 #import "CPenaltyDetailBoldWithImageCell.h"
 #import "CPenaltyDetailMainCell.h"
+#import "CPenaltyListViewController.h"
 
 @interface CPenaltyDetailViewController ()
 @property (nonatomic, copy) NSString *email;
@@ -39,34 +40,54 @@
     }
 }
 
-- (void) viewDidLoad
+- (void)penaltySelectionChanged:(Penalty *)penalty
 {
-    [super viewDidLoad];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    [self loadInfoFromPenalty:penalty];
+}
+
+- (void) loadInfoFromPenalty: (Penalty *) penalty
+{
+    self.penalty = penalty;
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"hh:mm"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    self.dataSource = [NSArray arrayWithObjects:
-                       [NSArray arrayWithObjects:@"Штраф:", [NSString stringWithFormat:@"%@ р.", [self spacedMoneyString:[NSString stringWithFormat:@"%@", self.penalty.price]]], nil],
-                       [NSArray arrayWithObjects:@"Протокол:", [self spacedProtocolString:self.penalty.reportId], nil],
-                       [NSArray arrayWithObjects:@"Статья КоАП:", self.penalty.issueKOAP, nil],
-                       [NSArray arrayWithObjects:@"Время:", [timeFormatter stringFromDate:self.penalty.date], nil],
-                       [NSArray arrayWithObjects:@"Дата:", [dateFormatter stringFromDate:self.penalty.date], nil],
-                       [NSArray arrayWithObjects:@"Место:", [NSString stringWithFormat:@"%@, %@ км", self.penalty.roadName, self.penalty.roadPosition], nil],
-                       [NSArray arrayWithObjects:@"Водительское удостоверение:", [NSString stringWithFormat:@"№ %@", [self spacedLicenseString:self.penalty.fixedLicenseId]], nil],
-                       [NSArray arrayWithObjects:@"Подразделение ГИБДД, выявившее нарушение:", self.penalty.catcher, nil],
-                       [NSString stringWithFormat:@"%@, %@ км/ч", self.penalty.roadName, self.penalty.fixedSpeed],
-                       nil];
+    
+    if (self.penalty)
+    {
+        self.dataSource = [NSArray arrayWithObjects:
+                           [NSArray arrayWithObjects:@"Штраф:", [NSString stringWithFormat:@"%@ р.", [self spacedMoneyString:[NSString stringWithFormat:@"%@", self.penalty.price]]], nil],
+                           [NSArray arrayWithObjects:@"Протокол:", [self spacedProtocolString:self.penalty.reportId], nil],
+                           [NSArray arrayWithObjects:@"Статья КоАП:", self.penalty.issueKOAP, nil],
+                           [NSArray arrayWithObjects:@"Время:", [timeFormatter stringFromDate:self.penalty.date], nil],
+                           [NSArray arrayWithObjects:@"Дата:", [dateFormatter stringFromDate:self.penalty.date], nil],
+                           [NSArray arrayWithObjects:@"Место:", [NSString stringWithFormat:@"%@, %@ км", self.penalty.roadName, self.penalty.roadPosition], nil],
+                           [NSArray arrayWithObjects:@"Водительское удостоверение:", [NSString stringWithFormat:@"№ %@", [self spacedLicenseString:self.penalty.fixedLicenseId]], nil],
+                           [NSArray arrayWithObjects:@"Подразделение ГИБДД, выявившее нарушение:", self.penalty.catcher, nil],
+                           [NSString stringWithFormat:@"%@, %@ км/ч", self.penalty.roadName, self.penalty.fixedSpeed],
+                           nil];
+    }
+    
+    [self.tableView reloadData];
+    
+    [self checkInputData];
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+	((CPenaltyListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
     
     self.infoLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.emailTextField.text = delegate.lastSignProfile.email;
     
-    [self.tableView reloadData];
-    
-    [self checkInputData];
+    [self loadInfoFromPenalty:self.penalty];
 }
 
 - (void)handleGoToRoot
@@ -412,7 +433,8 @@
     [self.tableView reloadData];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *penaltyCellId = @"penaltyDetail";
     static NSString *penaltyBoldCellId = @"penaltyBoldDetail";
     static NSString *penaltyMainCellId = @"penaltyDetailMain";
@@ -469,7 +491,7 @@
             return cell;
         }
     }
-    return nil;
+    return [[UITableViewCell alloc] init];
 }
 
 - (NSString *) imageNameForStatus: (NSString *) status

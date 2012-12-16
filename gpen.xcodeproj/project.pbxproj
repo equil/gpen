@@ -108,6 +108,7 @@
 		A02AC85C166FC8D200F02A41 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85A166FC8D200F02A41 /* flag.png */; };
 		A02AC85D166FC8D200F02A41 /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85B166FC8D200F02A41 /* flag@2x.png */; };
 		A02AC8601670E7A700F02A41 /* CTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A02AC85F1670E7A700F02A41 /* CTextField.m */; };
+		A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A098506E167E099100221140 /* CPenaltyDetailViewControllerPad.m */; };
 		A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */; };
 		A0C8BB5416764A7300100317 /* button-black.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C8BB5216764A7300100317 /* button-black.png */; };
 		A0C8BB5516764A7300100317 /* button-black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A0C8BB5316764A7300100317 /* button-black@2x.png */; };
@@ -265,6 +266,9 @@
 		A02AC85B166FC8D200F02A41 /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flag@2x.png"; path = "Resources/flag@2x.png"; sourceTree = "<group>"; };
 		A02AC85E1670E7A700F02A41 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
 		A02AC85F1670E7A700F02A41 /* CTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextField.m; sourceTree = "<group>"; };
+		A098506D167E099100221140 /* CPenaltyDetailViewControllerPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyDetailViewControllerPad.h; sourceTree = "<group>"; };
+		A098506E167E099100221140 /* CPenaltyDetailViewControllerPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyDetailViewControllerPad.m; sourceTree = "<group>"; };
+		A0985074167E101E00221140 /* CPenaltySelectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPenaltySelectionDelegate.h; sourceTree = "<group>"; };
 		A0BCEF5D167283BE00285089 /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		A0C8BB5216764A7300100317 /* button-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-black.png"; path = "Resources/button-black.png"; sourceTree = "<group>"; };
@@ -609,6 +613,9 @@
 				1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */,
 				1EAC8292166B40A600D6ED80 /* CPenaltyTicketViewController.h */,
 				1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */,
+				A098506D167E099100221140 /* CPenaltyDetailViewControllerPad.h */,
+				A098506E167E099100221140 /* CPenaltyDetailViewControllerPad.m */,
+				A0985074167E101E00221140 /* CPenaltySelectionDelegate.h */,
 			);
 			path = Penalties;
 			sourceTree = "<group>";
@@ -836,6 +843,7 @@
 				1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */,
 				1EF09505167C77F50014B2B7 /* Profile.m in Sources */,
 				1EF0950D167C88A40014B2B7 /* EGORefreshTableHeaderView.m in Sources */,
+				A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
