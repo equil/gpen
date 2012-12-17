@@ -18,6 +18,7 @@
 @synthesize updater = _updater;
 @synthesize lastSignProfile = _lastSignProfile;
 @synthesize updated = _updated;
+@synthesize deviceToken = _deviceToken;
 
 - (void)customizeTabBar
 {
@@ -70,20 +71,41 @@
     
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    [self updateDeviceToken];
     
     return YES;
 }
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+    _deviceToken = [self convertTokenToDeviceID:deviceToken];
 	NSLog(@"My token is: %@", deviceToken);
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
+    _deviceToken = nil;
 	NSLog(@"Failed to get token, error: %@", error);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    //
+}
+
+- (void)updateDeviceToken {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+}
+
+- (NSString *)convertTokenToDeviceID:(NSData *)token {
+    NSMutableString *dID = [NSMutableString string];
+    unsigned char *ptr = (unsigned char *)[token bytes];
+    
+    for (NSInteger i=0; i<32; ++i) {
+        [dID appendString:[NSString stringWithFormat:@"%02x", ptr[i]]];
+    }
+    
+    return dID;
 }
 
 - (void)initializeApplication {

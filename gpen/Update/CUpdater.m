@@ -129,6 +129,8 @@
     
     status requestStatus;
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     
@@ -137,9 +139,10 @@
                         [profile.patronymic uppercaseString],
                         [profile.lastname uppercaseString],
                         [profile.license uppercaseString],
-                        [df stringFromDate:profile.birthday], nil];
+                        [df stringFromDate:profile.birthday],
+                        delegate.deviceToken, nil];
 
-    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"deviceId", nil];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     

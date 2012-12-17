@@ -20,6 +20,7 @@
 @property (nonatomic, readonly) CUpdater *updater;
 @property (nonatomic, strong) Profile *lastSignProfile;
 @property (nonatomic, assign) BOOL updated;
+@property (nonatomic, copy) NSString *deviceToken;
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;
