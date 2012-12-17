@@ -15,6 +15,7 @@
 @synthesize regionLabel = _regionLabel;
 @synthesize flag = _flag;
 @synthesize placeLabel = _placeLabel;
+@synthesize containerView = _containerView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

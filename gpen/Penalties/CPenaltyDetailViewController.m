@@ -446,9 +446,13 @@
         {
             CPenaltyDetailMainCell *cell = (CPenaltyDetailMainCell *)[tableView dequeueReusableCellWithIdentifier:penaltyMainCellId];
             NSString *photo = self.penalty.photo;
-            if (photo)
+            if ([photo length] > 0)
             {
                 cell.carPhoto.image = [UIImage imageWithContentsOfFile:photo];
+            }
+            else
+            {
+                cell.containerView.frame = CGRectMake(cell.carPhoto.frame.origin.x, cell.containerView.frame.origin.y, cell.containerView.frame.size.width + (cell.containerView.frame.origin.x - cell.carPhoto.frame.origin.x), cell.containerView.frame.size.height);
             }
             if (self.penalty.carNumber.length > 5)
             {

@@ -10,6 +10,7 @@
 
 @interface CPenaltyDetailMainCell : UITableViewCell
 
+@property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UIImageView *carPhoto;
 @property (nonatomic, strong) IBOutlet UILabel *nomerLabel;
 @property (nonatomic, strong) IBOutlet UILabel *regionLabel;
