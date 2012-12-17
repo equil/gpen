@@ -16,6 +16,7 @@
 #import "CDao+Profile.h"
 #import "CLoginClientEntity.h"
 #import "BSKeyboardControls.h"
+#import "CProfilesListViewController.h"
 
 @interface CProfilesDetailViewController ()<BSKeyboardControlsDelegate>
 @property (nonatomic, weak) UITextField *activeTextField;
@@ -227,30 +228,74 @@
     if (self.profile.profileName && self.profile.profileName.length > 0)
     {
         self.navigationItem.title = self.profile.profileName;
+        _editButton.hidden = NO;
+    }
+    else if ((self.profile.name && self.profile.name.length > 0) && (self.profile.lastname && self.profile.lastname.length > 0))
+    {
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]];
+        _editButton.hidden = NO;
     }
     else
     {
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]];
-    };
+        self.navigationItem.title = @"";
+        _editButton.hidden = YES;
+    }
+}
+
+- (void)profileSelectionChanged:(Profile *)profile
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    [self loadInfoFromProfile:profile];
+}
+
+- (void) loadInfoFromProfile: (Profile *) profile
+{
+    [self cancelEdit];
+    
+    self.profile = profile;
+    
+    [self checkAndSetProfileName];
+    
+    editingMode = NO;
+    
+    self.clientEntity = [[CLoginClientEntity alloc] initWithProfile:self.profile];
+    self.realBirthday = [self.serverFormatter dateFromString:self.clientEntity.birthday];
+    
+    [self.tableView reloadData];
+    
+    if (self.realBirthday)
+    {
+        self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
+    }
+    else
+    {
+        self.clientTFBirthday.text = @"";
+    }
+    self.clientTFEmail.text = self.clientEntity.email;
+    self.clientTFSurname.text = self.clientEntity.surname;
+    self.clientTFName.text = self.clientEntity.name;
+    self.clientTFPatronymic.text = self.clientEntity.patronymic;
+    self.clientTFNickname.text = self.clientEntity.nickname;
+    self.clientTFLicense.text = [self spacedLicenseString: self.clientEntity.license];
+    
+    [self disableAllFields];
+    self.buttonDelete.hidden = YES;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    [self checkAndSetProfileName];
-    
-    editingMode = NO;
+	((CProfilesListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     self.serverFormatter = [[NSDateFormatter alloc] init];
     [self.serverFormatter setDateFormat:@"yyyy-MM-dd"];
-    
-    self.clientEntity = [[CLoginClientEntity alloc] initWithProfile:self.profile];
-    self.realBirthday = [self.serverFormatter dateFromString:self.clientEntity.birthday];
-    
-    [self.tableView reloadData];
     
     // Initialize the keyboard controls
     self.keyboardControls = [[BSKeyboardControls alloc] init];
@@ -276,10 +321,7 @@
     // Also set the delegate of all the text fields to self
     [self.keyboardControls reloadTextFields];
     
-    if (self.realBirthday)
-    {
-        self.clientTFBirthday.text = [self.dateFormatter stringFromDate:self.realBirthday];
-    }
+    
     self.pickerView = [[UIDatePicker alloc] init];
     self.pickerView.datePickerMode = UIDatePickerModeDate;
     self.pickerView.locale = [NSLocale currentLocale];
@@ -291,31 +333,17 @@
     self.clientTFBirthday.inputView = self.pickerView;
     self.clientTFBirthday.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
-    self.clientTFEmail.text = self.clientEntity.email;
     self.clientTFEmail.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     self.labelEmail.text = @"Необязательно";
     self.labelEmail.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
     
-    self.clientTFSurname.text = self.clientEntity.surname;
     self.clientTFSurname.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    self.clientTFName.text = self.clientEntity.name;
     self.clientTFName.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    self.clientTFPatronymic.text = self.clientEntity.patronymic;
     self.clientTFPatronymic.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    self.clientTFNickname.text = self.clientEntity.nickname;
     self.clientTFNickname.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    
-    self.clientTFLicense.text = [self spacedLicenseString: self.clientEntity.license];
     self.clientTFLicense.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
-    [self disableAllFields];
-    self.buttonDelete.hidden = YES;
-    
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
+    [self loadInfoFromProfile:self.profile];
 }
 
 - (void) disableAllFields
@@ -346,10 +374,19 @@
 {
     if (section == 1)
     {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50.0)];
         footerView.backgroundColor = [UIColor clearColor];
         
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 40)];
+        CGRect footerLabelFrame;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerLabelFrame = CGRectMake(35, 0, footerView.frame.size.width - 70, 40);
+        }
+        else
+        {
+            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 40);
+        }
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.numberOfLines = 2;
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"По умолчанию будут использоваться имя и фамилия, указанные в профиле";
@@ -367,7 +404,16 @@
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
         footerView.backgroundColor = [UIColor clearColor];
         
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 20)];
+        CGRect footerLabelFrame;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerLabelFrame = CGRectMake(35, 0, footerView.frame.size.width - 70, 20);
+        }
+        else
+        {
+            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 20);
+        }
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"Образец: 63 СТ 000000";
         footerLabel.textColor = [UIColor darkGrayColor];
@@ -437,7 +483,7 @@
         
         self.buttonMakeMain.hidden = YES;
         
-        [_backButton setImage:[UIImage imageNamed:@"cancel-for-nav.png"] forState:UIControlStateNormal];
+        [_backButton setHidden:NO];
         [_editButton setImage:[UIImage imageNamed:@"done-for-nav.png"] forState:UIControlStateNormal];
         
         editingMode = YES;
@@ -481,7 +527,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"EditProfileEnd" object:nil];
     
-    [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+    [_backButton setHidden:YES];
     [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -490,6 +536,8 @@
     
     delegate.updated = NO;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProfileList"
+                                                        object:nil];
     [self checkAndSetProfileName];
     
     [self disableAllFields];
@@ -506,28 +554,26 @@
 
 - (IBAction)goBack
 {
-    if (editingMode == NO)
-    {
-        [super goBack];
-    }
-    else
-    {
-        [self.activeTextField resignFirstResponder];
-        [self disableAllFields];
-        
-        [self fillFields];//восстановление данных из бэкапа
-        
-        [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
-        [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
-        
-        self.backupInfo = nil;
-        
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        self.buttonDelete.hidden = YES;
-        self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
-        
-        editingMode = NO;
-    }
+    [self cancelEdit];
+}
+
+- (void) cancelEdit
+{
+    [self.activeTextField resignFirstResponder];
+    [self disableAllFields];
+    
+    [self fillFields];//восстановление данных из бэкапа
+    
+    [_backButton setHidden:YES];
+    [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
+    
+    self.backupInfo = nil;
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.buttonDelete.hidden = YES;
+    self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
+    
+    editingMode = NO;
 }
 
 - (void)fillBackUp
@@ -565,6 +611,8 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     delegate.updated = NO;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProfileList"
+                                                        object:nil];
     [self goBack];
 }
 
@@ -596,6 +644,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DeletingEnd" object:nil];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProfileList"
+                                                        object:nil];
     [self goBack];
 }
 

@@ -21,6 +21,7 @@
 @private
     NSFetchedResultsController *_fetchedResultsController;
 }
+@synthesize selectionDelegate = _selectionDelegate;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
@@ -115,6 +116,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadData)
+                                                 name:@"updateProfileList"
+                                               object:nil];
+}
+
+- (void) reloadData
+{
+    [self fetchData];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"updateProfileList"
+                                                  object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -151,5 +169,9 @@
     return 0.0;
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+}
 
 @end

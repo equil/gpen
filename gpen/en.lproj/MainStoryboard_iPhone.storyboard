@@ -791,7 +791,6 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Профили" id="9AX-2S-kVo">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="xQx-bg-hsh"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4MD-oL-Kq8">
                             <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>

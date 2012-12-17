@@ -218,7 +218,7 @@
     
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
-    self.navigationItem.title = @"Заполните анкету";
+    self.navigationItem.title = @"Новый профиль";
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
@@ -295,10 +295,24 @@
 {
     if (section == 1)
     {
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+        CGFloat footerHeight = 30;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerHeight = 50;
+        }
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, footerHeight)];
         footerView.backgroundColor = [UIColor clearColor];
         
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 40)];
+        CGRect footerLabelFrame;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerLabelFrame = CGRectMake(45, 0, footerView.frame.size.width - 90, 40);
+        }
+        else
+        {
+            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 20);
+        }
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.numberOfLines = 2;
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"По умолчанию будут использоваться имя и фамилия, указанные в профиле";
@@ -316,7 +330,16 @@
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
         footerView.backgroundColor = [UIColor clearColor];
         
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, footerView.frame.size.width - 36, 20)];
+        CGRect footerLabelFrame;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerLabelFrame = CGRectMake(45, 0, footerView.frame.size.width - 90, 20);
+        }
+        else
+        {
+            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 20);
+        }
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"Образец: 63 СТ 000000";
         footerLabel.textColor = [UIColor darkGrayColor];
@@ -335,6 +358,10 @@
 {
     if (section == 1)
     {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            return 30;
+        }
         return 50.0;
     }
     else if (section == 3)
