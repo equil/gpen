@@ -195,7 +195,9 @@
                                                  selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
                                                    object:nil];
         
-        [delegate.updater syncProfile:delegate.lastSignProfile];
+        dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+            [delegate.updater syncProfile:delegate.lastSignProfile];
+        });
     }
 }
 
