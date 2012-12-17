@@ -84,7 +84,7 @@
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-    _deviceToken = nil;
+    _deviceToken = @"";
 	NSLog(@"Failed to get token, error: %@", error);
 }
 
