@@ -11,8 +11,9 @@
 #import "CLoginClientEntity.h"
 #import "CGreenButton.h"
 #import "CBlackButton.h"
+#import "CProfileSelectionDelegate.h"
 
-@interface CProfilesDetailViewController : CRotateTableViewController <UIAlertViewDelegate>
+@interface CProfilesDetailViewController : CRotateTableViewController <UIAlertViewDelegate, CProfileSelectionDelegate>
 {
     BOOL editingMode;
 }

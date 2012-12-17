@@ -238,6 +238,15 @@
     }
     
     [self.spinner stopAnimating];
+    
+    if ([self.fetchedResultsController.fetchedObjects count] > 0)
+    {
+        [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+    }
+    else
+    {
+        [self.selectionDelegate penaltySelectionChanged:nil];
+    }
 }
 
 #pragma mark - Table view data source
