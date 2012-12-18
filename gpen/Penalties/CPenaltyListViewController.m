@@ -19,7 +19,6 @@
 @implementation CPenaltyListViewController
 {
     @private
-    BOOL _needChangeSelection;
     NSFetchedResultsController *_fetchedResultsController;
 }
 
@@ -55,6 +54,7 @@
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
+    [self selectFirstRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
@@ -136,8 +136,6 @@
 {
     [super viewDidLoad];
     
-    _needChangeSelection = YES;
-    
     self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
     
 //TODO раскомментить для пулл энд рилиза
@@ -152,12 +150,18 @@
 //	[_refreshHeaderView refreshLastUpdatedDate];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     self.informLabel.hidden = YES;
+    
     [self fetchData];
+    
     [super viewWillAppear:animated];
     
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+    {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
@@ -174,15 +178,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    if (_needChangeSelection)
-    {
-        if ([self.fetchedResultsController.fetchedObjects count] > 0)
-        {
-            [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
-        }
-        _needChangeSelection = NO;
-    }
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     
@@ -324,6 +319,18 @@
     [self fetchData];
     
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+}
+
+- (void) selectFirstRow
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        if ([self.fetchedResultsController.fetchedObjects count] > 0)
+        {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+        }
+    }
 }
 
 

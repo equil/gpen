@@ -121,6 +121,11 @@
                                              selector:@selector(reloadData)
                                                  name:@"updateProfileList"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadDataAndSelectNew)
+                                                 name:@"updateReloadProfileList"
+                                               object:nil];
 }
 
 - (void) reloadData
@@ -128,10 +133,28 @@
     [self fetchData];
 }
 
+- (void) reloadDataAndSelectNew
+{
+    [self fetchData];
+    
+    if ([self.fetchedResultsController.fetchedObjects count] > 0)
+    {
+        [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+    }
+    else
+    {
+        [self.selectionDelegate profileSelectionChanged:nil];
+    }
+}
+
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"updateProfileList"
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"updateReloadProfileList"
                                                   object:nil];
 }
 

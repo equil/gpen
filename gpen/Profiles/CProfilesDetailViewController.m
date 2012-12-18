@@ -644,7 +644,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DeletingEnd" object:nil];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProfileList"
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateReloadProfileList"
                                                         object:nil];
     [self goBack];
 }
