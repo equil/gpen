@@ -277,16 +277,19 @@
         
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, headerView.frame.size.width - 32, 20)];
         headerLabel.backgroundColor = [UIColor clearColor];
-        switch (section) {
-            case 0:
-                headerLabel.text = @"Просрочено";
-                break;
-            case 1:
-                headerLabel.text = @"Не оплачено";
-                break;
-            case 2:
-                headerLabel.text = @"Оплачено";
-                break;
+        
+        Penalty *penalty = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+        if ([@"3_paid" isEqualToString:penalty.status])
+        {
+            headerLabel.text = @"Оплачено";
+        }
+        else if ([@"2_not paid" isEqualToString:penalty.status])
+        {
+            headerLabel.text = @"Не оплачено";
+        }
+        else if ([@"1_overdue" isEqualToString:penalty.status])
+        {
+            headerLabel.text = @"Просрочено";
         }
         headerLabel.textColor = [UIColor darkTextColor];
         headerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:12.0];

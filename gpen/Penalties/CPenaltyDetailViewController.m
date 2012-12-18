@@ -51,6 +51,13 @@
 {
     self.penalty = penalty;
     
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    self.email = delegate.lastSignProfile.email;
+    if (self.email)
+    {
+        self.emailTextField.text = self.email;
+    }
+    
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"hh:mm"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
