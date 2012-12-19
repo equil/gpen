@@ -231,6 +231,7 @@
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NewPenaltiesUpdateEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
         });
     }];
 }
@@ -250,8 +251,21 @@
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ResetPenaltiesUpdateEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
         });
     }];
+}
+
+- (unsigned long)penaltiesCountForProfile:(Profile *) profile
+{
+    // тут надо найти в базе профиль и достать из него newPenaltiesCount
+    return 5;
+}
+
+- (unsigned long)penaltiesCountForProfilesExceptLastSign
+{
+    // а тут надо вернуть сумму newPenaltiesCount у всех профилей кроме текущего
+    return 89;
 }
 
 - (void)deleteProfile:(Profile *)profile
@@ -270,6 +284,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DeletingEnd" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
         });
     }];
 }

@@ -8,13 +8,40 @@
 
 #import "CProfileCell.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation CProfileCell
 @synthesize profileImage = _profileImage;
 @synthesize profileName = _profileName;
+@synthesize badgeLabel = _badgeLabel;
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.badgeLabel.backgroundColor = [UIColor colorWithRed:213.0/255.0 green:67.0/255.0 blue:44.0/255.0 alpha:1.0];
+    [self.badgeLabel.layer setCornerRadius:8.0];
+}
 
 - (void) configureCellWithProfile:(Profile *)profile
 {
+    unsigned long newPenaltiesCount = [profile.newPenaltiesCount unsignedLongValue];
+    if (newPenaltiesCount > 0)
+    {
+        self.badgeLabel.text = [NSString stringWithFormat:@" %lu ", newPenaltiesCount];
+        self.badgeLabel.hidden = NO;
+    }
+    else
+    {
+        self.badgeLabel.hidden = YES;
+    }
+    self.badgeLabel.font = [UIFont fontWithName:@"PTSans-Bold" size:13.0];
+    [self.badgeLabel sizeToFit];
+    if (self.badgeLabel.frame.size.width < self.badgeLabel.frame.size.height)
+    {
+        self.badgeLabel.frame = CGRectMake(self.badgeLabel.frame.origin.x, self.badgeLabel.frame.origin.y, self.badgeLabel.frame.size.height, self.badgeLabel.frame.size.height);
+    }
+    
     self.profileName.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
     if (profile.profileName && profile.profileName.length > 0)

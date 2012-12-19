@@ -54,10 +54,19 @@
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
+    [self reloadNewPenaltyCount];
     [self selectFirstRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
+}
+
+- (void) reloadNewPenaltyCount
+{
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate.updater setNewPenaltiesCountForLicense:delegate.lastSignProfile.license count:0];
+    
+    [self.tabBarItem setBadgeValue:nil];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -138,6 +147,8 @@
     
     self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePushNotification) name:@"pushNotification" object:nil];
+    
 //TODO раскомментить для пулл энд рилиза
 //    if (_refreshHeaderView == nil) {
 //		
@@ -148,6 +159,32 @@
 //	}
 //	
 //	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    [self putPenaltiesCountToTabBar];
+}
+
+- (void) putPenaltiesCountToTabBar
+{
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    unsigned long penalties = [delegate.updater penaltiesCountForProfile:delegate.lastSignProfile];
+    if (penalties > 0)
+    {
+        [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%lu", penalties]];
+    }
+    else
+    {
+        [self.tabBarItem setBadgeValue:nil];
+    }
+}
+
+- (void)handlePushNotification
+{
+    [self putPenaltiesCountToTabBar];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pushNotification" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
