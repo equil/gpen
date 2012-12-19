@@ -51,6 +51,7 @@
     profile.lastSign = [NSDate distantPast];
     profile.lastUpdate = [NSDate distantPast];
     profile.checked = [NSNumber numberWithBool:NO];
+    profile.newPenaltiesCount = [NSNumber numberWithUnsignedLong:0];
     
     return profile;
 }
@@ -303,7 +304,7 @@
                         [profile.lastname uppercaseString],
                         [profile.license uppercaseString],
                         [df stringFromDate:profile.birthday],
-                        penalty.uid,
+                        [penalty.uid stringValue],
                         email, nil];
     
     NSArray *keys = [NSArray arrayWithObjects:@"name", @"patronymic", @"surname", @"license", @"birthday", @"id", @"email", nil];
@@ -461,18 +462,18 @@
     Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
     
     penalty.profile = profile;
-    penalty.uid = [penaltyObj valueForKey:@"id"];
+    penalty.uid = [NSNumber numberWithUnsignedLongLong:[[penaltyObj valueForKey:@"id"] unsignedLongLongValue]];
     penalty.date = [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
     penalty.overdueDate = [_dateFormatter dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
-    penalty.price = [penaltyObj valueForKey:@"price"];
+    penalty.price = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"price"] unsignedLongValue]];
     penalty.status = [self processStatus:[penaltyObj valueForKey:@"status"]];
     penalty.carNumber = [penaltyObj valueForKey:@"carNumber"];
     
     [self addPhoto:penaltyObj penalty:penalty];
     
     penalty.roadName = [penaltyObj valueForKey:@"roadName"];
-    penalty.roadPosition = [penaltyObj valueForKey:@"roadPosition"];
-    penalty.fixedSpeed = [penaltyObj valueForKey:@"fixedSpeed"];
+    penalty.roadPosition = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"roadPosition"] unsignedLongValue]];
+    penalty.fixedSpeed = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"fixedSpeed"] unsignedLongValue]];
     penalty.reportId = [penaltyObj valueForKey:@"reportId"];
     penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
     penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];

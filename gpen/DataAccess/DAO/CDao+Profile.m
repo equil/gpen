@@ -121,10 +121,10 @@
 	}
     else if ([result count] > 0)
     {
-        return [NSNumber numberWithInt:[((Profile *)[result objectAtIndex:0]).uid intValue] + 1];
+        return [NSNumber numberWithUnsignedLong:[((Profile *)[result objectAtIndex:0]).uid unsignedLongValue] + 1];
     }
     
-    return [NSNumber numberWithInt:1];
+    return [NSNumber numberWithUnsignedLong:1];
 }
 
 - (NSArray *)profilesForLicense:(NSString *)license

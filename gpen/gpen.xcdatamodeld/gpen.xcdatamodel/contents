@@ -14,7 +14,7 @@
         <attribute name="roadName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roadPosition" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="penalties" inverseEntity="Profile" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="penalty" inverseEntity="Recipient" syncable="YES"/>
     </entity>
@@ -43,7 +43,7 @@
         <attribute name="kpp" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="okato" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="penalty" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Penalty" inverseName="recipient" inverseEntity="Penalty" syncable="YES"/>
     </entity>
     <elements>
