@@ -234,14 +234,7 @@
     
     [self.spinner stopAnimating];
     
-    if ([self.fetchedResultsController.fetchedObjects count] > 0)
-    {
-        [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
-    }
-    else
-    {
-        [self.selectionDelegate penaltySelectionChanged:nil];
-    }
+    [self selectFirstRow];
 }
 
 #pragma mark - Table view data source
@@ -332,6 +325,10 @@
         {
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+        }
+        else
+        {
+            [self.selectionDelegate penaltySelectionChanged:nil];
         }
     }
 }

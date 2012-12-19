@@ -145,8 +145,8 @@
 - (CGFloat) heightForVerticalText: (NSString *) aText
 {
     CGFloat outerWidth = 276.0;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        outerWidth = 436.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        outerWidth = 423.0;
     }
     // use large value to avoid scrolling
     CGFloat maxHeight = 50000.0f;
