@@ -49,13 +49,14 @@
     }
 }
 
-- (void)fetchData {
+- (void)fetchData
+{
     NSError *error = nil;
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
     [self reloadNewPenaltyCount];
-    [self selectFirstRow];
+    [self selectRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
@@ -271,7 +272,7 @@
     
     [self.spinner stopAnimating];
     
-    [self selectFirstRow];
+    [self selectRow];
 }
 
 #pragma mark - Table view data source
@@ -354,19 +355,26 @@
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
-- (void) selectFirstRow
+- (void) selectRow
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        Penalty *currentPenalty = delegate.stateHolder.currentPenalty;
+        NSIndexPath *currentPenaltyIndex = [self.fetchedResultsController indexPathForObject:currentPenalty];
+        if (currentPenaltyIndex)
+        {
+            [self.tableView selectRowAtIndexPath:currentPenaltyIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:currentPenaltyIndex]];
+            return;
+        }
         if ([self.fetchedResultsController.fetchedObjects count] > 0)
         {
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             [self.selectionDelegate penaltySelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+            return;
         }
-        else
-        {
-            [self.selectionDelegate penaltySelectionChanged:nil];
-        }
+        [self.selectionDelegate penaltySelectionChanged:nil];
     }
 }
 

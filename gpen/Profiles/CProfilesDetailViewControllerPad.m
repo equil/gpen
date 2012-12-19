@@ -53,6 +53,7 @@
     {
         if (![self.splashView superview])
         {
+            self.splashView.frame = self.view.frame;
             [self.tableView addSubview:self.splashView];
         }
     }

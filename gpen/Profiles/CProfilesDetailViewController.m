@@ -284,13 +284,19 @@
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.buttonMakeMain.hidden = [self.profile isEqual:delegate.lastSignProfile];
+    delegate.stateHolder.currentProfile = self.profile;
+}
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    ((CProfilesListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-	((CProfilesListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
@@ -610,6 +616,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LastSignUpdateEnd" object:nil];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.stateHolder.currentProfile = self.profile;
+    delegate.stateHolder.currentPenalty = nil;
     delegate.updated = NO;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProfileList"
@@ -637,6 +645,7 @@
         
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [delegate.updater deleteProfile:_profile];
+        delegate.stateHolder.currentPenalty = nil;
         editingMode = NO;
     }
 }
