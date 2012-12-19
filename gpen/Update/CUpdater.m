@@ -318,10 +318,10 @@
         requestStatus = [self checkStatus:[[results valueForKey:@"status"] intValue]];
         if (requestStatus == GOOD)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Выполнено" message:@"Информация о штрафе успешно отправлена на e-mail" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Выполнено" message:@"Информация о штрафе успешно отправлена на e-mail" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
             });
         }
