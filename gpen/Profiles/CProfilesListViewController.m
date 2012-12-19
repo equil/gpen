@@ -53,8 +53,10 @@
         [fetch setEntity:[NSEntityDescription entityForName:@"Profile"
                                      inManagedObjectContext:context]];
         
-        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"license" ascending:YES];;
-        [fetch setSortDescriptors:[NSArray arrayWithObjects:sd, nil]];
+        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:@"uid" ascending:YES];
+        NSSortDescriptor *sd2 = [[NSSortDescriptor alloc] initWithKey:@"license" ascending:YES];
+        
+        [fetch setSortDescriptors:[NSArray arrayWithObjects:sd, sd2, nil]];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc]
                                      initWithFetchRequest:fetch
@@ -179,6 +181,7 @@
     
     CProfileCell *cell = (CProfileCell *)[tableView dequeueReusableCellWithIdentifier:profileCellId];
     [cell configureCellWithProfile:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    
     return cell;
 }
 
