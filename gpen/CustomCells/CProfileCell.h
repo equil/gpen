@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UILabel *profileName;
+@property (nonatomic, strong) IBOutlet UILabel *badgeLabel;
 
 - (void) configureCellWithProfile: (Profile *) profile;
 

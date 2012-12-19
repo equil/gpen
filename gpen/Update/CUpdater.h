@@ -24,6 +24,8 @@ typedef enum{
 - (void)updateLastSignForProfile:(Profile *)profile;
 - (void)setNewPenaltiesCountForLicense:(NSString *)license count:(unsigned long)count;
 - (void)setNewPenaltiesCountForProfile:(Profile *)profile count:(unsigned long)count;
+- (unsigned long)penaltiesCountForProfile:(Profile *) profile;
+- (unsigned long)penaltiesCountForProfilesExceptLastSign;
 - (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email;
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;

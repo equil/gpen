@@ -39,8 +39,25 @@
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
+    [self selectFirstRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
+    }
+}
+
+- (void) selectFirstRow
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        if ([self.fetchedResultsController.fetchedObjects count] > 0)
+        {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+        }
+        else
+        {
+            [self.selectionDelegate profileSelectionChanged:nil];
+        }
     }
 }
 
@@ -126,6 +143,31 @@
                                              selector:@selector(reloadDataAndSelectNew)
                                                  name:@"updateReloadProfileList"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePushNotification) name:@"pushNotification" object:nil];
+    
+    [self putProfileBadgeToTabBarAndReloadTable];
+}
+
+- (void) putProfileBadgeToTabBarAndReloadTable
+{
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    unsigned long penalties = [delegate.updater penaltiesCountForProfilesExceptLastSign];
+    if (penalties > 0)
+    {
+        [self.tabBarItem setBadgeValue:@"!"];
+    }
+    else
+    {
+        [self.tabBarItem setBadgeValue:nil];
+    }
+    
+    [self fetchData];
+}
+
+- (void)handlePushNotification
+{
+    [self putProfileBadgeToTabBarAndReloadTable];
 }
 
 - (void) reloadData
@@ -156,6 +198,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"updateReloadProfileList"
                                                   object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pushNotification" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

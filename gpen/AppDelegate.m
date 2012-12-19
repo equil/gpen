@@ -90,7 +90,23 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    //
+    /*
+    {
+        "aps" : { "alert" : "Вы получили штраф! Ура!" },
+        "l" : "63qq123456",
+        "p" : 3
+    }
+    */
+    
+    NSString *license = [userInfo objectForKey:@"l"];
+    unsigned long penaltyCount = [[userInfo objectForKey:@"p"] unsignedLongValue];
+    
+    if (license)
+    {
+        [self.updater setNewPenaltiesCountForLicense:license count:penaltyCount];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
 }
 
 - (void)updateDeviceToken {
