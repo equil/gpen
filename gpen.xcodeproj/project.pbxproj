@@ -23,6 +23,7 @@
 		1E4D48801665611900949A5C /* CDao+Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487F1665611900949A5C /* CDao+Profile.m */; };
 		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
 		1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48851665D55D00949A5C /* CUpdateUtility.m */; };
+		1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE4E1682381200753AE4 /* CStateHolder.m */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -143,6 +144,9 @@
 		1E4D48821665612F00949A5C /* CDao+Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Recipient.m"; path = "DataAccess/DAO/CDao+Recipient.m"; sourceTree = "<group>"; };
 		1E4D48841665D55D00949A5C /* CUpdateUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUpdateUtility.h; path = Update/CUpdateUtility.h; sourceTree = "<group>"; };
 		1E4D48851665D55D00949A5C /* CUpdateUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdateUtility.m; path = Update/CUpdateUtility.m; sourceTree = "<group>"; };
+		1E99EE4A1682377700753AE4 /* IStateHolderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IStateHolderObserver.h; path = StateHolder/IStateHolderObserver.h; sourceTree = "<group>"; };
+		1E99EE4D1682381200753AE4 /* CStateHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CStateHolder.h; path = StateHolder/CStateHolder.h; sourceTree = "<group>"; };
+		1E99EE4E1682381200753AE4 /* CStateHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CStateHolder.m; path = StateHolder/CStateHolder.m; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -363,6 +367,16 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1E99EE491682374700753AE4 /* StateHolder */ = {
+			isa = PBXGroup;
+			children = (
+				1E99EE4A1682377700753AE4 /* IStateHolderObserver.h */,
+				1E99EE4D1682381200753AE4 /* CStateHolder.h */,
+				1E99EE4E1682381200753AE4 /* CStateHolder.m */,
+			);
+			name = StateHolder;
+			sourceTree = "<group>";
+		};
 		1E9F0D1E1663D6050017A2EB /* Update */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +451,7 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				1E99EE491682374700753AE4 /* StateHolder */,
 				1EF0950A167C888C0014B2B7 /* PullAndRelease */,
 				A02AC84C166E689B00F02A41 /* UIElements */,
 				1ED3FB70166BD9BF008C2E21 /* Raw */,
@@ -848,6 +863,7 @@
 				1EF0950D167C88A40014B2B7 /* EGORefreshTableHeaderView.m in Sources */,
 				A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */,
 				A0985080167EF4AF00221140 /* CProfilesDetailViewControllerPad.m in Sources */,
+				1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

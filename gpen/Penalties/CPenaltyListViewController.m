@@ -166,7 +166,7 @@
 - (void) putPenaltiesCountToTabBar
 {
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    unsigned long penalties = [delegate.updater penaltiesCountForProfile:delegate.lastSignProfile];
+    unsigned long penalties = [delegate.lastSignProfile.newPenaltiesCount unsignedLongValue];
     if (penalties > 0)
     {
         [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%lu", penalties]];

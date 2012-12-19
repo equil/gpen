@@ -7,6 +7,7 @@
 //
 
 #import "CDao+Profile.h"
+#import "AppDelegate.h"
 
 @implementation CDao (Profile)
 
@@ -145,6 +146,34 @@
 	}
     
 	return result;
+}
+
+- (unsigned long)penaltiesCountForProfilesExceptLastSign
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+	[request setEntity:[NSEntityDescription entityForName:@"Profile"
+                                   inManagedObjectContext:self.dataContext]];
+    
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"uid != %@", delegate.lastSignProfile.uid]];
+    
+	NSError *error = nil;
+	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];
+    
+	if (result == nil)
+	{
+		NSLog(@"Method <%@> failed: %@", NSStringFromSelector(_cmd), error);
+        return 0;
+	}
+    
+    unsigned long count = 0;
+    for (Profile *p in result)
+    {
+        count += [p.newPenaltiesCount unsignedLongValue];
+    }
+    
+	return count;
 }
 
 @end

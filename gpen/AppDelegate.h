@@ -11,6 +11,7 @@
 #import "CCentralDispatcher.h"
 #import "CUpdater.h"
 #import "Profile.h"
+#import "CStateHolder.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) Profile *lastSignProfile;
 @property (nonatomic, assign) BOOL updated;
 @property (nonatomic, copy) NSString *deviceToken;
+@property (nonatomic, readonly) CStateHolder *stateHolder;
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;

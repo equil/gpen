@@ -493,8 +493,6 @@
     }
     else
     {
-        //TODO действие для конца редактирования, наверн надо какую крутилку посередине и заблочить все, могу дать отличный рецепт оверлэя поверх всего экрана
-        
         [self.activeTextField resignFirstResponder];
         
         if (!(self.clientEntity.email) || (self.clientEntity.email.length < 1) || ([self validateEmail:self.clientEntity.email]))

@@ -17,5 +17,6 @@
 - (Profile *)lastSignProfile;
 - (NSNumber *)uidForNewProfile;
 - (NSArray *)profilesForLicense:(NSString *)license;
+- (unsigned long)penaltiesCountForProfilesExceptLastSign;
 
 @end

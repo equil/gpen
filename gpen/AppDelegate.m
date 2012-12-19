@@ -19,6 +19,7 @@
 @synthesize lastSignProfile = _lastSignProfile;
 @synthesize updated = _updated;
 @synthesize deviceToken = _deviceToken;
+@synthesize stateHolder = _stateHolder;
 
 - (void)customizeTabBar
 {
@@ -128,6 +129,8 @@
     _dataAccessManager = [[CDataAccessManager alloc] init];
     [_dataAccessManager.persistentStoreCoordinator class];
     
+    _stateHolder = [[CStateHolder alloc] init];
+    
     [self actualizeMainProfile];
     
     _updated = NO;
@@ -147,8 +150,6 @@
 {
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     _lastSignProfile = [dao lastSignProfile];
-    
-    NSLog(@"%@ %@", _lastSignProfile.name, _lastSignProfile.lastname);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

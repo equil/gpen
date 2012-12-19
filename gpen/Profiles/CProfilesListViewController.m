@@ -11,6 +11,7 @@
 #import "CProfilesAddViewController.h"
 #import "AppDelegate.h"
 #import "CProfileCell.h"
+#import "CDao+Profile.h"
 
 @interface CProfilesListViewController ()
 @property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -149,7 +150,8 @@
 - (void) putProfileBadgeToTabBarAndReloadTable
 {
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    unsigned long penalties = [delegate.updater penaltiesCountForProfilesExceptLastSign];
+    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
+    unsigned long penalties = [dao penaltiesCountForProfilesExceptLastSign];
     if (penalties > 0)
     {
         [self.tabBarItem setBadgeValue:@"!"];
