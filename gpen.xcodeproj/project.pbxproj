@@ -39,8 +39,6 @@
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
 		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
-		1EB1E47E166688AB006CEC41 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
-		1EB1E47F166688AB006CEC41 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47D166688AB006CEC41 /* Default@2x.png */; };
 		1EB1E48216669484006CEC41 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48116669484006CEC41 /* Penalty.m */; };
 		1EB1E48816669485006CEC41 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48716669485006CEC41 /* Recipient.m */; };
 		1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB640F6167B2D3300F5C767 /* CRotateSplitViewController.m */; };
@@ -750,8 +748,6 @@
 				1E4D48471665158600949A5C /* select-tab@2x.png in Resources */,
 				1E4D48481665158600949A5C /* tab-bar-back.png in Resources */,
 				1E4D48491665158600949A5C /* tab-bar-back@2x.png in Resources */,
-				1EB1E47E166688AB006CEC41 /* Default.png in Resources */,
-				1EB1E47F166688AB006CEC41 /* Default@2x.png in Resources */,
 				A0E83FD916669B1800561612 /* login-button-disabled.png in Resources */,
 				A0E83FDA16669B1800561612 /* login-button-disabled@2x.png in Resources */,
 				A0E83FDB16669B1800561612 /* login-button.png in Resources */,
