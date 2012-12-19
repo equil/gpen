@@ -40,25 +40,32 @@
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
-    [self selectFirstRow];
+    [self selectRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
 }
 
-- (void) selectFirstRow
+- (void) selectRow
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        Profile *currentProfile = delegate.stateHolder.currentProfile;
+        NSIndexPath *currentProfileIndex = [self.fetchedResultsController indexPathForObject:currentProfile];
+        if (currentProfileIndex)
+        {
+            [self.tableView selectRowAtIndexPath:currentProfileIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:currentProfileIndex]];
+            return;
+        }
         if ([self.fetchedResultsController.fetchedObjects count] > 0)
         {
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
+            return;
         }
-        else
-        {
-            [self.selectionDelegate profileSelectionChanged:nil];
-        }
+        [self.selectionDelegate profileSelectionChanged:nil];
     }
 }
 
@@ -137,6 +144,8 @@
 {
     [super viewDidLoad];
     
+    self.clearsSelectionOnViewWillAppear = NO;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadData)
                                                  name:@"updateProfileList"
@@ -186,6 +195,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self fetchData];
     [super viewWillAppear:animated];
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+    {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
 }
 
 #pragma mark - Table view data source

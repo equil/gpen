@@ -52,6 +52,7 @@
     self.penalty = penalty;
     
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    delegate.stateHolder.currentPenalty = self.penalty;
     self.email = delegate.lastSignProfile.email;
     if (self.email)
     {
@@ -83,11 +84,16 @@
     [self checkInputData];
 }
 
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+	((CPenaltyListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-	((CPenaltyListViewController*)[((UINavigationController*)[self.splitViewController.viewControllers objectAtIndex:0]).viewControllers lastObject]).selectionDelegate = self;
     
     self.infoLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
