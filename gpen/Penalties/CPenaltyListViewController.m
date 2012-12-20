@@ -79,7 +79,7 @@
         [fetch setEntity:[NSEntityDescription entityForName:@"Penalty"
                                      inManagedObjectContext:context]];
         
-        [fetch setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", delegate.lastSignProfile]];
+        [fetch setPredicate:[NSPredicate predicateWithFormat:@"%@ in profiles", delegate.lastSignProfile]];
         
         NSSortDescriptor *statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];

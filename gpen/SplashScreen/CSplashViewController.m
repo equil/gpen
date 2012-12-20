@@ -40,6 +40,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
+        sleep(2);
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [delegate initializeApplication];
 }

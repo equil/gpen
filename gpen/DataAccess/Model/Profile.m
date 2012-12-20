@@ -2,7 +2,7 @@
 //  Profile.m
 //  gpen
 //
-//  Created by fredformout on 15.12.12.
+//  Created by fredformout on 20.12.12.
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
@@ -20,10 +20,10 @@
 @dynamic lastUpdate;
 @dynamic license;
 @dynamic name;
+@dynamic newPenaltiesCount;
 @dynamic patronymic;
 @dynamic profileName;
 @dynamic uid;
-@dynamic newPenaltiesCount;
 @dynamic penalties;
 
 @end

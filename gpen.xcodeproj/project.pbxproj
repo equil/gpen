@@ -24,6 +24,10 @@
 		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
 		1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48851665D55D00949A5C /* CUpdateUtility.m */; };
 		1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE4E1682381200753AE4 /* CStateHolder.m */; };
+		1E99EE571682F9E400753AE4 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE561682F9E400753AE4 /* Penalty.m */; };
+		1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE591682F9E600753AE4 /* Profile.m */; };
+		1E99EE5C1682FC4E00753AE4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E99EE5B1682FC4E00753AE4 /* Default.png */; };
+		1E99EE5E1682FC5600753AE4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E99EE5D1682FC5600753AE4 /* Default@2x.png */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -40,7 +44,6 @@
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
 		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
-		1EB1E48216669484006CEC41 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48116669484006CEC41 /* Penalty.m */; };
 		1EB1E48816669485006CEC41 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48716669485006CEC41 /* Recipient.m */; };
 		1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB640F6167B2D3300F5C767 /* CRotateSplitViewController.m */; };
 		1EBBE6981660B3CD00708B6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE6971660B3CD00708B6D /* UIKit.framework */; };
@@ -73,7 +76,6 @@
 		1EF094F4167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */; };
 		1EF094F8167B4B560014B2B7 /* tab-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */; };
 		1EF094F9167B4B560014B2B7 /* tab-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F7167B4B560014B2B7 /* tab-bar-back-ipad@2x.png */; };
-		1EF09505167C77F50014B2B7 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF09504167C77F50014B2B7 /* Profile.m */; };
 		1EF0950D167C88A40014B2B7 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0950C167C88A40014B2B7 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1EF09517167C88B80014B2B7 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF0950F167C88B80014B2B7 /* blackArrow.png */; };
 		1EF09518167C88B80014B2B7 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF09510167C88B80014B2B7 /* blackArrow@2x.png */; };
@@ -147,6 +149,12 @@
 		1E99EE4A1682377700753AE4 /* IStateHolderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IStateHolderObserver.h; path = StateHolder/IStateHolderObserver.h; sourceTree = "<group>"; };
 		1E99EE4D1682381200753AE4 /* CStateHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CStateHolder.h; path = StateHolder/CStateHolder.h; sourceTree = "<group>"; };
 		1E99EE4E1682381200753AE4 /* CStateHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CStateHolder.m; path = StateHolder/CStateHolder.m; sourceTree = "<group>"; };
+		1E99EE551682F9E400753AE4 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
+		1E99EE561682F9E400753AE4 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
+		1E99EE581682F9E600753AE4 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
+		1E99EE591682F9E600753AE4 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
+		1E99EE5B1682FC4E00753AE4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1E99EE5D1682FC5600753AE4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -173,8 +181,6 @@
 		1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyTicketViewController.m; sourceTree = "<group>"; };
 		1EB1E47C166688AB006CEC41 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1EB1E47D166688AB006CEC41 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		1EB1E48016669484006CEC41 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
-		1EB1E48116669484006CEC41 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
 		1EB1E48616669485006CEC41 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipient.h; path = DataAccess/Model/Recipient.h; sourceTree = "<group>"; };
 		1EB1E48716669485006CEC41 /* Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipient.m; path = DataAccess/Model/Recipient.m; sourceTree = "<group>"; };
 		1EB640F5167B2D3300F5C767 /* CRotateSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRotateSplitViewController.h; path = Raw/CRotateSplitViewController.h; sourceTree = "<group>"; };
@@ -226,8 +232,6 @@
 		1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad@2x.png"; path = "Resources/navigation-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
 		1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad.png"; path = "Resources/tab-bar-back-ipad.png"; sourceTree = "<group>"; };
 		1EF094F7167B4B560014B2B7 /* tab-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad@2x.png"; path = "Resources/tab-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
-		1EF09503167C77F50014B2B7 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
-		1EF09504167C77F50014B2B7 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		1EF0950B167C88A40014B2B7 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = PullAndRelease/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		1EF0950C167C88A40014B2B7 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = PullAndRelease/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		1EF0950F167C88B80014B2B7 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackArrow.png; path = PullAndRelease/Resources/blackArrow.png; sourceTree = "<group>"; };
@@ -422,6 +426,8 @@
 		1EBBE6881660B3CD00708B6D = {
 			isa = PBXGroup;
 			children = (
+				1E99EE5D1682FC5600753AE4 /* Default@2x.png */,
+				1E99EE5B1682FC4E00753AE4 /* Default.png */,
 				1EBBE69D1660B3CD00708B6D /* gpen */,
 				1EBBE6961660B3CD00708B6D /* Frameworks */,
 				1EBBE6941660B3CD00708B6D /* Products */,
@@ -514,10 +520,10 @@
 			children = (
 				1EB1E48616669485006CEC41 /* Recipient.h */,
 				1EB1E48716669485006CEC41 /* Recipient.m */,
-				1EB1E48016669484006CEC41 /* Penalty.h */,
-				1EB1E48116669484006CEC41 /* Penalty.m */,
-				1EF09503167C77F50014B2B7 /* Profile.h */,
-				1EF09504167C77F50014B2B7 /* Profile.m */,
+				1E99EE581682F9E600753AE4 /* Profile.h */,
+				1E99EE591682F9E600753AE4 /* Profile.m */,
+				1E99EE551682F9E400753AE4 /* Penalty.h */,
+				1E99EE561682F9E400753AE4 /* Penalty.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -808,6 +814,8 @@
 				1EF0951D167C88B80014B2B7 /* whiteArrow.png in Resources */,
 				1EF0951E167C88B80014B2B7 /* whiteArrow@2x.png in Resources */,
 				1EF09520167C8B3A0014B2B7 /* Default-568h@2x.png in Resources */,
+				1E99EE5C1682FC4E00753AE4 /* Default.png in Resources */,
+				1E99EE5E1682FC5600753AE4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,7 +842,6 @@
 				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
 				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
 				1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */,
-				1EB1E48216669484006CEC41 /* Penalty.m in Sources */,
 				1EB1E48816669485006CEC41 /* Recipient.m in Sources */,
 				A0E83FD41666909500561612 /* CTextFieldWithLabel.m in Sources */,
 				A0E83FF61668C01400561612 /* CLoginClientEntity.m in Sources */,
@@ -859,11 +866,12 @@
 				A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */,
 				A0C8BB5816764AA500100317 /* CBlackButton.m in Sources */,
 				1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */,
-				1EF09505167C77F50014B2B7 /* Profile.m in Sources */,
 				1EF0950D167C88A40014B2B7 /* EGORefreshTableHeaderView.m in Sources */,
 				A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */,
 				A0985080167EF4AF00221140 /* CProfilesDetailViewControllerPad.m in Sources */,
 				1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */,
+				1E99EE571682F9E400753AE4 /* Penalty.m in Sources */,
+				1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

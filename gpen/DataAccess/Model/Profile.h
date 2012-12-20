@@ -2,7 +2,7 @@
 //  Profile.h
 //  gpen
 //
-//  Created by fredformout on 15.12.12.
+//  Created by fredformout on 20.12.12.
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
@@ -21,10 +21,10 @@
 @property (nonatomic, retain) NSDate * lastUpdate;
 @property (nonatomic, retain) NSString * license;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * newPenaltiesCount;
 @property (nonatomic, retain) NSString * patronymic;
 @property (nonatomic, retain) NSString * profileName;
 @property (nonatomic, retain) NSNumber * uid;
-@property (nonatomic, retain) NSNumber * newPenaltiesCount;
 @property (nonatomic, retain) NSSet *penalties;
 @end
 

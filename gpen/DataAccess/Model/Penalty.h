@@ -2,7 +2,7 @@
 //  Penalty.h
 //  gpen
 //
-//  Created by fredformout on 28.11.12.
+//  Created by fredformout on 20.12.12.
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
@@ -27,7 +27,15 @@
 @property (nonatomic, retain) NSNumber * roadPosition;
 @property (nonatomic, retain) NSString * status;
 @property (nonatomic, retain) NSNumber * uid;
-@property (nonatomic, retain) Profile *profile;
+@property (nonatomic, retain) NSSet *profiles;
 @property (nonatomic, retain) Recipient *recipient;
+@end
+
+@interface Penalty (CoreDataGeneratedAccessors)
+
+- (void)addProfilesObject:(Profile *)value;
+- (void)removeProfilesObject:(Profile *)value;
+- (void)addProfiles:(NSSet *)values;
+- (void)removeProfiles:(NSSet *)values;
 
 @end

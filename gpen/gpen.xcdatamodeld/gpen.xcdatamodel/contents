@@ -15,7 +15,7 @@
         <attribute name="roadPosition" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="penalties" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="profiles" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="penalties" inverseEntity="Profile" syncable="YES"/>
         <relationship name="recipient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipient" inverseName="penalty" inverseEntity="Recipient" syncable="YES"/>
     </entity>
     <entity name="Profile" representedClassName="Profile" syncable="YES">
@@ -31,7 +31,7 @@
         <attribute name="patronymic" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="penalties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Penalty" inverseName="profile" inverseEntity="Penalty" syncable="YES"/>
+        <relationship name="penalties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Penalty" inverseName="profiles" inverseEntity="Penalty" syncable="YES"/>
     </entity>
     <entity name="Recipient" representedClassName="Recipient" syncable="YES">
         <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>

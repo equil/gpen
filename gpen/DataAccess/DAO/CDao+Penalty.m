@@ -35,7 +35,7 @@
 	[request setEntity:[NSEntityDescription entityForName:@"Penalty"
                                    inManagedObjectContext:self.dataContext]];
     
-    [request setPredicate:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"%@ in profiles", profile]];
     
 	NSError *error = nil;
 	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];

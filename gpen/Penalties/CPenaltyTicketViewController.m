@@ -55,7 +55,7 @@
     [super viewWillAppear:animated];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (![_penalty.profile isEqual:delegate.lastSignProfile])
+    if (![_penalty.profiles containsObject:delegate.lastSignProfile])
     {
         [self handleGoToRoot];
     }

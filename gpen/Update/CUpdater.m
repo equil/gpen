@@ -400,12 +400,14 @@
     
     for (NSDictionary *penaltyObj in penalties)
     {
-        if ([dao penaltyForUid:[penaltyObj valueForKey:@"id"]] == nil)
+        Penalty *penalty = [dao penaltyForUid:[penaltyObj valueForKey:@"id"]];
+        if (penalty == nil)
         {
             [self insertPenalty:penaltyObj profile:profile context:context];
         }
         else
         {
+            [penalty addProfilesObject:profile];
             continue;
         }
     }
@@ -461,7 +463,7 @@
 {
     Penalty *penalty = [NSEntityDescription insertNewObjectForEntityForName:@"Penalty" inManagedObjectContext:context];
     
-    penalty.profile = profile;
+    [penalty addProfilesObject:profile];
     penalty.uid = [NSNumber numberWithUnsignedLongLong:[[penaltyObj valueForKey:@"id"] unsignedLongLongValue]];
     penalty.date = [_dateFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", [penaltyObj valueForKey:@"date"], [penaltyObj valueForKey:@"time"]]];
     penalty.overdueDate = [_dateFormatter dateFromString:[penaltyObj valueForKey:@"overdueDateTime"]];
