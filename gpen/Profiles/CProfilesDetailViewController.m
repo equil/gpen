@@ -492,7 +492,13 @@
         
         self.buttonMakeMain.hidden = YES;
         
-        [_backButton setHidden:NO];
+        [_backButton setImage:[UIImage imageNamed:@"cancel-for-nav.png"] forState:UIControlStateNormal];
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            [_backButton setHidden:NO];
+        }
+        
         [_editButton setImage:[UIImage imageNamed:@"done-for-nav.png"] forState:UIControlStateNormal];
         
         editingMode = YES;
@@ -534,7 +540,14 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"EditProfileEnd" object:nil];
     
-    [_backButton setHidden:YES];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        [_backButton setHidden:YES];
+    }
+    
+    [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+    
     [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -561,7 +574,21 @@
 
 - (IBAction)goBack
 {
-    [self cancelEdit];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        [self cancelEdit];
+    }
+    else
+    {
+        if (editingMode == YES)
+        {
+            [self cancelEdit];
+        }
+        else
+        {
+            [super goBack];
+        }
+    }
 }
 
 - (void) cancelEdit
@@ -571,7 +598,13 @@
     
     [self fillFields];//восстановление данных из бэкапа
     
-    [_backButton setHidden:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        [_backButton setHidden:YES];
+    }
+    
+    [_backButton setImage:[UIImage imageNamed:@"back-for-nav.png"] forState:UIControlStateNormal];
+    
     [_editButton setImage:[UIImage imageNamed:@"edit-for-nav.png"] forState:UIControlStateNormal];
     
     self.backupInfo = nil;

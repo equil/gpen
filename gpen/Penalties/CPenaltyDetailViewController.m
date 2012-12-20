@@ -260,7 +260,7 @@
 {
     [self.emailTextField resignFirstResponder];
     
-    if (!(self.email) || (self.email.length < 1) || ([self validateEmail:self.email]))
+    if (!(self.email) || (self.email.length < 1) || ([self validateEmail:[self.email lowercaseString]]))
     {
         [self doRequest];
     }
