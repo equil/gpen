@@ -96,8 +96,8 @@
                                     <outlet property="delegate" destination="ned-9T-F1O" id="RHw-by-OKy"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" id="i0D-s2-WOh">
-                                <rect key="frame" x="0.0" y="360" width="320" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="i0D-s2-WOh">
+                                <rect key="frame" x="142" y="351" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
@@ -514,8 +514,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="white" id="Ovx-om-dYb">
-                                <rect key="frame" x="374" y="645" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="Ovx-om-dYb">
+                                <rect key="frame" x="366" y="636" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>

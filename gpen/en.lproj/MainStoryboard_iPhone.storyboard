@@ -16,8 +16,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="white" id="zw0-r0-CMA">
-                                <rect key="frame" x="150" y="400" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="zw0-r0-CMA">
+                                <rect key="frame" x="142" y="391" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
@@ -732,8 +732,8 @@
                                     <outlet property="delegate" destination="irW-VK-qSW" id="gIN-rl-mg3"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" id="Fh8-GJ-EWG">
-                                <rect key="frame" x="0.0" y="174" width="320" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="Fh8-GJ-EWG">
+                                <rect key="frame" x="142" y="165" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
