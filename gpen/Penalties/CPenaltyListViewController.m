@@ -246,6 +246,7 @@
         delegate.updated = YES;
         self.informLabel.hidden = YES;
         self.tableView.hidden = NO;
+        [self fetchData];
     }
     else
     {

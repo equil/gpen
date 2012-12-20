@@ -282,8 +282,11 @@
 {
     for (Penalty *p in profile.penalties)
     {
-        [context deleteObject:p.recipient];
-        [context deleteObject:p];
+        if ([p.profiles count] == 1)
+        {
+            [context deleteObject:p.recipient];
+            [context deleteObject:p];
+        }
     }
 }
 
@@ -344,7 +347,7 @@
 
 - (status)checkStatus:(int)status
 {
-    NSLog(@"status %d", status);
+//    NSLog(@"status %d", status);
     if (status >= 200 && status < 400)
     {
         return GOOD;

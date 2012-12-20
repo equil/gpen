@@ -24,8 +24,8 @@
 
     NSString *jsonRequest = [requestDict JSONString];
     
-    NSLog(@"request to url: %@", url);
-    NSLog(@"JSON string: %@", jsonRequest);
+//    NSLog(@"request to url: %@", url);
+//    NSLog(@"JSON string: %@", jsonRequest);
     
     NSData *requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -68,7 +68,7 @@
 	NSError* error = nil;
 	NSURLResponse* response = nil;
     
-    NSLog(@"params: %@", params);
+//    NSLog(@"params: %@", params);
     
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
 	NSURL* URL = [NSURL URLWithString:url];

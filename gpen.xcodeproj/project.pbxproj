@@ -26,8 +26,6 @@
 		1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE4E1682381200753AE4 /* CStateHolder.m */; };
 		1E99EE571682F9E400753AE4 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE561682F9E400753AE4 /* Penalty.m */; };
 		1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE591682F9E600753AE4 /* Profile.m */; };
-		1E99EE5C1682FC4E00753AE4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E99EE5B1682FC4E00753AE4 /* Default.png */; };
-		1E99EE5E1682FC5600753AE4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E99EE5D1682FC5600753AE4 /* Default@2x.png */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -153,8 +151,6 @@
 		1E99EE561682F9E400753AE4 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
 		1E99EE581682F9E600753AE4 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
 		1E99EE591682F9E600753AE4 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
-		1E99EE5B1682FC4E00753AE4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		1E99EE5D1682FC5600753AE4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -426,8 +422,6 @@
 		1EBBE6881660B3CD00708B6D = {
 			isa = PBXGroup;
 			children = (
-				1E99EE5D1682FC5600753AE4 /* Default@2x.png */,
-				1E99EE5B1682FC4E00753AE4 /* Default.png */,
 				1EBBE69D1660B3CD00708B6D /* gpen */,
 				1EBBE6961660B3CD00708B6D /* Frameworks */,
 				1EBBE6941660B3CD00708B6D /* Products */,
@@ -814,8 +808,6 @@
 				1EF0951D167C88B80014B2B7 /* whiteArrow.png in Resources */,
 				1EF0951E167C88B80014B2B7 /* whiteArrow@2x.png in Resources */,
 				1EF09520167C8B3A0014B2B7 /* Default-568h@2x.png in Resources */,
-				1E99EE5C1682FC4E00753AE4 /* Default.png in Resources */,
-				1E99EE5E1682FC5600753AE4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
