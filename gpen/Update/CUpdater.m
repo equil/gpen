@@ -280,6 +280,8 @@
 
 - (void)deleteAllForProfile:(Profile *)profile context:(NSManagedObjectContext *)context
 {
+    NSMutableSet *set = [[NSMutableSet alloc] init];
+    
     for (Penalty *p in profile.penalties)
     {
         if ([p.profiles count] == 1)
@@ -287,7 +289,13 @@
             [context deleteObject:p.recipient];
             [context deleteObject:p];
         }
+        else
+        {
+            [set addObject:p];
+        }
     }
+    
+    [profile removePenalties:set];
 }
 
 - (status)sendInfoToProfile:(Profile *)profile penalty:(Penalty *)penalty email:(NSString *)email
