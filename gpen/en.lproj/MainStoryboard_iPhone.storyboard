@@ -1410,11 +1410,31 @@
                     <view key="view" contentMode="scaleToFill" id="xJi-pr-pJ6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="BF5-Mi-I2g">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" id="VXA-al-CWV" customClass="CDisableCopyPasteTextView">
+                                        <rect key="frame" x="10" y="10" width="300" height="570"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <mutableString key="text">Приложение показывает штрафы за административные правонарушения, выданные ГИБДД на территории Самарской области. Для получения информации о штрафах достаточно указать номер водительского удостоверения, полное имя и дату рождения водителя, специальной регистрации не требуется. По каждому штрафу сообщаются подробные обстоятельства правонарушения, реквизиты для оплаты штрафа в банке, а так же присылается печатный вариант квитанции по электронной почте. Позволяется хранить профили нескольких водителей, например, родственников или друзей. При совершении новых правонарушений или приближении срока оплаты штрафа показываются уведомления. Для работы требуется подключение к Интернету. Приложение разработано в 2012 году по заказу Департамента информационных технологий и связи Самарской области.</mutableString>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Информация" id="sbj-f7-zY4">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="7d0-c8-D38"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="scroll" destination="BF5-Mi-I2g" id="Ibh-H8-LoG"/>
+                        <outlet property="textView" destination="VXA-al-CWV" id="MsQ-hL-hZN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cn7-jX-Cm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1472,6 +1492,9 @@
         <class className="CBlackButton" superclassName="CGreenButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CBlackButton.h"/>
         </class>
+        <class className="CDisableCopyPasteTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisableCopyPasteTextView.h"/>
+        </class>
         <class className="CDisclosureCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisclosureCell.h"/>
             <relationships>
@@ -1483,6 +1506,10 @@
         </class>
         <class className="CInfoViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="textView" candidateClass="CDisableCopyPasteTextView"/>
+            </relationships>
         </class>
         <class className="CLoginViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CLoginViewController.h"/>

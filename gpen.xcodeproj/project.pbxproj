@@ -28,6 +28,7 @@
 		1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE591682F9E600753AE4 /* Profile.m */; };
 		1E99EE731683B52500753AE4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
 		1E99EE741683B52600753AE4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47D166688AB006CEC41 /* Default@2x.png */; };
+		1E99EE7716842BF300753AE4 /* CDisableCopyPasteTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE7616842BF300753AE4 /* CDisableCopyPasteTextView.m */; };
 		1E9F0D251663D61E0017A2EB /* libTBXML-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */; };
 		1E9F0D291663D8390017A2EB /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D281663D8390017A2EB /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9F0D2F1663DB210017A2EB /* CUpdater.m */; };
@@ -153,6 +154,8 @@
 		1E99EE561682F9E400753AE4 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
 		1E99EE581682F9E600753AE4 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
 		1E99EE591682F9E600753AE4 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
+		1E99EE7516842BF300753AE4 /* CDisableCopyPasteTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisableCopyPasteTextView.h; path = Info/CDisableCopyPasteTextView.h; sourceTree = "<group>"; };
+		1E99EE7616842BF300753AE4 /* CDisableCopyPasteTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDisableCopyPasteTextView.m; path = Info/CDisableCopyPasteTextView.m; sourceTree = "<group>"; };
 		1E9F0D211663D61E0017A2EB /* libTBXML-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTBXML-iOS.a"; path = "Update/TBXML/libTBXML-iOS.a"; sourceTree = "<group>"; };
 		1E9F0D221663D61E0017A2EB /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBXML.h; path = Update/TBXML/TBXML.h; sourceTree = "<group>"; };
 		1E9F0D231663D61E0017A2EB /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TBXML+Compression.h"; path = "Update/TBXML/TBXML+Compression.h"; sourceTree = "<group>"; };
@@ -581,6 +584,8 @@
 			children = (
 				1ED3FB84166BDDD7008C2E21 /* CInfoViewController.h */,
 				1ED3FB85166BDDD7008C2E21 /* CInfoViewController.m */,
+				1E99EE7516842BF300753AE4 /* CDisableCopyPasteTextView.h */,
+				1E99EE7616842BF300753AE4 /* CDisableCopyPasteTextView.m */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */,
 				1E99EE571682F9E400753AE4 /* Penalty.m in Sources */,
 				1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */,
+				1E99EE7716842BF300753AE4 /* CDisableCopyPasteTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,11 @@
 //
 
 #import "CRotateViewController.h"
+#import "CDisableCopyPasteTextView.h"
 
 @interface CInfoViewController : CRotateViewController
+
+@property (nonatomic, retain) IBOutlet CDisableCopyPasteTextView *textView;
+@property (nonatomic, retain) IBOutlet UIScrollView *scroll;
 
 @end
