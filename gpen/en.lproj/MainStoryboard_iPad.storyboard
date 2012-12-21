@@ -478,20 +478,41 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="911"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" id="YJ6-2U-WPY" customClass="CDisableCopyPasteTextView">
-                                <rect key="frame" x="10" y="10" width="748" height="220"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" editable="NO" id="YJ6-2U-WPY" customClass="CDisableCopyPasteTextView">
+                                <rect key="frame" x="10" y="10" width="748" height="440"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Приложение показывает штрафы за административные правонарушения, выданные ГИБДД на территории Самарской области. Для получения информации о штрафах достаточно указать номер водительского удостоверения, полное имя и дату рождения водителя, специальной регистрации не требуется. По каждому штрафу сообщаются подробные обстоятельства правонарушения, реквизиты для оплаты штрафа в банке, а так же присылается печатный вариант квитанции по электронной почте. Позволяется хранить профили нескольких водителей, например, родственников или друзей. При совершении новых правонарушений или приближении срока оплаты штрафа показываются уведомления. Для работы требуется подключение к Интернету. Приложение разработано в 2012 году по заказу Департамента информационных технологий и связи Самарской области.</mutableString>
+                                <mutableString key="text">
+
+Приложение показывает штрафы за административные правонарушения, выданные ГИБДД на территории Самарской области.
+
+Для получения информации о штрафах достаточно указать номер водительского удостоверения, полное имя и дату рождения водителя, специальной регистрации не требуется.
+
+По каждому штрафу сообщаются подробные обстоятельства правонарушения, реквизиты для оплаты штрафа в банке, а так же присылается печатный вариант квитанции по электронной почте.
+
+Позволяется хранить профили нескольких водителей, например, родственников или друзей.
+
+При совершении новых правонарушений или приближении срока оплаты штрафа показываются уведомления.
+
+Для работы требуется подключение к Интернету.
+Приложение разработано в 2012 году по заказу Департамента информационных технологий и связи Самарской области.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ГАИ-63." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kM8-2V-0iO">
+                                <rect key="frame" x="18" y="26" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.42745098039215684" green="0.42745098039215684" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Информация" image="info-tab.png" id="sNU-i4-9wm"/>
                     <navigationItem key="navigationItem" title="Информация" id="hF1-kN-SFj"/>
                     <connections>
+                        <outlet property="label" destination="kM8-2V-0iO" id="QqP-ee-WCu"/>
                         <outlet property="textView" destination="YJ6-2U-WPY" id="ue5-am-8Gr"/>
                     </connections>
                 </viewController>
@@ -1565,6 +1586,8 @@
         <class className="CInfoViewController" superclassName="CRotateViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CInfoViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scroll" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="textView" candidateClass="CDisableCopyPasteTextView"/>
             </relationships>
         </class>
