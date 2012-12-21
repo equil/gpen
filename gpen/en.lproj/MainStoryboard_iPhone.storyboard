@@ -1416,7 +1416,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" id="VXA-al-CWV" customClass="CDisableCopyPasteTextView">
-                                        <rect key="frame" x="10" y="10" width="300" height="790"/>
+                                        <rect key="frame" x="10" y="10" width="300" height="810"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <mutableString key="text">
@@ -1432,6 +1432,7 @@
 При совершении новых правонарушений или приближении срока оплаты штрафа показываются уведомления.
 
 Для работы требуется подключение к Интернету.
+
 Приложение разработано в 2012 году по заказу Департамента информационных технологий и связи Самарской области.</mutableString>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
