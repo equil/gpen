@@ -20,6 +20,9 @@
 @synthesize updated = _updated;
 @synthesize deviceToken = _deviceToken;
 @synthesize stateHolder = _stateHolder;
+@synthesize daysForOverdue = _daysForOverdue;
+@synthesize lastDaysForOverdue = _lastDaysForOverdue;
+@synthesize timer = _timer;
 
 - (void)customizeTabBar
 {
@@ -65,6 +68,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"5"
+                                                            forKey:@"daysForOverdue"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
     _dispatcher = [[CCentralDispatcher alloc] init];
     _updater = [[CUpdater alloc] init];
     
@@ -73,6 +82,9 @@
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
     [self updateDeviceToken];
+    
+//    [self timerAction];
+//    [self startTimer];
     
     return YES;
 }
@@ -171,12 +183,101 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _daysForOverdue = [[defaults valueForKey:@"daysForOverdue"] intValue];
+    NSLog(@"Days for overdue: %d", _daysForOverdue);
+    
+    if (_lastDaysForOverdue != _daysForOverdue)
+    {
+        _lastDaysForOverdue = _daysForOverdue;
+//        [self timerAction];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)startTimer
+{
+    UIBackgroundTaskIdentifier bgTask = 0;
+    UIApplication *app = [UIApplication sharedApplication];
+    
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        [app endBackgroundTask:bgTask];
+    }];
+    
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+    
+    NSDateComponents *timerDc = [[NSDateComponents alloc] init];
+    [timerDc setYear:[dc year]];
+    [timerDc setMonth:[dc month]];
+    [timerDc setDay:[dc day] + 1];
+    [timerDc setHour:12];
+    [timerDc setMinute:0];
+    
+    double interval = [[[NSCalendar currentCalendar] dateFromComponents:timerDc] timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self
+                                            selector:@selector(startMainTimer) userInfo:nil repeats:NO];
+}
+
+- (void)startMainTimer
+{
+    [_timer invalidate];
+    
+    [NSTimer scheduledTimerWithTimeInterval:(60 * 60 * 24) target:self
+                                   selector:@selector(timerAction) userInfo:nil repeats:YES];
+}
+
+- (void)timerAction
+{
+    NSLog(@"timer %@", [NSDate date]);
+    
+    int interval = [self checkInterval];
+    
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    
+    NSDateComponents *timerDc = [[NSDateComponents alloc] init];
+    [timerDc setYear:[dc year]];
+    [timerDc setMonth:[dc month]];
+    [timerDc setDay:[dc day] + interval + 1];
+    [timerDc setHour:0];
+    [timerDc setMinute:0];
+    
+    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
+    
+    //нужно уведомлять про все штрафы до after
+    
+//    UILocalNotification* alarm = [[UILocalNotification alloc] init];
+//    if (alarm)
+//    {
+//        alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:10.0];
+//        alarm.timeZone = [NSTimeZone defaultTimeZone];
+//        alarm.repeatInterval = 0;
+//        alarm.alertBody = @"Ваш кредит одобрен!";
+//        UIApplication *app = [UIApplication sharedApplication];
+//        [app scheduleLocalNotification:alarm];
+//    }
+}
+
+- (int)checkInterval
+{
+    int interval;
+    
+    if (_daysForOverdue == 0)
+    {
+        interval = 5 * 24 * 60 * 60;
+    }
+    else
+    {
+        interval = _daysForOverdue * 24 * 60 * 60;
+    }
+    
+    return interval;
 }
 
 @end

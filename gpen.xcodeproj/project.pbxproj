@@ -73,6 +73,7 @@
 		1ED3FBF2166E4520008C2E21 /* CProfilesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF1166E4520008C2E21 /* CProfilesDetailViewController.m */; };
 		1ED3FBF5166E453E008C2E21 /* CProfilesAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */; };
 		1ED3FBF8166E46CB008C2E21 /* CProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */; };
+		1EDECDBE16858247006E59C9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1EDECDBD16858247006E59C9 /* Settings.bundle */; };
 		1EF094F3167B491E0014B2B7 /* navigation-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F1167B491E0014B2B7 /* navigation-bar-back-ipad.png */; };
 		1EF094F4167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */; };
 		1EF094F8167B4B560014B2B7 /* tab-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */; };
@@ -229,6 +230,7 @@
 		1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesAddViewController.m; path = Profiles/CProfilesAddViewController.m; sourceTree = "<group>"; };
 		1ED3FBF6166E46CB008C2E21 /* CProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfileCell.h; path = CustomCells/CProfileCell.h; sourceTree = "<group>"; };
 		1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfileCell.m; path = CustomCells/CProfileCell.m; sourceTree = "<group>"; };
+		1EDECDBD16858247006E59C9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1EF094F1167B491E0014B2B7 /* navigation-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad.png"; path = "Resources/navigation-bar-back-ipad.png"; sourceTree = "<group>"; };
 		1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad@2x.png"; path = "Resources/navigation-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
 		1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad.png"; path = "Resources/tab-bar-back-ipad.png"; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				1EBBE6AF1660B3CD00708B6D /* MainStoryboard_iPhone.storyboard */,
 				1EBBE6B21660B3CD00708B6D /* MainStoryboard_iPad.storyboard */,
 				1EBBE69E1660B3CD00708B6D /* Supporting Files */,
+				1EDECDBD16858247006E59C9 /* Settings.bundle */,
 			);
 			path = gpen;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				1EF0951D167C88B80014B2B7 /* whiteArrow.png in Resources */,
 				1EF0951E167C88B80014B2B7 /* whiteArrow@2x.png in Resources */,
 				1EF09520167C8B3A0014B2B7 /* Default-568h@2x.png in Resources */,
+				1EDECDBE16858247006E59C9 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
