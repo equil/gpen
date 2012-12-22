@@ -257,13 +257,18 @@
         self.tableView.hidden = YES;
         self.informLabel.hidden = NO;
         
-        if ([delegate.lastSignProfile.checked boolValue])
+        NSString *status = [aNotification.userInfo objectForKey:@"status"];
+        
+        if ([@"INVALIDJSON" isEqualToString:status])
+        {
+            self.informLabel.text = @"Информация о штрафах этого профиля в данный момент недоступна.";
+        }
+        else if ([delegate.lastSignProfile.checked boolValue])
         {
             self.informLabel.text = @"Вы еще не получили ни единого штрафа от ГИБДД. Так держать! Если это когда-нибудь случится, приложение покажет всю информацию о нарушении и поможет оплатить штраф.";
         }
         else
         {
-            NSString *status = [aNotification.userInfo objectForKey:@"status"];
             if ([@"UNAVAILABLE" isEqualToString:status])
             {
                 self.informLabel.text = @"Чтобы посмотреть свои штрафы, нужно подключиться к Интернету";
