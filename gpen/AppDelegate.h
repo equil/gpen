@@ -23,6 +23,9 @@
 @property (nonatomic, assign) BOOL updated;
 @property (nonatomic, copy) NSString *deviceToken;
 @property (nonatomic, readonly) CStateHolder *stateHolder;
+@property (nonatomic, assign) int daysForOverdue;
+@property (nonatomic, assign) int lastDaysForOverdue;
+@property (nonatomic, strong) NSTimer *timer;
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;
