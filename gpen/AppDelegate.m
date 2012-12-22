@@ -82,7 +82,9 @@
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
     [self updateDeviceToken];
-    [self startTimer];
+    
+//    [self timerAction];
+//    [self startTimer];
     
     return YES;
 }
@@ -187,11 +189,8 @@
     
     if (_lastDaysForOverdue != _daysForOverdue)
     {
-        int interval = [self checkInterval];
-        [_timer invalidate];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self
-                                                selector:@selector(timerAction) userInfo:nil repeats:YES];
         _lastDaysForOverdue = _daysForOverdue;
+//        [self timerAction];
     }
 }
 
@@ -202,21 +201,54 @@
 
 - (void)startTimer
 {
-    UIBackgroundTaskIdentifier bgTask;
+    UIBackgroundTaskIdentifier bgTask = 0;
     UIApplication *app = [UIApplication sharedApplication];
     
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
         [app endBackgroundTask:bgTask];
     }];
     
-    int interval = [self checkInterval];
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+    
+    NSDateComponents *timerDc = [[NSDateComponents alloc] init];
+    [timerDc setYear:[dc year]];
+    [timerDc setMonth:[dc month]];
+    [timerDc setDay:[dc day] + 1];
+    [timerDc setHour:12];
+    [timerDc setMinute:0];
+    
+    double interval = [[[NSCalendar currentCalendar] dateFromComponents:timerDc] timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970];
+    
     _timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self
-                                                       selector:@selector(timerAction) userInfo:nil repeats:YES];
+                                            selector:@selector(startMainTimer) userInfo:nil repeats:NO];
+}
+
+- (void)startMainTimer
+{
+    [_timer invalidate];
+    
+    [NSTimer scheduledTimerWithTimeInterval:(60 * 60 * 24) target:self
+                                   selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
 - (void)timerAction
 {
     NSLog(@"timer %@", [NSDate date]);
+    
+    int interval = [self checkInterval];
+    
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    
+    NSDateComponents *timerDc = [[NSDateComponents alloc] init];
+    [timerDc setYear:[dc year]];
+    [timerDc setMonth:[dc month]];
+    [timerDc setDay:[dc day] + interval];
+    [timerDc setHour:[dc hour]];
+    [timerDc setMinute:[dc minute]];
+    
+    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
 }
 
 - (int)checkInterval
