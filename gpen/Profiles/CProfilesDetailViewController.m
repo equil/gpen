@@ -206,6 +206,8 @@
 
 - (IBAction) checkInputData
 {
+    self.labelEmail.hidden = ([self.clientTFEmail.text length] > 0);
+    
     if (editingMode)
     {
         if (([self.clientTFName.text length] > 0) &&
@@ -279,6 +281,7 @@
     self.clientTFNickname.text = self.clientEntity.nickname;
     self.clientTFLicense.text = [self spacedLicenseString: self.clientEntity.license];
     
+    [self checkInputData];
     [self disableAllFields];
     self.buttonDelete.hidden = YES;
     
