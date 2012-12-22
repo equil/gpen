@@ -194,6 +194,8 @@
 
 - (IBAction) checkInputData
 {
+    self.labelEmail.hidden = ([self.clientTFEmail.text length] > 0);
+    
     if (([self.clientTFName.text length] > 0) &&
         ([self.clientTFSurname.text length] > 0) &&
         ([self.clientTFPatronymic.text length] > 0) &&
