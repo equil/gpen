@@ -14,6 +14,15 @@
 
 @implementation CRotateTableViewController
 
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView setBackgroundView:nil];
+    [self.tableView setBackgroundView:[[UIView alloc] init]];
+    [self.tableView setBackgroundColor:[UIColor colorWithWhite:228.0/255.0 alpha:1.0f]];
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

@@ -146,6 +146,10 @@
 {
     [super viewDidLoad];
     
+    [self.tableView setBackgroundView:nil];
+    [self.tableView setBackgroundView:[[UIView alloc] init]];
+    [self.tableView setBackgroundColor:[UIColor colorWithWhite:228.0/255.0 alpha:1.0f]];
+    
     self.informLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePushNotification) name:@"pushNotification" object:nil];
