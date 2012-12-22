@@ -187,7 +187,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"INVALIDJSON" forKey:@"status"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"С сервера были получены некорректные данные" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Информация о штрафах этого профиля в данный момент недоступна." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         });
         
