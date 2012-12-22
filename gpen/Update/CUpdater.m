@@ -184,11 +184,14 @@
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"INVALIDJSON" forKey:@"status"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"С сервера были получены некорректные данные" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         });
         
-        requestStatus = UNAVAILABLE;
+        requestStatus = INVALIDJSON;
     }
     
     return requestStatus;

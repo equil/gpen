@@ -12,7 +12,8 @@
 typedef enum{
     UNAVAILABLE = 0,
     NOTFOUND = 1,
-    GOOD = 2
+    GOOD = 2,
+    INVALIDJSON = 3
 } status;
 
 @interface CUpdater : NSObject
