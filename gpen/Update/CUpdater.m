@@ -128,7 +128,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
     });
     
-    status requestStatus;
+    status requestStatus = UNAVAILABLE;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -180,18 +180,6 @@
         {
             [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
         }
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"INVALIDJSON" forKey:@"status"]];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Информация о штрафах этого профиля в данный момент недоступна." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        });
-        
-        requestStatus = INVALIDJSON;
     }
     
     return requestStatus;

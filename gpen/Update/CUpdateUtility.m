@@ -49,6 +49,9 @@
         if (error.code == -1009)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
+                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Проверьте подключение к интернету" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
             });
@@ -56,11 +59,28 @@
         
 		return nil;
 	}
-    
-	NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSDictionary *results = [jsonString objectFromJSONString];
-    
-    return results;
+    else
+    {
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *results = [jsonString objectFromJSONString];
+        
+        if (results == nil)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"INVALIDJSON" forKey:@"status"]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Информация о штрафах этого профиля в данный момент недоступна." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            });
+            
+            return nil;
+        }
+        else
+        {
+            return results;
+        }
+    }
 }
 
 + (NSDictionary *)parsedJSONFromUrl:(NSString *)url params:(NSString *)params
