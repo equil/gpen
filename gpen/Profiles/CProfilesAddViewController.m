@@ -295,10 +295,10 @@
 {
     if (section == 1)
     {
-        CGFloat footerHeight = 30;
+        CGFloat footerHeight = 50;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-            footerHeight = 50;
+            footerHeight = 30;
         }
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, footerHeight)];
         footerView.backgroundColor = [UIColor clearColor];
@@ -306,11 +306,11 @@
         CGRect footerLabelFrame;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-            footerLabelFrame = CGRectMake(45, 0, footerView.frame.size.width - 90, 40);
+            footerLabelFrame = CGRectMake(45, 0, footerView.frame.size.width - 90, 20);
         }
         else
         {
-            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 20);
+            footerLabelFrame = CGRectMake(18, 0, footerView.frame.size.width - 36, 40);
         }
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.numberOfLines = 2;
