@@ -636,6 +636,8 @@
         self.clientTFNickname.text = self.backupInfo.nickname;
         self.clientTFLicense.text = [self spacedLicenseString: self.backupInfo.license];
     }
+    
+    [self checkInputData];
 }
 
 // действие для кнопки СДЕЛАТЬ ГЛАВНЫМ
