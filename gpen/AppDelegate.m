@@ -248,7 +248,7 @@
     [timerDc setHour:0];
     [timerDc setMinute:0];
     
-    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
+//    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
     
     //нужно уведомлять про все штрафы до after
     
