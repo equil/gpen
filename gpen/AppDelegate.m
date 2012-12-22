@@ -244,11 +244,24 @@
     NSDateComponents *timerDc = [[NSDateComponents alloc] init];
     [timerDc setYear:[dc year]];
     [timerDc setMonth:[dc month]];
-    [timerDc setDay:[dc day] + interval];
-    [timerDc setHour:[dc hour]];
-    [timerDc setMinute:[dc minute]];
+    [timerDc setDay:[dc day] + interval + 1];
+    [timerDc setHour:0];
+    [timerDc setMinute:0];
     
     NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
+    
+    //нужно уведомлять про все штрафы до after
+    
+//    UILocalNotification* alarm = [[UILocalNotification alloc] init];
+//    if (alarm)
+//    {
+//        alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:10.0];
+//        alarm.timeZone = [NSTimeZone defaultTimeZone];
+//        alarm.repeatInterval = 0;
+//        alarm.alertBody = @"Ваш кредит одобрен!";
+//        UIApplication *app = [UIApplication sharedApplication];
+//        [app scheduleLocalNotification:alarm];
+//    }
 }
 
 - (int)checkInterval
