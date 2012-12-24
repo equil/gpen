@@ -29,5 +29,8 @@
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;
+- (void)showAlert:(UILocalNotification *)alert;
+- (void)timerAction;
+- (void)startTimer;
 
 @end

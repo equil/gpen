@@ -72,4 +72,25 @@
     return nil;
 }
 
+- (NSArray *)allPenaltiesOverdueAfterDate:(NSDate *)date
+{
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+	[request setEntity:[NSEntityDescription entityForName:@"Penalty"
+                                   inManagedObjectContext:self.dataContext]];
+    
+    //[request setPredicate:[NSPredicate predicateWithFormat:@"overdueDate < %@ AND notified == %@", date, [NSNumber numberWithBool:NO]]];
+    
+	NSError *error = nil;
+	NSArray *result = [self.dataContext executeFetchRequest:request error:&error];
+    
+	if (result == nil)
+	{
+		NSLog(@"Method <%@> failed: %@", NSStringFromSelector(_cmd), error);
+        result = [NSArray array];
+	}
+    
+	return result;
+}
+
 @end

@@ -15,5 +15,6 @@
 - (NSArray *)allPenalties;
 - (NSArray *)allPenaltiesForProfile:(Profile *)profile;
 - (Penalty *)penaltyForUid:(NSNumber *)uid;
+- (NSArray *)allPenaltiesOverdueAfterDate:(NSDate *)date;
 
 @end

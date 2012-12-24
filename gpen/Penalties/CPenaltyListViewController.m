@@ -187,7 +187,7 @@
     [self putPenaltiesCountToTabBar];
 }
 
-- (void) dealloc
+- (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"pushNotification" object:nil];
 }
@@ -251,6 +251,7 @@
         self.informLabel.hidden = YES;
         self.tableView.hidden = NO;
         [self fetchData];
+        [delegate timerAction];
     }
     else
     {

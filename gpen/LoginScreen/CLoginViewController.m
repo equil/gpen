@@ -398,7 +398,6 @@
         
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate actualizeMainProfile];
-    
     [self performSegueWithIdentifier:@"LoginToTabBar" sender:self];
 }
 

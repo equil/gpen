@@ -19,12 +19,10 @@
 		1E4D48471665158600949A5C /* select-tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483B1665158600949A5C /* select-tab@2x.png */; };
 		1E4D48481665158600949A5C /* tab-bar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483C1665158600949A5C /* tab-bar-back.png */; };
 		1E4D48491665158600949A5C /* tab-bar-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E4D483D1665158600949A5C /* tab-bar-back@2x.png */; };
-		1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487C1665604700949A5C /* CDao+Penalty.m */; };
 		1E4D48801665611900949A5C /* CDao+Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487F1665611900949A5C /* CDao+Profile.m */; };
 		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
 		1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48851665D55D00949A5C /* CUpdateUtility.m */; };
 		1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE4E1682381200753AE4 /* CStateHolder.m */; };
-		1E99EE571682F9E400753AE4 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE561682F9E400753AE4 /* Penalty.m */; };
 		1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE591682F9E600753AE4 /* Profile.m */; };
 		1E99EE731683B52500753AE4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
 		1E99EE741683B52600753AE4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47D166688AB006CEC41 /* Default@2x.png */; };
@@ -73,7 +71,8 @@
 		1ED3FBF2166E4520008C2E21 /* CProfilesDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF1166E4520008C2E21 /* CProfilesDetailViewController.m */; };
 		1ED3FBF5166E453E008C2E21 /* CProfilesAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */; };
 		1ED3FBF8166E46CB008C2E21 /* CProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */; };
-		1EDECDBE16858247006E59C9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1EDECDBD16858247006E59C9 /* Settings.bundle */; };
+		1EDECE681688C07B006E59C9 /* CDao+Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDECE671688C07B006E59C9 /* CDao+Penalty.m */; };
+		1EDECE6B1688C0B2006E59C9 /* Penalty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDECE6A1688C0B1006E59C9 /* Penalty.m */; };
 		1EF094F3167B491E0014B2B7 /* navigation-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F1167B491E0014B2B7 /* navigation-bar-back-ipad.png */; };
 		1EF094F4167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */; };
 		1EF094F8167B4B560014B2B7 /* tab-bar-back-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */; };
@@ -140,8 +139,6 @@
 		1E4D483B1665158600949A5C /* select-tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "select-tab@2x.png"; path = "Resources/select-tab@2x.png"; sourceTree = "<group>"; };
 		1E4D483C1665158600949A5C /* tab-bar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back.png"; path = "Resources/tab-bar-back.png"; sourceTree = "<group>"; };
 		1E4D483D1665158600949A5C /* tab-bar-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back@2x.png"; path = "Resources/tab-bar-back@2x.png"; sourceTree = "<group>"; };
-		1E4D487B1665604700949A5C /* CDao+Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Penalty.h"; path = "DataAccess/DAO/CDao+Penalty.h"; sourceTree = "<group>"; };
-		1E4D487C1665604700949A5C /* CDao+Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Penalty.m"; path = "DataAccess/DAO/CDao+Penalty.m"; sourceTree = "<group>"; };
 		1E4D487E1665611900949A5C /* CDao+Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Profile.h"; path = "DataAccess/DAO/CDao+Profile.h"; sourceTree = "<group>"; };
 		1E4D487F1665611900949A5C /* CDao+Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Profile.m"; path = "DataAccess/DAO/CDao+Profile.m"; sourceTree = "<group>"; };
 		1E4D48811665612F00949A5C /* CDao+Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Recipient.h"; path = "DataAccess/DAO/CDao+Recipient.h"; sourceTree = "<group>"; };
@@ -151,8 +148,6 @@
 		1E99EE4A1682377700753AE4 /* IStateHolderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IStateHolderObserver.h; path = StateHolder/IStateHolderObserver.h; sourceTree = "<group>"; };
 		1E99EE4D1682381200753AE4 /* CStateHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CStateHolder.h; path = StateHolder/CStateHolder.h; sourceTree = "<group>"; };
 		1E99EE4E1682381200753AE4 /* CStateHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CStateHolder.m; path = StateHolder/CStateHolder.m; sourceTree = "<group>"; };
-		1E99EE551682F9E400753AE4 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
-		1E99EE561682F9E400753AE4 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
 		1E99EE581682F9E600753AE4 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = DataAccess/Model/Profile.h; sourceTree = "<group>"; };
 		1E99EE591682F9E600753AE4 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = DataAccess/Model/Profile.m; sourceTree = "<group>"; };
 		1E99EE7516842BF300753AE4 /* CDisableCopyPasteTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDisableCopyPasteTextView.h; path = Info/CDisableCopyPasteTextView.h; sourceTree = "<group>"; };
@@ -230,7 +225,10 @@
 		1ED3FBF4166E453E008C2E21 /* CProfilesAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfilesAddViewController.m; path = Profiles/CProfilesAddViewController.m; sourceTree = "<group>"; };
 		1ED3FBF6166E46CB008C2E21 /* CProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProfileCell.h; path = CustomCells/CProfileCell.h; sourceTree = "<group>"; };
 		1ED3FBF7166E46CB008C2E21 /* CProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProfileCell.m; path = CustomCells/CProfileCell.m; sourceTree = "<group>"; };
-		1EDECDBD16858247006E59C9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1EDECE661688C07B006E59C9 /* CDao+Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDao+Penalty.h"; path = "DataAccess/DAO/CDao+Penalty.h"; sourceTree = "<group>"; };
+		1EDECE671688C07B006E59C9 /* CDao+Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Penalty.m"; path = "DataAccess/DAO/CDao+Penalty.m"; sourceTree = "<group>"; };
+		1EDECE691688C0B1006E59C9 /* Penalty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Penalty.h; path = DataAccess/Model/Penalty.h; sourceTree = "<group>"; };
+		1EDECE6A1688C0B1006E59C9 /* Penalty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Penalty.m; path = DataAccess/Model/Penalty.m; sourceTree = "<group>"; };
 		1EF094F1167B491E0014B2B7 /* navigation-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad.png"; path = "Resources/navigation-bar-back-ipad.png"; sourceTree = "<group>"; };
 		1EF094F2167B491E0014B2B7 /* navigation-bar-back-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar-back-ipad@2x.png"; path = "Resources/navigation-bar-back-ipad@2x.png"; sourceTree = "<group>"; };
 		1EF094F6167B4B560014B2B7 /* tab-bar-back-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-bar-back-ipad.png"; path = "Resources/tab-bar-back-ipad.png"; sourceTree = "<group>"; };
@@ -478,7 +476,6 @@
 				1EBBE6AF1660B3CD00708B6D /* MainStoryboard_iPhone.storyboard */,
 				1EBBE6B21660B3CD00708B6D /* MainStoryboard_iPad.storyboard */,
 				1EBBE69E1660B3CD00708B6D /* Supporting Files */,
-				1EDECDBD16858247006E59C9 /* Settings.bundle */,
 			);
 			path = gpen;
 			sourceTree = "<group>";
@@ -524,8 +521,8 @@
 				1EB1E48716669485006CEC41 /* Recipient.m */,
 				1E99EE581682F9E600753AE4 /* Profile.h */,
 				1E99EE591682F9E600753AE4 /* Profile.m */,
-				1E99EE551682F9E400753AE4 /* Penalty.h */,
-				1E99EE561682F9E400753AE4 /* Penalty.m */,
+				1EDECE691688C0B1006E59C9 /* Penalty.h */,
+				1EDECE6A1688C0B1006E59C9 /* Penalty.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -533,8 +530,8 @@
 		1EBBE6F01660C1E600708B6D /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				1E4D487B1665604700949A5C /* CDao+Penalty.h */,
-				1E4D487C1665604700949A5C /* CDao+Penalty.m */,
+				1EDECE661688C07B006E59C9 /* CDao+Penalty.h */,
+				1EDECE671688C07B006E59C9 /* CDao+Penalty.m */,
 				1E4D487E1665611900949A5C /* CDao+Profile.h */,
 				1E4D487F1665611900949A5C /* CDao+Profile.m */,
 				1E4D48811665612F00949A5C /* CDao+Recipient.h */,
@@ -820,7 +817,6 @@
 				1EF0951D167C88B80014B2B7 /* whiteArrow.png in Resources */,
 				1EF0951E167C88B80014B2B7 /* whiteArrow@2x.png in Resources */,
 				1EF09520167C8B3A0014B2B7 /* Default-568h@2x.png in Resources */,
-				1EDECDBE16858247006E59C9 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,7 +839,6 @@
 				1E9F0D301663DB210017A2EB /* CUpdater.m in Sources */,
 				A0E83FC21663CAD800561612 /* CTextFieldCell.m in Sources */,
 				A0E83FC51663CC2300561612 /* CDisclosureCell.m in Sources */,
-				1E4D487D1665604700949A5C /* CDao+Penalty.m in Sources */,
 				1E4D48801665611900949A5C /* CDao+Profile.m in Sources */,
 				1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */,
 				1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */,
@@ -875,9 +870,10 @@
 				A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */,
 				A0985080167EF4AF00221140 /* CProfilesDetailViewControllerPad.m in Sources */,
 				1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */,
-				1E99EE571682F9E400753AE4 /* Penalty.m in Sources */,
 				1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */,
 				1E99EE7716842BF300753AE4 /* CDisableCopyPasteTextView.m in Sources */,
+				1EDECE681688C07B006E59C9 /* CDao+Penalty.m in Sources */,
+				1EDECE6B1688C0B2006E59C9 /* Penalty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

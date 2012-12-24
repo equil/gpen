@@ -29,4 +29,21 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLocalNotification) name:@"localNotification" object:nil];
+}
+
+- (void)handleLocalNotification
+{
+    self.selectedIndex = 0;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"localNotification" object:nil];
+}
+
 @end

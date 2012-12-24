@@ -2,7 +2,7 @@
 //  Penalty.m
 //  gpen
 //
-//  Created by fredformout on 20.12.12.
+//  Created by fredformout on 24.12.12.
 //  Copyright (c) 2012 XP.Guild. All rights reserved.
 //
 
@@ -27,6 +27,7 @@
 @dynamic roadPosition;
 @dynamic status;
 @dynamic uid;
+@dynamic notified;
 @dynamic profiles;
 @dynamic recipient;
 

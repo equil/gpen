@@ -206,6 +206,27 @@
     }];
 }
 
+- (void)updateNotifiedForPenalty:(Penalty *)penalty alert:(UILocalNotification *)alert
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifiedUpdateStart" object:nil];
+    });
+    
+    unsigned long uid = [penalty.uid unsignedLongValue];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
+        CDao *dao = [CDao daoWithContext:context];
+        Penalty *pen = [dao penaltyForUid:[NSNumber numberWithUnsignedLong:uid]];
+        pen.notified = [NSNumber numberWithBool:YES];
+    } completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [delegate showAlert:alert];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifiedUpdateEnd" object:nil];
+        });
+    }];
+}
+
 - (void)setNewPenaltiesCountForLicense:(NSString *)license count:(unsigned long)count
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -482,6 +503,7 @@
     penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
     penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
     penalty.catcher = [penaltyObj valueForKey:@"catcher"];
+    penalty.notified = [NSNumber numberWithBool:NO];
     
     [self addRecipient:[penaltyObj valueForKey:@"recipient"] context:context penalty:penalty];
 }

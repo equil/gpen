@@ -10,6 +10,7 @@
 #import "CUpdater.h"
 #import "CDao.h"
 #import "CDao+Profile.h"
+#import "CDao+Penalty.h"
 
 @implementation AppDelegate
 
@@ -68,23 +69,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"5"
-                                                            forKey:@"daysForOverdue"];
-    [defaults registerDefaults:appDefaults];
-    [defaults synchronize];
+    _daysForOverdue = 3;
     
     _dispatcher = [[CCentralDispatcher alloc] init];
     _updater = [[CUpdater alloc] init];
+    
+    [self startTimer];
     
     [self customizeInterface];
     
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
     [self updateDeviceToken];
-    
-//    [self timerAction];
-//    [self startTimer];
     
     return YES;
 }
@@ -101,7 +97,7 @@
 	NSLog(@"Failed to get token, error: %@", error);
 }
 
--(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     /*
     {
@@ -120,6 +116,19 @@
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"localNotification" object:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ГАИ-63" message:notification.alertBody delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)updateDeviceToken {
@@ -151,6 +160,7 @@
     {
         [_updater updateLastSignForProfile:_lastSignProfile];
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
+        [self timerAction];
     }
     else
     {
@@ -183,15 +193,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _daysForOverdue = [[defaults valueForKey:@"daysForOverdue"] intValue];
-    NSLog(@"Days for overdue: %d", _daysForOverdue);
     
-    if (_lastDaysForOverdue != _daysForOverdue)
-    {
-        _lastDaysForOverdue = _daysForOverdue;
-//        [self timerAction];
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -235,7 +237,7 @@
 {
     NSLog(@"timer %@", [NSDate date]);
     
-    int interval = [self checkInterval];
+    int interval = _daysForOverdue * 24 * 60 * 60;
     
     NSDate *now = [NSDate date];
     
@@ -248,36 +250,43 @@
     [timerDc setHour:0];
     [timerDc setMinute:0];
     
-//    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
+    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
     
-    //нужно уведомлять про все штрафы до after
+    CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
+    NSArray *overduePenalties = [dao allPenaltiesOverdueAfterDate:after];
     
-//    UILocalNotification* alarm = [[UILocalNotification alloc] init];
-//    if (alarm)
-//    {
-//        alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:10.0];
-//        alarm.timeZone = [NSTimeZone defaultTimeZone];
-//        alarm.repeatInterval = 0;
-//        alarm.alertBody = @"Ваш кредит одобрен!";
-//        UIApplication *app = [UIApplication sharedApplication];
-//        [app scheduleLocalNotification:alarm];
-//    }
+    NSLog(@"overdue penalties count: %d", [overduePenalties count]);
+    
+    for (Penalty *p in overduePenalties)
+    {
+        UILocalNotification *alarm = [[UILocalNotification alloc] init];
+        if (alarm)
+        {
+            alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:3.0];
+            alarm.timeZone = [NSTimeZone defaultTimeZone];
+            alarm.repeatInterval = 0;
+            
+            NSString *profileStr = [self nameOfProfile:[[p.profiles allObjects] objectAtIndex:0]];
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"dd.MM.yyyy HH:mm"];
+            
+            alarm.alertBody = [NSString stringWithFormat:@"Уважаемый(-ая) %@! Срок оплаты вашего штрафа от %@ на сумму %@ р. истекает через три дня!", profileStr, [df stringFromDate:p.date], [p.price stringValue]];
+                        
+            alarm.alertAction = @"Посмотреть";
+            
+            [_updater updateNotifiedForPenalty:p alert:alarm];
+        }
+    }
 }
 
-- (int)checkInterval
+- (NSString *)nameOfProfile:(Profile *)profile
 {
-    int interval;
-    
-    if (_daysForOverdue == 0)
-    {
-        interval = 5 * 24 * 60 * 60;
-    }
-    else
-    {
-        interval = _daysForOverdue * 24 * 60 * 60;
-    }
-    
-    return interval;
+    return [NSString stringWithFormat:@"%@ %@", profile.lastname, profile.name];
+}
+
+- (void)showAlert:(UILocalNotification *)alert
+{
+    [[UIApplication sharedApplication] scheduleLocalNotification:alert];
 }
 
 @end
