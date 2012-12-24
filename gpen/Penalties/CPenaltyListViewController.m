@@ -427,7 +427,7 @@
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    if (delegate.lastSignProfile.checked = NO)
+    if ([delegate.lastSignProfile.lastUpdate isEqualToDate:[NSDate distantPast]])
     {
         return nil;
     }
