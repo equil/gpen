@@ -21,8 +21,6 @@
 @synthesize updated = _updated;
 @synthesize deviceToken = _deviceToken;
 @synthesize stateHolder = _stateHolder;
-@synthesize daysForOverdue = _daysForOverdue;
-@synthesize lastDaysForOverdue = _lastDaysForOverdue;
 @synthesize timer = _timer;
 
 - (void)customizeTabBar
@@ -68,9 +66,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    _daysForOverdue = 3;
-    
+{   
     _dispatcher = [[CCentralDispatcher alloc] init];
     _updater = [[CUpdater alloc] init];
     
@@ -244,23 +240,8 @@
 {
     NSLog(@"timer %@", [NSDate date]);
     
-    int interval = _daysForOverdue * 24 * 60 * 60;
-    
-    NSDate *now = [NSDate date];
-    
-    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
-    
-    NSDateComponents *timerDc = [[NSDateComponents alloc] init];
-    [timerDc setYear:[dc year]];
-    [timerDc setMonth:[dc month]];
-    [timerDc setDay:[dc day] + interval + 1];
-    [timerDc setHour:0];
-    [timerDc setMinute:0];
-    
-    NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDc];
-    
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
-    NSArray *overduePenalties = [dao allPenaltiesOverdueAfterDate:after];
+    NSArray *overduePenalties = [dao allPenaltiesOverdueAfterDate:[NSDate date]];
     
     NSLog(@"overdue penalties count: %d", [overduePenalties count]);
     
@@ -269,7 +250,7 @@
         UILocalNotification *alarm = [[UILocalNotification alloc] init];
         if (alarm)
         {
-            alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:3.0];
+            alarm.fireDate = [[NSDate date] dateByAddingTimeInterval:5.0];
             alarm.timeZone = [NSTimeZone defaultTimeZone];
             alarm.repeatInterval = 0;
             

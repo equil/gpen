@@ -154,16 +154,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePushNotification) name:@"pushNotification" object:nil];
     
-//TODO раскомментить для пулл энд рилиза
-//    if (_refreshHeaderView == nil) {
-//		
-//		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-//		view.delegate = self;
-//		[self.tableView addSubview:view];
-//		_refreshHeaderView = view;
-//	}
-//	
-//	[_refreshHeaderView refreshLastUpdatedDate];
+    if (_refreshHeaderView == nil) {
+		
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		view.delegate = self;
+		[self.tableView addSubview:view];
+		_refreshHeaderView = view;
+	}
+	
+	[_refreshHeaderView refreshLastUpdatedDate];
     
     [self putPenaltiesCountToTabBar];
 }
