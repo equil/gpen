@@ -25,6 +25,7 @@
 //
 
 #import "EGORefreshTableHeaderView.h"
+#import "AppDelegate.h"
 
 
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
@@ -43,6 +44,8 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
 		
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRefreshLabel) name:@"RefreshUpdateLabel" object:nil];
+        
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor clearColor];
 
@@ -99,6 +102,22 @@
 	
 }
 
+- (void)handleRefreshLabel
+{
+    AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    
+    if ([delegate.lastSignProfile.lastUpdate isEqualToDate:[NSDate distantPast]])
+    {
+        _lastUpdatedLabel.text = @"Еще не было обновления";
+    }
+    else
+    {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
+        _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate:    delegate.lastSignProfile.lastUpdate]];
+        [formatter release];
+    }
+}
 
 #pragma mark -
 #pragma mark Setters
@@ -246,7 +265,6 @@
 
 }
 
-
 #pragma mark -
 #pragma mark Dealloc
 
@@ -257,6 +275,9 @@
 	_statusLabel = nil;
 	_arrowImage = nil;
 	_lastUpdatedLabel = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RefreshUpdateLabel" object:nil];
+    
     [super dealloc];
 }
 

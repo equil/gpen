@@ -171,6 +171,9 @@
             } completion:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [delegate actualizeMainProfile];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshUpdateLabel" object:nil];
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"GOOD" forKey:@"status"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
                 });
