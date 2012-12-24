@@ -126,8 +126,16 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ГАИ-63" message:notification.alertBody delegate:nil cancelButtonTitle:@"ОК" otherButtonTitles:nil];
-        [alert show];
+        UIAlertView *alarm = [[UIAlertView alloc] initWithTitle:@"ГАИ-63" message:notification.alertBody delegate:self cancelButtonTitle:@"Отмена" otherButtonTitles:@"Посмотреть", nil];
+        [alarm show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"localNotification" object:nil];
     }
 }
 
@@ -160,7 +168,6 @@
     {
         [_updater updateLastSignForProfile:_lastSignProfile];
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
-        [self timerAction];
     }
     else
     {
