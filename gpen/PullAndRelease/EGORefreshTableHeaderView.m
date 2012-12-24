@@ -116,7 +116,7 @@
         else
         {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"dd/MM/yyyy hh:mm"];
+            [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
             _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate:date]];
             [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
             [[NSUserDefaults standardUserDefaults] synchronize];
