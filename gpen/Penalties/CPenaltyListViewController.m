@@ -225,6 +225,7 @@
     if (delegate.updated == NO)
     {
         [self.spinner startAnimating];
+        self.tableView.userInteractionEnabled = NO;
         self.informLabel.hidden = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -281,6 +282,7 @@
     }
     
     [self.spinner stopAnimating];
+    self.tableView.userInteractionEnabled = YES;
     
     [self selectRow];
 }
