@@ -64,6 +64,9 @@
         NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSDictionary *results = [jsonString objectFromJSONString];
         
+//        NSLog(@"json string: %@", jsonString);
+//        NSLog(@"results: %@", results);
+        
         if (results == nil)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
