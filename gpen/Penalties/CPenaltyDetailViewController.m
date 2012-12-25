@@ -459,9 +459,10 @@
         {
             CPenaltyDetailMainCell *cell = (CPenaltyDetailMainCell *)[tableView dequeueReusableCellWithIdentifier:penaltyMainCellId];
             NSString *photo = self.penalty.photo;
+            NSLog(photo);
             if ([photo length] > 0)
             {
-                cell.carPhoto.image = [UIImage imageWithContentsOfFile:photo];
+                cell.carPhoto.image = [UIImage imageNamed:photo];
             }
             else
             {
