@@ -467,7 +467,9 @@
                 
                 if ([ext isEqualToString:@"png"])
                 {
-                    cell.carPhoto.image = [UIImage imageNamed:photo];
+                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, photo];
+                    cell.carPhoto.image = [UIImage imageWithContentsOfFile:fullPath];
                 }
                 else
                 {
