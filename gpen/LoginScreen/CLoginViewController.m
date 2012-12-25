@@ -91,10 +91,10 @@
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSInteger maxLength = 255;
-    if ([textField isEqual:self.clientTFLicense])
+    /*if ([textField isEqual:self.clientTFLicense])
     {
         maxLength = 10;
-    }
+    }*/
     if ([textField isEqual:self.clientTFBirthday])
     {
         maxLength = 0;
@@ -117,14 +117,15 @@
         self.keyboardControls.activeTextField = textField;
     self.activeTextField = textField;
     [self scrollViewToTextField:textField];
-    
+    /*
     if ([textField isEqual:self.clientTFLicense])
     {
         NSMutableString *result = [[NSMutableString alloc] initWithString:textField.text];
         [result replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [result length])];
         textField.text = result;
     }
-    else if ([textField isEqual:self.clientTFBirthday])
+    else */
+    if ([textField isEqual:self.clientTFBirthday])
     {
         if (!self.realBirthday)
         {
@@ -156,8 +157,8 @@
     else if ([textField isEqual:self.clientTFLicense])
     {
         self.clientEntity.license = textField.text;
-        textField.text = [self spacedLicenseString:textField.text];
-        self.clientEntity.license = textField.text;
+        /*textField.text = [self spacedLicenseString:textField.text];
+        self.clientEntity.license = textField.text;*/
     }
     else if ([textField isEqual:self.clientTFEmail])
     {
@@ -177,7 +178,7 @@
         }
     }
 }
-
+/*
 - (NSString *) spacedLicenseString: (NSString *) aString
 {
     if (!aString)
@@ -191,7 +192,7 @@
     }
     return result;
 }
-
+*/
 - (IBAction) checkInputData
 {
     self.labelEmail.hidden = ([self.clientTFEmail.text length] > 0);
