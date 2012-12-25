@@ -135,7 +135,11 @@
     [request setTimeoutInterval:30];
 	
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *path = [NSString stringWithFormat:@"photo-%@.jpg", uid];
+    
+    NSArray *arr = [url componentsSeparatedByString:@"."];
+    NSString *ext = [arr objectAtIndex:[arr count] - 1];
+    
+    NSString *path = [NSString stringWithFormat:@"photo-%@.%@", uid, ext];
     [self saveDataInDocumentDirectory:data path:path];
     return path;
 }

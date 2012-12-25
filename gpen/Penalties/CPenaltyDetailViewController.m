@@ -462,7 +462,20 @@
             
             if ([photo length] > 0)
             {
-                cell.carPhoto.image = [UIImage imageNamed:photo];
+                NSArray *arr = [photo componentsSeparatedByString:@"."];
+                NSString *ext = [arr objectAtIndex:[arr count] - 1];
+                
+                if ([ext isEqualToString:@"png"])
+                {
+                    cell.carPhoto.image = [UIImage imageNamed:photo];
+                }
+                else
+                {
+                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, photo];
+                    NSURL *url = [NSURL fileURLWithPath:fullPath];
+                    cell.carPhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                }
             }
             else
             {

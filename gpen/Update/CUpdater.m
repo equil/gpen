@@ -319,7 +319,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingStart" object:nil];
     });
     
-    status requestStatus;
+    status requestStatus = UNAVAILABLE;
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
@@ -355,14 +355,6 @@
         {
             [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
         }
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil];
-        });
-        
-        requestStatus = UNAVAILABLE;
     }
     
     return requestStatus;
