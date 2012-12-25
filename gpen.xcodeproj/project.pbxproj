@@ -110,6 +110,10 @@
 		A02AC85C166FC8D200F02A41 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85A166FC8D200F02A41 /* flag.png */; };
 		A02AC85D166FC8D200F02A41 /* flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AC85B166FC8D200F02A41 /* flag@2x.png */; };
 		A02AC8601670E7A700F02A41 /* CTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A02AC85F1670E7A700F02A41 /* CTextField.m */; };
+		A06F2DEB168A1E740060CC5D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A06F2DEA168A1E740060CC5D /* Icon.png */; };
+		A06F2DED168A1E7B0060CC5D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A06F2DEC168A1E7B0060CC5D /* Icon@2x.png */; };
+		A06F2DEF168A1EAD0060CC5D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = A06F2DEE168A1EAD0060CC5D /* Icon-72.png */; };
+		A06F2DF1168A1F2C0060CC5D /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A06F2DF0168A1F2C0060CC5D /* Icon-72@2x.png */; };
 		A098506F167E099100221140 /* CPenaltyDetailViewControllerPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A098506E167E099100221140 /* CPenaltyDetailViewControllerPad.m */; };
 		A0985080167EF4AF00221140 /* CProfilesDetailViewControllerPad.m in Sources */ = {isa = PBXBuildFile; fileRef = A098507F167EF4AF00221140 /* CProfilesDetailViewControllerPad.m */; };
 		A0BCEF5F167283BE00285089 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEF5E167283BE00285089 /* BSKeyboardControls.m */; };
@@ -274,6 +278,10 @@
 		A02AC85B166FC8D200F02A41 /* flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flag@2x.png"; path = "Resources/flag@2x.png"; sourceTree = "<group>"; };
 		A02AC85E1670E7A700F02A41 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
 		A02AC85F1670E7A700F02A41 /* CTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTextField.m; sourceTree = "<group>"; };
+		A06F2DEA168A1E740060CC5D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		A06F2DEC168A1E7B0060CC5D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		A06F2DEE168A1EAD0060CC5D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		A06F2DF0168A1F2C0060CC5D /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		A098506D167E099100221140 /* CPenaltyDetailViewControllerPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyDetailViewControllerPad.h; sourceTree = "<group>"; };
 		A098506E167E099100221140 /* CPenaltyDetailViewControllerPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyDetailViewControllerPad.m; sourceTree = "<group>"; };
 		A0985074167E101E00221140 /* CPenaltySelectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPenaltySelectionDelegate.h; sourceTree = "<group>"; };
@@ -427,6 +435,10 @@
 		1EBBE6881660B3CD00708B6D = {
 			isa = PBXGroup;
 			children = (
+				A06F2DF0168A1F2C0060CC5D /* Icon-72@2x.png */,
+				A06F2DEE168A1EAD0060CC5D /* Icon-72.png */,
+				A06F2DEC168A1E7B0060CC5D /* Icon@2x.png */,
+				A06F2DEA168A1E740060CC5D /* Icon.png */,
 				1EBBE69D1660B3CD00708B6D /* gpen */,
 				1EBBE6961660B3CD00708B6D /* Frameworks */,
 				1EBBE6941660B3CD00708B6D /* Products */,
@@ -817,6 +829,10 @@
 				1EF0951D167C88B80014B2B7 /* whiteArrow.png in Resources */,
 				1EF0951E167C88B80014B2B7 /* whiteArrow@2x.png in Resources */,
 				1EF09520167C8B3A0014B2B7 /* Default-568h@2x.png in Resources */,
+				A06F2DEB168A1E740060CC5D /* Icon.png in Resources */,
+				A06F2DED168A1E7B0060CC5D /* Icon@2x.png in Resources */,
+				A06F2DEF168A1EAD0060CC5D /* Icon-72.png in Resources */,
+				A06F2DF1168A1F2C0060CC5D /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
