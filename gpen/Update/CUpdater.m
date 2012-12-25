@@ -147,7 +147,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"getList" params:params];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:/*@"http://public.samregion.ru/services/lawBreakerAdapter.php"*/@"http://hephaestus.alwaysdata.net/gpen/" method:@"getList" params:params];
     
     unsigned long uid = [profile.uid unsignedLongValue];
     if (results != nil)
