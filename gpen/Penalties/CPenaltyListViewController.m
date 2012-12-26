@@ -194,25 +194,31 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.informLabel.hidden = YES;
-    
-    [self fetchData];
-    
     [super viewWillAppear:animated];
-    
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
-    {
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    }
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     Profile *profile = delegate.lastSignProfile;
-    if (profile.profileName && profile.profileName.length > 0)
+    if (profile != nil)
     {
-        [self.navigationItem setTitle:profile.profileName];
+        [self fetchData];
+        
+        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+        {
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+        }
+    
+        if (profile.profileName && profile.profileName.length > 0)
+        {
+            [self.navigationItem setTitle:profile.profileName];
+        }
+        else
+        {
+            [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
+        }
     }
     else
     {
-        [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
+        [self.navigationItem setTitle:@"Профилей нет"];
     }
 }
 
@@ -221,20 +227,27 @@
     [super viewDidAppear:animated];
     
     AppDelegate *delegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    
-    if (delegate.updated == NO)
+    Profile *profile = delegate.lastSignProfile;
+    if (profile != nil)
     {
-        [self.spinner startAnimating];
+        if (delegate.updated == NO)
+        {
+            [self.spinner startAnimating];
+            self.tableView.userInteractionEnabled = NO;
+            self.informLabel.hidden = YES;
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
+                                                       object:nil];
+            
+            dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
+                [delegate.updater syncProfile:delegate.lastSignProfile];
+            });
+        }
+    }
+    else
+    {
         self.tableView.userInteractionEnabled = NO;
-        self.informLabel.hidden = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleFinishLoading:) name:@"LoadingEnd"
-                                                   object:nil];
-        
-        dispatch_async(delegate.dispatcher.dataUpdateQueue, ^{
-            [delegate.updater syncProfile:delegate.lastSignProfile];
-        });
     }
 }
 

@@ -95,13 +95,15 @@ static NSString *kSyncMethodName = @"getList";
             
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [delegate.dataAccessManager saveDataInForeignContext:^(NSManagedObjectContext *context) {
+    [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
         [self createProfile:context dict:dict];
+    } completion:^{
+        [delegate actualizeMainProfile];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"InsertProfileEnd" object:nil];
+        });
     }];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"InsertProfileEnd" object:nil];
-    });
 }
 
 - (void)editProfile:(Profile *)profile data:(NSDictionary *)dict

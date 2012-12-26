@@ -440,6 +440,9 @@
 
 - (void) handleFinishAddProfile
 {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.updated = NO;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"InsertProfileEnd" object:nil];
     [self cancelAction];
 }

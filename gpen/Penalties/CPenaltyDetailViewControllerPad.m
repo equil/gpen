@@ -7,6 +7,7 @@
 //
 
 #import "CPenaltyDetailViewControllerPad.h"
+#import "AppDelegate.h"
 
 @interface CPenaltyDetailViewControllerPad ()
 
@@ -39,6 +40,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (delegate.lastSignProfile == nil)
+    {
+        [self penaltySelectionChanged:nil];
+    }
 }
 
 - (void) penaltySelectionChanged:(Penalty *)penalty
