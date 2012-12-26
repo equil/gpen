@@ -34,7 +34,7 @@
                        [NSArray arrayWithObjects:@"Сумма платежа:", [NSString stringWithFormat:@"%@ рублей", [self spacedMoneyString: [NSString stringWithFormat:@"%@", self.penalty.price]]], nil],
                        [NSArray arrayWithObjects:@"Получатель:", [self noneNilString:self.penalty.recipient.name], nil],
                        [NSArray arrayWithObjects:@"Счет:", [self spacedCheckString: self.penalty.recipient.account], nil],
-                       [NSArray arrayWithObjects:@"Инн:", [self spacedCheckString: self.penalty.recipient.inn], nil],
+                       [NSArray arrayWithObjects:@"ИНН:", [self spacedCheckString: self.penalty.recipient.inn], nil],
                        [NSArray arrayWithObjects:@"КПП:", [self spacedCheckString: self.penalty.recipient.kpp], nil],
                        [NSArray arrayWithObjects:@"ОКАТО:", [self spacedCheckString: self.penalty.recipient.okato], nil],
                        [NSArray arrayWithObjects:@"КБК:", [self spacedCheckString: self.penalty.recipient.kbk], nil],
