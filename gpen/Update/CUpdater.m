@@ -15,6 +15,9 @@
 #import "CDao+Penalty.h"
 #import "CDao+Profile.h"
 
+static NSString *kEmailMethodName = @"sendInfoByEmail";
+static NSString *kSyncMethodName = @"getList";
+
 @implementation CUpdater
 
 @synthesize dateFormatter = _dateFormatter;
@@ -147,7 +150,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:/*@"http://public.samregion.ru/services/lawBreakerAdapter.php"*/@"http://hephaestus.alwaysdata.net/gpen/" method:@"getList" params:params];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:/*@"http://public.samregion.ru/services/lawBreakerAdapter.php"*/@"http://hephaestus.alwaysdata.net/gpen/" method:kSyncMethodName params:params];
     
     unsigned long uid = [profile.uid unsignedLongValue];
     if (results != nil)
@@ -181,7 +184,7 @@
         }
         else
         {
-            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"] method:kSyncMethodName];
         }
     }
     
@@ -336,7 +339,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:@"sendInfoByEmail" params:params];
+    NSDictionary *results = [CUpdateUtility parsedJSONFromUrl:@"http://public.samregion.ru/services/lawBreakerAdapter.php" method:kEmailMethodName params:params];
     
     if (results != nil)
     {
@@ -352,7 +355,7 @@
         }
         else
         {
-            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"]];
+            [self handleBadStatus:requestStatus message:[results valueForKey:@"message"] method:kEmailMethodName];
         }
     }
     
@@ -374,17 +377,26 @@
     return UNAVAILABLE;
 }
 
-- (void)handleBadStatus:(status)requestStatus message:(NSString *)message
+- (void)handleBadStatus:(status)requestStatus message:(NSString *)message method:(NSString *)method
 {
     switch (requestStatus)
     {
         case NOTFOUND:
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
+
+                    NSString *msg;
                     
-                    UIAlertView *alert;
+                    if ([method isEqualToString:kEmailMethodName])
+                    {
+                        msg = @"Не удалось отправить квитанцию на e-mail";
+                    }
+                    else if ([method isEqualToString:kSyncMethodName])
+                    {
+                        msg = @"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию.";
+                    }
                     
-                    alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     
                     [alert show];
                     
@@ -397,7 +409,19 @@
         case UNAVAILABLE:
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:@"В данный момент сервер не доступен" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    
+                    NSString *msg;
+                    
+                    if ([method isEqualToString:kEmailMethodName])
+                    {
+                        msg = @"Не удалось отправить квитанцию на e-mail";
+                    }
+                    else if ([method isEqualToString:kSyncMethodName])
+                    {
+                        msg = @"В данный момент сервер не доступен";
+                    }
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
