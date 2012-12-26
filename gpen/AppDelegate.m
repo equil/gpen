@@ -272,7 +272,6 @@
 
 - (void)showAlert:(UILocalNotification *)alert
 {
-    
     [[UIApplication sharedApplication] scheduleLocalNotification:alert];
 }
 
