@@ -220,11 +220,10 @@
     [delegate.dataAccessManager saveDataInBackgroundInForeignContext:^(NSManagedObjectContext *context) {
         CDao *dao = [CDao daoWithContext:context];
         Penalty *pen = [dao penaltyForUid:[NSNumber numberWithUnsignedLong:uid]];
-        pen.notified = [NSNumber numberWithBool:YES];
+//        pen.notified = [NSNumber numberWithBool:YES];
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [delegate showAlert:alert];
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifiedUpdateEnd" object:nil];
         });
     }];

@@ -74,7 +74,7 @@
 
 - (NSArray *)allPenaltiesOverdueAfterDate:(NSDate *)date
 {
-    int interval = 3 * 24 * 60 * 60;
+    int interval = 3;
     
     NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
     
@@ -94,6 +94,10 @@
     
     NSDate *before = [[NSCalendar currentCalendar] dateFromComponents:timerDcBefore];
     NSDate *after = [[NSCalendar currentCalendar] dateFromComponents:timerDcAfter];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"dd.MM.yyyy HH:mm"];
+    NSLog(@"%@ - %@", [df stringFromDate:before], [df stringFromDate:after]);
     
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
