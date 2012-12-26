@@ -137,9 +137,12 @@
 {
     NSMutableString *temp = [NSMutableString stringWithString:protocolString];
     
-    [temp insertString:@" " atIndex:7];
-    [temp insertString:@" " atIndex:4];
-    [temp insertString:@" " atIndex:2];
+    if ([protocolString length] > 7)
+    {
+        [temp insertString:@" " atIndex:7];
+        [temp insertString:@" " atIndex:4];
+        [temp insertString:@" " atIndex:2];
+    }
     
     return temp;
 }
@@ -148,8 +151,24 @@
 {
     NSMutableString *temp = [NSMutableString stringWithString:licenseString];
     
-    [temp insertString:@" " atIndex:4];
-    [temp insertString:@" " atIndex:2];
+    if ([licenseString length] > 4)
+    {
+        [temp insertString:@" " atIndex:4];
+        [temp insertString:@" " atIndex:2];
+    }
+    
+    return temp;
+}
+
+- (NSString *) spacedNumberString: (NSString *) numberString
+{
+    NSMutableString *temp = [NSMutableString stringWithString:numberString];
+    
+    if ([numberString length] > 4)
+    {
+        [temp insertString:@" " atIndex:4];
+        [temp insertString:@" " atIndex:1];
+    }
     
     return temp;
 }
@@ -486,7 +505,7 @@
             
             if (self.penalty.carNumber.length > 5)
             {
-                cell.nomerLabel.text = [self.penalty.carNumber substringToIndex:6];
+                cell.nomerLabel.text = [self spacedNumberString:[self.penalty.carNumber substringToIndex:6]];
                 cell.regionLabel.text = [self.penalty.carNumber substringFromIndex:6];
                 cell.flag.hidden = NO;
             }
