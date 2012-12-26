@@ -462,31 +462,33 @@
             
             if ([photo length] > 0)
             {
-                NSArray *arr = [photo componentsSeparatedByString:@"."];
-                NSString *ext = [arr objectAtIndex:[arr count] - 1];
-                
-                if ([ext isEqualToString:@"png"])
+                NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, photo];
+                cell.carPhoto.image = [UIImage imageWithContentsOfFile:fullPath];
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
                 {
-                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, photo];
-                    cell.carPhoto.image = [UIImage imageWithContentsOfFile:fullPath];
-                }
-                else
-                {
-                    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, photo];
-                    NSURL *url = [NSURL fileURLWithPath:fullPath];
-                    cell.carPhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                    cell.containerView.frame = CGRectMake(114, cell.containerView.frame.origin.y, 255, cell.containerView.frame.size.height);
                 }
             }
             else
             {
-                cell.containerView.frame = CGRectMake(cell.carPhoto.frame.origin.x, cell.containerView.frame.origin.y, cell.containerView.frame.size.width + (cell.containerView.frame.origin.x - cell.carPhoto.frame.origin.x), cell.containerView.frame.size.height);
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                {
+                    cell.containerView.frame = CGRectMake(14, cell.containerView.frame.origin.y, 355, cell.containerView.frame.size.height);
+                }
+                else
+                {
+                    cell.containerView.frame = CGRectMake(cell.carPhoto.frame.origin.x, cell.containerView.frame.origin.y, cell.containerView.frame.size.width + (cell.containerView.frame.origin.x - cell.carPhoto.frame.origin.x), cell.containerView.frame.size.height);
+                }
+                cell.carPhoto.image = nil;
             }
+            NSLog(@"%@", NSStringFromCGRect(cell.containerView.frame));
+            
             if (self.penalty.carNumber.length > 5)
             {
                 cell.nomerLabel.text = [self.penalty.carNumber substringToIndex:6];
                 cell.regionLabel.text = [self.penalty.carNumber substringFromIndex:6];
+                cell.flag.hidden = NO;
             }
             else
             {
