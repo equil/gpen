@@ -287,6 +287,11 @@ static NSString *kSyncMethodName = @"getList";
         Profile *prof = [dao profileForUid:[NSNumber numberWithUnsignedLong:uid]];
         [self deleteAllForProfile:prof context:context];
         [context deleteObject:prof];
+    } completion:^{
+        if ([delegate.lastSignProfile.uid unsignedLongValue] == uid)
+        {
+            [delegate actualizeMainProfile];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DeletingEnd" object:nil];

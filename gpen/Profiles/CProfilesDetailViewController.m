@@ -491,9 +491,7 @@
         
         [self enableAllFields];
         
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        self.buttonDelete.hidden = [self.profile isEqual:delegate.lastSignProfile];
-        
+        self.buttonDelete.hidden = NO;
         self.buttonMakeMain.hidden = YES;
         
         [_backButton setImage:[UIImage imageNamed:@"cancel-for-nav.png"] forState:UIControlStateNormal];
