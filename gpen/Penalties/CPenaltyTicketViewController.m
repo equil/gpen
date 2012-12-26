@@ -68,9 +68,12 @@
     }
     NSMutableString *temp = [NSMutableString stringWithString:protocolString];
     
-    [temp insertString:@" " atIndex:7];
-    [temp insertString:@" " atIndex:4];
-    [temp insertString:@" " atIndex:2];
+    if ([protocolString length] > 7)
+    {
+        [temp insertString:@" " atIndex:7];
+        [temp insertString:@" " atIndex:4];
+        [temp insertString:@" " atIndex:2];
+    }
     
     return temp;
 }
