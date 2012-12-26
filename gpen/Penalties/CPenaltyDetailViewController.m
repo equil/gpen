@@ -501,7 +501,7 @@
                 }
                 cell.carPhoto.image = nil;
             }
-            NSLog(@"%@", NSStringFromCGRect(cell.containerView.frame));
+            //NSLog(@"%@", NSStringFromCGRect(cell.containerView.frame));
             
             if (self.penalty.carNumber.length > 5)
             {
