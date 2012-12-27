@@ -28,7 +28,11 @@
 {
     [super viewDidLoad];
     
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *fio = [[NSString stringWithFormat:@"%@ %@ %@", delegate.lastSignProfile.lastname, delegate.lastSignProfile.name, delegate.lastSignProfile.patronymic] capitalizedString];
+    
     self.dataSource = [NSArray arrayWithObjects:
+                       [NSArray arrayWithObjects:@"ФИО:", fio, nil],
                        [NSArray arrayWithObjects:@"Протокол:", [NSString stringWithFormat:@"№ %@", [self spacedProtocolString: self.penalty.reportId]], nil],
                        [NSArray arrayWithObjects:@"Код администратора:", [self spacedMoneyString:self.penalty.recipient.administratorCode], nil],
                        [NSArray arrayWithObjects:@"Сумма платежа:", [NSString stringWithFormat:@"%@ рублей", [self spacedMoneyString: [NSString stringWithFormat:@"%@", self.penalty.price]]], nil],
