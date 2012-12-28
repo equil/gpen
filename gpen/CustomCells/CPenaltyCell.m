@@ -39,7 +39,7 @@
         self.penaltyImage.image = [UIImage imageNamed:[self imageNameForStatus:penalty.status]];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd.MM.yy      hh:mm"];
+        [dateFormatter setDateFormat:@"dd.MM.yy      HH:mm"];
         self.penaltyDate.text = [dateFormatter stringFromDate:penalty.date];
         
         self.penaltyPrice.text = [self spacedMoneyString:[NSString stringWithFormat:@"%@ р.", penalty.price]];
