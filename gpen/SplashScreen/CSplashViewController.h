@@ -11,5 +11,6 @@
 @interface CSplashViewController : UIViewController
 
 @property(nonatomic, strong) IBOutlet UIImageView *splash;
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 
 @end

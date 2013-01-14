@@ -25,6 +25,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="spinner" destination="zw0-r0-CMA" id="T90-Q3-6Ls"/>
                         <outlet property="splash" destination="KSL-uq-093" id="JjT-Z4-zd5"/>
                     </connections>
                 </viewController>
@@ -1678,6 +1679,7 @@
         <class className="CSplashViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CSplashViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="splash" candidateClass="UIImageView"/>
             </relationships>
         </class>
