@@ -76,6 +76,7 @@
     
     [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"SplashViewController"]];
     
+    self.deviceToken = @"";
     [self updateDeviceToken];
     
     return YES;
