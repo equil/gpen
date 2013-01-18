@@ -865,10 +865,15 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2AU-wj-djt">
+                                        <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="redcube.png" id="tWN-X6-vCX">
                                             <rect key="frame" x="244" y="14" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="0.1741308486" blue="0.1002649414" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2AU-wj-djt">
+                                            <rect key="frame" x="244" y="14" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -878,6 +883,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="badgeLabel" destination="2AU-wj-djt" id="bEN-vo-S2r"/>
+                                    <outlet property="badgeView" destination="tWN-X6-vCX" id="ooA-8y-QDb"/>
                                     <outlet property="profileImage" destination="GyV-S1-A3Q" id="eF6-bY-0r1"/>
                                     <outlet property="profileName" destination="07A-aT-A6h" id="IMY-KS-Y5e"/>
                                 </connections>
@@ -1565,6 +1571,7 @@
         <image name="login-button.png" width="290" height="45"/>
         <image name="penalties-tab.png" width="22" height="23"/>
         <image name="profiles-tab.png" width="18" height="21"/>
+        <image name="redcube.png" width="12" height="12"/>
         <image name="save-for-nav.png" width="66" height="30"/>
         <image name="text_field.png" width="290" height="45"/>
     </resources>
@@ -1675,6 +1682,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfileCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="badgeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="badgeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="profileName" candidateClass="UILabel"/>
             </relationships>

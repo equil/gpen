@@ -11,6 +11,7 @@
 #import "Penalty.h"
 #import "CPenaltyCell.h"
 #import "CPenaltyDetailViewController.h"
+#import "CDao+Profile.h"
 
 @interface CPenaltyListViewController ()
 @property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -178,6 +179,17 @@
     else
     {
         [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+    }
+    
+    CDao *dao = [CDao daoWithContext:delegate.dataAccessManager.managedObjectContext];
+    unsigned long penaltiesExceptMain = [dao penaltiesCountForProfilesExceptLastSign];
+    if (penaltiesExceptMain > 0)
+    {
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:@"!"];
+    }
+    else
+    {
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
     }
 }
 

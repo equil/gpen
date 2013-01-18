@@ -14,6 +14,7 @@
 @synthesize profileImage = _profileImage;
 @synthesize profileName = _profileName;
 @synthesize badgeLabel = _badgeLabel;
+@synthesize badgeView = _badgeView;
 
 //- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 //{
@@ -32,10 +33,7 @@
 - (void) awakeFromNib
 {
     [super awakeFromNib];
-    
-    self.contentView.backgroundColor = [UIColor clearColor];
-    self.badgeLabel.backgroundColor = [UIColor colorWithRed:213.0/255.0 green:67.0/255.0 blue:44.0/255.0 alpha:1.0];
-    [self.badgeLabel.layer setCornerRadius:8.0];
+    [self.badgeView.layer setCornerRadius:8.0];
 }
 
 - (void) configureCellWithProfile:(Profile *)profile
@@ -45,10 +43,12 @@
     {
         self.badgeLabel.text = [NSString stringWithFormat:@" %lu ", newPenaltiesCount];
         self.badgeLabel.hidden = NO;
+        self.badgeView.hidden = NO;
     }
     else
     {
         self.badgeLabel.hidden = YES;
+        self.badgeView.hidden = YES;
     }
     self.badgeLabel.font = [UIFont fontWithName:@"PTSans-Bold" size:13.0];
     [self.badgeLabel sizeToFit];
@@ -56,6 +56,8 @@
     {
         self.badgeLabel.frame = CGRectMake(self.badgeLabel.frame.origin.x, self.badgeLabel.frame.origin.y, self.badgeLabel.frame.size.height, self.badgeLabel.frame.size.height);
     }
+    
+    self.badgeView.frame = self.badgeLabel.frame;
     
     self.profileName.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     

@@ -112,6 +112,8 @@
     {
         [self.updater setNewPenaltiesCountForLicense:license count:penaltyCount];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
@@ -163,6 +165,7 @@
     if (_lastSignProfile != nil)
     {
         [_updater updateLastSignForProfile:_lastSignProfile];
+        
         [self.window setRootViewController:[self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"]];
     }
     else

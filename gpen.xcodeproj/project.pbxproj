@@ -22,6 +22,7 @@
 		1E4D48801665611900949A5C /* CDao+Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D487F1665611900949A5C /* CDao+Profile.m */; };
 		1E4D48831665613000949A5C /* CDao+Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48821665612F00949A5C /* CDao+Recipient.m */; };
 		1E4D48861665D55D00949A5C /* CUpdateUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4D48851665D55D00949A5C /* CUpdateUtility.m */; };
+		1E746F8716A9EE6600C2C600 /* redcube.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E746F8616A9EE6600C2C600 /* redcube.png */; };
 		1E99EE4F1682381200753AE4 /* CStateHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE4E1682381200753AE4 /* CStateHolder.m */; };
 		1E99EE5A1682F9E600753AE4 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E99EE591682F9E600753AE4 /* Profile.m */; };
 		1E99EE731683B52500753AE4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EB1E47C166688AB006CEC41 /* Default.png */; };
@@ -153,6 +154,7 @@
 		1E4D48821665612F00949A5C /* CDao+Recipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDao+Recipient.m"; path = "DataAccess/DAO/CDao+Recipient.m"; sourceTree = "<group>"; };
 		1E4D48841665D55D00949A5C /* CUpdateUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CUpdateUtility.h; path = Update/CUpdateUtility.h; sourceTree = "<group>"; };
 		1E4D48851665D55D00949A5C /* CUpdateUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CUpdateUtility.m; path = Update/CUpdateUtility.m; sourceTree = "<group>"; };
+		1E746F8616A9EE6600C2C600 /* redcube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redcube.png; path = Resources/redcube.png; sourceTree = "<group>"; };
 		1E99EE4A1682377700753AE4 /* IStateHolderObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IStateHolderObserver.h; path = StateHolder/IStateHolderObserver.h; sourceTree = "<group>"; };
 		1E99EE4D1682381200753AE4 /* CStateHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CStateHolder.h; path = StateHolder/CStateHolder.h; sourceTree = "<group>"; };
 		1E99EE4E1682381200753AE4 /* CStateHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CStateHolder.m; path = StateHolder/CStateHolder.m; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		1E4D48301665157500949A5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1E746F8616A9EE6600C2C600 /* redcube.png */,
 				1EA6434416A40F33001BD973 /* Icon-72.png */,
 				1EA6434516A40F33001BD973 /* Icon-72@2x.png */,
 				1EA6434616A40F33001BD973 /* Icon-Small-50.png */,
@@ -849,6 +852,7 @@
 				1EA6435116A40F33001BD973 /* Icon-Small@2x.png in Resources */,
 				1EA6435216A40F33001BD973 /* Icon.png in Resources */,
 				1EA6435316A40F33001BD973 /* Icon@2x.png in Resources */,
+				1E746F8716A9EE6600C2C600 /* redcube.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
