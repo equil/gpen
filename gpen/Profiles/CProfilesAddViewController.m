@@ -262,7 +262,7 @@
     self.pickerView.datePickerMode = UIDatePickerModeDate;
     self.pickerView.locale = [NSLocale currentLocale];
     self.pickerView.calendar = [[NSLocale currentLocale] objectForKey:NSLocaleCalendar];
-    self.pickerView.maximumDate = [NSDate date];
+    //self.pickerView.maximumDate = [NSDate date];
     [self.pickerView addTarget:self
                         action:@selector(dateAction)
               forControlEvents:UIControlEventValueChanged];
