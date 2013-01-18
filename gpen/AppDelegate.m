@@ -106,13 +106,16 @@
     
     NSString *license = [userInfo objectForKey:@"l"];
     unsigned long penaltyCount = [[userInfo objectForKey:@"p"] unsignedLongValue];
+    NSLog(@"push notification: license - %@, count - %lu", license, penaltyCount);
     
     if (license)
     {
         [self.updater setNewPenaltiesCountForLicense:license count:penaltyCount];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

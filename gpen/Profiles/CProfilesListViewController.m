@@ -163,11 +163,11 @@
     unsigned long penalties = [dao penaltiesCountForProfilesExceptLastSign];
     if (penalties > 0)
     {
-        [self.tabBarItem setBadgeValue:@"!"];
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:@"!"];
     }
     else
     {
-        [self.tabBarItem setBadgeValue:nil];
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
     }
     
     [self fetchData];

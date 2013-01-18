@@ -173,11 +173,11 @@
     unsigned long penalties = [delegate.lastSignProfile.newPenaltiesCount unsignedLongValue];
     if (penalties > 0)
     {
-        [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%lu", penalties]];
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%lu", penalties]];
     }
     else
     {
-        [self.tabBarItem setBadgeValue:nil];
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
     }
 }
 
