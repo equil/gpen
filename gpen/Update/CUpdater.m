@@ -247,14 +247,7 @@ static NSString *kSyncMethodName = @"getList";
         NSArray *profiles = [dao profilesForLicense:license];
         
         for (Profile *p in profiles) {
-            if ([p.newPenaltiesCount unsignedLongValue] > 0)
-            {
-                p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:[p.newPenaltiesCount unsignedLongValue] + count];
-            }
-            else
-            {
-                p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
-            }
+            p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
         }
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{
