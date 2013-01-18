@@ -211,6 +211,7 @@ static NSString *kSyncMethodName = @"getList";
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LastSignUpdateEnd" object:nil];
         });
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
     }];
 }
 
@@ -246,7 +247,14 @@ static NSString *kSyncMethodName = @"getList";
         NSArray *profiles = [dao profilesForLicense:license];
         
         for (Profile *p in profiles) {
-            p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
+            if ([p.newPenaltiesCount unsignedLongValue] > 0)
+            {
+                p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:[p.newPenaltiesCount unsignedLongValue] + count];
+            }
+            else
+            {
+                p.newPenaltiesCount = [NSNumber numberWithUnsignedLong:count];
+            }
         }
     } completion:^{
         dispatch_async(dispatch_get_main_queue(), ^{

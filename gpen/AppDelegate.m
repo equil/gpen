@@ -112,10 +112,6 @@
     {
         [self.updater setNewPenaltiesCountForLicense:license count:penaltyCount];
     }
-    else
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil];
-    }
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

@@ -62,12 +62,12 @@
     }
 }
 
-- (void) reloadNewPenaltyCount
+- (void)reloadNewPenaltyCount
 {
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [delegate.updater setNewPenaltiesCountForLicense:delegate.lastSignProfile.license count:0];
     
-    [self.tabBarItem setBadgeValue:nil];
+    [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {

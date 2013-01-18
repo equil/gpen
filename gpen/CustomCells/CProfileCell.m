@@ -15,10 +15,25 @@
 @synthesize profileName = _profileName;
 @synthesize badgeLabel = _badgeLabel;
 
+//- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+//{
+//    [super setHighlighted:highlighted animated:animated];
+//    
+//    if (highlighted == YES)
+//    {
+//        self.backgroundColor = [UIColor colorWithRed:185.0/255.0 green:185.0/255.0 blue:185.0/255.0 alpha:1.0];
+//    }
+//    else
+//    {
+//        self.backgroundColor = [UIColor whiteColor];
+//    }
+//}
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
     
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.badgeLabel.backgroundColor = [UIColor colorWithRed:213.0/255.0 green:67.0/255.0 blue:44.0/255.0 alpha:1.0];
     [self.badgeLabel.layer setCornerRadius:8.0];
 }
