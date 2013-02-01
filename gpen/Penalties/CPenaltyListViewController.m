@@ -359,8 +359,11 @@
         {
             headerLabel.text = @"Просрочено";
         }
-        headerLabel.textColor = [UIColor darkTextColor];
+        headerLabel.textColor = [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0];
         headerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:12.0];
+        headerLabel.shadowColor = [UIColor whiteColor];
+        headerLabel.shadowOffset = CGSizeMake(0, 1);
+        headerLabel.layer.shadowRadius = 1.0;
         
         [headerView addSubview:headerLabel];
         

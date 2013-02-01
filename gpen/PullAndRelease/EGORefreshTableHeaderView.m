@@ -114,8 +114,31 @@
     else
     {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
-        _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate:    delegate.lastSignProfile.lastUpdate]];
+
+        [formatter setDateFormat:@"dd.MM.yyyy"];
+        
+        if ([[formatter stringFromDate:delegate.lastSignProfile.lastUpdate] isEqualToString:[formatter stringFromDate: [NSDate date]]])
+        {
+            [formatter setDateFormat:@"HH:mm"];
+            _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: Сегодня, в %@", [formatter stringFromDate: delegate.lastSignProfile.lastUpdate]];
+        }
+        else
+        {
+            NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:delegate.lastSignProfile.lastUpdate];
+            [dc setDay:dc.day + 1];
+            
+            if ([[formatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:dc]] isEqualToString:[formatter stringFromDate: [NSDate date]]])
+            {
+                [formatter setDateFormat:@"HH:mm"];
+                _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: Вчера, в %@", [formatter stringFromDate: delegate.lastSignProfile.lastUpdate]];
+            }
+            else
+            {
+                [formatter setDateFormat:@"dd.MM.yyyy, в HH:mm"];
+                _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate: delegate.lastSignProfile.lastUpdate]];
+            }
+        }
+
         [formatter release];
     }
 }
@@ -136,16 +159,37 @@
         else
         {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
-            _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate:date]];
+            
+            [formatter setDateFormat:@"dd.MM.yyyy"];
+            
+            if ([[formatter stringFromDate:date] isEqualToString:[formatter stringFromDate: [NSDate date]]])
+            {
+                [formatter setDateFormat:@"HH:mm"];
+                _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: Сегодня, в %@", [formatter stringFromDate: date]];
+            }
+            else
+            {
+                NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+                [dc setDay:dc.day + 1];
+                
+                if ([[formatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:dc]] isEqualToString:[formatter stringFromDate: [NSDate date]]])
+                {
+                    [formatter setDateFormat:@"HH:mm"];
+                    _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: Вчера, в %@", [formatter stringFromDate: date]];
+                }
+                else
+                {
+                    [formatter setDateFormat:@"dd.MM.yyyy, в HH:mm"];
+                    _lastUpdatedLabel.text = [NSString stringWithFormat:@"Обновлено: %@", [formatter stringFromDate: date]];
+                }
+            }
+            
             [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [formatter release];
         }
 	} else {
-		
 		_lastUpdatedLabel.text = nil;
-		
 	}
 
 }

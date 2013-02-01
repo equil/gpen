@@ -17,6 +17,7 @@
 #import "CLoginClientEntity.h"
 #import "BSKeyboardControls.h"
 #import "CProfilesListViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CProfilesDetailViewController ()<BSKeyboardControlsDelegate>
 @property (nonatomic, weak) UITextField *activeTextField;
@@ -399,11 +400,12 @@
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.numberOfLines = 2;
         footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.text = @"По умолчанию будут использоваться имя и фамилия, указанные в профиле";
-        footerLabel.textColor = [UIColor darkGrayColor];
+        footerLabel.text = @"По умолчанию будут использоваться имя\nи фамилия, указанные в профиле";
+        footerLabel.textColor = [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0];
         footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
         footerLabel.shadowColor = [UIColor whiteColor];
         footerLabel.shadowOffset = CGSizeMake(0, 1);
+        footerLabel.layer.shadowRadius = 1.0;
         
         [footerView addSubview:footerLabel];
         
@@ -426,7 +428,7 @@
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.backgroundColor = [UIColor clearColor];
         footerLabel.text = @"Образец: 63 СТ 000000";
-        footerLabel.textColor = [UIColor darkGrayColor];
+        footerLabel.textColor = [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0];
         footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
         footerLabel.shadowColor = [UIColor whiteColor];
         footerLabel.shadowOffset = CGSizeMake(0, 1);

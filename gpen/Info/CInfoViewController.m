@@ -24,17 +24,17 @@
     [super viewDidLoad];
     
     _textView.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-    _textView.layer.masksToBounds = NO;
-    _textView.layer.cornerRadius = 10.0;
+//    _textView.layer.masksToBounds = NO;
+//    _textView.layer.cornerRadius = 10.0;
     
-    _label.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
+    _label.font = [UIFont fontWithName:@"PTSans-Bold" size:16.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    _scroll.contentSize = CGSizeMake(0.0, _textView.frame.size.height + 20.0);
+    _scroll.contentSize = CGSizeMake(0.0, _textView.frame.size.height);
 }
 
 @end

@@ -41,7 +41,7 @@
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"select-tab.png"]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIFont fontWithName:@"Helvetica" size:9.0], UITextAttributeFont, nil]
+                                                       [UIFont fontWithName:@"Helvetica" size:12.0], UITextAttributeFont, nil]
                                              forState:UIControlStateNormal];
 }
 
