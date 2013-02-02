@@ -42,6 +42,10 @@
 		1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5D1673270500F5CE7D /* save-for-nav.png */; };
 		1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */; };
 		1EA35A1B16BCE0B5004C446B /* CNavigationBarCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA35A1A16BCE0B5004C446B /* CNavigationBarCustomer.m */; };
+		1EA35A2016BCEFA5004C446B /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA35A1C16BCEFA5004C446B /* disclosure.png */; };
+		1EA35A2116BCEFA5004C446B /* disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA35A1D16BCEFA5004C446B /* disclosure@2x.png */; };
+		1EA35A2216BCEFA5004C446B /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA35A1E16BCEFA5004C446B /* plus.png */; };
+		1EA35A2316BCEFA5004C446B /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA35A1F16BCEFA5004C446B /* plus@2x.png */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EA6434316A40D41001BD973 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA6434216A40D41001BD973 /* Default-568h@2x.png */; };
 		1EA6434C16A40F33001BD973 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA6434416A40F33001BD973 /* Icon-72.png */; };
@@ -183,6 +187,10 @@
 		1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav@2x.png"; path = "Resources/save-for-nav@2x.png"; sourceTree = "<group>"; };
 		1EA35A1916BCE0B5004C446B /* CNavigationBarCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNavigationBarCustomer.h; sourceTree = "<group>"; };
 		1EA35A1A16BCE0B5004C446B /* CNavigationBarCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNavigationBarCustomer.m; sourceTree = "<group>"; };
+		1EA35A1C16BCEFA5004C446B /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disclosure.png; path = Resources/disclosure.png; sourceTree = "<group>"; };
+		1EA35A1D16BCEFA5004C446B /* disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disclosure@2x.png"; path = "Resources/disclosure@2x.png"; sourceTree = "<group>"; };
+		1EA35A1E16BCEFA5004C446B /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = Resources/plus.png; sourceTree = "<group>"; };
+		1EA35A1F16BCEFA5004C446B /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plus@2x.png"; path = "Resources/plus@2x.png"; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EA6434216A40D41001BD973 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -341,6 +349,10 @@
 		1E4D48301665157500949A5C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1EA35A1C16BCEFA5004C446B /* disclosure.png */,
+				1EA35A1D16BCEFA5004C446B /* disclosure@2x.png */,
+				1EA35A1E16BCEFA5004C446B /* plus.png */,
+				1EA35A1F16BCEFA5004C446B /* plus@2x.png */,
 				1E746F8616A9EE6600C2C600 /* redcube.png */,
 				1EA6434416A40F33001BD973 /* Icon-72.png */,
 				1EA6434516A40F33001BD973 /* Icon-72@2x.png */,
@@ -858,6 +870,10 @@
 				1EA6435216A40F33001BD973 /* Icon.png in Resources */,
 				1EA6435316A40F33001BD973 /* Icon@2x.png in Resources */,
 				1E746F8716A9EE6600C2C600 /* redcube.png in Resources */,
+				1EA35A2016BCEFA5004C446B /* disclosure.png in Resources */,
+				1EA35A2116BCEFA5004C446B /* disclosure@2x.png in Resources */,
+				1EA35A2216BCEFA5004C446B /* plus.png in Resources */,
+				1EA35A2316BCEFA5004C446B /* plus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
