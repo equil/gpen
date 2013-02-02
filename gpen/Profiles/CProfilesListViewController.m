@@ -40,7 +40,8 @@
     self.fetchedResultsController = nil;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
-    [self selectRow];
+    [self performSelector:@selector(selectRow) withObject:nil afterDelay:0.0f];
+    //[self selectRow];
     if (!success) {
         NSLog(@"Error in fetching: %@", error.userInfo);
     }
@@ -54,7 +55,7 @@
         Profile *currentProfile = delegate.stateHolder.currentProfile;
         NSIndexPath *currentProfileIndex = [self.fetchedResultsController indexPathForObject:currentProfile];
         
-        NSLog(@"%@", currentProfileIndex);
+        NSLog(@"current profile index row = %i", currentProfileIndex.row);
         if (currentProfileIndex)
         {
             [self.tableView selectRowAtIndexPath:currentProfileIndex animated:NO scrollPosition:UITableViewScrollPositionNone];

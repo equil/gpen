@@ -383,6 +383,11 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if (self.profile == nil)
+    {
+        return nil;
+    }
+    
     if (section == 1)
     {
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50.0)];
