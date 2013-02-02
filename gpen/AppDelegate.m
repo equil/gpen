@@ -41,7 +41,7 @@
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"select-tab.png"]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIFont fontWithName:@"Helvetica" size:12.0], UITextAttributeFont, nil]
+                                                       [UIFont fontWithName:@"Helvetica" size:12.0], UITextAttributeFont, [UIColor darkGrayColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil]
                                              forState:UIControlStateNormal];
 }
 
@@ -56,7 +56,8 @@
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation-bar-back.png"] forBarMetrics:UIBarMetricsDefault];
     }
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, [UIColor whiteColor], UITextAttributeTextColor, /*[UIColor colorWithRed:24.0/255.0 green:80.0/255.0 blue:146.0/255.0 alpha:1.0], UITextAttributeTextShadowColor, CGSizeMake(0, 1), UITextAttributeTextShadowOffset,*/ nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"PTSans-Bold" size:18.0], UITextAttributeFont, [UIColor whiteColor], UITextAttributeTextColor, /*[UIColor colorWithRed:24.0/255.0 green:80.0/255.0 blue:146.0/255.0 alpha:1.0], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,*/ nil]];
+    //то, что закомменчено, тоже будет рабочее решение (вместо этого применена всемогущая кастомизация в CNavigationBarCustomer)
 }
 
 - (void)customizeInterface
@@ -239,12 +240,12 @@
 
 - (void)timerAction
 {
-    NSLog(@"timer %@", [NSDate date]);
+//    NSLog(@"timer %@", [NSDate date]);
     
     CDao *dao = [CDao daoWithContext:_dataAccessManager.managedObjectContext];
     NSArray *overduePenalties = [dao allPenaltiesOverdueAfterDate:[NSDate date]];
     
-    NSLog(@"overdue penalties count: %d", [overduePenalties count]);
+//    NSLog(@"overdue penalties count: %d", [overduePenalties count]);
     
     for (Penalty *p in overduePenalties)
     {

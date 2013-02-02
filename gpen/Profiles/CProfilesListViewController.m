@@ -55,7 +55,7 @@
         Profile *currentProfile = delegate.stateHolder.currentProfile;
         NSIndexPath *currentProfileIndex = [self.fetchedResultsController indexPathForObject:currentProfile];
         
-        NSLog(@"current profile index row = %i", currentProfileIndex.row);
+//        NSLog(@"current profile index row = %i", currentProfileIndex.row);
         if (currentProfileIndex)
         {
             [self.tableView selectRowAtIndexPath:currentProfileIndex animated:NO scrollPosition:UITableViewScrollPositionNone];

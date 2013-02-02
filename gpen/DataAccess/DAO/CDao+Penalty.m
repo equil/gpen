@@ -97,7 +97,7 @@
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd.MM.yyyy HH:mm"];
-    NSLog(@"%@ - %@", [df stringFromDate:before], [df stringFromDate:after]);
+//    NSLog(@"%@ - %@", [df stringFromDate:before], [df stringFromDate:after]);
     
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
