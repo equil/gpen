@@ -26,9 +26,6 @@
     [CNavigationBarCustomer customizeNavTitle:@"Информация" navItem:self.navigationItem];
     
     _textView.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
-//    _textView.layer.masksToBounds = NO;
-//    _textView.layer.cornerRadius = 10.0;
-    
     _label.font = [UIFont fontWithName:@"PTSans-Bold" size:16.0];
 }
 

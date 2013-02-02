@@ -53,6 +53,8 @@
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         Profile *currentProfile = delegate.stateHolder.currentProfile;
         NSIndexPath *currentProfileIndex = [self.fetchedResultsController indexPathForObject:currentProfile];
+        
+        NSLog(@"%@", currentProfileIndex);
         if (currentProfileIndex)
         {
             [self.tableView selectRowAtIndexPath:currentProfileIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -65,6 +67,7 @@
             [self.selectionDelegate profileSelectionChanged:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
             return;
         }
+        
         [self.selectionDelegate profileSelectionChanged:nil];
     }
 }

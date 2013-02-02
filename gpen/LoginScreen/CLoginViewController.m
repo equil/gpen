@@ -218,7 +218,6 @@
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
     [CNavigationBarCustomer customizeNavTitle:@"Заполните анкету" navItem:self.navigationItem];
-//    self.navigationItem.title = @"Заполните анкету";
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
