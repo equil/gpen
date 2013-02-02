@@ -894,7 +894,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Rvp-DB-k0F">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gZw-Z8-2k7">
+                        <barButtonItem key="rightBarButtonItem" id="gZw-Z8-2k7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kc6-fj-tof">
                                 <rect key="frame" x="283" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1593,7 +1593,7 @@
         <class className="CDisableCopyPasteTextView" superclassName="UITextView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisableCopyPasteTextView.h"/>
         </class>
-        <class className="CDisclosureCell" superclassName="UITableViewCell">
+        <class className="CDisclosureCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CDisclosureCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="cellTextField" candidateClass="UITextField"/>
@@ -1627,7 +1627,7 @@
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
         </class>
-        <class className="CPenaltyCell" superclassName="UITableViewCell">
+        <class className="CPenaltyCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="penaltyDate" candidateClass="UILabel"/>
@@ -1641,14 +1641,14 @@
                 <relationship kind="outlet" name="statusImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
-        <class className="CPenaltyDetailCell" superclassName="UITableViewCell">
+        <class className="CPenaltyDetailCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyDetailCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="labelSubtitle" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CPenaltyDetailMainCell" superclassName="UITableViewCell">
+        <class className="CPenaltyDetailMainCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyDetailMainCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="carPhoto" candidateClass="UIImageView"/>
@@ -1689,7 +1689,7 @@
         <class className="CPenaltyTicketViewController" superclassName="CRotateTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CPenaltyTicketViewController.h"/>
         </class>
-        <class className="CProfileCell" superclassName="UITableViewCell">
+        <class className="CProfileCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CProfileCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="badgeLabel" candidateClass="UILabel"/>
@@ -1779,7 +1779,7 @@
         <class className="CTextField" superclassName="UITextField">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextField.h"/>
         </class>
-        <class className="CTextFieldCell" superclassName="UITableViewCell">
+        <class className="CTextFieldCell" superclassName="CWithCustomDisclosureIndicatorCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CTextFieldCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="cellTextField" candidateClass="UITextField"/>
@@ -1790,6 +1790,9 @@
             <relationships>
                 <relationship kind="outlet" name="cellLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="CWithCustomDisclosureIndicatorCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CWithCustomDisclosureIndicatorCell.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
