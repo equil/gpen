@@ -319,7 +319,16 @@
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerLabelFrame];
         footerLabel.numberOfLines = 2;
         footerLabel.backgroundColor = [UIColor clearColor];
-        footerLabel.text = @"По умолчанию будут использоваться имя\nи фамилия, указанные в профиле";
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            footerLabel.text = @"По умолчанию будут использоваться имя и фамилия, указанные в профиле";
+        }
+        else
+        {
+            footerLabel.text = @"По умолчанию будут использоваться имя\nи фамилия, указанные в профиле";
+        }
+        
         footerLabel.textColor = [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0];
         footerLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:14.0];
         footerLabel.shadowColor = [UIColor whiteColor];

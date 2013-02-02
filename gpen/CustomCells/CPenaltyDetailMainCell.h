@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CWithCustomDisclosureIndicatorCell.h"
 
-@interface CPenaltyDetailMainCell : UITableViewCell
+@interface CPenaltyDetailMainCell : CWithCustomDisclosureIndicatorCell
 
 @property (nonatomic, strong) IBOutlet UIView *containerView;
 @property (nonatomic, strong) IBOutlet UIImageView *carPhoto;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CWithCustomDisclosureIndicatorCell.h"
 
-@interface CPenaltyDetailCell : UITableViewCell
+@interface CPenaltyDetailCell : CWithCustomDisclosureIndicatorCell
 
 @property (nonatomic, strong) IBOutlet UILabel *labelTitle;
 @property (nonatomic, strong) IBOutlet UILabel *labelSubtitle;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CWithCustomDisclosureIndicatorCell.h"
 
-@interface CDisclosureCell : UITableViewCell
+@interface CDisclosureCell : CWithCustomDisclosureIndicatorCell
 
 @property (nonatomic, strong) IBOutlet UITextField *cellTextField;
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Profile.h"
+#import "CWithCustomDisclosureIndicatorCell.h"
 
-@interface CProfileCell : UITableViewCell
+@interface CProfileCell : CWithCustomDisclosureIndicatorCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UILabel *profileName;

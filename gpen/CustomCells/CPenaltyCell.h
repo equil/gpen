@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Penalty.h"
+#import "CWithCustomDisclosureIndicatorCell.h"
 
-@interface CPenaltyCell : UITableViewCell
+@interface CPenaltyCell : CWithCustomDisclosureIndicatorCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *penaltyImage;
 @property (nonatomic, strong) IBOutlet UILabel *penaltyDate;
