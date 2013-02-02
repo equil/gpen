@@ -467,15 +467,43 @@ static NSString *kSyncMethodName = @"getList";
     Recipient *recipient = [NSEntityDescription insertNewObjectForEntityForName:@"Recipient" inManagedObjectContext:context];
     recipient.penalty = penalty;
     recipient.uid = penalty.uid;
-    recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
-    recipient.name = [recipientObj objectForKey:@"name"];
-    recipient.account = [recipientObj objectForKey:@"account"];
-    recipient.inn = [recipientObj objectForKey:@"INN"];
-    recipient.kpp = [recipientObj objectForKey:@"KPP"];
-    recipient.okato = [recipientObj objectForKey:@"OKATO"];
-    recipient.kbk = [recipientObj objectForKey:@"KBK"];
-    recipient.bank = [recipientObj objectForKey:@"bank"];
-    recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
+    
+    if (![[recipientObj objectForKey:@"administratorCode"] isKindOfClass:[NSNull class]])
+    {
+        recipient.administratorCode = [recipientObj objectForKey:@"administratorCode"];
+    }
+    if (![[recipientObj objectForKey:@"name"] isKindOfClass:[NSNull class]])
+    {
+        recipient.name = [recipientObj objectForKey:@"name"];
+    }
+    if (![[recipientObj objectForKey:@"account"] isKindOfClass:[NSNull class]])
+    {
+        recipient.account = [recipientObj objectForKey:@"account"];
+    }
+    if (![[recipientObj objectForKey:@"INN"] isKindOfClass:[NSNull class]])
+    {
+        recipient.inn = [recipientObj objectForKey:@"INN"];
+    }
+    if (![[recipientObj objectForKey:@"KPP"] isKindOfClass:[NSNull class]])
+    {
+        recipient.kpp = [recipientObj objectForKey:@"KPP"];
+    }
+    if (![[recipientObj objectForKey:@"OKATO"] isKindOfClass:[NSNull class]])
+    {
+        recipient.okato = [recipientObj objectForKey:@"OKATO"];
+    }
+    if (![[recipientObj objectForKey:@"KBK"] isKindOfClass:[NSNull class]])
+    {
+        recipient.kbk = [recipientObj objectForKey:@"KBK"];
+    }
+    if (![[recipientObj objectForKey:@"bank"] isKindOfClass:[NSNull class]])
+    {
+        recipient.bank = [recipientObj objectForKey:@"bank"];
+    }
+    if (![[recipientObj objectForKey:@"billTitle"] isKindOfClass:[NSNull class]])
+    {
+        recipient.billTitle = [recipientObj objectForKey:@"billTitle"];
+    }
 }
 
 - (NSString *)processStatus:(NSString *)status
@@ -498,13 +526,16 @@ static NSString *kSyncMethodName = @"getList";
 
 - (void)addPhoto:(NSDictionary *)penaltyObj penalty:(Penalty *)penalty
 {
-    if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
+    if (![[penaltyObj objectForKey:@"photo"] isKindOfClass:[NSNull class]])
     {
-        penalty.photo = [CUpdateUtility savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
-    }
-    else
-    {
-        penalty.photo = [penaltyObj valueForKey:@"photo"];
+        if (![[penaltyObj valueForKey:@"photo"] isEqualToString:@""])
+        {
+            penalty.photo = [CUpdateUtility savePhotoToDocsFromUrl:[penaltyObj valueForKey:@"photo"] penaltyUid:penalty.uid];
+        }
+        else
+        {
+            penalty.photo = [penaltyObj valueForKey:@"photo"];
+        }
     }
 }
 
@@ -522,13 +553,35 @@ static NSString *kSyncMethodName = @"getList";
     
     [self addPhoto:penaltyObj penalty:penalty];
     
-    penalty.roadName = [penaltyObj valueForKey:@"roadName"];
-    penalty.roadPosition = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"roadPosition"] unsignedLongValue]];
-    penalty.fixedSpeed = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"fixedSpeed"] unsignedLongValue]];
-    penalty.reportId = [penaltyObj valueForKey:@"reportId"];
-    penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
-    penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
-    penalty.catcher = [penaltyObj valueForKey:@"catcher"];
+    if (![[penaltyObj objectForKey:@"roadName"] isKindOfClass:[NSNull class]])
+    {
+        penalty.roadName = [penaltyObj valueForKey:@"roadName"];
+    }
+    if (![[penaltyObj objectForKey:@"roadPosition"] isKindOfClass:[NSNull class]])
+    {
+        penalty.roadPosition = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"roadPosition"] unsignedLongValue]];
+    }
+    if (![[penaltyObj objectForKey:@"fixedSpeed"] isKindOfClass:[NSNull class]])
+    {
+        penalty.fixedSpeed = [NSNumber numberWithUnsignedLong:[[penaltyObj valueForKey:@"fixedSpeed"] unsignedLongValue]];
+    }
+    if (![[penaltyObj objectForKey:@"reportId"] isKindOfClass:[NSNull class]])
+    {
+        penalty.reportId = [penaltyObj valueForKey:@"reportId"];
+    }
+    if (![[penaltyObj objectForKey:@"issueKOAP"] isKindOfClass:[NSNull class]])
+    {
+        penalty.issueKOAP = [penaltyObj valueForKey:@"issueKOAP"];
+    }
+    if (![[penaltyObj objectForKey:@"fixedLicenseId"] isKindOfClass:[NSNull class]])
+    {
+        penalty.fixedLicenseId = [penaltyObj valueForKey:@"fixedLicenseId"];
+    }
+    if (![[penaltyObj objectForKey:@"catcher"] isKindOfClass:[NSNull class]])
+    {
+        penalty.catcher = [penaltyObj valueForKey:@"catcher"];
+    }
+    
     penalty.notified = [NSNumber numberWithBool:NO];
     
     [self addRecipient:[penaltyObj valueForKey:@"recipient"] context:context penalty:penalty];
