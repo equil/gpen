@@ -32,6 +32,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSArray *selImages = [NSArray arrayWithObjects:@"pen-tab-active.png", @"pro-tab-active.png", @"info-tab-active.png", nil];
+    NSArray *noselImages = [NSArray arrayWithObjects:@"pen-tab-no.png", @"pro-tab-no.png", @"info-tab-no.png", nil];
+    
+    NSArray *array = self.tabBar.items;
+    
+    for (int i = 0; i < [array count]; i++) {
+        UITabBarItem *item = [array objectAtIndex:i];
+        
+        UIImage *selectedImage = [UIImage imageNamed:[selImages objectAtIndex:i]];
+        UIImage *noselectedImage = [UIImage imageNamed:[noselImages objectAtIndex:i]];
+        
+        [item setFinishedSelectedImage:selectedImage withFinishedUnselectedImage:noselectedImage];
+    }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLocalNotification) name:@"localNotification" object:nil];
 }
