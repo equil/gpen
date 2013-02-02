@@ -41,6 +41,7 @@
 		1EA26A641673270500F5CE7D /* edit-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */; };
 		1EA26A651673270500F5CE7D /* save-for-nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5D1673270500F5CE7D /* save-for-nav.png */; };
 		1EA26A661673270500F5CE7D /* save-for-nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */; };
+		1EA35A1B16BCE0B5004C446B /* CNavigationBarCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA35A1A16BCE0B5004C446B /* CNavigationBarCustomer.m */; };
 		1EA471FD1661F330008CBFB3 /* CLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA471FC1661F330008CBFB3 /* CLoginViewController.m */; };
 		1EA6434316A40D41001BD973 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA6434216A40D41001BD973 /* Default-568h@2x.png */; };
 		1EA6434C16A40F33001BD973 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA6434416A40F33001BD973 /* Icon-72.png */; };
@@ -180,6 +181,8 @@
 		1EA26A5C1673270500F5CE7D /* edit-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-for-nav@2x.png"; path = "Resources/edit-for-nav@2x.png"; sourceTree = "<group>"; };
 		1EA26A5D1673270500F5CE7D /* save-for-nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav.png"; path = "Resources/save-for-nav.png"; sourceTree = "<group>"; };
 		1EA26A5E1673270500F5CE7D /* save-for-nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "save-for-nav@2x.png"; path = "Resources/save-for-nav@2x.png"; sourceTree = "<group>"; };
+		1EA35A1916BCE0B5004C446B /* CNavigationBarCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNavigationBarCustomer.h; sourceTree = "<group>"; };
+		1EA35A1A16BCE0B5004C446B /* CNavigationBarCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNavigationBarCustomer.m; sourceTree = "<group>"; };
 		1EA471FB1661F330008CBFB3 /* CLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginViewController.h; path = LoginScreen/CLoginViewController.h; sourceTree = "<group>"; };
 		1EA471FC1661F330008CBFB3 /* CLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLoginViewController.m; path = LoginScreen/CLoginViewController.m; sourceTree = "<group>"; };
 		1EA6434216A40D41001BD973 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -684,6 +687,8 @@
 				A02AC85F1670E7A700F02A41 /* CTextField.m */,
 				A0C8BB5616764AA500100317 /* CBlackButton.h */,
 				A0C8BB5716764AA500100317 /* CBlackButton.m */,
+				1EA35A1916BCE0B5004C446B /* CNavigationBarCustomer.h */,
+				1EA35A1A16BCE0B5004C446B /* CNavigationBarCustomer.m */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				1E99EE7716842BF300753AE4 /* CDisableCopyPasteTextView.m in Sources */,
 				1EDECE681688C07B006E59C9 /* CDao+Penalty.m in Sources */,
 				1EDECE6B1688C0B2006E59C9 /* Penalty.m in Sources */,
+				1EA35A1B16BCE0B5004C446B /* CNavigationBarCustomer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

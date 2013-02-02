@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    [CNavigationBarCustomer customizeNavTitle:@"Протокол" navItem:self.navigationItem];
+    
     AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *fio = [[NSString stringWithFormat:@"%@ %@ %@", delegate.lastSignProfile.lastname, delegate.lastSignProfile.name, delegate.lastSignProfile.patronymic] capitalizedString];
     

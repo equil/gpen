@@ -144,6 +144,8 @@
 {
     [super viewDidLoad];
     
+    [CNavigationBarCustomer customizeNavTitle:@"Профили" navItem:self.navigationItem];
+    
     self.clearsSelectionOnViewWillAppear = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self

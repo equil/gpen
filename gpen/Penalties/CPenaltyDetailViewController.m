@@ -95,6 +95,8 @@
 {
     [super viewDidLoad];
     
+    [CNavigationBarCustomer customizeNavTitle:@"Протокол" navItem:self.navigationItem];
+    
     self.infoLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

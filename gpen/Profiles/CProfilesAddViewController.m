@@ -222,7 +222,8 @@
     
     self.clientEntity = [[CLoginClientEntity alloc] init];
     
-    self.navigationItem.title = @"Новый профиль";
+    [CNavigationBarCustomer customizeNavTitle:@"Новый профиль" navItem:self.navigationItem];
+//    self.navigationItem.title = @"Новый профиль";
     
 	self.dateFormatter = [[NSDateFormatter alloc] init];
 	[self.dateFormatter setDateFormat:@"dd.MM.yyyy"];

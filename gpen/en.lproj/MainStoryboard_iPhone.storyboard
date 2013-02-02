@@ -32,7 +32,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="-530"/>
         </scene>
-        <!--Penalty Detail View Controller - Протокол-->
+        <!--Penalty Detail View Controller-->
         <scene sceneID="miM-gd-D9Z">
             <objects>
                 <tableViewController id="iJg-VR-HtK" customClass="CPenaltyDetailViewController" sceneMemberID="viewController">
@@ -269,7 +269,7 @@
                             <outlet property="delegate" destination="iJg-VR-HtK" id="iZw-nn-b1t"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Протокол" id="f7M-Km-eC3">
+                    <navigationItem key="navigationItem" id="f7M-Km-eC3">
                         <barButtonItem key="leftBarButtonItem" id="rzT-Me-KKO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O6M-SN-mPf">
                                 <rect key="frame" x="5" y="5" width="71" height="33"/>
@@ -301,7 +301,7 @@
             </objects>
             <point key="canvasLocation" x="1679" y="-550"/>
         </scene>
-        <!--Penalty Ticket View Controller - Квитанция-->
+        <!--Penalty Ticket View Controller-->
         <scene sceneID="Ksr-8t-c8u">
             <objects>
                 <tableViewController id="7rw-23-YsC" customClass="CPenaltyTicketViewController" sceneMemberID="viewController">
@@ -352,7 +352,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Квитанция" id="qWI-a4-DTQ">
+                    <navigationItem key="navigationItem" id="qWI-a4-DTQ">
                         <barButtonItem key="leftBarButtonItem" id="FHh-fc-6Ev">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gt6-Ty-qRo">
                                 <rect key="frame" x="5" y="5" width="71" height="33"/>
@@ -410,7 +410,7 @@
             </objects>
             <point key="canvasLocation" x="-753" y="180"/>
         </scene>
-        <!--Login View Controller - Заполните анкету-->
+        <!--Login View Controller-->
         <scene sceneID="sOL-EK-HsH">
             <objects>
                 <tableViewController id="rnG-Ah-LFg" customClass="CLoginViewController" sceneMemberID="viewController">
@@ -629,7 +629,7 @@
                             <outlet property="delegate" destination="rnG-Ah-LFg" id="b5P-8v-zYJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Заполните анкету" id="0lc-Wj-9ga"/>
+                    <navigationItem key="navigationItem" id="0lc-Wj-9ga"/>
                     <connections>
                         <outlet property="clientTFBirthday" destination="mqr-oL-Pmt" id="anc-gT-UGF"/>
                         <outlet property="clientTFEmail" destination="0Pt-Go-Kpb" id="QLw-CE-hrp"/>
@@ -669,7 +669,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
-        <!--Penalty List View Controller - Штрафы-->
+        <!--Penalty List View Controller-->
         <scene sceneID="9wa-Hy-Kok">
             <objects>
                 <viewController id="irW-VK-qSW" customClass="CPenaltyListViewController" sceneMemberID="viewController">
@@ -739,7 +739,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Штрафы" id="wZA-7Y-f40"/>
+                    <navigationItem key="navigationItem" id="wZA-7Y-f40"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="informLabel" destination="hkZ-ra-uhp" id="FDn-6F-oBn"/>
@@ -751,7 +751,7 @@
             </objects>
             <point key="canvasLocation" x="1189" y="-550"/>
         </scene>
-        <!--Profiles List View Controller - Профили-->
+        <!--Profiles List View Controller-->
         <scene sceneID="Ezw-hs-QfB">
             <objects>
                 <tableViewController id="x8e-Qy-EKn" customClass="CProfilesListViewController" sceneMemberID="viewController">
@@ -805,7 +805,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Профили" id="9AX-2S-kVo">
+                    <navigationItem key="navigationItem" id="9AX-2S-kVo">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4MD-oL-Kq8">
                             <color key="tintColor" red="0.55294120309999995" green="0.76470595600000002" blue="0.40000003579999999" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
@@ -818,7 +818,7 @@
             </objects>
             <point key="canvasLocation" x="1189" y="180"/>
         </scene>
-        <!--Profiles Add View Controller - Новый профиль-->
+        <!--Profiles Add View Controller-->
         <scene sceneID="uVy-dZ-eBj">
             <objects>
                 <tableViewController id="b9Y-Ih-FZ3" customClass="CProfilesAddViewController" sceneMemberID="viewController">
@@ -1037,7 +1037,7 @@
                             <outlet property="delegate" destination="b9Y-Ih-FZ3" id="R4L-qN-zNW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Новый профиль" id="285-p6-DvB">
+                    <navigationItem key="navigationItem" id="285-p6-DvB">
                         <barButtonItem key="leftBarButtonItem" id="Jll-tu-AGF">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dar-9b-w8s">
                                 <rect key="frame" x="5" y="5" width="71" height="33"/>
@@ -1409,7 +1409,7 @@
             </objects>
             <point key="canvasLocation" x="1660" y="180"/>
         </scene>
-        <!--Info View Controller - Информация-->
+        <!--Info View Controller-->
         <scene sceneID="wSC-0c-01F">
             <objects>
                 <viewController id="gnU-re-ki6" customClass="CInfoViewController" sceneMemberID="viewController">
@@ -1440,13 +1440,13 @@
 Для работы требуется подключение к Интернету.
 
 Приложение разработано в 2012 году по заказу Департамента информационных технологий и связи Самарской области.</string>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ГАИ-63" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Lu-yc-Ret">
                                         <rect key="frame" x="8" y="19" width="62" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1454,7 +1454,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Информация" id="sbj-f7-zY4">
+                    <navigationItem key="navigationItem" id="sbj-f7-zY4">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="7d0-c8-D38"/>
                     </navigationItem>
                     <connections>

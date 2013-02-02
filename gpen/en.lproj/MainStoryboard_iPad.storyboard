@@ -34,7 +34,7 @@
             </objects>
             <point key="canvasLocation" x="4026" y="-2186"/>
         </scene>
-        <!--Penalty List View Controller - Штрафы-->
+        <!--Penalty List View Controller-->
         <scene sceneID="Aqi-ni-S2s">
             <objects>
                 <viewController id="ned-9T-F1O" customClass="CPenaltyListViewController" sceneMemberID="viewController">
@@ -103,7 +103,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Штрафы" id="e6w-QR-wHE"/>
+                    <navigationItem key="navigationItem" id="e6w-QR-wHE"/>
                     <connections>
                         <outlet property="informLabel" destination="Q9v-Dn-Ikj" id="JfX-0X-wS8"/>
                         <outlet property="spinner" destination="i0D-s2-WOh" id="9xO-p9-kYg"/>
@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="4479" y="-2186"/>
         </scene>
-        <!--Penalty Detail View Controller Pad - Протокол-->
+        <!--Penalty Detail View Controller Pad-->
         <scene sceneID="aJe-Xo-1Ea">
             <objects>
                 <tableViewController id="j4g-J6-L9N" customClass="CPenaltyDetailViewControllerPad" sceneMemberID="viewController">
@@ -351,7 +351,7 @@
                             <outlet property="delegate" destination="j4g-J6-L9N" id="ezE-D9-ja7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Протокол" id="xZD-j5-lnl"/>
+                    <navigationItem key="navigationItem" id="xZD-j5-lnl"/>
                     <connections>
                         <outlet property="buttonSendTicket" destination="xz9-c2-Pqd" id="K4x-Gz-9t5"/>
                         <outlet property="buttonShowTicket" destination="8Ek-od-2qF" id="hSF-4b-jCs"/>
@@ -380,7 +380,7 @@
             </objects>
             <point key="canvasLocation" x="5035" y="-1134"/>
         </scene>
-        <!--Penalty Ticket View Controller - Квитанция-->
+        <!--Penalty Ticket View Controller-->
         <scene sceneID="Bio-Ki-i5p">
             <objects>
                 <tableViewController id="UAe-9G-PcO" customClass="CPenaltyTicketViewController" sceneMemberID="viewController">
@@ -430,7 +430,7 @@
                             <outlet property="delegate" destination="UAe-9G-PcO" id="eB1-Ck-g68"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Квитанция" id="3kw-RA-M8a">
+                    <navigationItem key="navigationItem" id="3kw-RA-M8a">
                         <barButtonItem key="leftBarButtonItem" id="EaL-Ba-zIM">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bnf-ke-eu8">
                                 <rect key="frame" x="7" y="5" width="67" height="33"/>
@@ -503,14 +503,14 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ГАИ-63" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kM8-2V-0iO">
                                 <rect key="frame" x="8" y="19" width="62" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Информация" image="info-tab.png" id="sNU-i4-9wm"/>
-                    <navigationItem key="navigationItem" title="Информация" id="hF1-kN-SFj"/>
+                    <navigationItem key="navigationItem" id="hF1-kN-SFj"/>
                     <connections>
                         <outlet property="label" destination="kM8-2V-0iO" id="QqP-ee-WCu"/>
                         <outlet property="textView" destination="YJ6-2U-WPY" id="ue5-am-8Gr"/>
@@ -578,7 +578,7 @@
             </objects>
             <point key="canvasLocation" x="158" y="718"/>
         </scene>
-        <!--Login View Controller - Заполните анкету-->
+        <!--Login View Controller-->
         <scene sceneID="dAq-2q-hym">
             <objects>
                 <tableViewController storyboardIdentifier="" id="vlb-yJ-RW2" customClass="CLoginViewController" sceneMemberID="viewController">
@@ -797,7 +797,7 @@
                             <outlet property="delegate" destination="vlb-yJ-RW2" id="GD9-gc-MjG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Заполните анкету" id="1Tk-zq-sSl"/>
+                    <navigationItem key="navigationItem" id="1Tk-zq-sSl"/>
                     <connections>
                         <outlet property="clientTFBirthday" destination="OXc-NQ-6LX" id="vg2-JR-1q9"/>
                         <outlet property="clientTFEmail" destination="5LX-Lk-Pyw" id="OCX-yH-fxp"/>
@@ -836,7 +836,7 @@
             </objects>
             <point key="canvasLocation" x="2023" y="718"/>
         </scene>
-        <!--Profiles List View Controller - Профили-->
+        <!--Profiles List View Controller-->
         <scene sceneID="Uhg-uT-xpx">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="UWS-B9-lnb" customClass="CProfilesListViewController" sceneMemberID="viewController">
@@ -893,7 +893,7 @@
                             <outlet property="delegate" destination="UWS-B9-lnb" id="WWX-gu-xra"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Профили" id="Rvp-DB-k0F">
+                    <navigationItem key="navigationItem" id="Rvp-DB-k0F">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iB9-vR-Jup">
                             <color key="tintColor" red="0.55294117647058827" green="0.76470588235294112" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
@@ -906,7 +906,7 @@
             </objects>
             <point key="canvasLocation" x="4474" y="168"/>
         </scene>
-        <!--Profiles Add View Controller - Новый профиль-->
+        <!--Profiles Add View Controller-->
         <scene sceneID="I9e-G5-LG0">
             <objects>
                 <tableViewController id="DSC-Od-DFf" customClass="CProfilesAddViewController" sceneMemberID="viewController">
@@ -1126,7 +1126,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Новый профиль" id="9O9-Yf-kzc">
+                    <navigationItem key="navigationItem" id="9O9-Yf-kzc">
                         <barButtonItem key="leftBarButtonItem" id="yja-LN-YvA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eH0-55-Yem">
                                 <rect key="frame" x="7" y="5" width="71" height="33"/>

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CNavigationBarCustomer.h"
 
 @interface CRotateTableViewController : UITableViewController
 

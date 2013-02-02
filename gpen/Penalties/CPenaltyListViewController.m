@@ -221,16 +221,19 @@
     
         if (profile.profileName && profile.profileName.length > 0)
         {
-            [self.navigationItem setTitle:profile.profileName];
+            [CNavigationBarCustomer customizeNavTitle:profile.profileName navItem:self.navigationItem];
+//            [self.navigationItem setTitle:profile.profileName];
         }
         else
         {
-            [self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
+            [CNavigationBarCustomer customizeNavTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]] navItem:self.navigationItem];
+            //[self.navigationItem setTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]]];
         }
     }
     else
     {
-        [self.navigationItem setTitle:@"Профилей нет"];
+        [CNavigationBarCustomer customizeNavTitle:@"Профилей нет" navItem:self.navigationItem];
+//        [self.navigationItem setTitle:@"Профилей нет"];
     }
 }
 
