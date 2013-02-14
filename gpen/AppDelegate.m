@@ -11,6 +11,7 @@
 #import "CDao.h"
 #import "CDao+Profile.h"
 #import "CDao+Penalty.h"
+#import "CImageTools.h"
 
 @implementation AppDelegate
 
@@ -38,7 +39,7 @@
     }
 
     [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"select-tab.png"]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[CImageTools imageWithImage:[UIImage imageNamed:@"select-tab.png"] convertToSize:CGSizeMake(86.0, 49.0)]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIFont fontWithName:@"Helvetica" size:12.0], UITextAttributeFont, [UIColor darkGrayColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil]

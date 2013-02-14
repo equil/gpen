@@ -71,6 +71,7 @@
 		1EA6435316A40F33001BD973 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EA6434B16A40F33001BD973 /* Icon@2x.png */; };
 		1EAC8291166B3E3B00D6ED80 /* CPenaltyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */; };
 		1EAC8294166B40A700D6ED80 /* CPenaltyTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */; };
+		1EAE176216CCCA2600E4CF10 /* CImageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAE176116CCCA2600E4CF10 /* CImageTools.m */; };
 		1EB1E48816669485006CEC41 /* Recipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB1E48716669485006CEC41 /* Recipient.m */; };
 		1EB640F7167B2D3300F5C767 /* CRotateSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB640F6167B2D3300F5C767 /* CRotateSplitViewController.m */; };
 		1EBBE6981660B3CD00708B6D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBBE6971660B3CD00708B6D /* UIKit.framework */; };
@@ -233,6 +234,8 @@
 		1EAC8290166B3E3B00D6ED80 /* CPenaltyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyDetailViewController.m; sourceTree = "<group>"; };
 		1EAC8292166B40A600D6ED80 /* CPenaltyTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPenaltyTicketViewController.h; sourceTree = "<group>"; };
 		1EAC8293166B40A600D6ED80 /* CPenaltyTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPenaltyTicketViewController.m; sourceTree = "<group>"; };
+		1EAE176016CCCA2600E4CF10 /* CImageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CImageTools.h; path = Tools/CImageTools.h; sourceTree = "<group>"; };
+		1EAE176116CCCA2600E4CF10 /* CImageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CImageTools.m; path = Tools/CImageTools.m; sourceTree = "<group>"; };
 		1EB1E47C166688AB006CEC41 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1EB1E47D166688AB006CEC41 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1EB1E48616669485006CEC41 /* Recipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipient.h; path = DataAccess/Model/Recipient.h; sourceTree = "<group>"; };
@@ -505,6 +508,15 @@
 			name = LoginScreen;
 			sourceTree = "<group>";
 		};
+		1EAE175F16CCCA0700E4CF10 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				1EAE176016CCCA2600E4CF10 /* CImageTools.h */,
+				1EAE176116CCCA2600E4CF10 /* CImageTools.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		1EBBE6881660B3CD00708B6D = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +549,7 @@
 		1EBBE69D1660B3CD00708B6D /* gpen */ = {
 			isa = PBXGroup;
 			children = (
+				1EAE175F16CCCA0700E4CF10 /* Tools */,
 				1E99EE491682374700753AE4 /* StateHolder */,
 				1EF0950A167C888C0014B2B7 /* PullAndRelease */,
 				A02AC84C166E689B00F02A41 /* UIElements */,
@@ -986,6 +999,7 @@
 				1EDECE6B1688C0B2006E59C9 /* Penalty.m in Sources */,
 				1EA35A1B16BCE0B5004C446B /* CNavigationBarCustomer.m in Sources */,
 				1EA35A2616BCF533004C446B /* CWithCustomDisclosureIndicatorCell.m in Sources */,
+				1EAE176216CCCA2600E4CF10 /* CImageTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
