@@ -221,16 +221,16 @@
     
         if (profile.profileName && profile.profileName.length > 0)
         {
-            [CNavigationBarCustomer customizeNavTitle:profile.profileName navItem:self.navigationItem];
+            self.navigationItem.title = profile.profileName;
         }
         else
         {
-            [CNavigationBarCustomer customizeNavTitle:[NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]] navItem:self.navigationItem];
+            self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [profile.name capitalizedString], [profile.lastname capitalizedString]];
         }
     }
     else
     {
-        [CNavigationBarCustomer customizeNavTitle:@"Профилей нет" navItem:self.navigationItem];
+        self.navigationItem.title = @"Профилей нет";
     }
 }
 

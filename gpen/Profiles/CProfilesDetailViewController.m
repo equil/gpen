@@ -231,17 +231,17 @@
 {
     if (self.profile.profileName && self.profile.profileName.length > 0)
     {
-        [CNavigationBarCustomer customizeNavTitle:self.profile.profileName navItem:self.navigationItem];
+        self.navigationItem.title = self.profile.profileName;
         _editButton.hidden = NO;
     }
     else if ((self.profile.name && self.profile.name.length > 0) && (self.profile.lastname && self.profile.lastname.length > 0))
     {
-        [CNavigationBarCustomer customizeNavTitle:[NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]] navItem:self.navigationItem];
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", [self.profile.name capitalizedString], [self.profile.lastname capitalizedString]];
         _editButton.hidden = NO;
     }
     else
     {
-        [CNavigationBarCustomer customizeNavTitle:@"" navItem:self.navigationItem];
+        self.navigationItem.title = @"";
         _editButton.hidden = YES;
     }
 }

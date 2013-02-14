@@ -148,7 +148,7 @@
 {
     [super viewDidLoad];
     
-    [CNavigationBarCustomer customizeNavTitle:@"Профили" navItem:self.navigationItem];
+    self.navigationItem.title = @"Профили";
     
     self.clearsSelectionOnViewWillAppear = NO;
     

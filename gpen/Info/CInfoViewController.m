@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     
-    [CNavigationBarCustomer customizeNavTitle:@"Информация" navItem:self.navigationItem];
+    self.navigationItem.title = @"Информация";
     
     _textView.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     _label.font = [UIFont fontWithName:@"PTSans-Bold" size:16.0];

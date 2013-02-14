@@ -95,7 +95,7 @@
 {
     [super viewDidLoad];
     
-    [CNavigationBarCustomer customizeNavTitle:@"Протокол" navItem:self.navigationItem];
+    self.navigationItem.title = @"Протокол";
     
     self.infoLabel.font = [UIFont fontWithName:@"PTSans-Regular" size:16.0];
     
