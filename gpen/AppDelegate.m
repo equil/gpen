@@ -39,7 +39,7 @@
     }
 
     [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-    [[UITabBar appearance] setSelectionIndicatorImage:[CImageTools imageWithImage:[UIImage imageNamed:@"select-tab.png"] convertToSize:CGSizeMake(86.0, 49.0)]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[CImageTools imageWithImage:[UIImage imageNamed:@"select-tab.png"] convertToSize:CGSizeMake(91.0, 49.0)]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIFont fontWithName:@"Helvetica" size:12.0], UITextAttributeFont, [UIColor darkGrayColor], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil]
