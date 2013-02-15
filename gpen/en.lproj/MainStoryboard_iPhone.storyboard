@@ -1130,7 +1130,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="749-hX-VP1" customClass="CGreenButton">
-                                    <rect key="frame" x="15" y="18" width="290" height="45"/>
+                                    <rect key="frame" x="15" y="18" width="290" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <state key="normal" title="Сделать основным профилем" backgroundImage="login-button.png">
@@ -1148,7 +1148,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="CVV-51-fNX" customClass="CBlackButton">
-                                    <rect key="frame" x="15" y="18" width="290" height="45"/>
+                                    <rect key="frame" x="15" y="18" width="290" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <state key="normal" title="Удалить профиль" backgroundImage="button-black.png">
