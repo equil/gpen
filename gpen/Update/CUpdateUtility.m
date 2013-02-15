@@ -79,14 +79,16 @@ static NSString *kSyncMethodName = @"getList";
                 if ([method isEqualToString:kEmailMethodName])
                 {
                     msg = @"Не удалось отправить квитанцию на e-mail";
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    
+                    [alert show];
                 }
                 else if ([method isEqualToString:kSyncMethodName])
                 {
                     msg = @"Информация о штрафах этого профиля в данный момент недоступна";
+                    //TODO - убрал alert
                 }
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
             });
             
             return nil;

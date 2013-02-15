@@ -398,15 +398,16 @@ static NSString *kSyncMethodName = @"getList";
                     if ([method isEqualToString:kEmailMethodName])
                     {
                         msg = @"Не удалось отправить квитанцию на e-mail";
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        
+                        [alert show];
                     }
                     else if ([method isEqualToString:kSyncMethodName])
                     {
                         msg = @"Похоже, вы указали в профиле неточную информацию, ГИБДД не известен водитель с таким именем и номером водительского удостоверения. Вернитесь в \"Профили\" и проверьте указанную информацию.";
+                        //TODO - убрал alert
                     }
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    
-                    [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"NOTFOUND" forKey:@"status"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
@@ -423,14 +424,16 @@ static NSString *kSyncMethodName = @"getList";
                     if ([method isEqualToString:kEmailMethodName])
                     {
                         msg = @"Не удалось отправить квитанцию на e-mail";
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                       
+                        [alert show];
                     }
                     else if ([method isEqualToString:kSyncMethodName])
                     {
                         msg = @"В данный момент сервер не доступен";
+                        //TODO - убрал alert
                     }
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ошибка" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [alert show];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadingEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:@"UNAVAILABLE" forKey:@"status"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshEnd" object:nil];
