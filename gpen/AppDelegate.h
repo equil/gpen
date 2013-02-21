@@ -23,7 +23,7 @@
 @property (nonatomic, assign) BOOL updated;
 @property (nonatomic, copy) NSString *deviceToken;
 @property (nonatomic, readonly) CStateHolder *stateHolder;
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, weak) NSTimer *timer;
 
 - (void)initializeApplication;
 - (void)actualizeMainProfile;
